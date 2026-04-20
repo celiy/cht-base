@@ -2,7 +2,8 @@
 @layer reset, base, components, utilities;
 @import "./resetCSS.css" layer(reset);
 @import "tailwindcss";
-@source "../../../front-design/src";
+@source "../../";
+@source "../../../cht-design-system/src";
 
 /* Theme customization */
 @theme {

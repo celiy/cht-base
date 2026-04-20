@@ -11,7 +11,7 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@design': path.resolve(__dirname, '../front-design/src'),
+            '@design': path.resolve(__dirname, '../cht-design-system/src'),
             '@shared': path.resolve(__dirname, '../shared/src')
         },
     },
