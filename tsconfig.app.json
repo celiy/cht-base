@@ -6,7 +6,7 @@
     "baseUrl": ".",
     "paths": {
       "@design/*": ["../cht-design-system/src/*"],
-      "@shared/*": ["../shared/src/*"]
+      "@shared/*": ["../cht-shared/src/*"]
     },
 
     /* Linting */
