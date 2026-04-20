@@ -1,0 +1,14 @@
+{
+  "name": "TO_BE_FILLED",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "TO_BE_FILLED",
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@vue/tsconfig": "^0.8.1",
+    "typescript": "~5.9.3",
+    "vue": "^3.5.25",
+    "vue-router": "^4.6.4"
+  }
+}
