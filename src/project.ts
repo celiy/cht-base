@@ -2,21 +2,20 @@ import type { App } from "vue";
 import type { Router } from "vue-router";
 import { reactive } from "vue";
 import {
-    createProjectUrlParams,
-    syncReactiveQuerySnapshot
+    syncReactiveQuerySnapshot,
+    syncReactiveParamsSnapshot
 } from "./js/utils/routeUtils";
 
 const MOBILE_BREAKPOINT_PX = 768;
 
 /**
  * URL helpers bound to vue-router (requires initProjectRouter).
+ *  - `query`  : reactive snapshot of the querystring (e.g. ?page=2 -> query.page)
+ *  - `params` : reactive snapshot of the route params (e.g. /:id -> params.id)
  */
 export interface ProjectUrlState {
-    /**
-     * Reactive snapshot of querystring (string values). Use in templates, e.g. $project.url.query.page
-     */
     query: Record<string, string>;
-    params: ReturnType<typeof createProjectUrlParams>;
+    params: Record<string, string>;
 }
 
 /**
@@ -38,16 +37,7 @@ export interface ProjectState {
 }
 
 const urlQuerySnapshot = reactive<Record<string, string>>({});
-
-let routerRef: Router | null = null;
-
-const urlParams = createProjectUrlParams(() => {
-    if (!routerRef) {
-        throw new Error("[project] Router not ready: call app.use(projectPlugin, { router }) before mount.");
-    }
-
-    return routerRef;
-});
+const urlParamsSnapshot = reactive<Record<string, string>>({});
 
 /**
  * The initial project state.
@@ -66,20 +56,20 @@ export const project = reactive<ProjectState>({
     },
     url: {
         query: urlQuerySnapshot,
-        params: urlParams
+        params: urlParamsSnapshot
     }
 });
 
 /**
- * Wire router query sync and store router for $project.url.params.*.
+ * Wire router so $project.url.query and $project.url.params stay in sync.
  */
 export function initProjectRouter(router: Router) {
-    routerRef = router;
-
     syncReactiveQuerySnapshot(router.currentRoute.value.query, urlQuerySnapshot);
+    syncReactiveParamsSnapshot(router.currentRoute.value.params, urlParamsSnapshot);
 
     router.afterEach((to) => {
         syncReactiveQuerySnapshot(to.query, urlQuerySnapshot);
+        syncReactiveParamsSnapshot(to.params, urlParamsSnapshot);
     });
 }
 

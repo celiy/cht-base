@@ -1133,9 +1133,9 @@
                             </code>
                         </li>
                         <li>
-                            <b>url.params.getAll():</b>
+                            <b>url.params (vue-router):</b>
                             <code class="block bg-muted px-2 py-1 rounded">
-                                {{ JSON.stringify($project.url.params.getAll(), null, 2) }}
+                                {{ JSON.stringify($project.url.params, null, 2) }}
                             </code>
                         </li>
                     </ul>

@@ -1,20 +1,11 @@
 <template>
-    <main>
-        <Sidebar>
-            <RouterView />
-        </Sidebar>
-    </main>
+    <RouterView />
 </template>
 
 <script lang="ts">
-import Sidebar from '@design/components/custom/Sidebar.vue';
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 
 export default defineComponent({
-    name: 'App',
-
-    components: {
-        Sidebar
-    }
+    name: "App"
 });
 </script>

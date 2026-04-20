@@ -6,7 +6,8 @@ import "./css/style.css";
 import router from "./Router";
 import App from "./App.vue";
 import tooltip from "./directives/tooltip";
-import { projectPlugin } from "./project";
+import { projectPlugin, projectActions } from "./project";
+import devShellConfig from "../configs/dev";
 
 const app = createApp(App);
 
@@ -20,5 +21,13 @@ app.config.globalProperties.$toast = useToast();
 app.directive("tooltip", tooltip);
 
 app.use(projectPlugin, { router });
+
+const title = __CLIENT_CONFIG__ ? __CLIENT_CONFIG__.siteTitle : devShellConfig.siteTitle;
+
+projectActions.setSiteTitle(title);
+
+if (typeof document !== "undefined") {
+    document.title = title;
+}
 
 app.mount("#app");

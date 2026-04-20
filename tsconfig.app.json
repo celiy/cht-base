@@ -6,7 +6,8 @@
     "baseUrl": ".",
     "paths": {
       "@design/*": ["../cht-design-system/src/*"],
-      "@shared/*": ["../cht-shared/src/*"]
+      "@shared/*": ["../cht-shared/src/*"],
+      "@client/*": ["../cht-client-mecarvit/src/*"]
     },
 
     /* Linting */
@@ -17,5 +18,11 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/**/*.d.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/**/*.d.ts",
+    "configs/**/*.ts"
+  ]
 }

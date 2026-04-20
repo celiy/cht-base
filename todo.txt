@@ -1,3 +1,28 @@
+@cht-shared/.cursor/docs/context.md olhando o projeto atual @/home/celi/Documents/GitHub/cht-project , eu quero fazer o seguinte:
+
+eu quero fazer o seguinte:
+
+dentro do @cht-base deve haver uma pasta que contém configs, essas configs são as configs na qual o projeto vai usar para executar o seu front-end. 
+
+A ideia é usar o @cht-base para rodar o projeto do front-end, usar o @cht-design-system como design do sistema e essa base vai ter clientes, no caso repositórios externos que ele vai usar para executar cada cliente. Cada cliente é apenas uma coleção de páginas, código e componentes que a base importa e roda.
+
+o primeiro cliente é o @cht-client-mecarvit , a estrutura será o seguinte: a pasta do cliente vai seguir o padrão das outras repos de 
+/src/ 
+/pages/
+/components/
+/js/
+
+/pages/ irá seguir o seguinte padrão: 
+/rota.vue vai criar no router um caminho url.com/rota que leva para o rota.vue
+/rota/caminho.vue vai criar no router um caminho url.com/rota/caminho que leva para o caminho.vue
+/[id].vue vai criar no router um caminho url.com/123 que leva para o [id].vue que vai receber no @cht-base/src/types/vue-globals.d.ts @cht-base/src/project.ts  o params.id que é o valor da rota (123)
+/[id]/product.vue: mesmo do de cima, mantém o valor da params id mas acessa o product.vue.
+
+ E no base, os arquivos de config vão configurar os globals do base, como nome do site e etc. No caso o arquivo vai definir o nome da pasta que está o cliente, no caso sempre assumir que vai estar ../nome-configurado (uma pasta atrás como é configurado o shared @cht-base/tsconfig.app.json:9 ). 
+
+os comandos npm run devem ter variações como npm run dev que roda o projeto usando o router atual @cht-base/src/Router.ts para ver apenas os arquivos dev dentro do base como por exemplo npm run dev, e para os clientes nome de cada cliente como por exemplo para o repo atual do mecarvit, npm run mecarvit.
+ 
+
 Components:
     - ProgressBar: Componente que mostra o progresso de 0% a 100% em forma redonda ou horizontal.
 
