@@ -8,7 +8,7 @@
 import { defineComponent } from "vue";
 
 /**
- * Layout sem sidebar — usar como pai de rotas aninhadas (ex.: login, landing full-width).
+ * Layout without sidebar use as parent of nested routes.
  */
 export default defineComponent({
     name: "AppShellPlain"

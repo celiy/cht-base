@@ -217,9 +217,8 @@
                             type="password"
                             label="Password"
                             class="w-fit"
+                            :helperText="`Value: ${passwordInputValue}`"
                         />
-
-                        <p class="mt-4">Value: {{ passwordInputValue }}</p>
                     </section>
 
                     <div class="separator"/>
@@ -232,11 +231,11 @@
                             class="w-fit"
 
                             :value="numericInputValue"
+                            :helperText="`Value: ${numericInputValue}`"
 
                             @update:value="numericInputValue = $event"
                         />
 
-                        <p class="mt-4">Value: {{ numericInputValue }}</p>
                     </section>
 
                     <div class="separator"/>
@@ -247,14 +246,10 @@
                             type="email"
                             label="Email"
                             class="w-fit"
-                            helperText="Seu endereço de email"
-
                             :value="emailInputValue"
-
+                            :helperText="`Value: ${emailInputValue}`"
                             @update:value="emailInputValue = $event"
                         />
-
-                        <p class="mt-4">Value: {{ emailInputValue }}</p>
                     </section>
 
                     <div class="separator"/>
@@ -268,11 +263,9 @@
 
                             :minSize="3"
                             :value="phoneInputValue"
-
+                            :helperText="`Value: ${phoneInputValue}`"
                             @update:value="phoneInputValue = $event"
                         />
-
-                        <p class="mt-4">Value: {{ phoneInputValue }}</p>
                     </section>
 
                     <div class="separator"/>
@@ -285,11 +278,9 @@
                             class="w-fit"
 
                             :value="CPFInputValue"
-
+                            :helperText="`Value: ${CPFInputValue}`"
                             @update:value="CPFInputValue = $event"
                         />
-
-                        <p class="mt-4">Value: {{ CPFInputValue }}</p>
                     </section>
 
                     <div class="separator"/>
@@ -302,11 +293,9 @@
                             class="w-fit"
 
                             :value="CNPJInputValue"
-
+                            :helperText="`Value: ${CNPJInputValue}`"
                             @update:value="CNPJInputValue = $event"
                         />
-
-                        <p class="mt-4">Value: {{ CNPJInputValue }}</p>
                     </section>
 
                     <div class="separator"/>
@@ -319,11 +308,9 @@
                             class="w-fit"
 
                             :value="CEPInputValue"
-
+                            :helperText="`Value: ${CEPInputValue}`"
                             @update:value="CEPInputValue = $event"
                         />
-
-                        <p class="mt-4">Value: {{ CEPInputValue }}</p>
                     </section>
 
                     <div class="separator"/>
@@ -336,11 +323,9 @@
                             class="w-fit"
 
                             :value="DateInputValue"
-
+                            :helperText="`Value: ${DateInputValue}`"    
                             @update:value="DateInputValue = $event"
                         />
-
-                        <p class="mt-4">Value: {{ DateInputValue }}</p>
                     </section>
 
                     <div class="separator"/>
@@ -353,11 +338,9 @@
                             class="w-fit"
 
                             :value="textAreaInput"
-
+                            :helperText="`Value: ${textAreaInput}`"
                             @update:value="textAreaInput = $event"
                         />
-
-                        <p class="mt-4">Value: {{ textAreaInput }}</p>
                     </section>
 
                     <div class="separator"/>
@@ -370,11 +353,9 @@
                             class="w-fit"
 
                             :value="passwordDemo"
-
+                            :helperText="`Value: ${passwordDemo}`"
                             @update:value="passwordDemo = $event"
                         />
-
-                        <p class="mt-4">Comprimento: {{ String(passwordDemo).length }}</p>
                     </section>
 
                     <div class="separator"/>
@@ -388,11 +369,9 @@
                             copiable
 
                             :value="copiableDemo"
-
+                            :helperText="`Value: ${copiableDemo}`"
                             @update:value="copiableDemo = $event"
                         />
-
-                        <p class="mt-4">Value: {{ copiableDemo }}</p>
                     </section>
 
                     <div class="separator"/>
@@ -1093,6 +1072,43 @@
                 </div>
             </Accordion>
 
+            <Accordion header="ProgressBar">
+                <ProgressBar
+                    v-model="progressBarValue"
+                    label="Standart input range progress bar"
+                    :helperText="`Value: ${progressBarValue}`"
+                    showProgress
+                />
+
+                <div class="separator my-4"/>
+
+                <ProgressBar
+                    v-model="progressBarValue"
+                    label="Progress bar disabled"
+                    :disabled="true"
+                    :helperText="`Value: ${progressBarValue}`"
+                    showProgress
+                />
+
+                <ProgressBar
+                    v-model="progressBarValue"
+                    label="Progress bar readonly"
+                    :readonly="true"
+                    :helperText="`Value: ${progressBarValue}`"
+                    showProgress
+                />
+
+                <div class="separator my-4"/>
+
+                <div class="w-fit">
+                    <ProgressBar
+                        label="Input range vertical"
+                        direction="vertical"
+                        showProgress
+                    />
+                </div>
+            </Accordion>
+
             <Accordion header="Typography and others">
                 <div class="flex flex-col gap-4">
                     <h1>h1 - The quick brown fox jumps over the lazy dog.</h1>
@@ -1485,6 +1501,7 @@ import Tabs from "@design/components/Tabs.vue";
 import TableCharts from "@design/components/custom/TableCharts.vue";
 import MediaUploader from "@design/components/MediaUploader.vue";
 import Pagination from "@design/components/custom/Pagination.vue";
+import ProgressBar from "@design/components/ProgressBar.vue";
 
 export default defineComponent({
     name: 'DevDesign',
@@ -1507,7 +1524,8 @@ export default defineComponent({
         Tabs,
         TableCharts,
         MediaUploader,
-        Pagination
+        Pagination,
+        ProgressBar
     },
 
     data() {
@@ -1553,7 +1571,8 @@ export default defineComponent({
             selectedRadio: '',
             mediaFiles: [] as File[],
             passwordDemo: '',
-            copiableDemo: 'Copie este texto'
+            copiableDemo: 'Copie este texto',
+            progressBarValue: 25
         }
     }
 })

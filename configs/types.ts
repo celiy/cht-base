@@ -27,7 +27,7 @@ export type SidebarNavItem =
     | SidebarNavGroup;
 
 /**
- * Config do modo dev do base (sem `CLIENT` no Vite).
+ * Config internal for the base dev mode.
  */
 export interface DevShellConfig {
     name: "dev";
@@ -36,7 +36,7 @@ export interface DevShellConfig {
 }
 
 /**
- * Config de um cliente (pasta irmã + shell da app).
+ * Config for a client (sister folder + app shell).
  */
 export interface ClientConfig {
     name: string;

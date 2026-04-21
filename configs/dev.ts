@@ -10,6 +10,11 @@ export default {
         },
         {
             type: "link" as const,
+            label: "Home",
+            link: "/"
+        },
+        {
+            type: "link" as const,
             label: "Dev design",
             link: "/devDesign"
         },

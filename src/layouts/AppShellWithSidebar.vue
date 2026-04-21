@@ -11,6 +11,9 @@ import Sidebar from "@design/components/custom/Sidebar.vue";
 import { defineComponent } from "vue";
 import { getSidebarNav } from "../nav/sidebar";
 
+/**
+ * Layout with sidebar use as parent of nested routes.
+ */
 export default defineComponent({
     name: "AppShellWithSidebar",
 
@@ -19,6 +22,9 @@ export default defineComponent({
     },
 
     computed: {
+        /**
+         * Navigation items for the sidebar.
+         */
         navItems() {
             return getSidebarNav();
         }

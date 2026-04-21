@@ -2,9 +2,9 @@ import devShellConfig from "../../configs/dev";
 import type { SidebarNavItem } from "../../configs/types";
 
 /**
- * Itens da sidebar para o shell atual.
- * Em modo cliente usa `__CLIENT_CONFIG__.sidebarNav` (injeto pelo Vite a partir de `configs/<cliente>.ts`).
- * Em modo dev usa `configs/dev.ts`.
+ * Navigation items for the current shell.
+ * In client mode uses `__CLIENT_CONFIG__.sidebarNav`, injected by Vite from `configs/<client>.ts`.
+ * In dev mode uses `configs/dev.ts`.
  */
 export function getSidebarNav(): SidebarNavItem[] {
     const cfg = __CLIENT_CONFIG__;
