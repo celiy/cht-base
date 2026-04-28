@@ -39,6 +39,7 @@ function createTooltip(maxWidth = "16rem"): HTMLElement {
         word-wrap: break-word;
         opacity: 0;
         transition: opacity 0.15s ease;
+        box-shadow: 0 4px 6px -1px var(--color-shadow), 0 2px 4px -2px var(--color-shadow);
     `;
     document.body.appendChild(el);
 

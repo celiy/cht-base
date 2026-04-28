@@ -1,5 +1,19 @@
 <template>
         <div class="mb-8 flex flex-col gap-4">
+            <Card>
+                <template #header>
+                    This is the dev playground for Celi's Herstal Template.
+                </template>
+
+                <template #description>
+                    This page tries to include all system base componentes and custom ones, togheter with their variations and examples
+                </template>
+
+                <template #body>
+                    This is a card.
+                </template>
+            </Card>
+            
             <Accordion header="Cores">
                 <div class="flex gap-2 flex-wrap">
                     <div v-for="color of [
@@ -1089,6 +1103,8 @@
                     :helperText="`Value: ${progressBarValue}`"
                     showProgress
                 />
+
+                <div class="separator my-4"/>
 
                 <ProgressBar
                     v-model="progressBarValue"
