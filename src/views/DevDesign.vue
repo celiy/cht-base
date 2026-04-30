@@ -512,7 +512,7 @@
             </Accordion>
 
             <Accordion header="Dropdown">
-                <div class="flex flex-col gap-4 max-w-1/4">
+                <div class="flex flex-col gap-4 md:max-w-1/2 lg:max-w-1/4">
                     <Dropdown
                         header="Dropdown (click menu)"
 
