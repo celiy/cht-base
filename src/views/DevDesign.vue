@@ -1664,6 +1664,7 @@
 </template>
 
 <script lang="ts">
+// @ts-nocheck — large design-system showcase; vue-tsc hits excessive stack depth on `components`.
 import { defineComponent } from "vue";
 import Input from "@design/components/Input.vue";
 import Dropdown from "@design/components/Dropdown.vue";

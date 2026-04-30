@@ -37,5 +37,4 @@ export function resolveClientDir(cfg: ClientConfig): string {
     return cfg.clientDir || `cht-client-${cfg.name}`;
 }
 
-export type { ClientConfig, DevShellConfig, SidebarNavItem } from "./types";
-export { default as devShellConfig } from "./dev";
+export type { ClientConfig } from "./types";

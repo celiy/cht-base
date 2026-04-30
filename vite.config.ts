@@ -1,20 +1,22 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import path from 'path'
-import tailwindcss from '@tailwindcss/vite'
-import { loadConfig, resolveClientDir } from './configs'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import path from "path";
+import tailwindcss from "@tailwindcss/vite";
+import { loadConfig, resolveClientDir } from "./configs";
 
-const clientName = process.env.CLIENT
-const clientConfig = loadConfig(clientName)
-const clientSrc = clientConfig
-    ? path.resolve(__dirname, '..', resolveClientDir(clientConfig), 'src')
-    : null
+const clientName = process.env.CLIENT;
+const clientConfig = loadConfig(clientName);
+const clientRoot = clientConfig
+    ? path.resolve(__dirname, "..", resolveClientDir(clientConfig), "src")
+    : path.resolve(__dirname, "src/devApp");
+
+const siteTitle = clientConfig?.siteTitle ?? "cht-base dev";
 
 const alias: Record<string, string> = {
-    '@design': path.resolve(__dirname, '../cht-design-system/src'),
-    '@shared': path.resolve(__dirname, '../cht-shared/src'),
-    '@client': clientSrc ?? path.resolve(__dirname, 'src/_clientStub')
-}
+    "@design": path.resolve(__dirname, "../cht-design-system/src"),
+    "@shared": path.resolve(__dirname, "../cht-shared/src"),
+    "@client": clientRoot
+};
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -23,9 +25,9 @@ export default defineConfig({
         tailwindcss()
     ],
     resolve: {
-        alias,
+        alias
     },
     define: {
-        __CLIENT_CONFIG__: JSON.stringify(clientConfig ?? null)
+        "import.meta.env.VITE_SITE_TITLE": JSON.stringify(siteTitle)
     }
-})
+});

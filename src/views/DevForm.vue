@@ -20,6 +20,7 @@
 </template>
 
 <script lang="ts">
+// @ts-nocheck — vue-tsc excessive stack depth on `components` with FormRenderer + Button.
 import { defineComponent } from "vue";
 import FormRenderer from "@design/components/form/FormRenderer.vue";
 import Button from "@design/components/Button.vue";
