@@ -1168,6 +1168,95 @@
                             </template>
                         </Modal>
                     </div>
+
+                    <div class="separator"/>
+
+                    <div>
+                        <ConfirmationModal
+                            v-model:isOpen="openConfirmationModalPrimary"
+
+                            title="Confirmation Primary"
+                            description="Primary"
+                            body="Confirm this for me then?"
+                            confirmText="Confirm"
+                            cancelText="Cancel"
+                            variant="primary"
+
+                            @confirm="$toast.success('Confirmed')"
+                            @cancel="$toast.info('Canceled')"
+                        />
+
+                        <Button 
+                            label="Confirmation Primary"
+                            variant="primary"
+                            @click="() => openConfirmationModalPrimary = true"
+                        />
+                    </div>
+
+                    <div>
+                        <ConfirmationModal
+                            v-model:isOpen="openConfirmationModalWarning"
+
+                            title="Confirmation Warining"
+                            description="Warning"
+                            body="Well you clicked, now what? Just press 'Ok' and we are good to go"
+                            confirmText="Ok"
+                            :cancelText="false"
+                            variant="warning"
+
+                            @confirm="$toast.success('Oked')"
+                        />
+
+                        <Button 
+                            label="Confirmation Warining"
+                            variant="warning"
+                            @click="() => openConfirmationModalWarning = true"
+                        />
+                    </div>
+
+                    <div>
+                        <ConfirmationModal
+                            v-model:isOpen="openConfirmationModalDestructive"
+
+                            title="Confirmation Destructive"
+                            description="Destructive"
+                            body="Are you really sure?"
+                            confirmText="Confirm"
+                            cancelText="Cancel"
+                            variant="destructive"
+
+                            @confirm="$toast.success('Confirmed')"
+                            @cancel="$toast.info('Canceled')"
+                        />
+
+                        <Button 
+                            label="Confirmation Destructive"
+                            variant="destructive"
+                            @click="() => openConfirmationModalDestructive = true"
+                        />
+                    </div>
+
+                    <div>
+                        <ConfirmationModal
+                            v-model:isOpen="openConfirmationModalSuccess"
+
+                            title="Confirmation Success"
+                            description="Success"
+                            body="Are you really sure?"
+                            confirmText="Confirm"
+                            cancelText="Cancel"
+                            variant="success"
+
+                            @confirm="$toast.success('Confirmed')"
+                            @cancel="$toast.info('Canceled')"
+                        />
+
+                        <Button 
+                            label="Confirmation Success"
+                            variant="success"
+                            @click="() => openConfirmationModalSuccess = true"
+                        />
+                    </div>
                 </div>
             </Accordion>
 
@@ -1595,6 +1684,7 @@ import TableCharts from "@design/components/custom/TableCharts.vue";
 import MediaUploader from "@design/components/MediaUploader.vue";
 import Pagination from "@design/components/custom/Pagination.vue";
 import ProgressBar from "@design/components/ProgressBar.vue";
+import ConfirmationModal from "@design/components/custom/ConfirmationModal.vue";
 
 export default defineComponent({
     name: 'DevDesign',
@@ -1618,7 +1708,8 @@ export default defineComponent({
         TableCharts,
         MediaUploader,
         Pagination,
-        ProgressBar
+        ProgressBar,
+        ConfirmationModal
     },
 
     data() {
@@ -1666,7 +1757,12 @@ export default defineComponent({
             mediaFiles: [] as File[],
             passwordDemo: '',
             copiableDemo: 'Copie este texto',
-            progressBarValue: 25
+            progressBarValue: 25,
+            Primary: false,
+            openConfirmationModalPrimary: false,
+            openConfirmationModalSuccess: false,
+            openConfirmationModalDestructive: false,
+            openConfirmationModalWarning: false,
         }
     }
 })
