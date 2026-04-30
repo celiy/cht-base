@@ -2,7 +2,6 @@ import type { ClientConfig } from "./types";
 
 export default {
     name: "mecarvit",
-    clientDir: "cht-client-mecarvit",
     siteTitle: "Mecarvit",
     sidebarNav: [
         {

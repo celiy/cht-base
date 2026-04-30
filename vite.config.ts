@@ -2,12 +2,12 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
-import { loadConfig } from './configs'
+import { loadConfig, resolveClientDir } from './configs'
 
 const clientName = process.env.CLIENT
 const clientConfig = loadConfig(clientName)
 const clientSrc = clientConfig
-    ? path.resolve(__dirname, '..', clientConfig.clientDir, 'src')
+    ? path.resolve(__dirname, '..', resolveClientDir(clientConfig), 'src')
     : null
 
 const alias: Record<string, string> = {

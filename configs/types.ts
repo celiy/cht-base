@@ -37,10 +37,13 @@ export interface DevShellConfig {
 
 /**
  * Config for a client (sister folder + app shell).
+ *
+ * `clientDir` is optional. When omitted, the build falls back to the
+ * convention `cht-client-<name>` (matching the monorepo's `clients.json`).
  */
 export interface ClientConfig {
     name: string;
-    clientDir: string;
+    clientDir?: string;
     siteTitle: string;
     sidebarNav: SidebarNavItem[];
 }

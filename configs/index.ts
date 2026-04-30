@@ -23,7 +23,18 @@ export function loadConfig(name: string | undefined | null): ClientConfig | null
         throw new Error(`[configs] Client config not found: "${name}". Known clients: ${known}`);
     }
 
-    return cfg;
+    return {
+        ...cfg,
+        clientDir: resolveClientDir(cfg)
+    };
+}
+
+/**
+ * Apply the monorepo convention `cht-client-<name>` when `clientDir`
+ * is not explicitly set on the registered config.
+ */
+export function resolveClientDir(cfg: ClientConfig): string {
+    return cfg.clientDir || `cht-client-${cfg.name}`;
 }
 
 export type { ClientConfig, DevShellConfig, SidebarNavItem } from "./types";
