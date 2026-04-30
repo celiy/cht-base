@@ -2,7 +2,7 @@ import type { Component } from "vue";
 import type { RouteRecordRaw } from "vue-router";
 
 /**
- * Eagerly-loaded pages from the active client under `@client/pages/**\/*.vue`.
+ * Eagerly-loaded pages from the active client under `client/pages/**\/*.vue`.
  * When no client is active, this resolves to an empty stub folder and returns {}.
  */
 const pageModules = import.meta.glob("@client/pages/**/*.vue");
