@@ -13,7 +13,211 @@
                     This is a card.
                 </template>
             </Card>
-            
+
+            <Accordion header="Buttons">
+                <div class="flex flex-col gap-8 w-fit">
+                    <Button 
+                        label="Default"
+                    />
+
+                    <Button 
+                        label="Secondary"
+                        size="small"
+                        variant="secondary"
+                    />
+
+                    <Button 
+                        label="Secondary medium"
+                        size="medium"
+                        variant="secondary"
+                    />
+
+                    <Button 
+                        label="Secondary large"
+                        size="large"
+                        variant="secondary"
+                    />
+
+                    <Button 
+                        label="Primary"
+                        variant="primary"
+                    />
+
+                    <Button 
+                        label="Cancel"
+                        variant="destructive"
+                    />
+
+                    <Button 
+                        label="Warning"
+                        variant="warning"
+                    />
+
+                    <Button 
+                        label="Success"
+                        variant="success"
+                    />
+
+                    <Button 
+                        label="Bordered"
+                        variant="bordered"
+                    />
+
+                    <Button 
+                        label="Transparent"
+                        variant="transparent"
+                    />
+
+                    <div class="flex flex-col gap-2">
+                        <p class="text-sm text-muted-foreground">
+                            Grupo <code class="text-foreground">class="btn-group"</code>: bordas unidas, cantos só nas pontas.
+                        </p>
+
+                        <div class="btn-group">
+                            <Button
+                                label="Um"
+                                variant="transparent"
+                                :hoverEffect="false"
+                            />
+
+                            <Button
+                                label="Dois"
+                                variant="transparent"
+                                :hoverEffect="false"
+                            />
+
+                            <Button
+                                label="Três"
+                                variant="transparent"
+                                :hoverEffect="false"
+                            />
+                        </div>
+                    </div>
+
+                    <Button 
+                        variant="secondary"
+                        class="rounded-full!"
+                        shape="rounded"
+                        size="medium"
+                    >
+                        <span class="fa-solid fa-search text-sm" />
+                    </Button>
+                </div>
+            </Accordion>
+
+            <Accordion header="Badge">
+                <div class="flex flex-col gap-8 w-fit">
+                    <Badge label="Primary"/>
+                    <Badge label="Secondary" variant="secondary"/>
+                    <Badge label="Destructive" variant="destructive"/>
+                    <Badge label="Warning" variant="warning"/>
+                    <Badge label="Info" variant="info"/>
+                    <Badge label="Link external" variant="secondary" type="link" :external="true" link="https://google.com"/>
+                    <Badge label="Link internal" variant="secondary" type="link" link="/"/>
+                </div>
+            </Accordion>
+
+            <Accordion header="Carousel">
+                <Carousel
+                    :images="[
+                        {
+                            src: 'https://i.imgur.com/vN9nvON.jpeg',
+                            alt: 'Image 1'
+                        },
+                        {
+                            src: 'https://i.imgur.com/wAwAYzQ.jpeg',
+                            alt: 'Image 2'
+                        },
+                        {
+                            src: 'https://i.imgur.com/4dIoDgD.jpeg',
+                            alt: 'Image 3'
+                        },
+                        {
+                            src: 'https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8MTYlM0E5fGVufDB8fDB8fHww',
+                            alt: 'Image 4'
+                        }
+                    ]"
+                />
+            </Accordion>
+
+            <Accordion header="Checkbox">
+                <div class="flex flex-col gap-2">
+                    <Checkbox
+                        label="This is a checkbox"
+                        id="firt1"
+                        name="cb1"
+                        :value="false"
+                    />
+
+                    <Checkbox
+                        label="This is a boolean"
+                        id="firt2"
+                        name="cb2"
+                        :value="true"
+                    />
+
+                    <Checkbox
+                        label="This is already checked"
+                        id="firt3"
+                        name="cb3"
+                        :checked="true"
+                        :value="true"
+                    />
+
+                    <Checkbox
+                        label="This is disabled"
+                        id="firt4"
+                        name="cb4"
+                        :value="false"
+                        :disabled="true"
+                    />
+
+                    <Checkbox
+                        label="This is a description"
+                        id="firt5"
+                        name="cb5"
+                        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid recusandae vero, perferendis, eligendi animi eum quasi qui libero dolor omnis earum cum eos odio expedita ullam, provident labore hic quaerat."
+                        :value="false"
+                    />
+
+                    <Checkbox
+                        label="This is a card"
+                        id="firt6"
+                        name="cb6"
+                        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid recusandae vero, perferendis, eligendi animi eum quasi qui libero dolor omnis earum cum eos odio expedita ullam, provident labore hic quaerat."
+                        variant="card"
+                        :value="false"
+                    />
+
+                    <Checkbox
+                        label="This is a card"
+                        id="firt7"
+                        name="cb7"
+                        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid recusandae vero, perferendis, eligendi animi eum quasi qui libero dolor omnis earum cum eos odio expedita ullam, provident labore hic quaerat."
+                        variant="card"
+                        :value="false"
+                        :disabled="true"
+                    />
+
+                    <Checkbox
+                        label="This is a switch"
+                        id="firt8"
+                        name="cb8"
+                        checkboxStyle="switch"
+                        :value="false"
+                    />
+
+                    <Checkbox
+                        label="This is a switch"
+                        id="firt9"
+                        name="cb9"
+                        checkboxStyle="switch"
+                        :disabled="true"
+                        :value="true"
+                    />
+                </div>
+            </Accordion>
+
             <Accordion header="Cores">
                 <div class="flex gap-2 flex-wrap">
                     <div v-for="color of [
@@ -180,9 +384,287 @@
                 </div>
             </Accordion>
 
-            <Accordion
-                header="Inputs"
-            >
+            <Accordion header="Drawer">
+                <div>
+                    <Button
+                        label="Drawer right"
+                        class="mr-2"
+
+                        @click="() => {drawerRight = !drawerRight}"
+                    />
+
+                    <Modal
+                        size="small"
+                        variant="drawer"
+                        side="right"
+                        
+                        :isOpen="drawerRight"   
+
+                        @update:value="(value) => {drawerRight = value}"    
+                    >
+                        <template #header>
+                            This is the modal header
+                        </template>
+
+                        <template #description>
+                            Lorem ipsum
+                        </template>
+
+                        <template #body>
+                            <span v-for="n in 15" :key="n">
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat eius, magnam, sunt culpa placeat quae ex ullam maxime, non dignissimos neque nulla id. Consequatur facere fugiat, ex reiciendis sequi dolor!
+                            </span>
+                        </template>
+
+                        <template #footer>
+                            <div class="flex justify-end gap-2">
+                                <Button
+                                    label="Confirm"
+
+                                    @click="() => {drawerRight = !drawerRight}"
+                                />
+                            </div>
+                        </template>
+                    </Modal>
+
+                    <Button
+                        label="Drawer left"
+
+                        @click="() => {drawerLeft = !drawerLeft}"
+                    />
+
+                    <Button
+                        label="Drawer bottom"
+
+                        class="ml-2"
+
+                        @click="() => {drawerBottom = !drawerBottom}"
+                    />
+
+                    <Modal
+                        size="small"
+                        variant="drawer"
+                        side="left"
+                        
+                        :isOpen="drawerLeft"   
+
+                        @update:value="(value) => {drawerLeft = value}"    
+                    >
+                        <template #header>
+                            This is the modal header
+                        </template>
+
+                        <template #description>
+                            Lorem ipsum
+                        </template>
+
+                        <template #body>
+                            <span v-for="n in 15" :key="n">
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat eius, magnam, sunt culpa placeat quae ex ullam maxime, non dignissimos neque nulla id. Consequatur facere fugiat, ex reiciendis sequi dolor!
+                            </span>
+                        </template>
+
+                        <template #footer>
+                            <div class="flex justify-end gap-2">
+                                <Button
+                                    label="Confirm"
+
+                                    @click="() => {drawerLeft = !drawerLeft}"
+                                />
+                            </div>
+                        </template>
+                    </Modal>
+
+                    <Modal
+                        size="medium"
+                        variant="drawer"
+                        side="bottom"
+
+                        :isOpen="drawerBottom"
+
+                        @update:value="(value) => {drawerBottom = value}"
+                    >
+                        <template #header>
+                            Drawer bottom
+                        </template>
+
+                        <template #description>
+                            Arraste para baixo ou use o backdrop para fechar.
+                        </template>
+
+                        <template #body>
+                            <span v-for="n in 8" :key="n">
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat eius, magnam, sunt culpa placeat quae ex ullam maxime, non dignissimos neque nulla id.
+                            </span>
+                        </template>
+
+                        <template #footer>
+                            <div class="flex justify-end gap-2">
+                                <Button
+                                    label="Fechar"
+
+                                    @click="() => {drawerBottom = !drawerBottom}"
+                                />
+                            </div>
+                        </template>
+                    </Modal>
+                </div>
+            </Accordion>
+
+            <Accordion header="Dropdown">
+                <div class="flex flex-col gap-4 max-w-1/4">
+                    <Dropdown
+                        header="Dropdown (click menu)"
+
+                        :options="dropdownOption"
+                    />
+
+                    <Select
+                        header="Select"
+
+                        :options="selectOption"
+                    />
+
+                    <Popover header="Popover">
+                        Teste
+                    </Popover>
+
+                    <Popover
+                        header="Popover with hover"
+                        openOnHover
+                    >
+                        Teste
+                    </Popover>
+
+                    <Popover
+                        header="Popover with hover and slot"
+                        openOnHover
+                    >
+                        <template #button>
+                            <Input
+                                type="text"
+                                placeholder="This is with hover and slot #button"
+                                id="input-with-hover-and-slot-button"
+                            />
+                        </template>
+
+                        Teste
+                    </Popover>
+
+                    <Select
+                        :search="{
+                            external: false
+                        }"
+
+                        :options="selectOption"
+                    />
+
+                    <Select
+                        header="Select with memo"
+                        id="use-memo"
+                        useMemo
+
+                        :options="selectOption"
+                    />
+
+                    <Select
+                        header="Select with selectMultiple"
+                        :options="selectOption"
+                        :selectMultiple="{ min: 0, max: 3 }"
+                        helperText="Min. 0, max. 3"
+                    />
+
+                    <Select
+                        header="Select with selectMultiple useMemo"
+                        id="use-memo-multiple-example"
+                        useMemo
+                        :options="selectOption"
+                        :selectMultiple="{ min: 0 }"
+                    />
+                </div>
+            </Accordion>
+
+            <Accordion header="Card">
+                <div class="flex flex-col gap-8 w-fit">
+                    <Card>
+                        <template #header>
+                            Header
+                        </template>
+
+                        <template #description>
+                            Header description
+                        </template>
+
+                        <template #body>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi ad illum assumenda, eum excepturi atque deserunt magni officia, ea, veritatis laborum sint exercitationem alias recusandae et autem itaque fugit cumque!
+                        </template>
+
+                        <template #footer>
+                            teste
+                        </template>
+                    </Card>
+
+                    <Card>
+                        <template #header>
+                            Header
+                        </template>
+
+                        <template #description>
+                            Header description
+                        </template>
+
+                        <template #body>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi ad illum assumenda, eum excepturi atque deserunt magni officia, ea, veritatis laborum sint exercitationem alias recusandae et autem itaque fugit cumque!
+                        </template>
+                    </Card>
+
+                    <Card>
+                        <template #header>
+                            Header
+                        </template>
+
+                        <template #body>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi ad illum assumenda, eum excepturi atque deserunt magni officia, ea, veritatis laborum sint exercitationem alias recusandae et autem itaque fugit cumque!
+                        </template>
+                    </Card>
+
+
+                    <Card>
+                        <template #body>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi ad illum assumenda, eum excepturi atque deserunt magni officia, ea, veritatis laborum sint exercitationem alias recusandae et autem itaque fugit cumque!
+                        </template>
+                    </Card>
+                </div>
+            </Accordion>
+
+            <Accordion header="Globals" pinnable>
+                <div class="flex flex-col gap-4">
+                    <h3 class="font-bold">Global <code>$project</code> state</h3>
+                    <pre class="p-4 bg-muted/60 rounded text-xs max-w-2xl overflow-x-auto"><code>{{ JSON.stringify($project, null, 2) }}</code></pre>
+
+                    <ul class="text-sm space-y-1">
+                        <li><b>device.isMobile:</b> {{ $project.device.isMobile ? 'Yes' : 'No' }}</li>
+                        <li><b>device.viewportWidth:</b> {{ $project.device.viewportWidth }}</li>
+                        <li><b>device.mobileBreakpointPx:</b> {{ $project.device.mobileBreakpointPx }}</li>
+                        <li><b>labels.siteTitle:</b> {{ $project.labels.siteTitle }}</li>
+                        <li><b>user.name:</b> {{ $project.user.name ?? '[not set]' }}</li>
+                        <li>
+                            <b>url.query:</b>
+                            <code class="block bg-muted px-2 py-1 rounded">
+                                {{ JSON.stringify($project.url.query, null, 2) }}
+                            </code>
+                        </li>
+                        <li>
+                            <b>url.params (vue-router):</b>
+                            <code class="block bg-muted px-2 py-1 rounded">
+                                {{ JSON.stringify($project.url.params, null, 2) }}
+                            </code>
+                        </li>
+                    </ul>
+                </div>
+            </Accordion>
+
+            <Accordion header="Inputs">
                 <div class="flex flex-col gap-8 w-fit">
                     <section>
                         <Input
@@ -419,199 +901,93 @@
                 </div>
             </Accordion>
 
-            <Accordion
-                header="Buttons"
-            >
-                <div class="flex flex-col gap-8 w-fit">
-                    <Button 
-                        label="Default"
-                    />
+            <Accordion header="ProgressBar">
+                <ProgressBar
+                    v-model="progressBarValue"
+                    label="Standart input range progress bar"
+                    :helperText="`Value: ${progressBarValue}`"
+                    showProgress
+                />
 
-                    <Button 
-                        label="Secondary"
-                        size="small"
-                        variant="secondary"
-                    />
+                <div class="separator my-4"/>
 
-                    <Button 
-                        label="Secondary medium"
-                        size="medium"
-                        variant="secondary"
-                    />
+                <ProgressBar
+                    v-model="progressBarValue"
+                    label="Progress bar disabled"
+                    :disabled="true"
+                    :helperText="`Value: ${progressBarValue}`"
+                    showProgress
+                />
 
-                    <Button 
-                        label="Secondary large"
-                        size="large"
-                        variant="secondary"
-                    />
+                <div class="separator my-4"/>
 
-                    <Button 
-                        label="Primary"
-                        variant="primary"
-                    />
+                <ProgressBar
+                    v-model="progressBarValue"
+                    label="Progress bar readonly"
+                    :readonly="true"
+                    :helperText="`Value: ${progressBarValue}`"
+                    showProgress
+                />
 
-                    <Button 
-                        label="Cancel"
-                        variant="destructive"
-                    />
+                <div class="separator my-4"/>
 
-                    <Button 
-                        label="Warning"
-                        variant="warning"
-                    />
-
-                    <Button 
-                        label="Success"
-                        variant="success"
-                    />
-
-                    <Button 
-                        label="Bordered"
-                        variant="bordered"
-                    />
-
-                    <Button 
-                        label="Transparent"
-                        variant="transparent"
-                    />
-
-                    <div class="flex flex-col gap-2">
-                        <p class="text-sm text-muted-foreground">
-                            Grupo <code class="text-foreground">class="btn-group"</code>: bordas unidas, cantos só nas pontas.
-                        </p>
-
-                        <div class="btn-group">
-                            <Button
-                                label="Um"
-                                variant="transparent"
-                                :hoverEffect="false"
-                            />
-
-                            <Button
-                                label="Dois"
-                                variant="transparent"
-                                :hoverEffect="false"
-                            />
-
-                            <Button
-                                label="Três"
-                                variant="transparent"
-                                :hoverEffect="false"
-                            />
-                        </div>
-                    </div>
-
-                    <Button 
-                        variant="secondary"
-                        class="rounded-full!"
-                        shape="rounded"
-                        size="medium"
-                    >
-                        <span class="fa-solid fa-search text-sm" />
-                    </Button>
-                </div>
-            </Accordion>
-
-            <Accordion
-                header="Dropdown"
-            >
-                <div class="flex flex-col gap-4 max-w-1/4">
-                    <Dropdown
-                        header="Dropdown (click menu)"
-
-                        :options="dropdownOption"
-                    />
-
-                    <Select
-                        header="Select"
-
-                        :options="selectOption"
-                    />
-
-                    <Popover header="Popover">
-                        Teste
-                    </Popover>
-
-                    <Popover
-                        header="Popover with hover"
-                        openOnHover
-                    >
-                        Teste
-                    </Popover>
-
-                    <Popover
-                        header="Popover with hover and slot"
-                        openOnHover
-                    >
-                        <template #button>
-                            <Input
-                                type="text"
-                                placeholder="This is with hover and slot #button"
-                                id="input-with-hover-and-slot-button"
-                            />
-                        </template>
-
-                        Teste
-                    </Popover>
-
-                    <Select
-                        :search="{
-                            external: false
-                        }"
-
-                        :options="selectOption"
-                    />
-
-                    <Select
-                        header="Select with memo"
-                        id="use-memo"
-                        useMemo
-
-                        :options="selectOption"
-                    />
-
-                    <Select
-                        header="Select with selectMultiple"
-                        :options="selectOption"
-                        :selectMultiple="{ min: 0, max: 3 }"
-                        helperText="Min. 0, max. 3"
-                    />
-
-                    <Select
-                        header="Select with selectMultiple useMemo"
-                        id="use-memo-multiple-example"
-                        useMemo
-                        :options="selectOption"
-                        :selectMultiple="{ min: 0 }"
+                <div class="w-fit">
+                    <ProgressBar
+                        v-model="progressBarValue"
+                        label="Input range vertical"
+                        direction="vertical"
+                        showProgress
                     />
                 </div>
-            </Accordion>
 
-            <div>
-                <Accordion
-                    header="Accordion bordered 1"
-                    variant="bordered"
-                >
-                    Content inside 1
-                </Accordion>
-                <Accordion
-                    header="Accordion bordered 2"
-                    variant="bordered"
-                >
-                    Content inside 2 
-                </Accordion>
-                <Accordion
-                    header="Accordion bordered 3"
-                    variant="bordered"
-                >
-                    Content inside 3
-                </Accordion>
-            </div>
+                <div class="separator my-4"/>
+
+                <ProgressBar
+                    v-model="progressBarValue"
+                    label="Progress circular small"
+                    variant="circular"
+                    size="small"
+                    showProgress
+                />
+
+                <div class="separator my-4"/>
+
+                <ProgressBar
+                    v-model="progressBarValue"
+                    label="Progress circular medium"
+                    variant="circular"
+                    size="medium"
+                />
+
+                <div class="separator my-4"/>
+
+                <ProgressBar
+                    v-model="progressBarValue"
+                    label="Progress circular large"
+                    variant="circular"
+                    size="large"
+                />
+
+                <div class="separator my-4"/>
+
+                <ProgressBar
+                    v-model="progressBarValue"
+                    :min="30"
+                    :max="60"
+                    label="Min: 30, Max: 60"
+                    variant="circular"
+                />
+
+                <div class="separator my-4"/>
+
+                <ProgressBar
+                    label="Loading"
+                    loading
+                    variant="circular"
+                />
+            </Accordion>
             
-
-            <Accordion
-                header="Modal"
-            >
+            <Accordion header="Modal">
                 <div class="flex flex-col gap-8 w-fit">
                     <div>
                         <Button
@@ -795,267 +1171,6 @@
                 </div>
             </Accordion>
 
-            <Accordion
-                header="Badge"
-            >
-                <div class="flex flex-col gap-8 w-fit">
-                    <Badge label="Primary"/>
-                    <Badge label="Secondary" variant="secondary"/>
-                    <Badge label="Destructive" variant="destructive"/>
-                    <Badge label="Warning" variant="warning"/>
-                    <Badge label="Info" variant="info"/>
-                    <Badge label="Link external" variant="secondary" type="link" :external="true" link="https://google.com"/>
-                    <Badge label="Link internal" variant="secondary" type="link" link="/"/>
-                </div>
-            </Accordion>
-
-            <Accordion
-                header="Card"
-            >
-                <div class="flex flex-col gap-8 w-fit">
-                    <Card>
-                        <template #header>
-                            Header
-                        </template>
-
-                        <template #description>
-                            Header description
-                        </template>
-
-                        <template #body>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi ad illum assumenda, eum excepturi atque deserunt magni officia, ea, veritatis laborum sint exercitationem alias recusandae et autem itaque fugit cumque!
-                        </template>
-
-                        <template #footer>
-                            teste
-                        </template>
-                    </Card>
-
-                    <Card>
-                        <template #header>
-                            Header
-                        </template>
-
-                        <template #description>
-                            Header description
-                        </template>
-
-                        <template #body>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi ad illum assumenda, eum excepturi atque deserunt magni officia, ea, veritatis laborum sint exercitationem alias recusandae et autem itaque fugit cumque!
-                        </template>
-                    </Card>
-
-                    <Card>
-                        <template #header>
-                            Header
-                        </template>
-
-                        <template #body>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi ad illum assumenda, eum excepturi atque deserunt magni officia, ea, veritatis laborum sint exercitationem alias recusandae et autem itaque fugit cumque!
-                        </template>
-                    </Card>
-
-
-                    <Card>
-                        <template #body>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi ad illum assumenda, eum excepturi atque deserunt magni officia, ea, veritatis laborum sint exercitationem alias recusandae et autem itaque fugit cumque!
-                        </template>
-                    </Card>
-                </div>
-            </Accordion>
-
-            <Accordion header="Carousel">
-                <Carousel
-                    :images="[
-                        {
-                            src: 'https://i.imgur.com/vN9nvON.jpeg',
-                            alt: 'Image 1'
-                        },
-                        {
-                            src: 'https://i.imgur.com/wAwAYzQ.jpeg',
-                            alt: 'Image 2'
-                        },
-                        {
-                            src: 'https://i.imgur.com/4dIoDgD.jpeg',
-                            alt: 'Image 3'
-                        },
-                        {
-                            src: 'https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8MTYlM0E5fGVufDB8fDB8fHww',
-                            alt: 'Image 4'
-                        }
-                    ]"
-                />
-            </Accordion>
-
-            <Accordion header="Checkbox">
-                <div class="flex flex-col gap-2">
-                    <Checkbox
-                        label="This is a checkbox"
-                        id="firt1"
-                        name="cb1"
-                        :value="false"
-                    />
-
-                    <Checkbox
-                        label="This is a boolean"
-                        id="firt2"
-                        name="cb2"
-                        :value="true"
-                    />
-
-                    <Checkbox
-                        label="This is already checked"
-                        id="firt3"
-                        name="cb3"
-                        :checked="true"
-                        :value="true"
-                    />
-
-                    <Checkbox
-                        label="This is disabled"
-                        id="firt4"
-                        name="cb4"
-                        :value="false"
-                        :disabled="true"
-                    />
-
-                    <Checkbox
-                        label="This is a description"
-                        id="firt5"
-                        name="cb5"
-                        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid recusandae vero, perferendis, eligendi animi eum quasi qui libero dolor omnis earum cum eos odio expedita ullam, provident labore hic quaerat."
-                        :value="false"
-                    />
-
-                    <Checkbox
-                        label="This is a card"
-                        id="firt6"
-                        name="cb6"
-                        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid recusandae vero, perferendis, eligendi animi eum quasi qui libero dolor omnis earum cum eos odio expedita ullam, provident labore hic quaerat."
-                        variant="card"
-                        :value="false"
-                    />
-
-                    <Checkbox
-                        label="This is a card"
-                        id="firt7"
-                        name="cb7"
-                        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid recusandae vero, perferendis, eligendi animi eum quasi qui libero dolor omnis earum cum eos odio expedita ullam, provident labore hic quaerat."
-                        variant="card"
-                        :value="false"
-                        :disabled="true"
-                    />
-
-                    <Checkbox
-                        label="This is a switch"
-                        id="firt8"
-                        name="cb8"
-                        checkboxStyle="switch"
-                        :value="false"
-                    />
-
-                    <Checkbox
-                        label="This is a switch"
-                        id="firt9"
-                        name="cb9"
-                        checkboxStyle="switch"
-                        :disabled="true"
-                        :value="true"
-                    />
-                </div>
-            </Accordion>
-
-            <Accordion header="Drawer">
-                <div>
-                    <Button
-                        label="Drawer right"
-                        class="mr-2"
-
-                        @click="() => {drawerRight = !drawerRight}"
-                    />
-
-                    <Modal
-                        size="small"
-                        variant="drawer"
-                        side="right"
-                        
-                        :isOpen="drawerRight"   
-
-                        @update:value="(value) => {drawerRight = value}"    
-                    >
-                        <template #header>
-                            This is the modal header
-                        </template>
-
-                        <template #description>
-                            Lorem ipsum
-                        </template>
-
-                        <template #body>
-                            <span v-for="n in 15" :key="n">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat eius, magnam, sunt culpa placeat quae ex ullam maxime, non dignissimos neque nulla id. Consequatur facere fugiat, ex reiciendis sequi dolor!
-                            </span>
-                        </template>
-
-                        <template #footer>
-                            <div class="flex justify-end gap-2">
-                                <Button
-                                    label="Confirm"
-
-                                    @click="() => {drawerRight = !drawerRight}"
-                                />
-                            </div>
-                        </template>
-                    </Modal>
-
-                    <Button
-                        label="Drawer left"
-
-                        @click="() => {drawerLeft = !drawerLeft}"
-                    />
-
-                    <Modal
-                        size="small"
-                        variant="drawer"
-                        side="left"
-                        
-                        :isOpen="drawerLeft"   
-
-                        @update:value="(value) => {drawerLeft = value}"    
-                    >
-                        <template #header>
-                            This is the modal header
-                        </template>
-
-                        <template #description>
-                            Lorem ipsum
-                        </template>
-
-                        <template #body>
-                            <span v-for="n in 15" :key="n">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat eius, magnam, sunt culpa placeat quae ex ullam maxime, non dignissimos neque nulla id. Consequatur facere fugiat, ex reiciendis sequi dolor!
-                            </span>
-                        </template>
-
-                        <template #footer>
-                            <div class="flex justify-end gap-2">
-                                <Button
-                                    label="Confirm"
-
-                                    @click="() => {drawerLeft = !drawerLeft}"
-                                />
-                            </div>
-                        </template>
-                    </Modal>
-                </div>
-            </Accordion>
-            
-            <Accordion header="Tooltip">
-                <Button v-tooltip="'Texto'">Tooltip</Button>
-
-                <Button v-tooltip="'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat eius, magnam, sunt culpa placeat quae ex ullam maxime, non dignissimos neque nulla id. Consequatur facere fugiat, ex reiciendis sequi dolor!'" class="ml-2">Tooltip longo</Button>
-            </Accordion>
-
             <Accordion header="Radio">
                 <div class="flex flex-col gap-2">
                     <Radio v-model="selectedRadio" label="This is a radio 1" value="opt-a" name="group-a" id="ra-1" description="Test 123"/>
@@ -1085,45 +1200,13 @@
                     </Button>
                 </div>
             </Accordion>
+            
+            <Accordion header="Tooltip">
+                <Button v-tooltip="'Texto'">Tooltip</Button>
 
-            <Accordion header="ProgressBar">
-                <ProgressBar
-                    v-model="progressBarValue"
-                    label="Standart input range progress bar"
-                    :helperText="`Value: ${progressBarValue}`"
-                    showProgress
-                />
-
-                <div class="separator my-4"/>
-
-                <ProgressBar
-                    v-model="progressBarValue"
-                    label="Progress bar disabled"
-                    :disabled="true"
-                    :helperText="`Value: ${progressBarValue}`"
-                    showProgress
-                />
-
-                <div class="separator my-4"/>
-
-                <ProgressBar
-                    v-model="progressBarValue"
-                    label="Progress bar readonly"
-                    :readonly="true"
-                    :helperText="`Value: ${progressBarValue}`"
-                    showProgress
-                />
-
-                <div class="separator my-4"/>
-
-                <div class="w-fit">
-                    <ProgressBar
-                        label="Input range vertical"
-                        direction="vertical"
-                        showProgress
-                    />
-                </div>
+                <Button v-tooltip="'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat eius, magnam, sunt culpa placeat quae ex ullam maxime, non dignissimos neque nulla id. Consequatur facere fugiat, ex reiciendis sequi dolor!'" class="ml-2">Tooltip longo</Button>
             </Accordion>
+
 
             <Accordion header="Typography and others">
                 <div class="flex flex-col gap-4">
@@ -1147,32 +1230,26 @@
                 </div>
             </Accordion>
 
-            <Accordion header="Globals" pinnable>
-                <div class="flex flex-col gap-4">
-                    <h3 class="font-bold">Global <code>$project</code> state</h3>
-                    <pre class="p-4 bg-muted/60 rounded text-xs max-w-2xl overflow-x-auto"><code>{{ JSON.stringify($project, null, 2) }}</code></pre>
-
-                    <ul class="text-sm space-y-1">
-                        <li><b>device.isMobile:</b> {{ $project.device.isMobile ? 'Yes' : 'No' }}</li>
-                        <li><b>device.viewportWidth:</b> {{ $project.device.viewportWidth }}</li>
-                        <li><b>device.mobileBreakpointPx:</b> {{ $project.device.mobileBreakpointPx }}</li>
-                        <li><b>labels.siteTitle:</b> {{ $project.labels.siteTitle }}</li>
-                        <li><b>user.name:</b> {{ $project.user.name ?? '[not set]' }}</li>
-                        <li>
-                            <b>url.query:</b>
-                            <code class="block bg-muted px-2 py-1 rounded">
-                                {{ JSON.stringify($project.url.query, null, 2) }}
-                            </code>
-                        </li>
-                        <li>
-                            <b>url.params (vue-router):</b>
-                            <code class="block bg-muted px-2 py-1 rounded">
-                                {{ JSON.stringify($project.url.params, null, 2) }}
-                            </code>
-                        </li>
-                    </ul>
-                </div>
-            </Accordion>
+            <div>
+                <Accordion
+                    header="Accordion bordered 1"
+                    variant="bordered"
+                >
+                    Content inside 1
+                </Accordion>
+                <Accordion
+                    header="Accordion bordered 2"
+                    variant="bordered"
+                >
+                    Content inside 2 
+                </Accordion>
+                <Accordion
+                    header="Accordion bordered 3"
+                    variant="bordered"
+                >
+                    Content inside 3
+                </Accordion>
+            </div>
 
             <div class="grid grid-cols-2 gap-4">
                 <Table
@@ -1550,6 +1627,7 @@ export default defineComponent({
             passwordInputValue: '',
             drawerRight: false,
             drawerLeft: false,
+            drawerBottom: false,
             numericInputValue: 0,
             emailInputValue: '',
             phoneInputValue: '',
