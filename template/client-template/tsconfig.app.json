@@ -5,7 +5,6 @@
     "types": ["vite/client"],
     "baseUrl": ".",
     "paths": {
-      "@base/*": ["../cht-base/src/*"],
       "@design/*": ["../cht-design-system/src/*"],
       "@shared/*": ["../cht-shared/src/*"],
       "@/*": ["./src/*"]
