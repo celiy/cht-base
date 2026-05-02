@@ -8,7 +8,7 @@
 /* Theme customization */
 @theme {
     --color-background: oklch(0.165 0 0);
-    --color-foreground: oklch(0.985 0 0);
+    --color-foreground: oklch(0.950 0 0);
 
     --color-shadow: rgba(0, 0, 0, 0.25);
     
@@ -142,7 +142,7 @@ h6 {
 }
 
 p {
-    @apply leading-5;
+    @apply leading-6;
     font-weight: 400;
 }
 
@@ -196,7 +196,14 @@ code {
     @apply w-full h-[1px] bg-border;
 }
 
-.container {
+.container-sm {
+    @apply px-4;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container-lg {
     @apply px-4 sm:px-6 md:px-8;
 
     margin-left: auto;
@@ -204,31 +211,47 @@ code {
 }
 
 @media (min-width: 640px) {
-    .container {
+    .container-lg {
         max-width: 640px;
     }
 }
 
 @media (min-width: 768px) {
-    .container {
+    .container-sm {
+        max-width: 640px;
+    }
+
+    .container-lg {
         max-width: 768px;
     }
 }
 
 @media (min-width: 1024px) {
-    .container {
+    .container-sm {
+        max-width: 768px;
+    }
+
+    .container-lg {
         max-width: 1024px;
     }
 }
 
 @media (min-width: 1280px) {
-    .container {
+    .container-sm {
+        max-width: 768px;
+    }
+
+    .container-lg {
         max-width: 1280px;
     }
 }
 
 @media (min-width: 1536px) {
-    .container {
+    .container-sm {
+        max-width: 768px;
+    }
+
+    .container-lg {
         max-width: 1536px;
     }
 }

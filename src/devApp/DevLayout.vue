@@ -8,5 +8,5 @@
 
 <script setup lang="ts">
 import Sidebar from "@design/components/custom/Sidebar.vue";
-import { devNav } from "./devNav";
+import { devNav } from "./ts/devNav";
 </script>

@@ -21,7 +21,13 @@
                     />
 
                     <Button 
-                        label="Secondary"
+                        label="Extra small"
+                        size="extra-small"
+                        variant="secondary"
+                    />
+
+                    <Button 
+                        label="Secondary small"
                         size="small"
                         variant="secondary"
                     />
@@ -76,19 +82,19 @@
                         <div class="btn-group">
                             <Button
                                 label="Um"
-                                variant="transparent"
+                                variant="bordered"
                                 :hoverEffect="false"
                             />
 
                             <Button
                                 label="Dois"
-                                variant="transparent"
+                                variant="bordered"
                                 :hoverEffect="false"
                             />
 
                             <Button
                                 label="Três"
-                                variant="transparent"
+                                variant="bordered"
                                 :hoverEffect="false"
                             />
                         </div>

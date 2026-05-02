@@ -12,7 +12,7 @@
       // so listing every known client lets the IDE pick whichever is
       // currently checked out without manual edits. Runtime/Vite alias is
       // resolved separately via process.env.CLIENT in vite.config.ts.
-      "@client/*": ["../cht-client-mecarvit/src/*"]
+      "@client/*": ["./src/devApp/*","../cht-client-mecarvit/src/*"]
     },
 
     /* Linting */
