@@ -13,7 +13,7 @@
         <section class="mb-8">
             <Card variant="transparent">
                 <template #body>
-                    <div class="px-8 py-4">
+                    <div class="p-4">
                         <Accordion variant="bordered" header="Este é um accordion">
                             Qualquer conteúdo pode ser colocado dentro.
                         </Accordion>
@@ -42,7 +42,7 @@
         <section class="mb-8">
             <Card variant="transparent">
                 <template #body>
-                    <div class="px-8 py-4">
+                    <div class="p-4">
                         <Accordion class="mb-4" variant="bordered" header="Variação bordada">
                             Conteúdo de exemplo
                         </Accordion>
@@ -68,7 +68,7 @@
         <section class="mb-8">
             <Card variant="transparent">
                 <template #body>
-                    <div class="px-8 py-4 flex flex-col gap-2">
+                    <div class="p-4 flex flex-col gap-2">
                         <Accordion pinnable variant="default" header="Variação padrão fixável">
                             Conteúdo de exemplo
                         </Accordion>
