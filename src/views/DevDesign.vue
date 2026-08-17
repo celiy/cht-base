@@ -1667,6 +1667,40 @@
                 ]
             }"
         />
+
+        <div class="mb-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <TableCharts
+                header="Data Bars por grupo"
+                description="Agrega por group (jan + Jan = 143) e usa a ordem da array"
+                variant="bars"
+
+                :data="{
+                    label: 'Vendas',
+                    displayAs: 'sum',
+                    items: [
+                        { value: 123, group: 'jan' },
+                        { value: 20, group: 'Jan' },
+                        { value: 123, group: 'fev' }
+                    ]
+                }"
+            />
+
+            <TableCharts
+                header="Data Wave por grupo"
+                description="Mesma agregação por group, sem filtro de data"
+                variant="wave"
+
+                :data="{
+                    label: 'Vendas',
+                    displayAs: 'sum',
+                    items: [
+                        { value: 123, group: 'jan' },
+                        { value: 20, group: 'Jan' },
+                        { value: 123, group: 'fev' }
+                    ]
+                }"
+            />
+        </div>
 </template>
 
 <script lang="ts">

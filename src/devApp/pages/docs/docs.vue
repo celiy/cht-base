@@ -1,8 +1,27 @@
 <template>
-    <main>
-        <p>
-            Docs
-        </p>
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+        <section>
+            <h1 class="mb-2">
+                CHT Docs
+            </h1>
+
+            <p class="text-muted-foreground!">
+                Mini wiki dos componentes do design system, no estilo Storybook. Cada página mostra o componente ao vivo, as variações de props e exemplos de uso.
+            </p>
+        </section>
+
+        <section>
+            <h3 class="mb-2">
+                Como usar
+            </h3>
+
+            <p>
+                Navegue pela sidebar à esquerda. O playground livre continua em
+                <RouterLink class="underline" to="/devDesign">Dev design</RouterLink>.
+                Atalhos: <code>s</code> abre e fecha a sidebar (fora de inputs);
+                <code>Esc</code> fecha o modal do topo.
+            </p>
+        </section>
     </main>
 </template>
 

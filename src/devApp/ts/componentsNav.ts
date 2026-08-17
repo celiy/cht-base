@@ -10,6 +10,25 @@ export const componentsNav = [
     },
     {
         type: "section" as const,
+        label: "Foundation"
+    },
+    {
+        type: "link" as const,
+        label: "Colors",
+        link: "/docs/components/colors"
+    },
+    {
+        type: "link" as const,
+        label: "Toast",
+        link: "/docs/components/toast"
+    },
+    {
+        type: "link" as const,
+        label: "Tooltip",
+        link: "/docs/components/tooltip"
+    },
+    {
+        type: "section" as const,
         label: "Components"
     },
     {
@@ -64,11 +83,6 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
-        label: "Pagination",
-        link: "/docs/components/pagination"
-    },
-    {
-        type: "link" as const,
         label: "Popover",
         link: "/docs/components/popover"
     },
@@ -89,11 +103,6 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
-        label: "Sidebar",
-        link: "/docs/components/sidebar"
-    },
-    {
-        type: "link" as const,
         label: "Table",
         link: "/docs/components/table"
     },
@@ -101,5 +110,43 @@ export const componentsNav = [
         type: "link" as const,
         label: "Tabs",
         link: "/docs/components/tabs"
+    },
+    {
+        type: "link" as const,
+        label: "Media uploader",
+        link: "/docs/components/media-uploader"
+    },
+    {
+        type: "section" as const,
+        label: "Custom"
+    },
+    {
+        type: "link" as const,
+        label: "Confirmation modal",
+        link: "/docs/components/confirmation-modal"
+    },
+    {
+        type: "link" as const,
+        label: "Pagination",
+        link: "/docs/components/pagination"
+    },
+    {
+        type: "link" as const,
+        label: "Sidebar",
+        link: "/docs/components/sidebar"
+    },
+    {
+        type: "link" as const,
+        label: "Charts",
+        link: "/docs/components/charts"
+    },
+    {
+        type: "section" as const,
+        label: "Form"
+    },
+    {
+        type: "link" as const,
+        label: "Form renderer",
+        link: "/docs/components/form-renderer"
     }
 ];

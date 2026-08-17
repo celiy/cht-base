@@ -10,7 +10,7 @@ Ele define estrutura global, layouts, roteamento e integração com os demais pa
 ## O que faz
 
 - Inicializa a aplicação frontend.
-- Carrega configuração do cliente ativo via variável `CLIENT`.
-- Monta rotas de páginas do cliente (file-based routing).
+- Carrega configuração do cliente ativo via variável `CLIENT` (lê `cht-client-<name>/cht.config.json`).
+- Monta rotas de páginas do cliente (`@client/routes.ts`).
 - Consome componentes do `cht-design-system` e utilitários do `cht-shared`.
 - Mantém modo `dev` interno para desenvolvimento de telas/labs do base.

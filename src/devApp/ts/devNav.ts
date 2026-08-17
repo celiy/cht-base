@@ -13,6 +13,11 @@ export const devNav = [
     },
     {
         type: "link" as const,
+        label: "Docs",
+        link: "/docs"
+    },
+    {
+        type: "link" as const,
         label: "Dev design",
         link: "/devDesign"
     },
