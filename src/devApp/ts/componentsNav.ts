@@ -78,6 +78,11 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
+        label: "Item",
+        link: "/docs/components/item"
+    },
+    {
+        type: "link" as const,
         label: "Modal",
         link: "/docs/components/modal"
     },

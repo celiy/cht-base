@@ -27,6 +27,7 @@ const routes: RouteRecordRaw[] = [
             { path: "components/drawer", name: "components-drawer", component: () => import("./pages/docs/components/drawer.vue") },
             { path: "components/dropdown", name: "components-dropdown", component: () => import("./pages/docs/components/dropdown.vue") },
             { path: "components/inputs", name: "components-inputs", component: () => import("./pages/docs/components/inputs.vue") },
+            { path: "components/item", name: "components-item", component: () => import("./pages/docs/components/item.vue") },
             { path: "components/modal", name: "components-modal", component: () => import("./pages/docs/components/modal.vue") },
             { path: "components/confirmation-modal", name: "components-confirmation-modal", component: () => import("./pages/docs/components/confirmation-modal.vue") },
             { path: "components/pagination", name: "components-pagination", component: () => import("./pages/docs/components/pagination.vue") },

@@ -16,10 +16,7 @@
             </h3>
 
             <p>
-                Navegue pela sidebar à esquerda. O playground livre continua em
-                <RouterLink class="underline" to="/devDesign">Dev design</RouterLink>.
-                Atalhos: <code>s</code> abre e fecha a sidebar (fora de inputs);
-                <code>Esc</code> fecha o modal do topo.
+                Navegue pela sidebar à esquerda.
             </p>
         </section>
     </main>
