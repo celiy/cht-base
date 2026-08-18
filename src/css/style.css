@@ -129,8 +129,17 @@ a {
 
 code {
     @apply bg-secondary rounded-md p-1;
+    color: var(--color-foreground);
 }
 
+pre,
+pre code {
+    color: var(--color-foreground);
+}
+
+pre code {
+    @apply bg-transparent p-0 rounded-none;
+}
 
 .shadow-2xs {
     box-shadow: 0 1px var(--color-shadow);

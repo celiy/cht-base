@@ -8,6 +8,10 @@ export const navLinks = [
         path: "/docs"
     },
     {
+        label: "About",
+        path: "/docs/about"
+    },
+    {
         label: "Components",
         path: "/docs/components/accordion"
     },

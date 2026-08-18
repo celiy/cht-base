@@ -7,6 +7,7 @@
     "paths": {
       "@design/*": ["../cht-design-system/src/*"],
       "@shared/*": ["../cht-shared/src/*"],
+      "@repo/*": ["../*"],
       // The "@client/*" array below is generated from discovered
       // cht-client-* folders by scripts/sync-tsconfig.mjs. TS resolves to
       // the first existing path, so listing every known client lets the IDE

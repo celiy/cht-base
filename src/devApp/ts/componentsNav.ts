@@ -4,9 +4,26 @@ export const componentsNav = [
         label: "Docs"
     },
     {
-        type: "link" as const,
+        type: "group" as const,
         label: "Introduction",
-        link: "/docs"
+        links: [
+            {
+                label: "Welcome",
+                link: "/docs"
+            },
+            {
+                label: "About",
+                link: "/docs/about"
+            },
+            {
+                label: "Installation",
+                link: "/docs/installation"
+            },
+            {
+                label: "Usage",
+                link: "/docs/usage"
+            }
+        ]
     },
     {
         type: "section" as const,

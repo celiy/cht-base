@@ -15,7 +15,8 @@ const siteTitle = clientConfig?.siteTitle ?? "cht-base dev";
 const alias: Record<string, string> = {
     "@design": path.resolve(__dirname, "../cht-design-system/src"),
     "@shared": path.resolve(__dirname, "../cht-shared/src"),
-    "@client": clientRoot
+    "@client": clientRoot,
+    "@repo": path.resolve(__dirname, "..")
 };
 
 // https://vite.dev/config/
@@ -29,5 +30,10 @@ export default defineConfig({
     },
     define: {
         "import.meta.env.VITE_SITE_TITLE": JSON.stringify(siteTitle)
+    },
+    server: {
+        fs: {
+            allow: [path.resolve(__dirname, "..")]
+        }
     }
 });

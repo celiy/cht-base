@@ -104,7 +104,7 @@ export default defineComponent({
 
     methods: {
         /**
-         * Finds page `h1` and section `h3` headings, assigns hash ids, and fills the outline.
+         * Finds page `h1`, `h2` and `h3` headings, assigns hash ids, and fills the outline.
          */
         collectHeadings() {
             const root = this.$refs.contentRef as HTMLElement | undefined;
@@ -118,7 +118,7 @@ export default defineComponent({
             const used = new Map<string, number>();
             const next: OutlineHeading[] = [];
 
-            for (const heading of Array.from(root.querySelectorAll("h1, h3"))) {
+            for (const heading of Array.from(root.querySelectorAll("h1, h2, h3"))) {
                 const label = heading.textContent?.trim() ?? "";
 
                 if (!label) {
