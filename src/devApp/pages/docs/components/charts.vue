@@ -20,12 +20,13 @@
             </p>
         </section>
 
-        <section class="mb-8 grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <section class="mb-8 grid grid-cols-1 gap-4">
             <TableCharts
                 header="Vendas no ano"
                 description="Doze meses, displayAs sum"
                 variant="bars"
                 :data="yearBars"
+                :hideLabel="true"
             />
 
             <TableCharts
@@ -55,7 +56,7 @@
             </p>
         </section>
 
-        <section class="mb-8 grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <section class="mb-8 grid grid-cols-1 gap-4">
             <TableCharts
                 header="Merge case-insensitive"
                 description="jan + Jan = 143, depois fev"
@@ -108,11 +109,7 @@ export default defineComponent({
                     { date: new Date(2023, 4, 1), value: 30 },
                     { date: new Date(2023, 5, 1), value: 36 },
                     { date: new Date(2023, 6, 1), value: 22 },
-                    { date: new Date(2023, 7, 1), value: 41 },
-                    { date: new Date(2023, 8, 1), value: 19 },
-                    { date: new Date(2023, 9, 1), value: 27 },
-                    { date: new Date(2023, 10, 1), value: 33 },
-                    { date: new Date(2023, 11, 1), value: 45 }
+                    { date: new Date(2023, 7, 1), value: 41 }
                 ]
             },
             signedBars: {
@@ -124,9 +121,7 @@ export default defineComponent({
                     { date: new Date(2023, 2, 1), value: 12 },
                     { date: new Date(2023, 3, 1), value: -32 },
                     { date: new Date(2023, 4, 1), value: 32 },
-                    { date: new Date(2023, 5, 1), value: 42 },
-                    { date: new Date(2023, 6, 1), value: -8 },
-                    { date: new Date(2023, 7, 1), value: 18 }
+                    { date: new Date(2023, 5, 1), value: 42 }
                 ]
             },
             dailyWave: {
@@ -140,12 +135,6 @@ export default defineComponent({
                     { date: new Date(2023, 2, 29), value: 26 },
                     { date: new Date(2023, 3, 5), value: 20 },
                     { date: new Date(2023, 3, 12), value: 31 },
-                    { date: new Date(2023, 3, 19), value: 24 },
-                    { date: new Date(2023, 3, 26), value: 28 },
-                    { date: new Date(2023, 4, 3), value: 19 },
-                    { date: new Date(2023, 4, 10), value: 23 },
-                    { date: new Date(2023, 4, 17), value: 27 },
-                    { date: new Date(2023, 4, 24), value: 21 },
                     { date: new Date(2023, 4, 31), value: 29 },
                     { date: new Date(2023, 5, 7), value: 34 },
                     { date: new Date(2023, 5, 14), value: 16 },

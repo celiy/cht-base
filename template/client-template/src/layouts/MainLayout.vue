@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main class="h-dvh overflow-hidden">
         <Sidebar :nav-items="mainNav">
             <RouterView />
         </Sidebar>
