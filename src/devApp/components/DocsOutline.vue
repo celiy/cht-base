@@ -190,10 +190,18 @@ export default defineComponent({
                 return;
             }
 
+            const firstHeading = this.headings[0];
+
+            if (!firstHeading) {
+                this.activeId = "";
+
+                return;
+            }
+
             const scroller = this.scrollParent ?? document.documentElement;
             const scrollerRect = scroller.getBoundingClientRect();
             const centerY = scrollerRect.top + scrollerRect.height / 2;
-            let bestId = this.headings[0].id;
+            let bestId = firstHeading.id;
             let bestDist = Number.POSITIVE_INFINITY;
 
             for (const heading of this.headings) {

@@ -28,6 +28,7 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "../cht-design-system/src/**/*.d.ts"
   ]
 }

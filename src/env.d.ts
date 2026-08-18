@@ -1,11 +1,22 @@
 /// <reference types="vite/client" />
 
-interface ImportMetaEnv {
-    readonly VITE_SITE_TITLE: string;
+import type { Router, RouteLocationNormalizedLoaded } from "vue-router";
+import type { ProjectState } from "./project";
+
+declare module "vue" {
+    interface ComponentCustomProperties {
+        $router: Router;
+        $route: RouteLocationNormalizedLoaded;
+        $project: ProjectState;
+    }
 }
 
-interface ImportMeta {
-    readonly env: ImportMetaEnv;
+declare module "@vue/runtime-core" {
+    interface ComponentCustomProperties {
+        $router: Router;
+        $route: RouteLocationNormalizedLoaded;
+        $project: ProjectState;
+    }
 }
 
 export {};
