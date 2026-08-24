@@ -11,86 +11,84 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 flex flex-wrap gap-2">
-                        <Button label="Só header e body" @click="plain = true" />
-                        <Button label="Com descrição" @click="withDescription = true" />
-                        <Button label="Com footer" @click="withFooter = true" />
+            <DocsExample label="Modal">
+                <div class="p-4 flex flex-wrap gap-2">
+                    <Button label="Só header e body" @click="plain = true" />
+                    <Button label="Com descrição" @click="withDescription = true" />
+                    <Button label="Com footer" @click="withFooter = true" />
 
-                        <Modal
-                            size="small"
-                            :isOpen="plain"
+                    <Modal
+                        size="small"
+                        :isOpen="plain"
 
-                            @update:value="plain = $event"
-                        >
-                            <template #header>
-                                Sem footer
-                            </template>
+                        @update:value="plain = $event"
+                    >
+                        <template #header>
+                            Sem footer
+                        </template>
 
-                            <template #body>
-                                Apenas cabeçalho e conteúdo. Esc fecha.
-                            </template>
-                        </Modal>
+                        <template #body>
+                            Apenas cabeçalho e conteúdo. Esc fecha.
+                        </template>
+                    </Modal>
 
-                        <Modal
-                            size="small"
-                            :isOpen="withDescription"
+                    <Modal
+                        size="small"
+                        :isOpen="withDescription"
 
-                            @update:value="withDescription = $event"
-                        >
-                            <template #header>
-                                Com descrição
-                            </template>
+                        @update:value="withDescription = $event"
+                    >
+                        <template #header>
+                            Com descrição
+                        </template>
 
-                            <template #description>
-                                Texto auxiliar abaixo do título.
-                            </template>
+                        <template #description>
+                            Texto auxiliar abaixo do título.
+                        </template>
 
-                            <template #body>
-                                Corpo do modal com descrição no topo.
-                            </template>
-                        </Modal>
+                        <template #body>
+                            Corpo do modal com descrição no topo.
+                        </template>
+                    </Modal>
 
-                        <Modal
-                            size="small"
-                            :isOpen="withFooter"
+                    <Modal
+                        size="small"
+                        :isOpen="withFooter"
 
-                            @update:value="withFooter = $event"
-                        >
-                            <template #header>
-                                Completo
-                            </template>
+                        @update:value="withFooter = $event"
+                    >
+                        <template #header>
+                            Completo
+                        </template>
 
-                            <template #description>
-                                Header, description, body e footer.
-                            </template>
+                        <template #description>
+                            Header, description, body e footer.
+                        </template>
 
-                            <template #body>
-                                Use os botões ou Esc para fechar.
-                            </template>
+                        <template #body>
+                            Use os botões ou Esc para fechar.
+                        </template>
 
-                            <template #footer>
-                                <div class="flex justify-end gap-2">
-                                    <Button
-                                        label="Cancelar"
-                                        variant="secondary"
+                        <template #footer>
+                            <div class="flex justify-end gap-2">
+                                <Button
+                                    label="Cancelar"
+                                    variant="secondary"
 
-                                        @click="withFooter = false"
-                                    />
+                                    @click="withFooter = false"
+                                />
 
-                                    <Button
-                                        label="Confirmar"
-                                        variant="primary"
+                                <Button
+                                    label="Confirmar"
+                                    variant="primary"
 
-                                        @click="withFooter = false"
-                                    />
-                                </div>
-                            </template>
-                        </Modal>
-                    </div>
-                </template>
-            </Card>
+                                    @click="withFooter = false"
+                                />
+                            </div>
+                        </template>
+                    </Modal>
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -104,60 +102,58 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 flex flex-wrap gap-2">
-                        <Button label="Small" @click="small = true" />
-                        <Button label="Medium" @click="medium = true" />
-                        <Button label="Large" @click="large = true" />
+            <DocsExample label="Tamanho">
+                <div class="p-4 flex flex-wrap gap-2">
+                    <Button label="Small" @click="small = true" />
+                    <Button label="Medium" @click="medium = true" />
+                    <Button label="Large" @click="large = true" />
 
-                        <Modal
-                            size="small"
-                            :isOpen="small"
+                    <Modal
+                        size="small"
+                        :isOpen="small"
 
-                            @update:value="small = $event"
-                        >
-                            <template #header>
-                                Small
-                            </template>
+                        @update:value="small = $event"
+                    >
+                        <template #header>
+                            Small
+                        </template>
 
-                            <template #body>
-                                Largura reduzida.
-                            </template>
-                        </Modal>
+                        <template #body>
+                            Largura reduzida.
+                        </template>
+                    </Modal>
 
-                        <Modal
-                            size="medium"
-                            :isOpen="medium"
+                    <Modal
+                        size="medium"
+                        :isOpen="medium"
 
-                            @update:value="medium = $event"
-                        >
-                            <template #header>
-                                Medium
-                            </template>
+                        @update:value="medium = $event"
+                    >
+                        <template #header>
+                            Medium
+                        </template>
 
-                            <template #body>
-                                Largura padrão.
-                            </template>
-                        </Modal>
+                        <template #body>
+                            Largura padrão.
+                        </template>
+                    </Modal>
 
-                        <Modal
-                            size="large"
-                            :isOpen="large"
+                    <Modal
+                        size="large"
+                        :isOpen="large"
 
-                            @update:value="large = $event"
-                        >
-                            <template #header>
-                                Large
-                            </template>
+                        @update:value="large = $event"
+                    >
+                        <template #header>
+                            Large
+                        </template>
 
-                            <template #body>
-                                Largura ampla para conteúdo maior.
-                            </template>
-                        </Modal>
-                    </div>
-                </template>
-            </Card>
+                        <template #body>
+                            Largura ampla para conteúdo maior.
+                        </template>
+                    </Modal>
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -171,63 +167,61 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 flex flex-wrap gap-2">
-                        <Button label="Warning" variant="warning" @click="warning = true" />
-                        <Button label="Destructive" variant="destructive" @click="destructive = true" />
-                        <Button label="Success" variant="success" @click="success = true" />
+            <DocsExample label="Cor da borda">
+                <div class="p-4 flex flex-wrap gap-2">
+                    <Button label="Warning" variant="warning" @click="warning = true" />
+                    <Button label="Destructive" variant="destructive" @click="destructive = true" />
+                    <Button label="Success" variant="success" @click="success = true" />
 
-                        <Modal
-                            size="small"
-                            color="warning"
-                            :isOpen="warning"
+                    <Modal
+                        size="small"
+                        color="warning"
+                        :isOpen="warning"
 
-                            @update:value="warning = $event"
-                        >
-                            <template #header>
-                                Warning
-                            </template>
+                        @update:value="warning = $event"
+                    >
+                        <template #header>
+                            Warning
+                        </template>
 
-                            <template #body>
-                                Borda de aviso.
-                            </template>
-                        </Modal>
+                        <template #body>
+                            Borda de aviso.
+                        </template>
+                    </Modal>
 
-                        <Modal
-                            size="small"
-                            color="destructive"
-                            :isOpen="destructive"
+                    <Modal
+                        size="small"
+                        color="destructive"
+                        :isOpen="destructive"
 
-                            @update:value="destructive = $event"
-                        >
-                            <template #header>
-                                Destructive
-                            </template>
+                        @update:value="destructive = $event"
+                    >
+                        <template #header>
+                            Destructive
+                        </template>
 
-                            <template #body>
-                                Borda destrutiva.
-                            </template>
-                        </Modal>
+                        <template #body>
+                            Borda destrutiva.
+                        </template>
+                    </Modal>
 
-                        <Modal
-                            size="small"
-                            color="success"
-                            :isOpen="success"
+                    <Modal
+                        size="small"
+                        color="success"
+                        :isOpen="success"
 
-                            @update:value="success = $event"
-                        >
-                            <template #header>
-                                Success
-                            </template>
+                        @update:value="success = $event"
+                    >
+                        <template #header>
+                            Success
+                        </template>
 
-                            <template #body>
-                                Borda de sucesso.
-                            </template>
-                        </Modal>
-                    </div>
-                </template>
-            </Card>
+                        <template #body>
+                            Borda de sucesso.
+                        </template>
+                    </Modal>
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -241,54 +235,51 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4">
-                        <Button label="Abrir dois modais" @click="openStacked" />
+            <DocsExample label="Empilhamento">
+                <div class="p-4">
+                    <Button label="Abrir dois modais" @click="openStacked" />
 
-                        <Modal
-                            size="medium"
-                            :isOpen="outer"
+                    <Modal
+                        size="medium"
+                        :isOpen="outer"
 
-                            @update:value="outer = $event"
-                        >
-                            <template #header>
-                                Modal de baixo
-                            </template>
+                        @update:value="outer = $event"
+                    >
+                        <template #header>
+                            Modal de baixo
+                        </template>
 
-                            <template #body>
-                                <p class="mb-4">
-                                    Este fica atrás. Abra o segundo e pressione Esc: só o de cima fecha.
-                                </p>
+                        <template #body>
+                            <p class="mb-4">
+                                Este fica atrás. Abra o segundo e pressione Esc: só o de cima fecha.
+                            </p>
 
-                                <Button label="Abrir o de cima" @click="inner = true" />
-                            </template>
-                        </Modal>
+                            <Button label="Abrir o de cima" @click="inner = true" />
+                        </template>
+                    </Modal>
 
-                        <Modal
-                            size="small"
-                            :isOpen="inner"
+                    <Modal
+                        size="small"
+                        :isOpen="inner"
 
-                            @update:value="inner = $event"
-                        >
-                            <template #header>
-                                Modal de cima
-                            </template>
+                        @update:value="inner = $event"
+                    >
+                        <template #header>
+                            Modal de cima
+                        </template>
 
-                            <template #body>
-                                Esc fecha este primeiro.
-                            </template>
-                        </Modal>
-                    </div>
-                </template>
-            </Card>
+                        <template #body>
+                            Esc fecha este primeiro.
+                        </template>
+                    </Modal>
+                </div>
+            </DocsExample>
         </section>
     </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Card from "@design/components/Card.vue";
 import Button from "@design/components/Button.vue";
 import Modal from "@design/components/Modal.vue";
 
@@ -296,7 +287,6 @@ export default defineComponent({
     name: "ComponentsModal",
 
     components: {
-        Card,
         Button,
         Modal
     },

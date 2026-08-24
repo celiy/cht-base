@@ -6,37 +6,117 @@
             </h1>
 
             <p class="text-muted-foreground!">
-                Menu de ações a partir de um botão. Opções podem ter ícone, valor e separadores.
+                Menu de ações a partir de um botão. Opções podem ter ícone, valor, tooltip e separadores.
+                Emite <code>@click:value</code> com o <code>value</code> da opção.
             </p>
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 max-w-xs">
-                        <Dropdown
-                            header="Ações"
+            <DocsExample label="Dropdown">
+                <div class="p-4 max-w-xs flex flex-col gap-2">
+                    <Dropdown
+                        header="Ações"
 
-                            :options="[
-                                { label: 'Account' },
-                                { label: 'User', value: 'user', icon: 'fa-user' },
-                                { label: 'Email', value: 'email', icon: 'fa-envelope' },
-                                { separator: true },
-                                { label: 'Exit', value: 'exit', icon: 'fa-right-from-bracket' }
-                            ]"
-                        />
-                    </div>
-                </template>
-            </Card>
+                        :options="actionOptions"
+
+                        @click:value="lastClicked = $event"
+                    />
+
+                    <p class="text-sm text-muted-foreground">
+                        Último valor: {{ lastClicked || "—" }}
+                    </p>
+                </div>
+            </DocsExample>
         </section>
 
         <section>
             <h3 class="mb-2">
-                Props
+                Pesquisa
             </h3>
 
             <p>
-                <code>options</code>, <code>header</code>, <code>search</code> opcional para filtrar itens.
+                <code>:search="{ external: false }"</code> mostra um campo no topo da lista e filtra por
+                <code>label</code> (e por <code>value</code> se nada bater no label).
+                <code>external: true</code> deixa a filtragem a cargo do pai.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Pesquisa">
+                <div class="p-4 max-w-xs">
+                    <Dropdown
+                        header="Com pesquisa"
+                        :search="{ external: false }"
+                        :options="searchOptions"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3 class="mb-2">
+                Fechar ao selecionar
+            </h3>
+
+            <p>
+                <code>closeOnSelect</code> (padrão <code>true</code>) fecha o painel depois do clique.
+                Passe <code>false</code> para menus que precisam de vários cliques seguidos.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Fechar ao selecionar">
+                <div class="p-4 max-w-xs">
+                    <Dropdown
+                        header="Permanece aberto"
+                        :closeOnSelect="false"
+                        :options="actionOptions"
+
+                        @click:value="lastClicked = $event"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3 class="mb-2">
+                Botão customizado
+            </h3>
+
+            <p>
+                O slot <code>#button</code> recebe <code>isOpen</code>, <code>toggle</code>, <code>open</code> e <code>close</code>.
+                <code>buttonVariant</code> e <code>buttonAtributes</code> valem só para o botão padrão.
+                <code>hideDropdownArrow</code> esconde a seta desse botão.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Botão customizado">
+                <div class="p-4 max-w-xs">
+                    <Dropdown :options="actionOptions">
+                        <template #button="{ toggle, isOpen }">
+                            <Button
+                                variant="primary"
+                                :label="isOpen ? 'Fechar menu' : 'Abrir menu'"
+
+                                @click="toggle"
+                            />
+                        </template>
+                    </Dropdown>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3 class="mb-2">
+                Opções
+            </h3>
+
+            <p>
+                Cada item: <code>label</code>, <code>value</code> (obrigatório para ser clicável),
+                <code>icon</code> (classe Font Awesome, ex. <code>fa-user</code>),
+                <code>tooltip</code> e <code>separator: true</code> para uma linha divisória.
+                Itens só com <code>label</code> (sem <code>value</code>) viram cabeçalhos de grupo.
             </p>
         </section>
     </main>
@@ -44,15 +124,35 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Card from "@design/components/Card.vue";
+import Button from "@design/components/Button.vue";
 import Dropdown from "@design/components/Dropdown.vue";
 
 export default defineComponent({
     name: "ComponentsDropdown",
 
     components: {
-        Card,
+        Button,
         Dropdown
+    },
+
+    data() {
+        return {
+            lastClicked: "",
+            actionOptions: [
+                { label: "Conta" },
+                { label: "Perfil", value: "user", icon: "fa-user" },
+                { label: "Email", value: "email", icon: "fa-envelope", tooltip: "Abrir caixa de entrada" },
+                { separator: true },
+                { label: "Sair", value: "exit", icon: "fa-right-from-bracket" }
+            ],
+            searchOptions: [
+                { label: "Account", value: "account" },
+                { label: "Billing", value: "billing" },
+                { label: "Team", value: "team" },
+                { label: "Integrations", value: "integrations" },
+                { label: "API keys", value: "api" }
+            ]
+        };
     }
 });
 </script>

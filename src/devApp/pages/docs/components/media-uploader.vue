@@ -11,36 +11,32 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4">
-                        <MediaUploader
-                            id="docs-media-uploader"
-                            label="Arquivos"
-                            helperText="Imagens, PDF ou áudio."
-                            :maxFiles="4"
-                            :accept="['image/*', '.pdf', 'audio/*']"
-                            :value="files"
+            <DocsExample label="Media uploader">
+                <div class="p-4">
+                    <MediaUploader
+                        id="docs-media-uploader"
+                        label="Arquivos"
+                        helperText="Imagens, PDF ou áudio."
+                        :maxFiles="4"
+                        :accept="['image/*', '.pdf', 'audio/*']"
+                        :value="files"
 
-                            @update:value="files = $event"
-                        />
-                    </div>
-                </template>
-            </Card>
+                        @update:value="files = $event"
+                    />
+                </div>
+            </DocsExample>
         </section>
     </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Card from "@design/components/Card.vue";
 import MediaUploader from "@design/components/MediaUploader.vue";
 
 export default defineComponent({
     name: "ComponentsMediaUploader",
 
     components: {
-        Card,
         MediaUploader
     },
 

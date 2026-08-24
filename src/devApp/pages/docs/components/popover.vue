@@ -11,19 +11,17 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 flex flex-wrap gap-4">
-                        <Popover header="Popover">
-                            Conteúdo no clique.
-                        </Popover>
+            <DocsExample label="Popover">
+                <div class="p-4 flex flex-wrap gap-4">
+                    <Popover header="Popover">
+                        Conteúdo no clique.
+                    </Popover>
 
-                        <Popover header="Hover" openOnHover>
-                            Conteúdo no hover.
-                        </Popover>
-                    </div>
-                </template>
-            </Card>
+                    <Popover header="Hover" openOnHover>
+                        Conteúdo no hover.
+                    </Popover>
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -40,14 +38,12 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Card from "@design/components/Card.vue";
 import Popover from "@design/components/Popover.vue";
 
 export default defineComponent({
     name: "ComponentsPopover",
 
     components: {
-        Card,
         Popover
     }
 });

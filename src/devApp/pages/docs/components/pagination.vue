@@ -11,17 +11,15 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4">
-                        <Pagination
-                            id="docs-pagination"
-                            :amount="12"
-                            :showMax="5"
-                        />
-                    </div>
-                </template>
-            </Card>
+            <DocsExample label="Pagination">
+                <div class="p-4">
+                    <Pagination
+                        id="docs-pagination"
+                        :amount="12"
+                        :showMax="5"
+                    />
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -39,14 +37,12 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Card from "@design/components/Card.vue";
 import Pagination from "@design/components/custom/Pagination.vue";
 
 export default defineComponent({
     name: "ComponentsPagination",
 
     components: {
-        Card,
         Pagination
     }
 });

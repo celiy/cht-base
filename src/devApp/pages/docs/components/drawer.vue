@@ -11,66 +11,64 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 flex flex-wrap gap-2">
-                        <Button label="Direita" @click="right = true" />
-                        <Button label="Esquerda" @click="left = true" />
-                        <Button label="Embaixo" @click="bottom = true" />
+            <DocsExample label="Drawer">
+                <div class="p-4 flex flex-wrap gap-2">
+                    <Button label="Direita" @click="right = true" />
+                    <Button label="Esquerda" @click="left = true" />
+                    <Button label="Embaixo" @click="bottom = true" />
 
-                        <Modal
-                            size="small"
-                            variant="drawer"
-                            side="right"
-                            :isOpen="right"
+                    <Modal
+                        size="small"
+                        variant="drawer"
+                        side="right"
+                        :isOpen="right"
 
-                            @update:value="right = $event"
-                        >
-                            <template #header>
-                                Drawer right
-                            </template>
+                        @update:value="right = $event"
+                    >
+                        <template #header>
+                            Drawer right
+                        </template>
 
-                            <template #body>
-                                Painel à direita.
-                            </template>
-                        </Modal>
+                        <template #body>
+                            Painel à direita.
+                        </template>
+                    </Modal>
 
-                        <Modal
-                            size="small"
-                            variant="drawer"
-                            side="left"
-                            :isOpen="left"
+                    <Modal
+                        size="small"
+                        variant="drawer"
+                        side="left"
+                        :isOpen="left"
 
-                            @update:value="left = $event"
-                        >
-                            <template #header>
-                                Drawer left
-                            </template>
+                        @update:value="left = $event"
+                    >
+                        <template #header>
+                            Drawer left
+                        </template>
 
-                            <template #body>
-                                Painel à esquerda.
-                            </template>
-                        </Modal>
+                        <template #body>
+                            Painel à esquerda.
+                        </template>
+                    </Modal>
 
-                        <Modal
-                            size="medium"
-                            variant="drawer"
-                            side="bottom"
-                            :isOpen="bottom"
+                    <Modal
+                        size="medium"
+                        variant="drawer"
+                        side="bottom"
+                        :isOpen="bottom"
 
-                            @update:value="bottom = $event"
-                        >
-                            <template #header>
-                                Drawer bottom
-                            </template>
+                        @update:value="bottom = $event"
+                    >
+                        <template #header>
+                            Drawer bottom
+                        </template>
 
-                            <template #body>
-                                Arraste para baixo ou use Esc / backdrop.
-                            </template>
-                        </Modal>
-                    </div>
-                </template>
-            </Card>
+                        <template #body>
+                            Arraste para baixo ou use Esc / backdrop.
+                        </template>
+                    </Modal>
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -88,7 +86,6 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Card from "@design/components/Card.vue";
 import Button from "@design/components/Button.vue";
 import Modal from "@design/components/Modal.vue";
 
@@ -96,7 +93,6 @@ export default defineComponent({
     name: "ComponentsDrawer",
 
     components: {
-        Card,
         Button,
         Modal
     },

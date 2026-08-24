@@ -7,7 +7,61 @@
 
             <p class="text-muted-foreground!">
                 <code>TableCharts</code> envolve barras ou onda. Itens com <code>date</code> agrupam por mês; itens com <code>group</code> agregam na ordem da array (chave case-insensitive).
+                A prop <code>color</code> escolhe o token <code>chart-1</code> … <code>chart-5</code> (padrão <code>chart-3</code>).
             </p>
+        </section>
+
+        <section>
+            <h3 class="mb-2">
+                Cores
+            </h3>
+
+            <p>
+                Tokens em <code>style.css</code> (<code>--color-chart-*</code>). Barras positivas usam <code>color</code>;
+                negativas ficam em <code>chart-5</code>. A onda desenha a linha na cor escolhida e preenche abaixo dela
+                com a mesma cor a 50% de opacidade.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Cores">
+                <div class="p-4">
+                    <Tabs>
+                        <template
+                            v-for="(color, index) in chartPalette"
+                            :key="`title-${color}`"
+                            #[`tab-title-${index}`]
+                        >
+                            {{ color }}
+                        </template>
+
+                        <template
+                            v-for="(color, index) in chartPalette"
+                            :key="`content-${color}`"
+                            #[`tab-content-${index}`]
+                        >
+                            <div class="grid grid-cols-1 gap-4 pt-2">
+                                <TableCharts
+                                    :header="`Barras ${color}`"
+                                    :description="`color=&quot;${color}&quot;`"
+                                    variant="bars"
+                                    :data="yearBars"
+                                    :hideLabel="true"
+                                    :color="color"
+                                />
+
+                                <TableCharts
+                                    :header="`Onda ${color}`"
+                                    description="Fill sólido a 50% abaixo da linha"
+                                    variant="wave"
+                                    :data="dailyWave"
+                                    :color="color"
+                                />
+                            </div>
+                        </template>
+                    </Tabs>
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -21,29 +75,41 @@
         </section>
 
         <section class="mb-8 grid grid-cols-1 gap-4">
-            <TableCharts
-                header="Vendas no ano"
-                description="Doze meses, displayAs sum"
-                variant="bars"
-                :data="yearBars"
-                :hideLabel="true"
-            />
+            <DocsExample label="Vendas no ano">
+                <div class="p-4">
+                    <TableCharts
+                        header="Vendas no ano"
+                        description="Doze meses, displayAs sum"
+                        variant="bars"
+                        :data="yearBars"
+                        :hideLabel="true"
+                    />
+                </div>
+            </DocsExample>
 
-            <TableCharts
-                header="Saldo com negativos"
-                description="Valores positivos e negativos, displayAs currency"
-                variant="bars"
-                :data="signedBars"
-            />
+            <DocsExample label="Saldo com negativos">
+                <div class="p-4">
+                    <TableCharts
+                        header="Saldo com negativos"
+                        description="Valores positivos e negativos, displayAs currency"
+                        variant="bars"
+                        :data="signedBars"
+                    />
+                </div>
+            </DocsExample>
         </section>
 
         <section class="mb-8">
-            <TableCharts
-                header="Acessos diários"
-                description="Onda com pontos ao longo de vários meses e filtro 3m / 1m / 2s / 7d"
-                variant="wave"
-                :data="dailyWave"
-            />
+            <DocsExample label="Acessos diários">
+                <div class="p-4">
+                    <TableCharts
+                        header="Acessos diários"
+                        description="Onda com pontos ao longo de vários meses e filtro 3m / 1m / 2s / 7d"
+                        variant="wave"
+                        :data="dailyWave"
+                    />
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -57,28 +123,40 @@
         </section>
 
         <section class="mb-8 grid grid-cols-1 gap-4">
-            <TableCharts
-                header="Merge case-insensitive"
-                description="jan + Jan = 143, depois fev"
-                variant="bars"
-                :data="mergedGroups"
-            />
+            <DocsExample label="Merge case-insensitive">
+                <div class="p-4">
+                    <TableCharts
+                        header="Merge case-insensitive"
+                        description="jan + Jan = 143, depois fev"
+                        variant="bars"
+                        :data="mergedGroups"
+                    />
+                </div>
+            </DocsExample>
 
-            <TableCharts
-                header="Categorias"
-                description="Grupos na ordem em que aparecem"
-                variant="bars"
-                :data="categoryBars"
-            />
+            <DocsExample label="Categorias">
+                <div class="p-4">
+                    <TableCharts
+                        header="Categorias"
+                        description="Grupos na ordem em que aparecem"
+                        variant="bars"
+                        :data="categoryBars"
+                    />
+                </div>
+            </DocsExample>
         </section>
 
         <section class="mb-8">
-            <TableCharts
-                header="Onda por grupo"
-                description="Mesma agregação, sem filtro de período"
-                variant="wave"
-                :data="categoryWave"
-            />
+            <DocsExample label="Onda por grupo">
+                <div class="p-4">
+                    <TableCharts
+                        header="Onda por grupo"
+                        description="Mesma agregação, sem filtro de período"
+                        variant="wave"
+                        :data="categoryWave"
+                    />
+                </div>
+            </DocsExample>
         </section>
     </main>
 </template>
@@ -87,16 +165,20 @@
 // @ts-nocheck — vue-tsc excessive stack depth on TableCharts.
 import { defineComponent } from "vue";
 import TableCharts from "@design/components/custom/TableCharts.vue";
+import Tabs from "@design/components/Tabs.vue";
+import { CHART_COLORS } from "@design/components/custom/charts/chartColors";
 
 export default defineComponent({
     name: "ComponentsCharts",
 
     components: {
-        TableCharts
+        TableCharts,
+        Tabs
     },
 
     data() {
         return {
+            chartPalette: [...CHART_COLORS],
             yearBars: {
                 label: "Vendas",
                 displayAs: "sum",

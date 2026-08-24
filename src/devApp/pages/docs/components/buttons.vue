@@ -11,21 +11,19 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 flex flex-wrap gap-2 items-center">
-                        <Button label="Default" />
-                        <Button label="Primary" variant="primary" />
-                        <Button label="Secondary" variant="secondary" />
-                        <Button label="Success" variant="success" />
-                        <Button label="Warning" variant="warning" />
-                        <Button label="Destructive" variant="destructive" />
-                        <Button label="Outline" variant="outline" />
-                        <Button label="Bordered" variant="bordered" />
-                        <Button label="Transparent" variant="transparent" />
-                    </div>
-                </template>
-            </Card>
+            <DocsExample label="Button">
+                <div class="p-4 flex flex-wrap gap-2 items-center">
+                    <Button label="Default" />
+                    <Button label="Primary" variant="primary" />
+                    <Button label="Secondary" variant="secondary" />
+                    <Button label="Success" variant="success" />
+                    <Button label="Warning" variant="warning" />
+                    <Button label="Destructive" variant="destructive" />
+                    <Button label="Outline" variant="outline" />
+                    <Button label="Bordered" variant="bordered" />
+                    <Button label="Transparent" variant="transparent" />
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -49,16 +47,14 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 flex flex-wrap gap-2 items-center">
-                        <Button label="Extra small" size="extra-small" variant="secondary" />
-                        <Button label="Small" size="small" variant="secondary" />
-                        <Button label="Medium" size="medium" variant="secondary" />
-                        <Button label="Large" size="large" variant="secondary" />
-                    </div>
-                </template>
-            </Card>
+            <DocsExample label="Tamanho">
+                <div class="p-4 flex flex-wrap gap-2 items-center">
+                    <Button label="Extra small" size="extra-small" variant="secondary" />
+                    <Button label="Small" size="small" variant="secondary" />
+                    <Button label="Medium" size="medium" variant="secondary" />
+                    <Button label="Large" size="large" variant="secondary" />
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -72,35 +68,31 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 flex flex-col gap-4">
-                        <div class="btn-group">
-                            <Button label="Um" variant="bordered" :hoverEffect="false" />
-                            <Button label="Dois" variant="bordered" :hoverEffect="false" />
-                            <Button label="Três" variant="bordered" :hoverEffect="false" />
-                        </div>
-
-                        <Button variant="secondary" class="rounded-full!" shape="rounded" size="medium">
-                            <span class="fa-solid fa-search text-sm" />
-                        </Button>
+            <DocsExample label="Forma e grupo">
+                <div class="p-4 flex flex-col gap-4">
+                    <div class="btn-group">
+                        <Button label="Um" variant="bordered" :hoverEffect="false" />
+                        <Button label="Dois" variant="bordered" :hoverEffect="false" />
+                        <Button label="Três" variant="bordered" :hoverEffect="false" />
                     </div>
-                </template>
-            </Card>
+
+                    <Button variant="secondary" class="rounded-full!" shape="rounded" size="medium">
+                        <span class="fa-solid fa-search text-sm" />
+                    </Button>
+                </div>
+            </DocsExample>
         </section>
     </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Card from "@design/components/Card.vue";
 import Button from "@design/components/Button.vue";
 
 export default defineComponent({
     name: "ComponentsButtons",
 
     components: {
-        Card,
         Button
     }
 });

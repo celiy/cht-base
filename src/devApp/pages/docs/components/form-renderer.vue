@@ -7,43 +7,41 @@
 
             <p class="text-muted-foreground!">
                 Monta um formulário a partir de seções e campos tipados: inputs, checkbox, radio e select. Campos podem ter <code>condition</code>, <code>required</code>, <code>disabled</code> e helper.
+                Checkbox aceita <code>checkboxStyle: "switch"</code> — o interruptor e o texto compartilham o mesmo estado.
             </p>
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4">
-                        <FormRenderer
-                            :sections="sections"
-                            submitLabel="Enviar"
-                            :sectionColumns="{ xs: 1, sm: 2, md: 2, lg: 2 }"
-                            @submit="onSubmit"
-                        >
-                            <template #submit>
-                                <Button
-                                    label="Enviar"
-                                    variant="primary"
-                                    type="submit"
-                                />
-                            </template>
-                        </FormRenderer>
+            <DocsExample label="Form renderer">
+                <div class="p-4">
+                    <FormRenderer
+                        :sections="sections"
+                        submitLabel="Enviar"
+                        :sectionColumns="{ xs: 1, sm: 2, md: 2, lg: 2 }"
+                        @submit="onSubmit"
+                    >
+                        <template #submit>
+                            <Button
+                                label="Enviar"
+                                variant="primary"
+                                type="submit"
+                            />
+                        </template>
+                    </FormRenderer>
 
-                        <pre
-                            v-if="submitted"
-                            class="mt-4 p-4 bg-muted/60 rounded text-xs overflow-auto"
-                        >{{ submitted }}</pre>
-                    </div>
-                </template>
-            </Card>
+                    <pre
+                        v-if="submitted"
+                        class="mt-4 p-4 bg-muted/60 rounded text-xs overflow-auto"
+                    >{{ submitted }}</pre>
+                </div>
+            </DocsExample>
         </section>
     </main>
 </template>
 
 <script lang="ts">
-// @ts-nocheck — vue-tsc excessive stack depth on FormRenderer + Card.
+// @ts-nocheck — vue-tsc excessive stack depth on FormRenderer.
 import { defineComponent } from "vue";
-import Card from "@design/components/Card.vue";
 import Button from "@design/components/Button.vue";
 import FormRenderer from "@design/components/form/FormRenderer.vue";
 
@@ -51,7 +49,6 @@ export default defineComponent({
     name: "ComponentsFormRenderer",
 
     components: {
-        Card,
         Button,
         FormRenderer
     },

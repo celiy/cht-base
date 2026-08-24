@@ -21,26 +21,24 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 flex flex-wrap gap-2">
-                        <Button v-tooltip="'Texto curto'">
-                            Curto
-                        </Button>
+            <DocsExample label="String">
+                <div class="p-4 flex flex-wrap gap-2">
+                    <Button v-tooltip="'Texto curto'">
+                        Curto
+                    </Button>
 
-                        <Button v-tooltip="'Lorem ipsum dolor sit amet consectetur adipisicing elit.'">
-                            Longo
-                        </Button>
+                    <Button v-tooltip="'Lorem ipsum dolor sit amet consectetur adipisicing elit.'">
+                        Longo
+                    </Button>
 
-                        <Button
-                            v-tooltip="'Botão desabilitado ainda mostra tooltip no wrapper'"
-                            variant="secondary"
-                        >
-                            Secundário
-                        </Button>
-                    </div>
-                </template>
-            </Card>
+                    <Button
+                        v-tooltip="'Botão desabilitado ainda mostra tooltip no wrapper'"
+                        variant="secondary"
+                    >
+                        Secundário
+                    </Button>
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -54,46 +52,44 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-8 flex flex-wrap gap-3 justify-center items-center">
-                        <Button
-                            v-tooltip="{ content: 'Acima do alvo', placement: 'top' }"
-                            variant="secondary"
-                        >
-                            Top
-                        </Button>
+            <DocsExample label="Placement">
+                <div class="p-8 flex flex-wrap gap-3 justify-center items-center">
+                    <Button
+                        v-tooltip="{ content: 'Acima do alvo', placement: 'top' }"
+                        variant="secondary"
+                    >
+                        Top
+                    </Button>
 
-                        <Button
-                            v-tooltip="{ content: 'Abaixo do alvo', placement: 'bottom' }"
-                            variant="secondary"
-                        >
-                            Bottom
-                        </Button>
+                    <Button
+                        v-tooltip="{ content: 'Abaixo do alvo', placement: 'bottom' }"
+                        variant="secondary"
+                    >
+                        Bottom
+                    </Button>
 
-                        <Button
-                            v-tooltip="{ content: 'À esquerda', placement: 'left' }"
-                            variant="secondary"
-                        >
-                            Left
-                        </Button>
+                    <Button
+                        v-tooltip="{ content: 'À esquerda', placement: 'left' }"
+                        variant="secondary"
+                    >
+                        Left
+                    </Button>
 
-                        <Button
-                            v-tooltip="{ content: 'À direita', placement: 'right' }"
-                            variant="secondary"
-                        >
-                            Right
-                        </Button>
+                    <Button
+                        v-tooltip="{ content: 'À direita', placement: 'right' }"
+                        variant="secondary"
+                    >
+                        Right
+                    </Button>
 
-                        <Button
-                            v-tooltip="{ content: 'Sobre o alvo', placement: 'center' }"
-                            variant="secondary"
-                        >
-                            Center
-                        </Button>
-                    </div>
-                </template>
-            </Card>
+                    <Button
+                        v-tooltip="{ content: 'Sobre o alvo', placement: 'center' }"
+                        variant="secondary"
+                    >
+                        Center
+                    </Button>
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -107,25 +103,23 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 flex flex-wrap gap-2">
-                        <Button
-                            v-tooltip="htmlTooltip"
-                            variant="secondary"
-                        >
-                            Com ênfase
-                        </Button>
+            <DocsExample label="HTML">
+                <div class="p-4 flex flex-wrap gap-2">
+                    <Button
+                        v-tooltip="htmlTooltip"
+                        variant="secondary"
+                    >
+                        Com ênfase
+                    </Button>
 
-                        <Button
-                            v-tooltip="htmlListTooltip"
-                            variant="secondary"
-                        >
-                            Lista
-                        </Button>
-                    </div>
-                </template>
-            </Card>
+                    <Button
+                        v-tooltip="htmlListTooltip"
+                        variant="secondary"
+                    >
+                        Lista
+                    </Button>
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -139,39 +133,37 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 flex flex-wrap gap-2">
-                        <Button
-                            v-tooltip="{ content: 'Offset 4', placement: 'bottom', offset: 4 }"
-                            variant="outline"
-                        >
-                            Offset 4
-                        </Button>
+            <DocsExample label="Offset e maxWidth">
+                <div class="p-4 flex flex-wrap gap-2">
+                    <Button
+                        v-tooltip="{ content: 'Offset 4', placement: 'bottom', offset: 4 }"
+                        variant="outline"
+                    >
+                        Offset 4
+                    </Button>
 
-                        <Button
-                            v-tooltip="{ content: 'Offset 20', placement: 'bottom', offset: 20 }"
-                            variant="outline"
-                        >
-                            Offset 20
-                        </Button>
+                    <Button
+                        v-tooltip="{ content: 'Offset 20', placement: 'bottom', offset: 20 }"
+                        variant="outline"
+                    >
+                        Offset 20
+                    </Button>
 
-                        <Button
-                            v-tooltip="narrowTooltip"
-                            variant="outline"
-                        >
-                            maxWidth 8rem
-                        </Button>
+                    <Button
+                        v-tooltip="narrowTooltip"
+                        variant="outline"
+                    >
+                        maxWidth 8rem
+                    </Button>
 
-                        <Button
-                            v-tooltip="wideTooltip"
-                            variant="outline"
-                        >
-                            maxWidth 24rem
-                        </Button>
-                    </div>
-                </template>
-            </Card>
+                    <Button
+                        v-tooltip="wideTooltip"
+                        variant="outline"
+                    >
+                        maxWidth 24rem
+                    </Button>
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -185,58 +177,55 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 flex flex-col gap-6">
-                        <div class="flex flex-wrap items-center gap-4">
-                            <i
-                                v-tooltip="'Ajuda sobre este ícone'"
+            <DocsExample label="Em outros elementos">
+                <div class="p-4 flex flex-col gap-6">
+                    <div class="flex flex-wrap items-center gap-4">
+                        <i
+                            v-tooltip="'Ajuda sobre este ícone'"
 
-                                class="fa-solid fa-circle-info text-muted-foreground cursor-help"
-                            />
-
-                            <span
-                                v-tooltip="'Texto truncado com dica completa'"
-
-                                class="underline decoration-dotted cursor-help"
-                            >
-                                Passe o mouse aqui
-                            </span>
-
-                            <Badge
-                                v-tooltip="{ content: 'Status do pedido', placement: 'right' }"
-
-                                label="Ativo"
-                                variant="success"
-                            />
-                        </div>
-
-                        <Input
-                            v-tooltip="{ content: 'Informe o e-mail corporativo', placement: 'right' }"
-
-                            id="tooltip-docs-email"
-                            type="email"
-                            label="E-mail"
-                            placeholder="nome@exemplo.com"
-                            class="max-w-sm"
+                            class="fa-solid fa-circle-info text-muted-foreground cursor-help"
                         />
 
-                        <Select
-                            class="max-w-sm"
-                            header="Opções com tooltip"
+                        <span
+                            v-tooltip="'Texto truncado com dica completa'"
 
-                            :options="selectOptions"
+                            class="underline decoration-dotted cursor-help"
+                        >
+                            Passe o mouse aqui
+                        </span>
+
+                        <Badge
+                            v-tooltip="{ content: 'Status do pedido', placement: 'right' }"
+
+                            label="Ativo"
+                            variant="success"
                         />
                     </div>
-                </template>
-            </Card>
+
+                    <Input
+                        v-tooltip="{ content: 'Informe o e-mail corporativo', placement: 'right' }"
+
+                        id="tooltip-docs-email"
+                        type="email"
+                        label="E-mail"
+                        placeholder="nome@exemplo.com"
+                        class="max-w-sm"
+                    />
+
+                    <Select
+                        class="max-w-sm"
+                        header="Opções com tooltip"
+
+                        :options="selectOptions"
+                    />
+                </div>
+            </DocsExample>
         </section>
     </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Card from "@design/components/Card.vue";
 import Button from "@design/components/Button.vue";
 import Input from "@design/components/Input.vue";
 import Select from "@design/components/Select.vue";
@@ -246,7 +235,6 @@ export default defineComponent({
     name: "ComponentsTooltip",
 
     components: {
-        Card,
         Button,
         Input,
         Select,

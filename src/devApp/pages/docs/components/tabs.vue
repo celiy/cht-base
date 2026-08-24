@@ -11,61 +11,59 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4">
-                        <Tabs>
-                            <template #tab-title-0>
-                                Tab A
-                            </template>
+            <DocsExample label="Tabs">
+                <div class="p-4">
+                    <Tabs>
+                        <template #tab-title-0>
+                            Tab A
+                        </template>
 
-                            <template #tab-content-0>
-                                <Card>
-                                    <template #body>
-                                        Conteúdo da primeira aba. O site está em mobile: {{ $project.device.isMobile }}
-                                    </template>
-                                </Card>
-                            </template>
+                        <template #tab-content-0>
+                            <Card>
+                                <template #body>
+                                    Conteúdo da primeira aba. O site está em mobile: {{ $project.device.isMobile }}
+                                </template>
+                            </Card>
+                        </template>
 
-                            <template #tab-title-1>
-                                Tab B
-                            </template>
+                        <template #tab-title-1>
+                            Tab B
+                        </template>
 
-                            <template #tab-content-1>
-                                <Card>
-                                    <template #body>
-                                        Segunda aba, com um card dentro.
-                                    </template>
-                                </Card>
-                            </template>
+                        <template #tab-content-1>
+                            <Card>
+                                <template #body>
+                                    Segunda aba, com um card dentro.
+                                </template>
+                            </Card>
+                        </template>
 
-                            <template #tab-title-2>
-                                Tab C
-                            </template>
+                        <template #tab-title-2>
+                            Tab C
+                        </template>
 
-                            <template #tab-content-2>
-                                <Card>
-                                    <template #body>
-                                        Terceira aba.
-                                    </template>
-                                </Card>
-                            </template>
+                        <template #tab-content-2>
+                            <Card>
+                                <template #body>
+                                    Terceira aba.
+                                </template>
+                            </Card>
+                        </template>
 
-                            <template #tab-title-3>
-                                Tab D
-                            </template>
+                        <template #tab-title-3>
+                            Tab D
+                        </template>
 
-                            <template #tab-content-3>
-                                <Card>
-                                    <template #body>
-                                        Quarta aba.
-                                    </template>
-                                </Card>
-                            </template>
-                        </Tabs>
-                    </div>
-                </template>
-            </Card>
+                        <template #tab-content-3>
+                            <Card>
+                                <template #body>
+                                    Quarta aba.
+                                </template>
+                            </Card>
+                        </template>
+                    </Tabs>
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -79,43 +77,41 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4">
-                        <Tabs variant="transparent">
-                            <template #tab-title-0>
-                                Visão geral
-                            </template>
+            <DocsExample label="Variações">
+                <div class="p-4">
+                    <Tabs variant="transparent">
+                        <template #tab-title-0>
+                            Visão geral
+                        </template>
 
-                            <template #tab-content-0>
-                                <div class="border border-border rounded-lg p-4">
-                                    Variação transparent: indicador em borda inferior.
-                                </div>
-                            </template>
+                        <template #tab-content-0>
+                            <div class="border border-border rounded-lg p-4">
+                                Variação transparent: indicador em borda inferior.
+                            </div>
+                        </template>
 
-                            <template #tab-title-1>
-                                Detalhes
-                            </template>
+                        <template #tab-title-1>
+                            Detalhes
+                        </template>
 
-                            <template #tab-content-1>
-                                <div class="border border-border rounded-lg p-4">
-                                    Conteúdo da segunda aba transparent.
-                                </div>
-                            </template>
+                        <template #tab-content-1>
+                            <div class="border border-border rounded-lg p-4">
+                                Conteúdo da segunda aba transparent.
+                            </div>
+                        </template>
 
-                            <template #tab-title-2>
-                                Histórico
-                            </template>
+                        <template #tab-title-2>
+                            Histórico
+                        </template>
 
-                            <template #tab-content-2>
-                                <div class="border border-border rounded-lg p-4">
-                                    Terceira aba transparent.
-                                </div>
-                            </template>
-                        </Tabs>
-                    </div>
-                </template>
-            </Card>
+                        <template #tab-content-2>
+                            <div class="border border-border rounded-lg p-4">
+                                Terceira aba transparent.
+                            </div>
+                        </template>
+                    </Tabs>
+                </div>
+            </DocsExample>
         </section>
     </main>
 </template>

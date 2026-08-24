@@ -11,18 +11,16 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 flex flex-col gap-6">
-                        <ProgressBar
-                            v-model="value"
-                            label="Barra padrão"
-                            showProgress
-                            :helperText="`Value: ${value}`"
-                        />
-                    </div>
-                </template>
-            </Card>
+            <DocsExample label="Progress bar">
+                <div class="p-4 flex flex-col gap-6">
+                    <ProgressBar
+                        v-model="value"
+                        label="Barra padrão"
+                        showProgress
+                        :helperText="`Value: ${value}`"
+                    />
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -36,27 +34,25 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 flex flex-col gap-6">
-                        <ProgressBar
-                            v-model="value"
-                            label="Desabilitada"
-                            disabled
-                            showProgress
-                            :helperText="`Value: ${value}`"
-                        />
+            <DocsExample label="Estados">
+                <div class="p-4 flex flex-col gap-6">
+                    <ProgressBar
+                        v-model="value"
+                        label="Desabilitada"
+                        disabled
+                        showProgress
+                        :helperText="`Value: ${value}`"
+                    />
 
-                        <ProgressBar
-                            v-model="value"
-                            label="Somente leitura"
-                            readonly
-                            showProgress
-                            :helperText="`Value: ${value}`"
-                        />
-                    </div>
-                </template>
-            </Card>
+                    <ProgressBar
+                        v-model="value"
+                        label="Somente leitura"
+                        readonly
+                        showProgress
+                        :helperText="`Value: ${value}`"
+                    />
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -70,18 +66,16 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 w-fit">
-                        <ProgressBar
-                            v-model="value"
-                            label="Vertical"
-                            direction="vertical"
-                            showProgress
-                        />
-                    </div>
-                </template>
-            </Card>
+            <DocsExample label="Direção">
+                <div class="p-4 w-fit">
+                    <ProgressBar
+                        v-model="value"
+                        label="Vertical"
+                        direction="vertical"
+                        showProgress
+                    />
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -96,62 +90,58 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 flex flex-col gap-6">
-                        <ProgressBar
-                            v-model="value"
-                            label="Circular small"
-                            variant="circular"
-                            size="small"
-                            showProgress
-                        />
+            <DocsExample label="Circular">
+                <div class="p-4 flex flex-col gap-6">
+                    <ProgressBar
+                        v-model="value"
+                        label="Circular small"
+                        variant="circular"
+                        size="small"
+                        showProgress
+                    />
 
-                        <ProgressBar
-                            v-model="value"
-                            label="Circular medium"
-                            variant="circular"
-                            size="medium"
-                        />
+                    <ProgressBar
+                        v-model="value"
+                        label="Circular medium"
+                        variant="circular"
+                        size="medium"
+                    />
 
-                        <ProgressBar
-                            v-model="value"
-                            label="Circular large"
-                            variant="circular"
-                            size="large"
-                        />
+                    <ProgressBar
+                        v-model="value"
+                        label="Circular large"
+                        variant="circular"
+                        size="large"
+                    />
 
-                        <ProgressBar
-                            v-model="rangedValue"
-                            label="Min 30, max 60"
-                            variant="circular"
-                            :min="30"
-                            :max="60"
-                            showProgress
-                        />
+                    <ProgressBar
+                        v-model="rangedValue"
+                        label="Min 30, max 60"
+                        variant="circular"
+                        :min="30"
+                        :max="60"
+                        showProgress
+                    />
 
-                        <ProgressBar
-                            label="Loading"
-                            loading
-                            variant="circular"
-                        />
-                    </div>
-                </template>
-            </Card>
+                    <ProgressBar
+                        label="Loading"
+                        loading
+                        variant="circular"
+                    />
+                </div>
+            </DocsExample>
         </section>
     </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Card from "@design/components/Card.vue";
 import ProgressBar from "@design/components/ProgressBar.vue";
 
 export default defineComponent({
     name: "ComponentsProgressbar",
 
     components: {
-        Card,
         ProgressBar
     },
 

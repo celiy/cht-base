@@ -11,29 +11,27 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 flex flex-col gap-4">
-                        <Card>
-                            <template #header>
-                                Header
-                            </template>
+            <DocsExample label="Card">
+                <div class="p-4 flex flex-col gap-4">
+                    <Card>
+                        <template #header>
+                            Header
+                        </template>
 
-                            <template #description>
-                                Header description
-                            </template>
+                        <template #description>
+                            Header description
+                        </template>
 
-                            <template #body>
-                                Conteúdo do card com todos os slots.
-                            </template>
+                        <template #body>
+                            Conteúdo do card com todos os slots.
+                        </template>
 
-                            <template #footer>
-                                Footer
-                            </template>
-                        </Card>
-                    </div>
-                </template>
-            </Card>
+                        <template #footer>
+                            Footer
+                        </template>
+                    </Card>
+                </div>
+            </DocsExample>
         </section>
 
         <section>
@@ -47,23 +45,21 @@
         </section>
 
         <section class="mb-8">
-            <Card variant="transparent">
-                <template #body>
-                    <div class="p-4 grid gap-4">
-                        <Card variant="default">
-                            <template #body>
-                                Variação default (fundo de card).
-                            </template>
-                        </Card>
+            <DocsExample label="Variações">
+                <div class="p-4 grid gap-4">
+                    <Card variant="default">
+                        <template #body>
+                            Variação default (fundo de card).
+                        </template>
+                    </Card>
 
-                        <Card variant="transparent">
-                            <template #body>
-                                Variação transparent.
-                            </template>
-                        </Card>
-                    </div>
-                </template>
-            </Card>
+                    <Card variant="transparent">
+                        <template #body>
+                            Variação transparent.
+                        </template>
+                    </Card>
+                </div>
+            </DocsExample>
         </section>
     </main>
 </template>
