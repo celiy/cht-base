@@ -55,12 +55,17 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
+        label: "Avatar",
+        link: "/docs/components/avatar"
+    },
+    {
+        type: "link" as const,
         label: "Badges",
         link: "/docs/components/badges"
     },
     {
         type: "link" as const,
-        label: "Buttons",
+        label: "Button & Btn Group",
         link: "/docs/components/buttons"
     },
     {
@@ -75,7 +80,7 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
-        label: "Checkbox",
+        label: "Checkbox & Switch",
         link: "/docs/components/checkbox"
     },
     {
@@ -100,6 +105,11 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
+        label: "Marker / Separator",
+        link: "/docs/components/marker"
+    },
+    {
+        type: "link" as const,
         label: "Modal",
         link: "/docs/components/modal"
     },
@@ -110,7 +120,7 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
-        label: "Progress bar",
+        label: "Progress Bar / Slider",
         link: "/docs/components/progressbar"
     },
     {
@@ -122,6 +132,11 @@ export const componentsNav = [
         type: "link" as const,
         label: "Select",
         link: "/docs/components/select"
+    },
+    {
+        type: "link" as const,
+        label: "Skeleton",
+        link: "/docs/components/skeleton"
     },
     {
         type: "link" as const,
@@ -144,8 +159,18 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
+        label: "Chat",
+        link: "/docs/components/chat"
+    },
+    {
+        type: "link" as const,
         label: "Confirmation modal",
         link: "/docs/components/confirmation-modal"
+    },
+    {
+        type: "link" as const,
+        label: "Context menu",
+        link: "/docs/components/context-menu"
     },
     {
         type: "link" as const,

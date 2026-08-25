@@ -5,7 +5,7 @@
             :links="navLinks"
         />
 
-        <div class="flex-1 min-h-0 relative">
+        <div v-if="$route.path.startsWith('/docs')" class="flex-1 min-h-0 relative">
             <Sidebar 
                 title="CHT Docs"
                 description="The CHT documentation."
@@ -23,14 +23,18 @@
                 </RouterView>
             </Sidebar>
         </div>
+            
+        <div v-else>
+            <RouterView />
+        </div>
     </main>
 </template>
 
 <script setup lang="ts">
 import Sidebar from "@design/components/custom/Sidebar.vue";
-import { componentsNav } from "./ts/componentsNav";
+import { componentsNav } from "./ts/componentsNav.ts";
 import Navigator from "@design/components/custom/Navigator.vue";
-import { navLinks } from "../js/navLinks";
+import { navLinks } from "../js/navLinks.ts";
 import DocsOutline from "./components/DocsOutline.vue";
 </script>
 
