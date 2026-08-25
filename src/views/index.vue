@@ -4,7 +4,7 @@
             <template #body>
                 <h4>Credenciais</h4>
 
-                <small class="mb-4">
+                <small class="mb-4 text-muted-foreground!">
                     Entre na sua conta para continuar
                 </small>
 

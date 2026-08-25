@@ -14,6 +14,7 @@ const clientRoot = clientConfig
 const siteTitle = clientConfig?.siteTitle ?? "cht-base dev";
 
 const alias: Record<string, string> = {
+    "@": path.resolve(__dirname, "src"),
     "@design": path.resolve(__dirname, "../cht-design-system/src"),
     "@shared": path.resolve(__dirname, "../cht-shared/src"),
     "@client": clientRoot,

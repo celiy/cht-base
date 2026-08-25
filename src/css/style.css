@@ -86,7 +86,9 @@ h4,
 h5,
 h6,
 p,
-li {
+li,
+label,
+small {
     @apply text-foreground;
 }
 
@@ -123,11 +125,11 @@ li {
 }
 
 label {
-    @apply font-medium text-sm select-none text-foreground;
+    @apply font-medium text-sm select-none;
 }
 
 small {
-    @apply text-sm font-normal text-foreground block;
+    @apply text-sm font-normal block;
 }
 
 code {
