@@ -19,7 +19,7 @@
     --color-popover: oklch(0.205 0 0);
     --color-popover-foreground: oklch(0.985 0 0);
 
-    --color-primary: oklch(0.424 0.199 265.638);
+    --color-primary: oklch(0.6846 0.2042 24.28);
     --color-primary-foreground: oklch(0.97 0.014 254.604);
 
     --color-secondary: oklch(0.274 0.006 286.033);
@@ -75,12 +75,8 @@ body {
 
 h1,
 h2,
-h3,
-h4,
-h5,
-h6,
-p {
-    color: var(--color-foreground);
+h3 {
+    @apply mb-2;
 }
 
 h1,
@@ -88,47 +84,58 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-    font-weight: 700;
-    line-height: 1;
+h6,
+p {
+    @apply text-foreground;
 }
 
 h1 {
-    font-size: 2.5rem;
+    @apply text-4xl font-extrabold;
 }
 
 h2 {
-    font-size: 2rem;
+    @apply text-3xl font-bold;
 }
 
 h3 {
-    font-size: 1.5rem;
+    @apply text-2xl font-semibold;
 }
 
 h4 {
-    font-size: 1.35rem;
+    @apply text-xl font-semibold;
 }
 
 h5 {
-    font-size: 1.15rem;
+    @apply text-xl font-medium;
 }
 
 h6 {
-    font-size: 1.05rem;
+    @apply text-lg font-medium;
 }
 
 p {
-    @apply leading-6;
-    font-weight: 400;
+    @apply text-base font-normal;
 }
 
-a {
-    font-weight: 500;
+li {
+    @apply text-base font-normal mb-1 ml-4;
+}
+
+label {
+    @apply font-medium text-sm select-none text-foreground;
+}
+
+small {
+    @apply text-sm font-normal text-foreground block;
 }
 
 code {
-    @apply bg-secondary rounded-md p-1;
+    @apply bg-secondary rounded-md p-1 text-sm font-medium;
     color: var(--color-foreground);
+}
+
+b {
+    @apply font-bold;
 }
 
 pre,

@@ -14,7 +14,7 @@
       // pick whichever is currently checked out without manual edits.
       // Runtime/Vite alias is resolved separately via process.env.CLIENT
       // in vite.config.ts.
-      "@client/*": ["./src/devApp/*"]
+      "@client/*": ["./src/devApp/*","../cht-client-mecarvit/src/*"]
     },
 
     /* Linting */

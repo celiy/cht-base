@@ -15,15 +15,12 @@
                 <div class="p-4 flex flex-col gap-4">
                     <Card>
                         <template #header>
-                            Header
-                        </template>
-
-                        <template #description>
-                            Header description
+                            <h4>Header</h4>
+                            <p class="text-muted-foreground!">Header description</p>
                         </template>
 
                         <template #body>
-                            Conteúdo do card com todos os slots.
+                            <p>Conteúdo do card com todos os slots. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae accusamus expedita iusto laborum corporis porro corrupti ipsum nihil optio molestiae pariatur ullam, at quia rerum sed nulla? Accusantium, veniam ea!</p>
                         </template>
 
                         <template #footer>

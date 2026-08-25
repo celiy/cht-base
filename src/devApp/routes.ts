@@ -44,7 +44,8 @@ const routes: RouteRecordRaw[] = [
             { path: "docs/components/form-renderer", name: "components-form-renderer", component: () => import("./pages/docs/components/form-renderer.vue") },
             { path: "docs/components/toast", name: "components-toast", component: () => import("./pages/docs/components/toast.vue") },
             { path: "docs/components/tooltip", name: "components-tooltip", component: () => import("./pages/docs/components/tooltip.vue") },
-            { path: "docs/components/colors", name: "components-colors", component: () => import("./pages/docs/components/colors.vue") }
+            { path: "docs/components/colors", name: "components-colors", component: () => import("./pages/docs/components/colors.vue") },
+            { path: "docs/components/typography", name: "components-typography", component: () => import("./pages/docs/components/typography.vue") }
         ]
     }
 ];

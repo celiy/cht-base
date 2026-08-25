@@ -14,13 +14,13 @@
             <DocsExample label="Accordion">
                 <div class="p-4">
                     <Accordion variant="bordered" header="Este é um accordion">
-                        Qualquer conteúdo pode ser colocado dentro.
+                        <p>Qualquer conteúdo pode ser colocado dentro. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro modi facere atque voluptates, minus officia aperiam commodi odio, voluptas amet esse adipisci placeat ut? Fuga quidem doloremque recusandae inventore distinctio.</p>
                     </Accordion>
                     <Accordion variant="bordered" header="Você pode ter eles empilhados">
-                        E caber qualquer coisa que você quiser
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro modi facere atque voluptates, minus officia aperiam commodi odio, voluptas amet esse adipisci placeat ut? Fuga quidem doloremque recusandae inventore distinctio.</p>
                     </Accordion>
                     <Accordion variant="bordered" header="Este é o tipo bordado">
-                        É o tipo apropriado para empilhar conteúdo
+                        <p>É o tipo apropriado para empilhar conteúdo Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro modi facere atque voluptates, minus officia aperiam commodi odio, voluptas amet esse adipisci placeat ut? Fuga quidem doloremque recusandae inventore distinctio.</p>
                     </Accordion>
                 </div>
             </DocsExample>
@@ -41,11 +41,11 @@
             <DocsExample label="Variações">
                 <div class="p-4">
                     <Accordion class="mb-4" variant="bordered" header="Variação bordada">
-                        Conteúdo de exemplo
+                        <p>Conteúdo de exemplo Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro modi facere atque voluptates, minus officia aperiam commodi odio, voluptas amet esse adipisci placeat ut? Fuga quidem doloremque recusandae inventore distinctio.</p>
                     </Accordion>
 
                     <Accordion variant="default" header="Variação padrão">
-                        Conteúdo de exemplo
+                        <p>Conteúdo de exemplo Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro modi facere atque voluptates, minus officia aperiam commodi odio, voluptas amet esse adipisci placeat ut? Fuga quidem doloremque recusandae inventore distinctio.</p>
                     </Accordion>
                 </div>
             </DocsExample>
@@ -65,15 +65,15 @@
             <DocsExample label="Fixável">
                 <div class="p-4 flex flex-col gap-2">
                     <Accordion pinnable variant="default" header="Variação padrão fixável">
-                        Conteúdo de exemplo
+                        <p>Conteúdo de exemplo Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro modi facere atque voluptates, minus officia aperiam commodi odio, voluptas amet esse adipisci placeat ut? Fuga quidem doloremque recusandae inventore distinctio.</p>
                     </Accordion>
 
                     <Accordion variant="default" header="Variação padrão não fixável">
-                        Conteúdo de exemplo
+                        <p>Conteúdo de exemplo Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro modi facere atque voluptates, minus officia aperiam commodi odio, voluptas amet esse adipisci placeat ut? Fuga quidem doloremque recusandae inventore distinctio.</p>
                     </Accordion>
 
                     <Accordion variant="default" header="Variação padrão não fixável">
-                        Conteúdo de exemplo
+                        <p>Conteúdo de exemplo Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro modi facere atque voluptates, minus officia aperiam commodi odio, voluptas amet esse adipisci placeat ut? Fuga quidem doloremque recusandae inventore distinctio.</p>
                     </Accordion>
                 </div>
             </DocsExample>

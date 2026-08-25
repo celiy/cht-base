@@ -36,6 +36,11 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
+        label: "Typography",
+        link: "/docs/components/typography"
+    },
+    {
+        type: "link" as const,
         label: "Toast",
         link: "/docs/components/toast"
     },

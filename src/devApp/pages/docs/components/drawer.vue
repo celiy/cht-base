@@ -29,8 +29,12 @@
                             Drawer right
                         </template>
 
+                        <template #description>
+                            Arraste para direita ou use Esc / backdrop.
+                        </template>
+
                         <template #body>
-                            Painel à direita.
+                            <p>Painel à direita.</p>
                         </template>
                     </Modal>
 
@@ -46,8 +50,12 @@
                             Drawer left
                         </template>
 
+                        <template #description>
+                            Arraste para esquerda ou use Esc / backdrop.
+                        </template>
+
                         <template #body>
-                            Painel à esquerda.
+                            <p>Painel à esquerda.</p>
                         </template>
                     </Modal>
 
@@ -63,8 +71,12 @@
                             Drawer bottom
                         </template>
 
-                        <template #body>
+                        <template #description>
                             Arraste para baixo ou use Esc / backdrop.
+                        </template>
+
+                        <template #body>
+                            <p>Arraste para baixo ou use Esc / backdrop.</p>
                         </template>
                     </Modal>
                 </div>

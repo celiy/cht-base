@@ -14,11 +14,11 @@
             <DocsExample label="Popover">
                 <div class="p-4 flex flex-wrap gap-4">
                     <Popover header="Popover">
-                        Conteúdo no clique.
+                        <small>Conteúdo no clique.</small>
                     </Popover>
 
                     <Popover header="Hover" openOnHover>
-                        Conteúdo no hover.
+                        <small>Conteúdo no hover.</small>
                     </Popover>
                 </div>
             </DocsExample>
@@ -47,7 +47,7 @@
                             />
                         </template>
 
-                        Painel com gatilho customizado.
+                        <small>Painel com gatilho customizado.</small>
                     </Popover>
 
                     <Popover header="Ícone">
@@ -57,7 +57,7 @@
                             </Button>
                         </template>
 
-                        Ações extras no painel.
+                        <small>Ações extras no painel.</small>
                     </Popover>
                 </div>
             </DocsExample>
@@ -69,7 +69,7 @@
             </h3>
 
             <p>
-                <code>closeOnContentClick</code> fecha o painel depois de um clique interno.
+                <code>closeOnContentClick</code> fecha o painel depois de um clique interno.<br>
             </p>
         </section>
 
@@ -108,11 +108,11 @@
             <DocsExample label="Seta e largura">
                 <div class="p-4 flex flex-wrap gap-4">
                     <Popover header="Com seta" :hideDropdownArrow="false">
-                        Chevron visível no gatilho.
+                        <small>Chevron visível no gatilho.</small>
                     </Popover>
 
                     <Popover header="Largo" :minWidthPx="280">
-                        Painel com largura mínima de 280px.
+                        <small>Painel com largura mínima de 280px.</small>
                     </Popover>
                 </div>
             </DocsExample>

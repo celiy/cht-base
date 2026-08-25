@@ -28,7 +28,7 @@
                         </template>
 
                         <template #body>
-                            Apenas cabeçalho e conteúdo. Esc fecha.
+                            <p>Apenas cabeçalho e conteúdo. Esc fecha.</p>
                         </template>
                     </Modal>
 
@@ -119,7 +119,7 @@
                         </template>
 
                         <template #body>
-                            Largura reduzida.
+                            <p>Largura reduzida.</p>
                         </template>
                     </Modal>
 
@@ -134,7 +134,7 @@
                         </template>
 
                         <template #body>
-                            Largura padrão.
+                            <p>Largura padrão.</p>
                         </template>
                     </Modal>
 
@@ -149,7 +149,7 @@
                         </template>
 
                         <template #body>
-                            Largura ampla para conteúdo maior.
+                            <p>Largura ampla para conteúdo maior.</p>
                         </template>
                     </Modal>
                 </div>
@@ -185,7 +185,7 @@
                         </template>
 
                         <template #body>
-                            Borda de aviso.
+                            <p>Borda de aviso.</p>
                         </template>
                     </Modal>
 
@@ -201,7 +201,7 @@
                         </template>
 
                         <template #body>
-                            Borda destrutiva.
+                            <p>Borda destrutiva.</p>
                         </template>
                     </Modal>
 
@@ -217,7 +217,7 @@
                         </template>
 
                         <template #body>
-                            Borda de sucesso.
+                            <p>Borda de sucesso.</p>
                         </template>
                     </Modal>
                 </div>
@@ -269,7 +269,7 @@
                         </template>
 
                         <template #body>
-                            Esc fecha este primeiro.
+                            <p>Esc fecha este primeiro.</p>
                         </template>
                     </Modal>
                 </div>

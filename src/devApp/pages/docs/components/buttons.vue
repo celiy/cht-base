@@ -42,14 +42,13 @@
             </h3>
 
             <p>
-                <code>size="extra-small / small / medium / large"</code>
+                <code>size="small / medium / large"</code>
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Tamanho">
                 <div class="p-4 flex flex-wrap gap-2 items-center">
-                    <Button label="Extra small" size="extra-small" variant="secondary" />
                     <Button label="Small" size="small" variant="secondary" />
                     <Button label="Medium" size="medium" variant="secondary" />
                     <Button label="Large" size="large" variant="secondary" />
