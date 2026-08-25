@@ -1,11 +1,11 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
-            <h1 class="mb-2">
+            <h1>
                 Form renderer
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 Monta um formulário a partir de seções e campos tipados: inputs, checkbox, radio e select. Campos podem ter <code>condition</code>, <code>required</code>, <code>disabled</code> e helper.
                 Checkbox aceita <code>checkboxStyle: "switch"</code> — o interruptor e o texto compartilham o mesmo estado.
             </p>

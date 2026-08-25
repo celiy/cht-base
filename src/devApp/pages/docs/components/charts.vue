@@ -1,18 +1,18 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
-            <h1 class="mb-2">
+            <h1>
                 Charts
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 <code>TableCharts</code> envolve barras ou onda. Itens com <code>date</code> agrupam por mês; itens com <code>group</code> agregam na ordem da array (chave case-insensitive).
                 A prop <code>color</code> escolhe o token <code>chart-1</code> … <code>chart-5</code> (padrão <code>chart-3</code>).
             </p>
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Cores
             </h3>
 
@@ -65,7 +65,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Por data
             </h3>
 
@@ -113,7 +113,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Por grupo
             </h3>
 

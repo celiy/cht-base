@@ -1,11 +1,11 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
-            <h1 class="mb-2">
+            <h1>
                 Avatar
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 Em breve.
             </p>
         </section>

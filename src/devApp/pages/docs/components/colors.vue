@@ -1,11 +1,11 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
-            <h1 class="mb-2">
+            <h1>
                 Colors
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 Tokens CSS do tema, usados como <code>var(--color-&lt;nome&gt;)</code>.
             </p>
         </section>
@@ -42,11 +42,11 @@
         </section>
 
         <section>
-            <h1 class="mb-2">
+            <h1>
                 System colors
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 Cores do sistema
             </p>
         </section>

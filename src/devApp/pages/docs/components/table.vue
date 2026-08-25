@@ -1,18 +1,18 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
-            <h1 class="mb-2">
+            <h1>
                 Table
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 Tabela de dados com headers, alinhamento por coluna, seleção de linhas,
                 escolha de colunas visíveis, badges (incluindo paleta <code>chart-*</code>) e ações por linha.
             </p>
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Alinhamento
             </h3>
 
@@ -42,7 +42,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Badges
             </h3>
 
@@ -71,7 +71,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Seleção de linhas
             </h3>
 
@@ -101,7 +101,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Colunas visíveis
             </h3>
 
@@ -132,7 +132,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Ações
             </h3>
 

@@ -1,11 +1,11 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
-            <h1 class="mb-2">
+            <h1>
                 Media uploader
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 Área de drop para arquivos, com limite, múltiplos arquivos e tipos aceitos.
             </p>
         </section>

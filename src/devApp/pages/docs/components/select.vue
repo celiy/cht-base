@@ -1,18 +1,18 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
-            <h1 class="mb-2">
+            <h1>
                 Select
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 Campo de escolha com lista flutuante. Aceita pesquisa local, tooltips nas opções,
                 seleção múltipla, persistência em <code>localStorage</code> e textos de ajuda dentro e fora do painel.
             </p>
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Helper texts
             </h3>
 
@@ -38,7 +38,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Pesquisa e tooltips
             </h3>
 
@@ -61,7 +61,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Múltipla seleção
             </h3>
 
@@ -78,16 +78,16 @@
                 <div class="p-4 flex flex-col gap-4 max-w-sm">
                     <Select
                         header="Múltiplo"
-                        helperText="Mínimo 0, máximo 3"
+                        helperText="Mínimo 0, máximo 2"
                         :options="options"
-                        :selectMultiple="{ min: 0, max: 3 }"
+                        :selectMultiple="{ min: 0, max: 2 }"
                     />
                 </div>
             </DocsExample>
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Memo
             </h3>
 

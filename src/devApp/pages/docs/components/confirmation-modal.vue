@@ -1,18 +1,18 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
-            <h1 class="mb-2">
+            <h1>
                 Confirmation modal
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 Modal de confirmação com ícone, título, descrição, corpo e botões de cancelar / confirmar.
                 Empilha com outros modais: só o do topo fecha com backdrop, X ou Escape.
             </p>
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Variações
             </h3>
 
@@ -90,7 +90,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Tamanho
             </h3>
 

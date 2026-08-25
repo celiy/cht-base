@@ -1,11 +1,11 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
-            <h1 class="mb-2">
+            <h1>
                 Item
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 Mini card no mesmo formato do radio/checkbox em <code>variant="card"</code>, com ícone e cores no lugar do controle.
                 Título e descrição usam <code>select-none</code>.
             </p>
@@ -39,7 +39,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Cores
             </h3>
 
@@ -62,7 +62,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Estados
             </h3>
 

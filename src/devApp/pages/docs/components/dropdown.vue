@@ -1,11 +1,11 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
-            <h1 class="mb-2">
+            <h1>
                 Dropdown
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 Menu de ações a partir de um botão. Opções podem ter ícone, valor, tooltip e separadores.
                 Emite <code>@click:value</code> com o <code>value</code> da opção.
             </p>
@@ -30,7 +30,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Pesquisa
             </h3>
 
@@ -54,7 +54,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Fechar ao selecionar
             </h3>
 
@@ -79,7 +79,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Botão customizado
             </h3>
 
@@ -108,7 +108,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Opções
             </h3>
 

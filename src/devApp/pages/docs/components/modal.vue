@@ -1,11 +1,11 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
-            <h1 class="mb-2">
+            <h1>
                 Modal
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 Painel sobreposto. Fecha com clique no backdrop, no X ou com <code>Esc</code>. Drawer tem página própria.
             </p>
         </section>
@@ -47,7 +47,7 @@
                         </template>
 
                         <template #body>
-                            Corpo do modal com descrição no topo.
+                            <p>Corpo do modal com descrição no topo.</p>
                         </template>
                     </Modal>
 
@@ -66,7 +66,7 @@
                         </template>
 
                         <template #body>
-                            Use os botões ou Esc para fechar.
+                            <p>Use os botões ou Esc para fechar.</p>
                         </template>
 
                         <template #footer>
@@ -92,7 +92,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Tamanho
             </h3>
 
@@ -157,7 +157,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Cor da borda
             </h3>
 
@@ -225,7 +225,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Empilhamento
             </h3>
 

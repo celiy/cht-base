@@ -1,11 +1,11 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
-            <h1 class="mb-2">
+            <h1>
                 Accordion
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 Uma pilha ou conjunto independente de cabeçalhos que, quando clicados, revelam o conteúdo interno.
             </p>
         </section>
@@ -27,7 +27,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Variações
             </h3>
 
@@ -52,7 +52,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Fixável
             </h3>
 

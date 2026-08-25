@@ -1,11 +1,11 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
-            <h1 class="mb-2">
+            <h1>
                 Popover
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 Painel flutuante com conteúdo livre. Pode abrir no clique ou no hover.
             </p>
         </section>
@@ -25,7 +25,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Slot de botão
             </h3>
 
@@ -64,7 +64,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Fechar ao clicar no conteúdo
             </h3>
 
@@ -78,15 +78,15 @@
                 <div class="p-4 flex flex-wrap gap-4">
                     <Popover header="Permanece aberto">
                         <div class="flex flex-col gap-2 min-w-40">
-                            <Button label="Ação 1" variant="transparent" size="small" />
-                            <Button label="Ação 2" variant="transparent" size="small" />
+                            <Button label="Ação 1" variant="transparent"/>
+                            <Button label="Ação 2" variant="transparent"/>
                         </div>
                     </Popover>
 
                     <Popover header="Fecha no clique" closeOnContentClick>
                         <div class="flex flex-col gap-2 min-w-40">
-                            <Button label="Ação 1" variant="transparent" size="small" />
-                            <Button label="Ação 2" variant="transparent" size="small" />
+                            <Button label="Ação 1" variant="transparent"/>
+                            <Button label="Ação 2" variant="transparent"/>
                         </div>
                     </Popover>
                 </div>
@@ -94,7 +94,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Seta e largura
             </h3>
 
@@ -119,7 +119,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Conteúdo rico
             </h3>
 
@@ -134,19 +134,16 @@
                     <Popover header="Filtros">
                         <template #default="{ close }">
                             <div class="flex flex-col gap-3 p-1 min-w-56">
-                                <p class="text-sm text-muted-foreground">
-                                    Ajuste rápido sem sair da página.
-                                </p>
-
                                 <Input
                                     id="docs-popover-filter"
                                     label="Busca"
+                                    type="text"
                                     placeholder="Filtrar..."
                                 />
 
                                 <div class="flex justify-end gap-2">
-                                    <Button label="Cancelar" variant="secondary" size="small" @click="close" />
-                                    <Button label="Aplicar" variant="primary" size="small" @click="close" />
+                                    <Button label="Cancelar" variant="secondary" @click="close" />
+                                    <Button label="Aplicar" variant="primary" @click="close" />
                                 </div>
                             </div>
                         </template>

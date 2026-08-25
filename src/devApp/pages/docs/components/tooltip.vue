@@ -1,17 +1,17 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
-            <h1 class="mb-2">
+            <h1>
                 Tooltip
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 Diretiva <code>v-tooltip</code>. Aceita string ou objeto com <code>content</code>, <code>placement</code>, <code>html</code>, <code>offset</code> e <code>maxWidth</code>.
             </p>
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 String
             </h3>
 
@@ -42,7 +42,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Placement
             </h3>
 
@@ -93,7 +93,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 HTML
             </h3>
 
@@ -123,7 +123,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Offset e maxWidth
             </h3>
 
@@ -167,7 +167,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Em outros elementos
             </h3>
 

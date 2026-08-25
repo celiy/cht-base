@@ -1,11 +1,11 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
-            <h1 class="mb-2">
+            <h1>
                 Card
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 Superfície com slots de header, description, body e footer.
             </p>
         </section>
@@ -24,7 +24,7 @@
                         </template>
 
                         <template #footer>
-                            Footer
+                            <p>Footer</p>
                         </template>
                     </Card>
                 </div>
@@ -32,7 +32,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Variações
             </h3>
 
@@ -46,13 +46,13 @@
                 <div class="p-4 grid gap-4">
                     <Card variant="default">
                         <template #body>
-                            Variação default (fundo de card).
+                            <p>Variação default (fundo de card).</p>
                         </template>
                     </Card>
 
                     <Card variant="transparent">
                         <template #body>
-                            Variação transparent.
+                            <p>Variação transparent.</p>
                         </template>
                     </Card>
                 </div>

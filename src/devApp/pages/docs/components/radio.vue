@@ -1,11 +1,11 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
-            <h1 class="mb-2">
+            <h1>
                 Radio
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 Escolha exclusiva dentro de um grupo com o mesmo <code>name</code>.
                 O valor selecionado é o <code>v-model</code>.
             </p>
@@ -26,7 +26,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Variações
             </h3>
 
@@ -88,7 +88,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Descrição
             </h3>
 
@@ -131,7 +131,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Desabilitado
             </h3>
 
@@ -160,7 +160,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Grupos independentes
             </h3>
 

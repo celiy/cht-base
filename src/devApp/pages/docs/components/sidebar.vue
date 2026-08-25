@@ -1,11 +1,11 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-8">
+    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
-            <h1 class="mb-2">
+            <h1>
                 Sidebar
             </h1>
 
-            <p class="text-muted-foreground!">
+            <p>
                 Navegação lateral com seções, links e grupos. Atalho <code>s</code> abre e fecha
                 (ignorado enquanto o foco está num input, textarea ou select).
                 Esta página já está dentro da Sidebar da wiki.
@@ -13,7 +13,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Variantes
             </h3>
 
@@ -26,7 +26,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Props
             </h3>
 
@@ -38,7 +38,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 navItems
             </h3>
 
@@ -70,7 +70,7 @@
         </section>
 
         <section>
-            <h3 class="mb-2">
+            <h3>
                 Atalho
             </h3>
 
