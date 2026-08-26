@@ -37,6 +37,7 @@
             <p>
                 <code>:search="{ external: false }"</code> mostra um campo no topo da lista e filtra por
                 <code>label</code> (e por <code>value</code> se nada bater no label).
+                Ao abrir, o campo recebe foco e o primeiro item fica pré-selecionado; setas navegam, Enter confirma, Esc fecha.
                 <code>external: true</code> deixa a filtragem a cargo do pai.
             </p>
         </section>
@@ -115,7 +116,8 @@
             <p>
                 Cada item: <code>label</code>, <code>value</code> (obrigatório para ser clicável),
                 <code>icon</code> (classe Font Awesome, ex. <code>fa-user</code>),
-                <code>tooltip</code> e <code>separator: true</code> para uma linha divisória.
+                <code>tooltip</code>, <code>separator: true</code> para uma linha divisória e
+                <code>variant: "destructive"</code> para ações de exclusão (texto vermelho).
                 Itens só com <code>label</code> (sem <code>value</code>) viram cabeçalhos de grupo.
             </p>
         </section>
@@ -126,6 +128,7 @@
 import { defineComponent } from "vue";
 import Button from "@design/components/Button.vue";
 import Dropdown from "@design/components/Dropdown.vue";
+import type { OptionItem } from "@design/components/internal/OptionsList.vue";
 
 export default defineComponent({
     name: "ComponentsDropdown",
@@ -143,8 +146,8 @@ export default defineComponent({
                 { label: "Perfil", value: "user", icon: "fa-user" },
                 { label: "Email", value: "email", icon: "fa-envelope", tooltip: "Abrir caixa de entrada" },
                 { separator: true },
-                { label: "Sair", value: "exit", icon: "fa-right-from-bracket" }
-            ],
+                { label: "Sair", value: "exit", icon: "fa-right-from-bracket", variant: "destructive" }
+            ] as OptionItem[],
             searchOptions: [
                 { label: "Account", value: "account" },
                 { label: "Billing", value: "billing" },

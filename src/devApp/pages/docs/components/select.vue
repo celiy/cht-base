@@ -44,6 +44,8 @@
 
             <p>
                 <code>:search="{ external: false }"</code> filtra a lista localmente.
+                Ao abrir, o campo recebe foco e o primeiro item fica pré-selecionado;
+                as setas sobem e descem na lista. Enter confirma. Esc fecha o painel.
                 Uma opção pode ter <code>tooltip</code> — o texto aparece ao lado no hover.
             </p>
         </section>

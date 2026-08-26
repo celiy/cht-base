@@ -1,11 +1,14 @@
 <template>
     <a
         class="block w-full text-left text-sm text-foreground cursor-pointer transition-opacity duration-150"
-        :class="active ? 'opacity-100' : 'opacity-40 hover:opacity-100'"
+        :class="[
+            active ? 'opacity-100' : 'opacity-40 hover:opacity-100',
+            indentClass
+        ]"
 
         :href="href"
 
-        @click.prevent="scrollToSection"
+        @click.prevent="onClick"
     >
         {{ label }}
     </a>
@@ -16,6 +19,8 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
     name: "DocsTocLink",
+
+    emits: ["select"],
 
     props: {
         /**
@@ -35,39 +40,46 @@ export default defineComponent({
         },
 
         /**
-         * When true, the link is fully opaque (heading nearest the viewport center).
+         * When true, the link is fully opaque (heading nearest the top of the pane).
          */
         active: {
             type: Boolean,
             default: false
+        },
+
+        /**
+         * Heading level (`1`–`3`) used for left indent.
+         */
+        level: {
+            type: Number,
+            default: 1
         }
     },
 
     computed: {
         href(): string {
             return `#${this.sectionId}`;
+        },
+
+        indentClass(): string {
+            if (this.level >= 3) {
+                return "pl-6";
+            }
+
+            if (this.level === 2) {
+                return "pl-3";
+            }
+
+            return "pl-0";
         }
     },
 
     methods: {
         /**
-         * Smooth-scrolls to the heading and updates the URL hash.
+         * Asks the outline to scroll to this heading.
          */
-        scrollToSection() {
-            const target = document.getElementById(this.sectionId);
-
-            if (target) {
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            }
-
-            this.$router.replace({
-                path: this.$route.path,
-                query: this.$route.query,
-                hash: this.href
-            });
+        onClick() {
+            this.$emit("select", this.sectionId);
         }
     }
 });

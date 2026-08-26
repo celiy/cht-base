@@ -20,7 +20,10 @@
 
                 :section-id="heading.id"
                 :label="heading.label"
+                :level="heading.level"
                 :active="heading.id === activeId"
+
+                @select="onSelectHeading"
             />
         </nav>
     </div>
@@ -33,6 +36,7 @@ import DocsTocLink from "./DocsTocLink.vue";
 type OutlineHeading = {
     id: string;
     label: string;
+    level: number;
 };
 
 /**
@@ -85,13 +89,18 @@ export default defineComponent({
             headings: [] as OutlineHeading[],
             activeId: "",
             scrollParent: null as HTMLElement | null,
-            scrollRaf: 0
+            scrollRaf: 0,
+            collectRaf: 0,
+            headingObserver: null as MutationObserver | null,
+            clickLockId: "",
+            clickLockUntil: 0
         };
     },
 
     mounted() {
         this.$nextTick(() => {
             this.collectHeadings();
+            this.bindHeadingObserver();
             this.bindScrollSpy();
             this.updateActiveHeading();
             this.scrollToHash();
@@ -99,7 +108,9 @@ export default defineComponent({
     },
 
     beforeUnmount() {
+        this.unbindHeadingObserver();
         this.unbindScrollSpy();
+        this.clearCollectRaf();
     },
 
     methods: {
@@ -125,6 +136,10 @@ export default defineComponent({
                     continue;
                 }
 
+                if (typeof heading.checkVisibility === "function" && !heading.checkVisibility()) {
+                    continue;
+                }
+
                 let id = heading.id || slugifyHeading(label) || "section";
                 const count = used.get(id) ?? 0;
                 used.set(id, count + 1);
@@ -135,15 +150,82 @@ export default defineComponent({
 
                 heading.id = id;
                 heading.classList.add("scroll-mt-8");
-                next.push({ id, label });
+
+                const level = Number(heading.tagName.replace("H", "")) || 1;
+
+                next.push({ id, label, level });
             }
 
             this.headings = next;
-            this.activeId = next[0]?.id ?? "";
+
+            if (!next.some((heading) => heading.id === this.activeId)) {
+                this.activeId = next[0]?.id ?? "";
+            }
         },
 
         /**
-         * Listens to the docs pane scroll to highlight the heading nearest the viewport center.
+         * Re-collects headings when the page DOM changes (v-for, tabs, etc.).
+         */
+        bindHeadingObserver() {
+            const root = this.$refs.contentRef as HTMLElement | undefined;
+
+            if (!root) {
+                return;
+            }
+
+            this.unbindHeadingObserver();
+            this.headingObserver = new MutationObserver(this.onHeadingDomChange);
+            this.headingObserver.observe(root, {
+                childList: true,
+                subtree: true,
+                characterData: true
+            });
+        },
+
+        /**
+         * Disconnects the heading MutationObserver.
+         */
+        unbindHeadingObserver() {
+            this.headingObserver?.disconnect();
+            this.headingObserver = null;
+        },
+
+        /**
+         * Schedules a heading re-scan after a DOM mutation.
+         */
+        onHeadingDomChange() {
+            this.scheduleCollect();
+        },
+
+        /**
+         * Debounces collectHeadings to the next animation frame.
+         */
+        scheduleCollect() {
+            if (this.collectRaf) {
+                return;
+            }
+
+            this.collectRaf = requestAnimationFrame(() => {
+                this.collectRaf = 0;
+                this.collectHeadings();
+                this.updateActiveHeading();
+            });
+        },
+
+        /**
+         * Cancels a pending heading collect frame.
+         */
+        clearCollectRaf() {
+            if (!this.collectRaf) {
+                return;
+            }
+
+            cancelAnimationFrame(this.collectRaf);
+            this.collectRaf = 0;
+        },
+
+        /**
+         * Listens to the docs pane scroll to highlight the heading at the top of the viewport.
          */
         bindScrollSpy() {
             const root = this.$refs.contentRef as HTMLElement | undefined;
@@ -181,11 +263,17 @@ export default defineComponent({
         },
 
         /**
-         * Marks the outline link whose heading is closest to the vertical center of the scroll pane.
+         * Marks the outline link whose heading last crossed the top of the scroll pane.
          */
         updateActiveHeading() {
             if (this.headings.length === 0) {
                 this.activeId = "";
+
+                return;
+            }
+
+            if (Date.now() < this.clickLockUntil && this.clickLockId) {
+                this.activeId = this.clickLockId;
 
                 return;
             }
@@ -200,9 +288,8 @@ export default defineComponent({
 
             const scroller = this.scrollParent ?? document.documentElement;
             const scrollerRect = scroller.getBoundingClientRect();
-            const centerY = scrollerRect.top + scrollerRect.height / 2;
+            const probeY = scrollerRect.top + 40;
             let bestId = firstHeading.id;
-            let bestDist = Number.POSITIVE_INFINITY;
 
             for (const heading of this.headings) {
                 const el = document.getElementById(heading.id);
@@ -211,17 +298,41 @@ export default defineComponent({
                     continue;
                 }
 
-                const rect = el.getBoundingClientRect();
-                const headingCenter = rect.top + rect.height / 2;
-                const dist = Math.abs(headingCenter - centerY);
-
-                if (dist < bestDist) {
-                    bestDist = dist;
+                if (el.getBoundingClientRect().top <= probeY) {
                     bestId = heading.id;
                 }
             }
 
             this.activeId = bestId;
+        },
+
+        /**
+         * Scrolls the heading to the top of the pane and keeps it highlighted.
+         *
+         * @param id Heading element id
+         */
+        onSelectHeading(id: string) {
+            this.activeId = id;
+            this.clickLockId = id;
+            this.clickLockUntil = Date.now() + 800;
+
+            const root = this.$refs.contentRef as HTMLElement | undefined;
+            let target = document.getElementById(id);
+
+            if (!target && root) {
+                this.collectHeadings();
+                target = document.getElementById(id);
+            }
+
+            if (target) {
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+
+            const url = new URL(window.location.href);
+            history.replaceState(history.state, "", `${url.pathname}${url.search}#${id}`);
         },
 
         /**
@@ -234,16 +345,7 @@ export default defineComponent({
                 return;
             }
 
-            const target = document.getElementById(hash);
-
-            if (!target) {
-                return;
-            }
-
-            target.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
+            this.onSelectHeading(hash);
         }
     }
 });

@@ -8,10 +8,6 @@ export const componentsNav = [
         label: "Introduction",
         links: [
             {
-                label: "Welcome",
-                link: "/docs"
-            },
-            {
                 label: "About",
                 link: "/docs/about"
             },
@@ -22,6 +18,10 @@ export const componentsNav = [
             {
                 label: "Usage",
                 link: "/docs/usage"
+            },
+            {
+                label: "Welcome",
+                link: "/docs"
             }
         ]
     },
@@ -36,11 +36,6 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
-        label: "Typography",
-        link: "/docs/components/typography"
-    },
-    {
-        type: "link" as const,
         label: "Toast",
         link: "/docs/components/toast"
     },
@@ -48,6 +43,11 @@ export const componentsNav = [
         type: "link" as const,
         label: "Tooltip",
         link: "/docs/components/tooltip"
+    },
+    {
+        type: "link" as const,
+        label: "Typography",
+        link: "/docs/components/typography"
     },
     {
         type: "section" as const,
@@ -115,6 +115,11 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
+        label: "Media uploader",
+        link: "/docs/components/media-uploader"
+    },
+    {
+        type: "link" as const,
         label: "Modal",
         link: "/docs/components/modal"
     },
@@ -154,13 +159,13 @@ export const componentsNav = [
         link: "/docs/components/tabs"
     },
     {
-        type: "link" as const,
-        label: "Media uploader",
-        link: "/docs/components/media-uploader"
-    },
-    {
         type: "section" as const,
         label: "Custom"
+    },
+    {
+        type: "link" as const,
+        label: "Charts",
+        link: "/docs/components/charts"
     },
     {
         type: "link" as const,
@@ -186,11 +191,6 @@ export const componentsNav = [
         type: "link" as const,
         label: "Sidebar",
         link: "/docs/components/sidebar"
-    },
-    {
-        type: "link" as const,
-        label: "Charts",
-        link: "/docs/components/charts"
     },
     {
         type: "section" as const,
