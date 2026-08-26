@@ -17,7 +17,7 @@
                         Success
                     </Button>
 
-                    <Button variant="secondary" @click="() => $toast.info('Toast info')">
+                    <Button variant="info" @click="() => $toast.info('Toast info')">
                         Info
                     </Button>
 

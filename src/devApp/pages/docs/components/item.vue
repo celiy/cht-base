@@ -6,8 +6,8 @@
             </h1>
 
             <p>
-                Mini card no mesmo formato do radio/checkbox em <code>variant="card"</code>, com ícone e cores no lugar do controle.
-                Título e descrição usam <code>select-none</code>.
+                Mini card com ícone, título e descrição opcional.
+                A cor do ícone e da superfície vem de <code>variant</code>.
             </p>
         </section>
 
@@ -25,14 +25,72 @@
                         description="E-mail e push."
                         icon="fa-bell"
                         variant="warning"
-                        :selected="true"
                     />
 
                     <Item
                         label="Segurança"
                         icon="fa-shield-halved"
                         variant="success"
-                        :hover-effect="true"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
+                Tipos
+            </h3>
+
+            <p>
+                <code>type="card / alert"</code>.
+                <code>card</code> (padrão) usa um recorte colorido atrás do ícone.
+                <code>alert</code> deixa o ícone solto, no estilo de aviso.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Tipos">
+                <div class="p-4 grid gap-4">
+                    <Item
+                        label="Card"
+                        icon="fa-star"
+                        variant="secondary"
+                        description="type padrão, com fundo no ícone."
+                    />
+
+                    <Item
+                        icon="fa-circle-info"
+                        variant="info"
+                        type="alert"
+                        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Use para avisos e mensagens longas."
+                    />
+
+                    <Item
+                        icon="fa-check"
+                        variant="success"
+                        type="alert"
+                        description="Mensagem de sucesso — variante success para avisos positivos."
+                    />
+
+                    <Item
+                        icon="fa-circle-exclamation"
+                        variant="warning"
+                        type="alert"
+                        description="Mensagem de aviso — variante warning para alertas e cautelas."
+                    />
+
+                    <Item
+                        icon="fa-circle-xmark"
+                        variant="destructive"
+                        type="alert"
+                        description="Mensagem destrutiva — variante destructive para erros ou bloqueios."
+                    />
+        
+                    <Item
+                        icon="fa-home"
+                        variant="secondary"
+                        type="alert"
+                        description="Mensagem secondary — variante secondary para texto comuns."
                     />
                 </div>
             </DocsExample>
@@ -51,12 +109,35 @@
         <section class="mb-8">
             <DocsExample label="Cores">
                 <div class="p-4 grid gap-2 sm:grid-cols-2">
-                    <Item label="Primary" icon="fa-star" variant="primary" :selected="true" />
-                    <Item label="Secondary" icon="fa-layer-group" variant="secondary" :selected="true" />
-                    <Item label="Success" icon="fa-check" variant="success" :selected="true" />
-                    <Item label="Warning" icon="fa-triangle-exclamation" variant="warning" :selected="true" />
-                    <Item label="Destructive" icon="fa-trash" variant="destructive" :selected="true" />
-                    <Item label="Info" icon="fa-circle-info" variant="info" :selected="true" />
+                    <Item label="Primary" icon="fa-star" variant="primary" />
+                    <Item label="Secondary" icon="fa-layer-group" variant="secondary" />
+                    <Item label="Success" icon="fa-check" variant="success" />
+                    <Item label="Warning" icon="fa-triangle-exclamation" variant="warning" />
+                    <Item label="Destructive" icon="fa-trash" variant="destructive" />
+                    <Item label="Info" icon="fa-circle-info" variant="info" />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
+                Ícone
+            </h3>
+
+            <p>
+                <code>icon</code> aceita o nome Font Awesome com ou sem prefixo
+                (<code>user</code> ou <code>fa-user</code>).
+                Classes extras como <code>fa-regular</code> podem ir na string inteira.
+                O padrão é <code>fa-circle</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Ícone">
+                <div class="p-4 flex flex-col gap-2 max-w-sm">
+                    <Item label="Só o nome" icon="user" description="user" />
+                    <Item label="Com prefixo" icon="fa-bell" description="fa-bell" />
+                    <Item label="Regular" icon="fa-regular fa-star" description="fa-regular fa-star" />
                 </div>
             </DocsExample>
         </section>
@@ -67,8 +148,8 @@
             </h3>
 
             <p>
-                <code>selected</code> aplica o fundo da cor. <code>disabled</code> bloqueia o clique.
-                <code>hoverEffect</code> (padrão <code>false</code>) clareia o card no hover.
+                <code>disabled</code> bloqueia o clique e esmaece o card.
+                Clique emite <code>@click</code>.
             </p>
         </section>
 
@@ -79,7 +160,6 @@
                         label="Clicável"
                         description="Emite @click."
                         icon="fa-hand-pointer"
-                        :hover-effect="true"
                         @click="clicks += 1"
                     />
 
