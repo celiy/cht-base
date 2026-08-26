@@ -17,16 +17,20 @@
         <template #tab-content-1>
             <div class="relative border border-border rounded-lg">
                 <Button
-                    class="absolute top-2 right-2"
-                    variant="transparent"
-                    size="extra-small"
+                    class="absolute top-2 right-2 z-20"
+                    variant="outline"
+                    size="small"
 
                     @click="copySource"
                 >
                     <i :class="copied ? 'fa-solid fa-check' : 'fa-solid fa-copy'" />
                 </Button>
 
-                <pre class="p-4 pr-12 overflow-x-auto text-sm leading-6 font-mono"><code>{{ source }}</code></pre>
+                <DocsCode
+                    class="block"
+                    :code="source"
+                    :language="language"
+                />
             </div>
         </template>
     </Tabs>
@@ -37,13 +41,15 @@
 import { defineComponent } from "vue";
 import Tabs from "@design/components/Tabs.vue";
 import Button from "@design/components/Button.vue";
+import DocsCode from "./DocsCode.vue";
 
 export default defineComponent({
     name: "DocsExample",
 
     components: {
         Tabs,
-        Button
+        Button,
+        DocsCode
     },
 
     props: {
@@ -61,6 +67,14 @@ export default defineComponent({
         source: {
             type: String,
             default: ""
+        },
+
+        /**
+         * Syntax language for the Code tab (`vue`, `js`, `ts`, `html`, `css`, `json`, `bash`).
+         */
+        language: {
+            type: String,
+            default: "vue"
         }
     },
 

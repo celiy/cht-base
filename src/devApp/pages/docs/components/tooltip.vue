@@ -31,10 +31,7 @@
                         Longo
                     </Button>
 
-                    <Button
-                        v-tooltip="'Botão desabilitado ainda mostra tooltip no wrapper'"
-                        variant="secondary"
-                    >
+                    <Button v-tooltip="'Botão desabilitado ainda mostra tooltip no wrapper'">
                         Secundário
                     </Button>
                 </div>
@@ -56,35 +53,30 @@
                 <div class="p-8 flex flex-wrap gap-3 justify-center items-center">
                     <Button
                         v-tooltip="{ content: 'Acima do alvo', placement: 'top' }"
-                        variant="secondary"
                     >
                         Top
                     </Button>
 
                     <Button
                         v-tooltip="{ content: 'Abaixo do alvo', placement: 'bottom' }"
-                        variant="secondary"
                     >
                         Bottom
                     </Button>
 
                     <Button
                         v-tooltip="{ content: 'À esquerda', placement: 'left' }"
-                        variant="secondary"
                     >
                         Left
                     </Button>
 
                     <Button
                         v-tooltip="{ content: 'À direita', placement: 'right' }"
-                        variant="secondary"
                     >
                         Right
                     </Button>
 
                     <Button
                         v-tooltip="{ content: 'Sobre o alvo', placement: 'center' }"
-                        variant="secondary"
                     >
                         Center
                     </Button>

@@ -141,6 +141,10 @@ b {
     @apply font-bold;
 }
 
+em {
+    @apply italic;
+}
+
 pre,
 pre code {
     color: var(--color-foreground);
@@ -183,6 +187,8 @@ pre code {
 .border-b,
 .border-x,
 .border-y,
+.border-r,
+.border-l,
 .border-border {
     border-color: var(--color-border) !important;
 }

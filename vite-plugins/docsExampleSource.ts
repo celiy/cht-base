@@ -1,4 +1,6 @@
 import type { Plugin } from "vite";
+import { dedentSource } from "./dedentSource";
+import { formatDocsSource, getDocsExampleLanguage } from "./formatDocsSource";
 
 const OPEN = "<DocsExample";
 const CLOSE = "</DocsExample>";
@@ -8,26 +10,6 @@ type DocsExampleBlock = {
     attrs: string;
     inner: string;
 };
-
-/**
- * Strips the shared leading indent from a template snippet.
- *
- * @param raw Inner markup of a DocsExample
- * @returns Dedented source for the Code tab
- */
-export function dedentSource(raw: string): string {
-    const trimmed = raw.replace(/^\n/, "").replace(/\s+$/, "");
-    const lines = trimmed.split("\n");
-    const indents = lines
-        .filter((line) => line.trim().length > 0)
-        .map((line) => line.match(/^[ \t]*/)?.[0].length ?? 0);
-    const min = indents.length > 0 ? Math.min(...indents) : 0;
-
-    return lines
-        .map((line) => line.slice(min))
-        .join("\n")
-        .trimEnd();
-}
 
 /**
  * Whether the opening-tag attributes already bind `source`.
@@ -61,7 +43,7 @@ export function toSourceExpr(source: string): string {
  * @param code SFC file contents
  * @returns Transformed SFC
  */
-export function injectDocsExampleSources(code: string): string {
+export async function injectDocsExampleSources(code: string): Promise<string> {
     const blocks = findDocsExampleBlocks(code);
     let result = code;
 
@@ -72,7 +54,8 @@ export function injectDocsExampleSources(code: string): string {
             continue;
         }
 
-        const source = dedentSource(block.inner);
+        const language = getDocsExampleLanguage(block.attrs);
+        const source = await formatDocsSource(dedentSource(block.inner), language);
         const insertion = ` :source='${toSourceExpr(source)}'`;
         result = `${result.slice(0, block.gt)}${insertion}${result.slice(block.gt)}`;
     }
@@ -87,7 +70,7 @@ export function docsExampleSourcePlugin(): Plugin {
     return {
         name: "cht-docs-example-source",
         enforce: "pre",
-        transform(code, id) {
+        async transform(code, id) {
             const file = id.split("?")[0] ?? id;
 
             if (!file.endsWith(".vue") || !file.includes("/devApp/pages/docs/")) {
@@ -98,7 +81,7 @@ export function docsExampleSourcePlugin(): Plugin {
                 return null;
             }
 
-            const next = injectDocsExampleSources(code);
+            const next = await injectDocsExampleSources(code);
 
             if (next === code) {
                 return null;
