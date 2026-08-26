@@ -1,8 +1,8 @@
 <template>
     <a
-        class="block w-full text-left text-sm text-foreground cursor-pointer transition-opacity duration-150"
+        class="block w-full text-left text-sm cursor-pointer transition-all"
         :class="[
-            active ? 'opacity-100' : 'opacity-40 hover:opacity-100',
+            active ? 'text-primary hover:brightness-150' : 'hover:text-foreground text-foreground/50',
             indentClass
         ]"
 

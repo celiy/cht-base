@@ -189,7 +189,7 @@
                         <span
                             v-tooltip="'Texto truncado com dica completa'"
 
-                            class="underline decoration-dotted cursor-help"
+                            class="underline decoration-dotted cursor-help text-foreground"
                         >
                             Passe o mouse aqui
                         </span>
@@ -225,21 +225,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, type Component } from "vue";
 import Button from "@design/components/Button.vue";
 import Input from "@design/components/Input.vue";
 import Select from "@design/components/Select.vue";
 import Badge from "@design/components/Badge.vue";
 
+const docsComponents: Record<string, Component> = {
+    Button: Button as Component,
+    Input: Input as Component,
+    Select: Select as Component,
+    Badge: Badge as Component
+};
+
 export default defineComponent({
     name: "ComponentsTooltip",
 
-    components: {
-        Button,
-        Input,
-        Select,
-        Badge
-    },
+    components: docsComponents,
 
     data() {
         return {
