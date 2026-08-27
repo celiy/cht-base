@@ -32,8 +32,10 @@
 
             <p>
                 <code>title</code> e <code>description</code> no cabeçalho.
-                <code>sidebarWidth</code> (padrão <code>300</code>) define a largura em desktop e a
-                <code>margin-left</code> do conteúdo. Em mobile a nav ocupa 85% e fecha ao tocar no backdrop.
+                <code>sidebarWidth</code> (padrão <code>300</code>) é a largura inicial em desktop;
+                arraste a borda direita para redimensionar (entre
+                <code>minSidebarWidth</code> e <code>maxSidebarWidth</code>).
+                Em mobile a nav ocupa 85% e fecha ao tocar no backdrop.
             </p>
         </section>
 

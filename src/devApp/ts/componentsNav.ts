@@ -189,8 +189,18 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
+        label: "Resizable",
+        link: "/docs/components/resizable"
+    },
+    {
+        type: "link" as const,
         label: "Sidebar",
         link: "/docs/components/sidebar"
+    },
+    {
+        type: "link" as const,
+        label: "Steps",
+        link: "/docs/components/steps"
     },
     {
         type: "section" as const,
