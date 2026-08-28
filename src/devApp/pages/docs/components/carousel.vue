@@ -20,6 +20,7 @@
             <p>
                 Com <code>v-for</code>, o nome do slot é <code>item-</code> seguido do índice
                 (<code>#item-0</code>, <code>#item-1</code>, …).
+                <code>startIndex</code> (0-based) define o slide inicial.
             </p>
         </section>
 

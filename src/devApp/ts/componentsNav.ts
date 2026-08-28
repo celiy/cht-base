@@ -8,6 +8,10 @@ export const componentsNav = [
         label: "Introduction",
         links: [
             {
+                label: "Welcome",
+                link: "/docs"
+            },
+            {
                 label: "About",
                 link: "/docs/about"
             },
@@ -18,10 +22,6 @@ export const componentsNav = [
             {
                 label: "Usage",
                 link: "/docs/usage"
-            },
-            {
-                label: "Welcome",
-                link: "/docs"
             }
         ]
     },
