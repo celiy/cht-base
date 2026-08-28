@@ -25,6 +25,7 @@ export interface ProjectState {
     device: {
         isMobile: boolean;
         viewportWidth: number;
+        viewportHeight: number;
         mobileBreakpointPx: number;
     };
     labels: {
@@ -34,6 +35,9 @@ export interface ProjectState {
         name: string | null;
     };
     url: ProjectUrlState;
+    route: {
+        isLoading: boolean;
+    };
 }
 
 const urlQuerySnapshot = reactive<Record<string, string>>({});
@@ -46,6 +50,7 @@ export const project = reactive<ProjectState>({
     device: {
         isMobile: false,
         viewportWidth: 0,
+        viewportHeight: 0,
         mobileBreakpointPx: MOBILE_BREAKPOINT_PX
     },
     labels: {
@@ -57,8 +62,38 @@ export const project = reactive<ProjectState>({
     url: {
         query: urlQuerySnapshot,
         params: urlParamsSnapshot
+    },
+    route: {
+        isLoading: false
     }
 });
+
+const ROUTE_LOADING_DELAY_MS = 150;
+
+let routeLoadingTimer: ReturnType<typeof setTimeout> | null = null;
+
+function clearRouteLoadingTimer() {
+    if (routeLoadingTimer === null) {
+        return;
+    }
+
+    clearTimeout(routeLoadingTimer);
+    routeLoadingTimer = null;
+}
+
+function beginRouteLoading() {
+    clearRouteLoadingTimer();
+
+    routeLoadingTimer = setTimeout(() => {
+        project.route.isLoading = true;
+        routeLoadingTimer = null;
+    }, ROUTE_LOADING_DELAY_MS);
+}
+
+function endRouteLoading() {
+    clearRouteLoadingTimer();
+    project.route.isLoading = false;
+}
 
 /**
  * Wire router so $project.url.query and $project.url.params stay in sync.
@@ -67,9 +102,35 @@ export function initProjectRouter(router: Router) {
     syncReactiveQuerySnapshot(router.currentRoute.value.query, urlQuerySnapshot);
     syncReactiveParamsSnapshot(router.currentRoute.value.params, urlParamsSnapshot);
 
+    router.beforeEach(async (to, from) => {
+        if (from.matched.length === 0) {
+            return;
+        }
+
+        if (to.path === from.path) {
+            return;
+        }
+
+        beginRouteLoading();
+
+        const forceSlow = import.meta.env.DEV
+            && (to.query.slow === "1" || from.query.slow === "1");
+
+        if (forceSlow) {
+            await new Promise<void>((resolve) => {
+                setTimeout(resolve, 2000);
+            });
+        }
+    });
+
     router.afterEach((to) => {
+        endRouteLoading();
         syncReactiveQuerySnapshot(to.query, urlQuerySnapshot);
         syncReactiveParamsSnapshot(to.params, urlParamsSnapshot);
+    });
+
+    router.onError(() => {
+        endRouteLoading();
     });
 }
 
@@ -82,8 +143,10 @@ function updateDeviceFromViewport() {
     }
 
     const width = window.innerWidth;
+    const height = window.innerHeight;
 
     project.device.viewportWidth = width;
+    project.device.viewportHeight = height;
     project.device.isMobile = width <= MOBILE_BREAKPOINT_PX;
 }
 
