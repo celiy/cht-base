@@ -27,6 +27,8 @@
         <div v-else>
             <RouterView />
         </div>
+        
+        <Toast position="bottom" />
     </main>
 </template>
 
@@ -36,6 +38,7 @@ import { componentsNav } from "./ts/componentsNav.ts";
 import Navigator from "@design/components/custom/Navigator.vue";
 import { navLinks } from "../js/navLinks.ts";
 import DocsOutline from "./components/DocsOutline.vue";
+import Toast from "@design/components/Toast.vue";
 </script>
 
 <style>

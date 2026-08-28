@@ -1,7 +1,6 @@
 import { createApp } from "vue";
 import { createWebHistory, createRouter } from "vue-router";
-import Toast, { useToast } from "vue-toastification";
-import "vue-toastification/dist/index.css";
+import { toastPlugin } from "@design/toast/plugin";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./css/style.css";
 import App from "@client/App.vue";
@@ -17,11 +16,9 @@ const router = createRouter({
 const app = createApp(App);
 
 app.use(router);
-app.use(Toast, {
-    position: "bottom-center",
+app.use(toastPlugin, {
     timeout: 4000
 });
-app.config.globalProperties.$toast = useToast();
 
 app.directive("tooltip", tooltip);
 

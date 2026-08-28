@@ -2,12 +2,14 @@
 
 import type { Router, RouteLocationNormalizedLoaded } from "vue-router";
 import type { ProjectState } from "./project";
+import type { ToastApi } from "@design/toast/toast";
 
 declare module "vue" {
     interface ComponentCustomProperties {
         $router: Router;
         $route: RouteLocationNormalizedLoaded;
         $project: ProjectState;
+        $toast: ToastApi;
     }
 }
 
@@ -16,6 +18,7 @@ declare module "@vue/runtime-core" {
         $router: Router;
         $route: RouteLocationNormalizedLoaded;
         $project: ProjectState;
+        $toast: ToastApi;
     }
 }
 
