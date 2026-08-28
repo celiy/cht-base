@@ -88,6 +88,7 @@
                 O slot <code>#button</code> recebe <code>isOpen</code>, <code>toggle</code>, <code>open</code> e <code>close</code>.
                 <code>buttonVariant</code> e <code>buttonAtributes</code> valem só para o botão padrão.
                 <code>hideDropdownArrow</code> esconde a seta desse botão.
+                O painel tem largura mínima de <code>192px</code> (<code>minWidthPx</code>); o valor final é o maior entre o trigger e esse mínimo.
             </p>
         </section>
 

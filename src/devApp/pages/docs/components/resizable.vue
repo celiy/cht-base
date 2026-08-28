@@ -26,7 +26,7 @@
         <section class="mb-8">
             <DocsExample label="Todas as bordas">
                 <div class="p-4">
-                    <div class="relative h-72 overflow-hidden rounded-lg border border-border bg-muted/30">
+                    <div class="relative h-72 overflow-hidden rounded border border-border bg-muted/30">
                         <Resizable
                             class="absolute top-6 left-6 bg-card p-4"
                             hover-border
@@ -60,7 +60,7 @@
         <section class="mb-8">
             <DocsExample label="Isolar o resize">
                 <div class="p-4 grid gap-4 md:grid-cols-2">
-                    <div class="relative h-48 overflow-hidden rounded-lg border border-border bg-muted/30">
+                    <div class="relative h-48 overflow-hidden rounded border border-border bg-muted/30">
                         <Resizable
                             class="absolute top-4 left-4 bg-card p-3"
                             hover-border
@@ -75,7 +75,7 @@
                         </Resizable>
                     </div>
 
-                    <div class="relative h-48 overflow-hidden rounded-lg border border-border bg-muted/30">
+                    <div class="relative h-48 overflow-hidden rounded border border-border bg-muted/30">
                         <Resizable
                             class="absolute top-4 left-4 bg-card p-3"
                             hover-border
@@ -106,7 +106,7 @@
         <section class="mb-8">
             <DocsExample label="Limite do container">
                 <div class="p-4">
-                    <div class="relative h-40 w-64 overflow-hidden rounded-lg border border-border bg-muted/30">
+                    <div class="relative h-40 w-64 overflow-hidden rounded border border-border bg-muted/30">
                         <Resizable
                             class="absolute top-3 left-3 bg-card p-3"
                             hover-border

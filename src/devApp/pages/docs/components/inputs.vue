@@ -87,7 +87,8 @@
             </h3>
 
             <p>
-                <code>type="text / number / email / phone / cpf / cnpj / cep / date / password / textarea"</code>
+                Os dois últimos dígitos de <code>type="money"</code> são cêntimos: <code>1500000</code> → <code>$ 15,000.00</code>.
+                <code>type="text / number / money / email / phone / cpf / cnpj / cep / date / password / textarea"</code>
             </p>
         </section>
 
@@ -103,6 +104,18 @@
                         :helperText="`Value: ${numericValue}`"
 
                         @update:value="numericValue = $event"
+                    />
+
+                    <Input
+                        id="docs-input-money"
+                        type="money"
+                        label="Dinheiro"
+                        placeholder="$ 5,000.00"
+
+                        :value="moneyValue"
+                        :helperText="`Value: ${moneyValue}`"
+
+                        @update:value="moneyValue = $event"
                     />
 
                     <Input
@@ -294,6 +307,7 @@ export default defineComponent({
         return {
             textValue: "",
             numericValue: "",
+            moneyValue: "",
             emailValue: "",
             phoneValue: "51999329196",
             cpfValue: "52998224725",

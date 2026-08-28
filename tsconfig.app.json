@@ -26,11 +26,14 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
+  "vueCompilerOptions": {
+    "strictTemplates": true
+  },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
     "src/**/*.d.ts",
-    "../cht-design-system/src/**/*.d.ts"
+    "../cht-design-system/src/types/**/*.d.ts"
   ]
 }

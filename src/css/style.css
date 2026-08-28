@@ -98,25 +98,20 @@ small {
 h1 {
     @apply text-4xl font-extrabold;
 }
-
 h2 {
     @apply text-3xl font-bold;
 }
-
 h3 {
     @apply text-2xl font-semibold;
 }
-
 h4 {
     @apply text-xl font-semibold;
 }
-
 h5 {
-    @apply text-xl font-medium;
+    @apply text-lg font-semibold;
 }
-
 h6 {
-    @apply text-lg font-medium;
+    @apply text-base font-semibold;
 }
 
 p {
@@ -196,30 +191,79 @@ pre code {
     border-color: var(--color-border) !important;
 }
 
+.rounded {
+    @apply rounded-xl;
+}
+.rounded-t {
+    @apply rounded-t-xl;
+}
+.rounded-b {
+    @apply rounded-b-xl;
+}
+.rounded-l {
+    @apply rounded-l-xl;
+}
+.rounded-r {
+    @apply rounded-r-xl;
+}
+.rounded-ss {
+    @apply rounded-ss-xl;
+}
+.rounded-se {
+    @apply rounded-se-xl;
+}
+.rounded-ee {
+    @apply rounded-ee-xl;
+}
+.rounded-es {
+    @apply rounded-es-xl;
+}
+.rounded-tl {
+    @apply rounded-tl-xl;
+}
+.rounded-tr {
+    @apply rounded-tr-xl;
+}
+.rounded-bl {
+    @apply rounded-bl-xl;
+}
+.rounded-br {
+    @apply rounded-br-xl;
+}
+
 .btn-group {
-    @apply inline-flex items-stretch;
+    @apply inline-flex items-stretch w-fit;
 }
-
+.btn-group > * {
+    @apply w-auto! self-stretch;
+}
+.btn-group > *:not(button) {
+    @apply flex items-stretch;
+}
+.btn-group > *:not(button) > div,
+.btn-group > *:not(button) > div > div,
+.btn-group > *:not(button) > div > div > div {
+    @apply h-full flex items-stretch;
+}
 .btn-group button {
-    @apply relative z-0 rounded-none border border-border;
+    @apply relative z-0 h-full inline-flex items-center justify-center rounded-none border border-border hover:translate-y-0!;
 }
-
-.btn-group button:first-child {
-    @apply rounded-l-lg!;
+.btn-group > button:first-child,
+.btn-group > *:first-child button {
+    @apply rounded-l-xl!;
 }
-
-.btn-group button:last-child {
-    @apply rounded-r-lg!;
+.btn-group > button:last-child,
+.btn-group > *:last-child button {
+    @apply rounded-r-xl!;
 }
-
-.btn-group button:not(:last-child) {
+.btn-group > button:not(:last-child),
+.btn-group > *:not(:last-child) button {
     @apply border-r-0!;
 }
-
-.btn-group button:not(:first-child) {
-    @apply -ml-px border-l-0!;
+.btn-group > button:not(:first-child),
+.btn-group > *:not(:first-child) button {
+    @apply -ml-px border-l-1!;
 }
-
 .btn-group button:hover,
 .btn-group button:focus-visible {
     @apply z-1;
@@ -289,32 +333,14 @@ pre code {
     }
 }
 
-.Vue-Toastification__toast--success {
-    background: var(--color-success) !important;
-    color: var(--color-success-foreground) !important;
+/* Modern browsers */
+::selection {
+    color: var(--color-primary-foreground);
+    background-color: var(--color-primary);
 }
 
-.Vue-Toastification__toast--success .Vue-Toastification__progress-bar {
-    background: var(--color-success-foreground);
-    opacity: 0.4;
-}
-
-.Vue-Toastification__toast--error {
-    background: var(--color-destructive) !important;
-    color: var(--color-destructive-foreground) !important;
-}
-
-.Vue-Toastification__toast--error .Vue-Toastification__progress-bar {
-    background: var(--color-destructive-foreground);
-    opacity: 0.4;
-}
-
-.Vue-Toastification__toast--warning {
-    background: var(--color-warning) !important;
-    color: var(--color-warning-foreground) !important;
-}
-
-.Vue-Toastification__toast--warning .Vue-Toastification__progress-bar {
-    background: var(--color-warning-foreground);
-    opacity: 0.4;
+/* Older Firefox compatibility */
+::-moz-selection {
+    color: var(--color-primary-foreground);
+    background-color: var(--color-primary);
 }

@@ -77,7 +77,7 @@ export function renderMarkdown(markdown: string): string {
     const withFences = markdown.replace(/```([^\n]*)\n([\s\S]*?)```/g, (_, _lang: string, code: string) => {
         const token = `%%FENCE${fences.length}%%`;
         fences.push(
-            `<pre class="overflow-x-auto rounded-lg border border-border bg-secondary/40 p-4 text-sm"><code>${escapeHtml(code.replace(/\n$/, ""))}</code></pre>`
+            `<pre class="overflow-x-auto rounded border border-border bg-secondary/40 p-4 text-sm"><code>${escapeHtml(code.replace(/\n$/, ""))}</code></pre>`
         );
 
         return `\n${token}\n`;

@@ -67,7 +67,7 @@
 
         <section class="mb-8">
             <DocsExample label="navItems">
-                <pre class="p-4 text-xs overflow-auto bg-muted/60 rounded-lg">{{ exampleNav }}</pre>
+                <pre class="p-4 text-xs overflow-auto bg-muted/60 rounded">{{ exampleNav }}</pre>
             </DocsExample>
         </section>
 

@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import { createWebHistory, createRouter } from "vue-router";
 import { toastPlugin } from "@design/toast/plugin";
+import { designSystemPlugin } from "@design/plugin";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./css/style.css";
 import App from "@client/App.vue";
@@ -16,6 +17,7 @@ const router = createRouter({
 const app = createApp(App);
 
 app.use(router);
+app.use(designSystemPlugin);
 app.use(toastPlugin, {
     timeout: 4000
 });

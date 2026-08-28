@@ -67,14 +67,9 @@
 </template>
 
 <script setup lang="ts">
-import Sidebar from "@design/components/custom/Sidebar.vue";
 import { componentsNav } from "./ts/componentsNav.ts";
-import Navigator from "@design/components/custom/Navigator.vue";
 import { navLinks } from "../js/navLinks.ts";
 import DocsOutline from "./components/DocsOutline.vue";
-import Toast from "@design/components/Toast.vue";
-import ViewportCenter from "@design/components/ViewportCenter.vue";
-import ProgressBar from "@design/components/ProgressBar.vue";
 </script>
 
 <style>

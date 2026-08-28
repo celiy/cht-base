@@ -19,7 +19,7 @@
 
                         @click:value="lastClicked = $event"
                     >
-                        <div class="rounded-lg border border-dashed border-border bg-muted/30 p-8 text-center select-none">
+                        <div class="rounded border border-dashed border-border bg-muted/30 p-8 text-center select-none">
                             <p class="font-medium">
                                 Clique direito aqui
                             </p>

@@ -125,6 +125,11 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
+        label: "Option",
+        link: "/docs/components/option"
+    },
+    {
+        type: "link" as const,
         label: "Popover",
         link: "/docs/components/popover"
     },
@@ -132,6 +137,11 @@ export const componentsNav = [
         type: "link" as const,
         label: "Progress Bar / Slider",
         link: "/docs/components/progressbar"
+    },
+    {
+        type: "link" as const,
+        label: "QR code",
+        link: "/docs/components/qr-code"
     },
     {
         type: "link" as const,

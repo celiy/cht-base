@@ -22,7 +22,7 @@
                             <div class="flex gap-2 flex-wrap">
                                 <div v-for="child in token.children" :key="child.color" class="w-24 h-24 flex flex-col items-center">
                                     <div
-                                        class="border border-border rounded-lg h-14 w-full"
+                                        class="border border-border rounded h-14 w-full"
                                         :style="{ backgroundColor: 'var(--color-' + child.color + ')' }"
                                     />
 
@@ -62,7 +62,7 @@
                             {{ color.label }}
                         </h3>
 
-                        <div class="grid grid-cols-10 w-full overflow-hidden rounded-lg">
+                        <div class="grid grid-cols-10 w-full overflow-hidden rounded">
                             <div
                                 v-for="value in colorValues"
                                 :key="`${color.value}-${value}`"

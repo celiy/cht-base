@@ -85,7 +85,7 @@
                         </template>
 
                         <template #tab-content-0>
-                            <div class="border border-border rounded-lg p-4">
+                            <div class="border border-border rounded p-4">
                                 <p>Variação transparent: indicador em borda inferior.</p>
                             </div>
                         </template>
@@ -95,7 +95,7 @@
                         </template>
 
                         <template #tab-content-1>
-                            <div class="border border-border rounded-lg p-4">
+                            <div class="border border-border rounded p-4">
                                 <p>Conteúdo da segunda aba transparent.</p>
                             </div>
                         </template>
@@ -105,7 +105,7 @@
                         </template>
 
                         <template #tab-content-2>
-                            <div class="border border-border rounded-lg p-4">
+                            <div class="border border-border rounded p-4">
                                 <p>Terceira aba transparent.</p>
                             </div>
                         </template>

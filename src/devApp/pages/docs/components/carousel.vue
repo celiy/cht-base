@@ -35,7 +35,7 @@
                             #[`item-${idx}`]
                         >
                             <Image
-                                imageClass="max-h-[50vh] rounded-lg"
+                                imageClass="max-h-[50vh] rounded"
                                 draggable="true"
 
                                 :src="image.src"
@@ -64,7 +64,7 @@
                 <div class="p-4">
                     <Carousel>
                         <template #item-0>
-                            <div class="w-full max-w-md rounded-lg border border-border bg-card p-6 text-center">
+                            <div class="w-full max-w-md rounded border border-border bg-card p-6 text-center">
                                 <p class="font-semibold text-lg">
                                     Slide de texto
                                 </p>
@@ -77,7 +77,7 @@
                         </template>
 
                         <template #item-1>
-                            <div class="w-full max-w-md rounded-lg border border-border bg-card p-6 flex flex-col items-center gap-3">
+                            <div class="w-full max-w-md rounded border border-border bg-card p-6 flex flex-col items-center gap-3">
                                 <Badge
                                     label="Badge"
                                     variant="success"

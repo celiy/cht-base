@@ -5,7 +5,7 @@
         </template>
 
         <template #tab-content-0>
-            <div class="border border-border rounded-lg">
+            <div class="border border-border rounded">
                 <slot />
             </div>
         </template>
@@ -15,7 +15,7 @@
         </template>
 
         <template #tab-content-1>
-            <div class="relative border border-border rounded-lg">
+            <div class="relative border border-border rounded">
                 <Button
                     class="absolute top-2 right-2 z-20"
                     variant="outline"

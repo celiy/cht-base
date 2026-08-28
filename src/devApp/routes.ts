@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from "vue-router";
 
-import Index from "../views/index.vue";
+import Index from "./pages/index.vue";
 import DevAppLayout from "./DevAppLayout.vue";
 import docs from "./pages/docs/docs.vue";
 
@@ -29,11 +29,13 @@ const routes: RouteRecordRaw[] = [
             { path: "docs/components/item", name: "components-item", component: () => import("./pages/docs/components/item.vue") },
             { path: "docs/components/marker", name: "components-marker", component: () => import("./pages/docs/components/marker.vue") },
             { path: "docs/components/modal", name: "components-modal", component: () => import("./pages/docs/components/modal.vue") },
+            { path: "docs/components/option", name: "components-option", component: () => import("./pages/docs/components/option.vue") },
             { path: "docs/components/confirmation-modal", name: "components-confirmation-modal", component: () => import("./pages/docs/components/confirmation-modal.vue") },
             { path: "docs/components/pagination", name: "components-pagination", component: () => import("./pages/docs/components/pagination.vue") },
             { path: "docs/components/resizable", name: "components-resizable", component: () => import("./pages/docs/components/resizable.vue") },
             { path: "docs/components/popover", name: "components-popover", component: () => import("./pages/docs/components/popover.vue") },
             { path: "docs/components/progressbar", name: "components-progressbar", component: () => import("./pages/docs/components/progressbar.vue") },
+            { path: "docs/components/qr-code", name: "components-qr-code", component: () => import("./pages/docs/components/qr-code.vue") },
             { path: "docs/components/radio", name: "components-radio", component: () => import("./pages/docs/components/radio.vue") },
             { path: "docs/components/select", name: "components-select", component: () => import("./pages/docs/components/select.vue") },
             { path: "docs/components/sidebar", name: "components-sidebar", component: () => import("./pages/docs/components/sidebar.vue") },

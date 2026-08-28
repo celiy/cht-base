@@ -134,7 +134,7 @@
                         Use <code>var(--color-foreground)</code> para a cor do texto.
                     </p>
 
-                    <pre class="bg-secondary rounded-lg p-4 overflow-x-auto text-sm"><code>html {
+                    <pre class="bg-secondary rounded p-4 overflow-x-auto text-sm"><code>html {
     font-family: "Inter", sans-serif;
 }</code></pre>
                 </div>
