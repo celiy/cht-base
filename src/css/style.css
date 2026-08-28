@@ -96,22 +96,22 @@ small {
 }
 
 h1 {
-    @apply text-4xl font-extrabold;
+    @apply text-4xl md:text-5xl font-bold;
 }
 h2 {
-    @apply text-3xl font-bold;
+    @apply text-[2rem] md:text-4xl font-bold;
 }
 h3 {
-    @apply text-2xl font-semibold;
+    @apply text-3xl font-semibold;
 }
 h4 {
-    @apply text-xl font-semibold;
+    @apply text-2xl font-semibold;
 }
 h5 {
-    @apply text-lg font-semibold;
+    @apply text-xl font-semibold;
 }
 h6 {
-    @apply text-base font-semibold;
+    @apply text-lg font-semibold;
 }
 
 p {
@@ -135,11 +135,15 @@ code {
     color: var(--color-foreground);
 }
 
+a {
+    @apply text-primary underline hover:text-primary-foreground transition-all
+}
+
 b {
     @apply font-bold;
 }
 
-em {
+i {
     @apply italic;
 }
 

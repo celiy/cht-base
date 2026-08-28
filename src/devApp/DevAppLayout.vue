@@ -42,7 +42,7 @@
             </Sidebar>
         </div>
             
-        <div v-else class="relative">
+        <div v-else class="relative flex-1 min-h-0 overflow-y-auto">
             <RouterView />
 
             <div

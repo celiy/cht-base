@@ -1,8 +1,8 @@
 <template>
     <a
-        class="block w-full text-left text-sm cursor-pointer transition-all"
+        class="block w-full text-left text-sm cursor-pointer transition-all no-underline!"
         :class="[
-            active ? 'text-primary hover:brightness-150' : 'hover:text-foreground text-foreground/50',
+            active ? 'text-primary hover:brightness-150' : 'hover:text-foreground! text-foreground/50!',
             indentClass
         ]"
 

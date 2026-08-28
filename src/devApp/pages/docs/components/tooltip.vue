@@ -238,7 +238,7 @@ export default defineComponent({
     data() {
         return {
             htmlTooltip: {
-                content: "<strong>Negrito</strong> e <em>itálico</em>",
+                content: "<strong>Negrito</strong> e <i>itálico</i>",
                 html: true,
                 placement: "top" as const
             },

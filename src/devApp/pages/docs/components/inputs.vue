@@ -88,7 +88,9 @@
 
             <p>
                 Os dois últimos dígitos de <code>type="money"</code> são cêntimos: <code>1500000</code> → <code>$ 15,000.00</code>.
-                <code>type="text / number / money / email / phone / cpf / cnpj / cep / date / password / textarea"</code>
+                <code>type="text / number / money / email / phone / cpf / cnpj / cep / date / password / textarea"</code>.
+                Em textarea, <code>expandOnTyping</code> cresce com o texto;
+                <code>minHeightPx</code> e <code>maxHeightPx</code> limitam a altura.
             </p>
         </section>
 
@@ -204,6 +206,17 @@
                         :helperText="`Value: ${areaValue}`"
 
                         @update:value="areaValue = $event"
+                    />
+
+                    <Input
+                        id="docs-input-textarea-expand"
+                        type="textarea"
+                        label="Expande ao escrever"
+                        hideResize
+                        expandOnTyping
+                        :minHeightPx="72"
+                        :maxHeightPx="160"
+                        placeholder="Escreva várias linhas..."
                     />
                 </div>
             </DocsExample>

@@ -52,6 +52,7 @@
 
             <p>
                 Texto corrente com <code>p</code>, <code>small</code> e <code>li</code>.
+                Ênfase com <code>b</code> (negrito) e <code>i</code> (itálico).
             </p>
         </section>
 
@@ -59,7 +60,8 @@
             <DocsExample label="Texto e lista">
                 <div class="p-4 flex flex-col">
                     <p>
-                        Texto corrente com <code>p</code>.
+                        Texto corrente com <code>p</code>. Use <b>negrito</b> para destaque
+                        e <i>itálico</i> para ênfase.
                     </p>
 
                     <small>
@@ -79,6 +81,34 @@
             </DocsExample>
         </section>
 
+        <section>
+            <h3>
+                Ênfase
+            </h3>
+
+            <p>
+                <code>b</code> aplica <code>font-bold</code>.
+                <code>i</code> aplica <code>italic</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Negrito e itálico">
+                <div class="p-4 flex flex-col gap-2">
+                    <p>
+                        Frase com <b>trecho em negrito</b> no meio.
+                    </p>
+
+                    <p>
+                        Frase com <i>trecho em itálico</i> no meio.
+                    </p>
+
+                    <p>
+                        Os dois juntos: <b>negrito com <i>itálico</i> dentro</b>.
+                    </p>
+                </div>
+            </DocsExample>
+        </section>
 
         <section>
             <h3>
