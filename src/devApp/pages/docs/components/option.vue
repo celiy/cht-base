@@ -60,14 +60,14 @@
                     <Option
                         label="Não selecionado"
                         value="a"
-                        showCheckmark
+                        show-checkmark
                         first
                     />
 
                     <Option
                         label="Selecionado"
                         value="b"
-                        showCheckmark
+                        show-checkmark
                         selected
                         last
                     />

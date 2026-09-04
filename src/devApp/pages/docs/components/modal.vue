@@ -21,7 +21,7 @@
 
                     <Modal
                         size="small"
-                        :isOpen="plain"
+                        :is-open="plain"
 
                         @update:value="plain = $event"
                     >
@@ -36,7 +36,7 @@
 
                     <Modal
                         size="small"
-                        :isOpen="withDescription"
+                        :is-open="withDescription"
 
                         @update:value="withDescription = $event"
                     >
@@ -55,7 +55,7 @@
 
                     <Modal
                         size="small"
-                        :isOpen="withFooter"
+                        :is-open="withFooter"
 
                         @update:value="withFooter = $event"
                     >
@@ -114,7 +114,7 @@
                     <Modal
                         variant="modal"
                         size="small"
-                        :isOpen="modal"
+                        :is-open="modal"
 
                         @update:value="modal = $event"
                     >
@@ -134,19 +134,19 @@
                     <Modal
                         variant="blank"
                         size="small"
-                        :isOpen="blank"
+                        :is-open="blank"
 
                         @update:value="blank = $event"
                     >
                         <template #body>
-                            <p>Modal blank <br><br> Neste variante o modal só é um card comum.</p>
+                            <p class="p-4">Modal blank <br><br> Neste variante o modal só é um card comum.</p>
                         </template>
                     </Modal>
 
                     <Modal
                         variant="preview"
                         size="large"
-                        :isOpen="preview"
+                        :is-open="preview"
 
                         @update:value="preview = $event"
                     >
@@ -183,7 +183,7 @@
 
                     <Modal
                         size="small"
-                        :isOpen="small"
+                        :is-open="small"
 
                         @update:value="small = $event"
                     >
@@ -198,7 +198,7 @@
 
                     <Modal
                         size="medium"
-                        :isOpen="medium"
+                        :is-open="medium"
 
                         @update:value="medium = $event"
                     >
@@ -213,7 +213,7 @@
 
                     <Modal
                         size="large"
-                        :isOpen="large"
+                        :is-open="large"
 
                         @update:value="large = $event"
                     >
@@ -249,7 +249,7 @@
                     <Modal
                         size="small"
                         color="warning"
-                        :isOpen="warning"
+                        :is-open="warning"
 
                         @update:value="warning = $event"
                     >
@@ -265,7 +265,7 @@
                     <Modal
                         size="small"
                         color="destructive"
-                        :isOpen="destructive"
+                        :is-open="destructive"
 
                         @update:value="destructive = $event"
                     >
@@ -281,7 +281,7 @@
                     <Modal
                         size="small"
                         color="success"
-                        :isOpen="success"
+                        :is-open="success"
 
                         @update:value="success = $event"
                     >
@@ -314,7 +314,7 @@
 
                     <Modal
                         size="medium"
-                        :isOpen="outer"
+                        :is-open="outer"
 
                         @update:value="outer = $event"
                     >
@@ -333,7 +333,7 @@
 
                     <Modal
                         size="small"
-                        :isOpen="inner"
+                        :is-open="inner"
 
                         @update:value="inner = $event"
                     >

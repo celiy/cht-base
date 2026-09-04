@@ -46,7 +46,7 @@
                                     :description="`color=&quot;${color}&quot;`"
                                     variant="bars"
                                     :data="yearBars"
-                                    :hideLabel="true"
+                                    :hide-label="true"
                                     :color="color"
                                 />
 
@@ -82,7 +82,7 @@
                         description="Doze meses, displayAs sum"
                         variant="bars"
                         :data="yearBars"
-                        :hideLabel="true"
+                        :hide-label="true"
                     />
                 </div>
             </DocsExample>

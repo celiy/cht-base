@@ -16,8 +16,8 @@
                     <ProgressBar
                         v-model="value"
                         label="Barra padrão"
-                        showProgress
-                        :helperText="`Value: ${value}`"
+                        show-progress
+                        :helper-text="`Value: ${value}`"
                     />
                 </div>
             </DocsExample>
@@ -40,16 +40,16 @@
                         v-model="value"
                         label="Desabilitada"
                         disabled
-                        showProgress
-                        :helperText="`Value: ${value}`"
+                        show-progress
+                        :helper-text="`Value: ${value}`"
                     />
 
                     <ProgressBar
                         v-model="value"
                         label="Somente leitura"
                         readonly
-                        showProgress
-                        :helperText="`Value: ${value}`"
+                        show-progress
+                        :helper-text="`Value: ${value}`"
                     />
                 </div>
             </DocsExample>
@@ -72,7 +72,7 @@
                         v-model="value"
                         label="Vertical"
                         direction="vertical"
-                        showProgress
+                        show-progress
                     />
                 </div>
             </DocsExample>
@@ -97,7 +97,7 @@
                         label="Circular small"
                         variant="circular"
                         size="small"
-                        showProgress
+                        show-progress
                     />
 
                     <ProgressBar
@@ -120,7 +120,7 @@
                         variant="circular"
                         :min="30"
                         :max="60"
-                        showProgress
+                        show-progress
                     />
 
                     <ProgressBar

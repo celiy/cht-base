@@ -19,7 +19,7 @@
                         <small>Conteúdo no clique.</small>
                     </Popover>
 
-                    <Popover header="Hover" openOnHover>
+                    <Popover header="Hover" open-on-hover>
                         <small>Conteúdo no hover.</small>
                     </Popover>
                 </div>
@@ -85,7 +85,7 @@
                         </div>
                     </Popover>
 
-                    <Popover header="Fecha no clique" closeOnContentClick>
+                    <Popover header="Fecha no clique" close-on-content-click>
                         <div class="flex flex-col gap-2 min-w-40">
                             <Button label="Ação 1" variant="transparent"/>
                             <Button label="Ação 2" variant="transparent"/>
@@ -109,11 +109,11 @@
         <section class="mb-8">
             <DocsExample label="Seta e largura">
                 <div class="p-4 flex flex-wrap gap-4">
-                    <Popover header="Com seta" :hideDropdownArrow="false">
+                    <Popover header="Com seta" :hide-dropdown-arrow="false">
                         <small>Chevron visível no gatilho.</small>
                     </Popover>
 
-                    <Popover header="Largo" :minWidthPx="280">
+                    <Popover header="Largo" :min-width-px="280">
                         <small>Painel com largura mínima de 280px.</small>
                     </Popover>
                 </div>

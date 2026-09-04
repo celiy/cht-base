@@ -103,7 +103,7 @@
                         label="Número"
 
                         :value="numericValue"
-                        :helperText="`Value: ${numericValue}`"
+                        :helper-text="`Value: ${numericValue}`"
 
                         @update:value="numericValue = $event"
                     />
@@ -115,7 +115,7 @@
                         placeholder="$ 5,000.00"
 
                         :value="moneyValue"
-                        :helperText="`Value: ${moneyValue}`"
+                        :helper-text="`Value: ${moneyValue}`"
 
                         @update:value="moneyValue = $event"
                     />
@@ -126,7 +126,7 @@
                         label="Email"
 
                         :value="emailValue"
-                        :helperText="`Value: ${emailValue}`"
+                        :helper-text="`Value: ${emailValue}`"
 
                         @update:value="emailValue = $event"
                     />
@@ -137,7 +137,7 @@
                         label="Celular"
 
                         :value="phoneValue"
-                        :helperText="`Value: ${phoneValue}`"
+                        :helper-text="`Value: ${phoneValue}`"
 
                         @update:value="phoneValue = $event"
                     />
@@ -148,7 +148,7 @@
                         label="CPF"
 
                         :value="cpfValue"
-                        :helperText="`Value: ${cpfValue}`"
+                        :helper-text="`Value: ${cpfValue}`"
 
                         @update:value="cpfValue = $event"
                     />
@@ -159,7 +159,7 @@
                         label="CNPJ"
 
                         :value="cnpjValue"
-                        :helperText="`Value: ${cnpjValue}`"
+                        :helper-text="`Value: ${cnpjValue}`"
 
                         @update:value="cnpjValue = $event"
                     />
@@ -170,7 +170,7 @@
                         label="CEP"
 
                         :value="cepValue"
-                        :helperText="`Value: ${cepValue}`"
+                        :helper-text="`Value: ${cepValue}`"
 
                         @update:value="cepValue = $event"
                     />
@@ -181,7 +181,7 @@
                         label="Data"
 
                         :value="dateValue"
-                        :helperText="`Value: ${dateValue}`"
+                        :helper-text="`Value: ${dateValue}`"
 
                         @update:value="dateValue = $event"
                     />
@@ -192,7 +192,7 @@
                         label="Senha"
 
                         :value="passwordValue"
-                        :helperText="`Value: ${passwordValue}`"
+                        :helper-text="`Value: ${passwordValue}`"
 
                         @update:value="passwordValue = $event"
                     />
@@ -203,7 +203,7 @@
                         label="Textarea"
 
                         :value="areaValue"
-                        :helperText="`Value: ${areaValue}`"
+                        :helper-text="`Value: ${areaValue}`"
 
                         @update:value="areaValue = $event"
                     />
@@ -212,10 +212,10 @@
                         id="docs-input-textarea-expand"
                         type="textarea"
                         label="Expande ao escrever"
-                        hideResize
-                        expandOnTyping
-                        :minHeightPx="72"
-                        :maxHeightPx="160"
+                        hide-resize
+                        expand-on-typing
+                        :min-height-px="72"
+                        :max-height-px="160"
                         placeholder="Escreva várias linhas..."
                     />
                 </div>
@@ -283,7 +283,7 @@
                         id="docs-input-memo"
                         type="text"
                         label="Com useMemo"
-                        useMemo
+                        use-memo
                         helper-text="Persiste no localStorage pelo id"
                     />
 
@@ -293,8 +293,8 @@
                         label="minSize 3, maxSize 8"
                         helper-text="Tamanho limitado"
 
-                        :minSize="3"
-                        :maxSize="8"
+                        :min-size="3"
+                        :max-size="8"
                         :value="limitedValue"
 
                         @update:value="limitedValue = $event"

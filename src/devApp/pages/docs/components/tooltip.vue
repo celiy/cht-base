@@ -195,9 +195,9 @@
                     </div>
 
                     <Input
-                        v-tooltip="{ content: 'Informe o e-mail corporativo', placement: 'right' }"
-
                         id="tooltip-docs-email"
+
+                        v-tooltip="{ content: 'Informe o e-mail corporativo', placement: 'right' }"
                         type="email"
                         label="E-mail"
                         placeholder="nome@exemplo.com"

@@ -35,11 +35,11 @@
                         title="Confirmar ação"
                         description="Variante primary."
                         body="Deseja continuar?"
-                        confirmText="Confirmar"
-                        cancelText="Cancelar"
-                        :isOpen="open.primary"
+                        confirm-text="Confirmar"
+                        cancel-text="Cancelar"
+                        :is-open="open.primary"
 
-                        @update:isOpen="open.primary = $event"
+                        @update:is-open="open.primary = $event"
                         @confirm="open.primary = false"
                         @cancel="open.primary = false"
                     />
@@ -49,11 +49,11 @@
                         title="Atenção"
                         description="Variante warning."
                         body="Esta ação pode ser revertida."
-                        confirmText="Continuar"
-                        cancelText="Cancelar"
-                        :isOpen="open.warning"
+                        confirm-text="Continuar"
+                        cancel-text="Cancelar"
+                        :is-open="open.warning"
 
-                        @update:isOpen="open.warning = $event"
+                        @update:is-open="open.warning = $event"
                         @confirm="open.warning = false"
                         @cancel="open.warning = false"
                     />
@@ -63,11 +63,11 @@
                         title="Tudo certo"
                         description="Variante success."
                         body="Confirme para aplicar as alterações."
-                        confirmText="Aplicar"
-                        cancelText="Voltar"
-                        :isOpen="open.success"
+                        confirm-text="Aplicar"
+                        cancel-text="Voltar"
+                        :is-open="open.success"
 
-                        @update:isOpen="open.success = $event"
+                        @update:is-open="open.success = $event"
                         @confirm="open.success = false"
                         @cancel="open.success = false"
                     />
@@ -77,11 +77,11 @@
                         title="Excluir registro"
                         description="Variante destructive."
                         body="Esta ação não pode ser desfeita."
-                        confirmText="Excluir"
-                        cancelText="Cancelar"
-                        :isOpen="open.destructive"
+                        confirm-text="Excluir"
+                        cancel-text="Cancelar"
+                        :is-open="open.destructive"
 
-                        @update:isOpen="open.destructive = $event"
+                        @update:is-open="open.destructive = $event"
                         @confirm="open.destructive = false"
                         @cancel="open.destructive = false"
                     />
@@ -113,9 +113,9 @@
                         title="Small"
                         description="size=&quot;small&quot;"
                         body="Largura compacta, padrão do componente."
-                        :isOpen="open.small"
+                        :is-open="open.small"
 
-                        @update:isOpen="open.small = $event"
+                        @update:is-open="open.small = $event"
                         @confirm="open.small = false"
                         @cancel="open.small = false"
                     />
@@ -126,9 +126,9 @@
                         title="Medium"
                         description="size=&quot;medium&quot;"
                         body="Mais espaço para o texto do corpo."
-                        :isOpen="open.medium"
+                        :is-open="open.medium"
 
-                        @update:isOpen="open.medium = $event"
+                        @update:is-open="open.medium = $event"
                         @confirm="open.medium = false"
                         @cancel="open.medium = false"
                     />
@@ -139,9 +139,9 @@
                         title="Large"
                         description="size=&quot;large&quot;"
                         body="Use quando o texto de confirmação for longo ou precisar de mais respiro."
-                        :isOpen="open.large"
+                        :is-open="open.large"
 
-                        @update:isOpen="open.large = $event"
+                        @update:is-open="open.large = $event"
                         @confirm="open.large = false"
                         @cancel="open.large = false"
                     />

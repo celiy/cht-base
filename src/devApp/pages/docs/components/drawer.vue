@@ -21,7 +21,7 @@
                         size="small"
                         variant="drawer"
                         side="right"
-                        :isOpen="right"
+                        :is-open="right"
 
                         @update:value="right = $event"
                     >
@@ -42,7 +42,7 @@
                         size="small"
                         variant="drawer"
                         side="left"
-                        :isOpen="left"
+                        :is-open="left"
 
                         @update:value="left = $event"
                     >
@@ -63,7 +63,7 @@
                         size="medium"
                         variant="drawer"
                         side="bottom"
-                        :isOpen="bottom"
+                        :is-open="bottom"
 
                         @update:value="bottom = $event"
                     >

@@ -70,9 +70,9 @@
             <DocsExample label="Forma e grupo">
                 <div class="p-4 flex flex-col gap-4">
                     <div class="btn-group">
-                        <Button label="Um" variant="bordered" :hoverEffect="false" />
-                        <Button label="Dois" variant="bordered" :hoverEffect="false" />
-                        <Button label="Três" variant="bordered" :hoverEffect="false" />
+                        <Button label="Um" variant="bordered" :hover-effect="false" />
+                        <Button label="Dois" variant="bordered" :hover-effect="false" />
+                        <Button label="Três" variant="bordered" :hover-effect="false" />
                     </div>
 
                     <Button variant="secondary" class="rounded-full!" shape="rounded" size="medium">

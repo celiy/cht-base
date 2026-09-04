@@ -20,8 +20,6 @@ import { defineComponent } from "vue";
 export default defineComponent({
     name: "DocsTocLink",
 
-    emits: ["select"],
-
     props: {
         /**
          * Heading `id` to scroll to (`#section-id`).
@@ -55,6 +53,8 @@ export default defineComponent({
             default: 1
         }
     },
+
+    emits: ["select"],
 
     computed: {
         href(): string {

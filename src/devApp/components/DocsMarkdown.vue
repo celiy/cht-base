@@ -1,9 +1,9 @@
 <template>
     <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4 pb-16 docs-markdown">
         <div
-            v-html="html"
-
             class="flex flex-col gap-4"
+
+            v-html="html"
         />
     </main>
 </template>

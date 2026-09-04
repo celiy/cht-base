@@ -72,7 +72,7 @@
                 <div class="p-4 max-w-xs">
                     <Dropdown
                         header="Permanece aberto"
-                        :closeOnSelect="false"
+                        :close-on-select="false"
                         :options="actionOptions"
                         :mobile-modal="false"
 

@@ -38,12 +38,12 @@
                             #[`item-${idx}`]
                         >
                             <Image
-                                imageClass="max-h-[50vh] rounded"
+                                image-class="max-h-[50vh] rounded"
                                 :draggable="true"
 
                                 :src="image.src"
                                 :alt="image.alt"
-                                :openModal="true"
+                                :open-modal="true"
                             />
                         </template>
                     </Carousel>
@@ -67,7 +67,7 @@
             <DocsExample label="Sem setas, clique nas bordas">
                 <div class="p-4">
                     <Carousel
-                        :showArrows="false"
+                        :show-arrows="false"
                         edge-click
                     >
                         <template
@@ -77,7 +77,7 @@
                             #[`item-${idx}`]
                         >
                             <Image
-                                imageClass="max-h-[40vh] rounded"
+                                image-class="max-h-[40vh] rounded"
 
                                 :src="image.src"
                                 :alt="image.alt"
@@ -104,7 +104,7 @@
             <DocsExample label="Steps advanced">
                 <div class="p-4">
                     <Carousel
-                        :showArrows="false"
+                        :show-arrows="false"
                         edge-click
                         steps-viewer="advanced"
 
@@ -117,7 +117,7 @@
                             #[`item-${idx}`]
                         >
                             <Image
-                                imageClass="max-h-[40vh] rounded"
+                                image-class="max-h-[40vh] rounded"
 
                                 :src="image.src"
                                 :alt="image.alt"

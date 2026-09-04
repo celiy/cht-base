@@ -34,7 +34,11 @@
                         ]"
                         :data="[
                             { name: 'Celi', phone: '51 9 99329196', role: 'Dev' },
-                            { name: 'Herstal', phone: '51 9 12345678', role: 'Design' }
+                            { name: 'Herstal', phone: '51 9 12345678', role: 'Design' },
+                            { name: 'Luna', phone: '51 9 11223344', role: 'QA' },
+                            { name: 'João', phone: '51 9 99887766', role: 'DevOps' },
+                            { name: 'Ana', phone: '51 9 88776655', role: 'PO' },
+                            { name: 'Carlos', phone: '51 9 77665544', role: 'Manager' }
                         ]"
                     />
                 </div>
@@ -97,9 +101,9 @@
                             { id: '2', name: 'Herstal', role: 'Design' },
                             { id: '3', name: 'Luna', role: 'PM' }
                         ]"
-                        :selectableActions="selectableActions"
+                        :selectable-actions="selectableActions"
 
-                        @click:selectableAction="onSelectableAction"
+                        @click:selectable-action="onSelectableAction"
                     />
 
                     <p class="text-sm text-muted-foreground mt-2">
@@ -125,7 +129,7 @@
                 <div class="p-4">
                     <Table
                         title="Colunas"
-                        :selectCols="true"
+                        :select-cols="true"
                         :headers="[
                             { label: 'Nome', field: 'name', position: 'start' },
                             { label: 'Celular', field: 'phone', position: 'center' },

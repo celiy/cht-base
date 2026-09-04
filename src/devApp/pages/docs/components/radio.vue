@@ -14,9 +14,9 @@
         <section class="mb-8">
             <DocsExample label="Radio">
                 <div class="p-4 flex flex-col gap-2">
-                    <Radio v-model="selected" label="Opção A" value="opt-a" name="docs-radio" id="docs-ra-1" description="Com descrição" />
-                    <Radio v-model="selected" label="Opção B em card" value="opt-b" name="docs-radio" id="docs-ra-2" variant="card" />
-                    <Radio v-model="selected" label="Opção C" value="opt-c" name="docs-radio" id="docs-ra-3" />
+                    <Radio id="docs-ra-1" v-model="selected" label="Opção A" value="opt-a" name="docs-radio" description="Com descrição" />
+                    <Radio id="docs-ra-2" v-model="selected" label="Opção B em card" value="opt-b" name="docs-radio" variant="card" />
+                    <Radio id="docs-ra-3" v-model="selected" label="Opção C" value="opt-c" name="docs-radio" />
 
                     <p class="text-sm text-muted-foreground mt-2">
                         Selecionado: {{ selected }}
@@ -43,9 +43,9 @@
                             Normal
                         </p>
 
-                        <Radio v-model="variantNormal" label="Diário" value="daily" name="docs-radio-normal" id="docs-ra-n-1" />
-                        <Radio v-model="variantNormal" label="Semanal" value="weekly" name="docs-radio-normal" id="docs-ra-n-2" />
-                        <Radio v-model="variantNormal" label="Mensal" value="monthly" name="docs-radio-normal" id="docs-ra-n-3" />
+                        <Radio id="docs-ra-n-1" v-model="variantNormal" label="Diário" value="daily" name="docs-radio-normal" />
+                        <Radio id="docs-ra-n-2" v-model="variantNormal" label="Semanal" value="weekly" name="docs-radio-normal" />
+                        <Radio id="docs-ra-n-3" v-model="variantNormal" label="Mensal" value="monthly" name="docs-radio-normal" />
                     </div>
 
                     <div class="flex flex-col gap-2">
@@ -54,31 +54,31 @@
                         </p>
 
                         <Radio
+                            id="docs-ra-c-1"
                             v-model="variantCard"
                             label="Básico"
                             value="basic"
                             name="docs-radio-card"
-                            id="docs-ra-c-1"
                             variant="card"
                             description="Plano inicial."
                         />
 
                         <Radio
+                            id="docs-ra-c-2"
                             v-model="variantCard"
                             label="Pro"
                             value="pro"
                             name="docs-radio-card"
-                            id="docs-ra-c-2"
                             variant="card"
                             description="Mais recursos."
                         />
 
                         <Radio
+                            id="docs-ra-c-3"
                             v-model="variantCard"
                             label="Empresa"
                             value="enterprise"
                             name="docs-radio-card"
-                            id="docs-ra-c-3"
                             variant="card"
                             description="Para times grandes."
                         />
@@ -101,29 +101,29 @@
             <DocsExample label="Descrição">
                 <div class="p-4 flex flex-col gap-2 max-w-md">
                     <Radio
+                        id="docs-ra-d-1"
                         v-model="withDescription"
                         label="E-mail"
                         value="email"
                         name="docs-radio-desc"
-                        id="docs-ra-d-1"
                         description="Avisos e resumos no seu e-mail."
                     />
 
                     <Radio
+                        id="docs-ra-d-2"
                         v-model="withDescription"
                         label="Push"
                         value="push"
                         name="docs-radio-desc"
-                        id="docs-ra-d-2"
                         description="Notificações no dispositivo."
                     />
 
                     <Radio
+                        id="docs-ra-d-3"
                         v-model="withDescription"
                         label="Nenhum"
                         value="none"
                         name="docs-radio-desc"
-                        id="docs-ra-d-3"
                         description="Sem notificações."
                     />
                 </div>
@@ -143,14 +143,14 @@
         <section class="mb-8">
             <DocsExample label="Desabilitado">
                 <div class="p-4 flex flex-col gap-2">
-                    <Radio v-model="disabledGroup" label="Disponível" value="open" name="docs-radio-dis" id="docs-ra-dis-1" />
-                    <Radio v-model="disabledGroup" label="Desabilitado" value="blocked" name="docs-radio-dis" id="docs-ra-dis-2" :disabled="true" />
+                    <Radio id="docs-ra-dis-1" v-model="disabledGroup" label="Disponível" value="open" name="docs-radio-dis" />
+                    <Radio id="docs-ra-dis-2" v-model="disabledGroup" label="Desabilitado" value="blocked" name="docs-radio-dis" :disabled="true" />
                     <Radio
+                        id="docs-ra-dis-3"
                         v-model="disabledGroup"
                         label="Card desabilitado"
                         value="blocked-card"
                         name="docs-radio-dis"
-                        id="docs-ra-dis-3"
                         variant="card"
                         description="Não pode ser escolhido."
                         :disabled="true"
@@ -177,8 +177,8 @@
                             Tema
                         </p>
 
-                        <Radio v-model="theme" label="Claro" value="light" name="docs-radio-theme" id="docs-ra-t-1" />
-                        <Radio v-model="theme" label="Escuro" value="dark" name="docs-radio-theme" id="docs-ra-t-2" />
+                        <Radio id="docs-ra-t-1" v-model="theme" label="Claro" value="light" name="docs-radio-theme" />
+                        <Radio id="docs-ra-t-2" v-model="theme" label="Escuro" value="dark" name="docs-radio-theme" />
                     </div>
 
                     <div class="flex flex-col gap-2">
@@ -186,8 +186,8 @@
                             Idioma
                         </p>
 
-                        <Radio v-model="locale" label="Português" value="pt" name="docs-radio-locale" id="docs-ra-l-1" />
-                        <Radio v-model="locale" label="Inglês" value="en" name="docs-radio-locale" id="docs-ra-l-2" />
+                        <Radio id="docs-ra-l-1" v-model="locale" label="Português" value="pt" name="docs-radio-locale" />
+                        <Radio id="docs-ra-l-2" v-model="locale" label="Inglês" value="en" name="docs-radio-locale" />
                     </div>
 
                     <p class="text-sm text-muted-foreground sm:col-span-2">

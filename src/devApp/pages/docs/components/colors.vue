@@ -27,8 +27,8 @@
                                     />
 
                                     <code 
-                                        class="text-xs text-center select-none" 
-                                        v-tooltip="'Clique para copiar'"
+                                        v-tooltip="'Clique para copiar'" 
+                                        class="text-xs text-center select-none"
                                         @click="copy(child.color)"
                                     >
                                         {{ child.color }}
@@ -67,10 +67,10 @@
                                 v-for="value in colorValues"
                                 :key="`${color.value}-${value}`"
 
-                                class="min-w-0 h-24 cursor-pointer"
-
-                                :style="shadeStyle(color.value, value)"
                                 v-tooltip="color.value + '-' + value"
+
+                                class="min-w-0 h-24 cursor-pointer"
+                                :style="shadeStyle(color.value, value)"
 
                                 @click="copy(color.value + '-' + value)"
                             />

@@ -50,45 +50,45 @@
                                 <div class="flex items-center gap-1">
                                     <Radio
                                         id="demo-radio-a"
+                                        v-model="demoRadio"
                                         name="demo-radio"
                                         value="a"
-                                        v-model="demoRadio"
                                     />
 
                                     <Radio
                                         id="demo-radio-b"
+                                        v-model="demoRadio"
                                         name="demo-radio"
                                         value="b"
-                                        v-model="demoRadio"
                                     />
 
                                     <Checkbox
                                         id="demo-checkbox"
-                                        name="demo-checkbox"
                                         v-model:value="demoCheckbox"
+                                        name="demo-checkbox"
                                     />
 
                                     <Checkbox
                                         id="demo-switch"
+                                        v-model:value="demoSwitch"
                                         name="demo-switch"
                                         checkbox-style="switch"
-                                        v-model:value="demoSwitch"
                                     />
                                 </div>
                             </div>
 
                             <div class="flex justify-between gap-2">
-                                <Button label="Warning modal" @click="alertModal = true" variant="outline" />
+                                <Button label="Warning modal" variant="outline" @click="alertModal = true" />
 
                                 <ConfirmationModal
                                     variant="warning"
                                     title="Atenção"
                                     description="Variante warning"
                                     body="Confirmation modal"
-                                    confirmText="Continuar"
-                                    cancelText="Cancelar"
-                                    :isOpen="alertModal"
-                                    @update:isOpen="alertModal = $event"
+                                    confirm-text="Continuar"
+                                    cancel-text="Cancelar"
+                                    :is-open="alertModal"
+                                    @update:is-open="alertModal = $event"
                                     @confirm="alertModal = false"
                                     @cancel="alertModal = false"
                                 />
@@ -158,7 +158,7 @@
                             <div class="flex flex-col gap-1 py-2 px-1 pb-3">
                                 <Option label="Conta" />
 
-                                <Option label="Perfil" value="profile" icon="fa-user" selected highlighted showCheckmark />
+                                <Option label="Perfil" value="profile" icon="fa-user" selected highlighted show-checkmark />
                                 <Option label="Cobrança" value="billing" icon="fa-file-invoice-dollar" />
                                 <Option label="Notificações" value="notifications" icon="fa-bell" />
                                 <Option label="Segurança" value="security" icon="fa-shield-halved" />
@@ -176,7 +176,7 @@
 
                     <template #body>
                         <div class="flex flex-col gap-2">
-                            <Item variant="secondary" head="META ATUAL" :hoverEffect="false">
+                            <Item variant="secondary" head="META ATUAL" :hover-effect="false">
                                 <template #body>
                                     <div class="flex flex-col mt-1">
                                         <span class="text-3xl text-foreground font-semibold">
@@ -187,7 +187,7 @@
                                             v-model="ProgressBarValue"
                                             class="w-full my-1"
                                             readonly
-                                            showProgress
+                                            show-progress
                                         />
 
                                         <div class="mt-2 flex justify-between">
@@ -203,7 +203,7 @@
                                 </template>
                             </Item>
 
-                            <Item variant="secondary" head="GUARDADO" :hoverEffect="false">
+                            <Item variant="secondary" head="GUARDADO" :hover-effect="false">
                                 <template #body>
                                     <div class="flex flex-col mt-1">
                                         <span class="text-3xl text-foreground font-semibold">
@@ -214,7 +214,7 @@
                                             v-model="ProgressBarValue2"
                                             class="w-full my-1"
                                             readonly
-                                            showProgress
+                                            show-progress
                                         />
 
                                         <div class="mt-2 flex justify-between">
@@ -259,12 +259,12 @@
                                         { date: new Date(2023, 4, 1), value: 30 }
                                     ]
                                 }"
-                                :hideLabel="true"
+                                :hide-label="true"
                             />
 
                             <div class="flex gap-2">
-                                <Item head="EM BREVE" label="Previsão" description="Marcado" variant="secondary" :hoverEffect="false" class="w-full" />
-                                <Item head="PLANOS" label="A seguir" description="Salvo" variant="secondary" :hoverEffect="false" class="w-full" />
+                                <Item head="EM BREVE" label="Previsão" description="Marcado" variant="secondary" :hover-effect="false" class="w-full" />
+                                <Item head="PLANOS" label="A seguir" description="Salvo" variant="secondary" :hover-effect="false" class="w-full" />
                             </div>
 
                             <Button label="Ver todas as vendas" class="w-full" variant="primary" />
@@ -334,8 +334,8 @@
                                 icon="fa-arrow-trend-up"
                                 head="CRÉDITO"
                                 label="$ 1,200.00"
-                                smallText="Vendas · 12 ago"
-                                :hoverEffect="false"
+                                small-text="Vendas · 12 ago"
+                                :hover-effect="false"
                             />
 
                             <Item
@@ -343,8 +343,8 @@
                                 icon="fa-building-columns"
                                 head="SAQUE"
                                 label="$ 450.00"
-                                smallText="Banco ligado · 08 ago"
-                                :hoverEffect="false"
+                                small-text="Banco ligado · 08 ago"
+                                :hover-effect="false"
                             />
 
                             <Button
@@ -418,9 +418,9 @@
                     <template #body>
                         <div class="flex flex-col gap-4">
                             <Select
-                                v-model="currency"
-
                                 id="preferred-currency"
+
+                                v-model="currency"
                                 label="Moeda preferida"
                                 :options="currencyOptions"
                             />
@@ -455,8 +455,8 @@
                             </div>
 
                             <Input
-                                v-model="payoutNotes"
                                 id="payout-notes"
+                                v-model="payoutNotes"
                                 type="textarea"
                                 label="Notas"
                                 placeholder="Adicione notas para esta configuração de saque..."
@@ -482,17 +482,17 @@
                     <template #body>
                         <div class="flex flex-col gap-4">
                             <Input
-                                v-model="accountEmail"
                                 id="account-email"
+                                v-model="accountEmail"
                                 type="email"
                                 label="Email"
                                 placeholder="nome@exemplo.com"
                             />
 
                             <Input
-                                label="Senha atual"
-                                v-model="accountPassword"
                                 id="account-password"
+                                v-model="accountPassword"
+                                label="Senha atual"
                                 type="password"
                             />
 
@@ -553,15 +553,15 @@
                                 @keydown.enter.exact.prevent="sendChatMessage"
                             >
                                 <Input
-                                    v-model="chatDraft"
                                     id="chat"
+                                    v-model="chatDraft"
                                     type="textarea"
-                                    hideResize
-                                    expandOnTyping
+                                    hide-resize
+                                    expand-on-typing
                                     placeholder="Escreva uma mensagem..."
-                                    :minHeightPx="30"
-                                    :maxHeightPx="150"
-                                    :maxSize="2000"
+                                    :min-height-px="30"
+                                    :max-height-px="150"
+                                    :max-size="2000"
                                 >
                                     <template #input>
                                         <div class="w-full flex justify-between p-2">
@@ -597,7 +597,7 @@
                                 variant="secondary"
                                 type="alert"
                                 label="Home"
-                                smallText="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+                                small-text="Lorem ipsum dolor sit amet consectetur adipisicing elit."
                             />
 
                             <Item
@@ -605,7 +605,7 @@
                                 variant="secondary"
                                 type="alert"
                                 description="Perfil"
-                                smallText="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+                                small-text="Lorem ipsum dolor sit amet consectetur adipisicing elit."
                             />
 
                             <Item
@@ -613,7 +613,7 @@
                                 variant="secondary"
                                 type="alert"
                                 description="Ative alertas e notifique-se sobre novidades."
-                                smallText="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+                                small-text="Lorem ipsum dolor sit amet consectetur adipisicing elit."
                             />
 
                             <Item
@@ -621,7 +621,7 @@
                                 variant="secondary"
                                 type="alert"
                                 description="Operação realizada com sucesso."
-                                smallText="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+                                small-text="Lorem ipsum dolor sit amet consectetur adipisicing elit."
                             />
                         </div>
                     </template>
@@ -705,15 +705,15 @@ export default defineComponent({
         };
     },
 
-    beforeUnmount() {
-        this.clearChatReplyTimer();
-        this.clearChatScrollRaf();
-    },
-
     computed: {
         canSendChat(): boolean {
             return this.chatDraft.trim().length > 0;
         }
+    },
+
+    beforeUnmount() {
+        this.clearChatReplyTimer();
+        this.clearChatScrollRaf();
     },
 
     methods: {

@@ -16,8 +16,8 @@
                 <div class="p-4">
                     <FormRenderer
                         :sections="sections"
-                        submitLabel="Enviar"
-                        :sectionColumns="{ xs: 1, sm: 2, md: 2, lg: 2 }"
+                        submit-label="Enviar"
+                        :section-columns="{ xs: 1, sm: 2, md: 2, lg: 2 }"
                         @submit="onSubmit"
                     >
                         <template #submit>

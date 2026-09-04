@@ -16,8 +16,8 @@
                     <MediaUploader
                         id="docs-media-uploader"
                         label="Arquivos"
-                        helperText="Imagens, PDF ou áudio."
-                        :maxFiles="4"
+                        helper-text="Imagens, PDF ou áudio."
+                        :max-files="4"
                         :accept="['image/*', '.pdf', 'audio/*']"
                         :value="files"
 

@@ -29,8 +29,8 @@
                 <div class="p-4 flex flex-col gap-4 max-w-sm">
                     <Select
                         header="Select"
-                        inHelperText="Texto de ajuda dentro do painel"
-                        helperText="Texto de ajuda abaixo do campo"
+                        in-helper-text="Texto de ajuda dentro do painel"
+                        helper-text="Texto de ajuda abaixo do campo"
 
                         :options="options"
                     />
@@ -81,9 +81,9 @@
                 <div class="p-4 flex flex-col gap-4 max-w-sm">
                     <Select
                         header="Múltiplo"
-                        helperText="Mínimo 0, máximo 2"
+                        helper-text="Mínimo 0, máximo 2"
                         :options="options"
-                        :selectMultiple="{ min: 0, max: 2 }"
+                        :select-multiple="{ min: 0, max: 2 }"
                     />
                 </div>
             </DocsExample>
@@ -106,8 +106,8 @@
                     <Select
                         id="docs-select-memo"
                         header="Com memo"
-                        helperText="Recarregue a página: a escolha permanece"
-                        :useMemo="true"
+                        helper-text="Recarregue a página: a escolha permanece"
+                        :use-memo="true"
                         :options="options"
                     />
                 </div>

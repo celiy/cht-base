@@ -14,9 +14,9 @@
         <section class="mb-8">
             <DocsExample label="Checkbox">
                 <div class="p-4 flex flex-col gap-2">
-                    <Checkbox label="Checkbox normal" id="docs-cb-1" name="docs-cb-1" :value="false" />
-                    <Checkbox label="Já marcado" id="docs-cb-2" name="docs-cb-2" :checked="true" :value="true" />
-                    <Checkbox label="Desabilitado" id="docs-cb-3" name="docs-cb-3" :value="false" :disabled="true" />
+                    <Checkbox id="docs-cb-1" label="Checkbox normal" name="docs-cb-1" :value="false" />
+                    <Checkbox id="docs-cb-2" label="Já marcado" name="docs-cb-2" :checked="true" :value="true" />
+                    <Checkbox id="docs-cb-3" label="Desabilitado" name="docs-cb-3" :value="false" :disabled="true" />
                 </div>
             </DocsExample>
         </section>
@@ -36,8 +36,8 @@
             <DocsExample label="Variações">
                 <div class="p-4 flex flex-col gap-2">
                     <Checkbox
-                        label="Card"
                         id="docs-cb-4"
+                        label="Card"
                         name="docs-cb-4"
                         description="Descrição ao lado do checkbox em layout de card."
                         variant="card"
@@ -45,12 +45,32 @@
                     />
 
                     <Checkbox
-                        label="Switch"
+                        id="docs-cb-4"
+                        label="Card desabilitado"
+                        name="docs-cb-4"
+                        description="Descrição ao lado do checkbox em layout de card."
+                        variant="card"
+                        :value="false"
+                        disabled
+                    />
+
+                    <Checkbox
                         id="docs-cb-5"
+                        label="Switch"
                         name="docs-cb-5"
                         description="O clique no interruptor e no texto altera o mesmo estado."
-                        checkboxStyle="switch"
+                        checkbox-style="switch"
                         :value="false"
+                    />
+
+                    <Checkbox
+                        id="docs-cb-5"
+                        label="Switch desabilitado"
+                        name="docs-cb-5"
+                        description="O clique no interruptor e no texto altera o mesmo estado."
+                        checkbox-style="switch"
+                        :value="false"
+                        disabled
                     />
                 </div>
             </DocsExample>

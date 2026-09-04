@@ -29,14 +29,14 @@
 
                             class="w-full"
                             type="card"
-                            aspectRatio="1"
+                            aspect-ratio="1"
                         />
                     </div>
 
                     <Skeleton
                         class="w-full"
                         type="card"
-                        aspectRatio="16/9"
+                        aspect-ratio="16/9"
                     />
                 </div>
             </DocsExample>
@@ -69,7 +69,7 @@
                     <Skeleton
                         class="w-full"
                         type="card"
-                        aspectRatio="16/9"
+                        aspect-ratio="16/9"
                     />
                 </div>
             </DocsExample>
@@ -107,13 +107,13 @@
                     <Skeleton
                         class="w-40"
                         type="card"
-                        aspectRatio="1"
+                        aspect-ratio="1"
                     />
 
                     <Skeleton
                         class="w-56"
                         type="card"
-                        aspectRatio="16/9"
+                        aspect-ratio="16/9"
                     />
                 </div>
             </DocsExample>
@@ -146,6 +146,10 @@
                                 type="text"
                             />
                         </div>
+
+                        <Skeleton type="card" aspect-ratio="1" class="w-12"/>
+                        <Skeleton type="card" aspect-ratio="1" class="w-12"/>
+                        <Skeleton type="card" aspect-ratio="1" class="w-12"/>
                     </div>
 
                     <div class="flex flex-col gap-2 mt-4">

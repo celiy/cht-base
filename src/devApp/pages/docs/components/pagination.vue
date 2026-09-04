@@ -16,7 +16,7 @@
                     <Pagination
                         id="docs-pagination"
                         :amount="12"
-                        :showMax="5"
+                        :show-max="5"
                     />
                 </div>
             </DocsExample>
