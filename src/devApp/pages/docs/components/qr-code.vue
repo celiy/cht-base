@@ -17,6 +17,7 @@
                     <QrCode :value="link" />
 
                     <Input
+                        id="qr-code-link"
                         v-model="link"
                         label="Link"
                         type="text"

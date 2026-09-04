@@ -39,7 +39,7 @@
                         >
                             <Image
                                 imageClass="max-h-[50vh] rounded"
-                                draggable="true"
+                                :draggable="true"
 
                                 :src="image.src"
                                 :alt="image.alt"

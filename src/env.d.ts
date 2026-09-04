@@ -11,6 +11,16 @@ declare module "vue" {
         $project: ProjectState;
         $toast: ToastApi;
     }
+
+    interface GlobalDirectives {
+        vTooltip: import("vue").Directive<HTMLElement, string | {
+            content: string;
+            placement?: "top" | "bottom" | "left" | "right" | "center";
+            html?: boolean;
+            offset?: number;
+            maxWidth?: string;
+        }>;
+    }
 }
 
 declare module "@vue/runtime-core" {
@@ -19,6 +29,16 @@ declare module "@vue/runtime-core" {
         $route: RouteLocationNormalizedLoaded;
         $project: ProjectState;
         $toast: ToastApi;
+    }
+
+    interface GlobalDirectives {
+        vTooltip: import("vue").Directive<HTMLElement, string | {
+            content: string;
+            placement?: "top" | "bottom" | "left" | "right" | "center";
+            html?: boolean;
+            offset?: number;
+            maxWidth?: string;
+        }>;
     }
 }
 
