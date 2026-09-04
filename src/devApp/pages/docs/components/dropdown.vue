@@ -8,6 +8,8 @@
             <p>
                 Menu de ações a partir de um botão. Opções podem ter ícone, valor, tooltip e separadores.
                 Emite <code>@click:value</code> com o <code>value</code> da opção.
+                Em ecrãs estreitos abre um <code>Modal</code> <code>blank</code> por omissão
+                (<code>mobileModal</code>; <code>forceModal</code> força no desktop).
             </p>
         </section>
 
@@ -71,6 +73,34 @@
                     <Dropdown
                         header="Permanece aberto"
                         :closeOnSelect="false"
+                        :options="actionOptions"
+                        :mobile-modal="false"
+
+                        @click:value="lastClicked = $event"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
+                Modal
+            </h3>
+
+            <p>
+                <code>mobileModal</code> (padrão <code>true</code>) usa um modal blank abaixo de
+                <code>768px</code>. <code>:mobileModal="false"</code> mantém o painel flutuante.
+                <code>forceModal</code> abre o modal também no desktop.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Modal no desktop">
+                <div class="p-4 max-w-xs">
+                    <Dropdown
+                        header="Forçar modal"
+                        force-modal
+
                         :options="actionOptions"
 
                         @click:value="lastClicked = $event"

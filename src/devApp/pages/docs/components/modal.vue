@@ -6,7 +6,9 @@
             </h1>
 
             <p>
-                Painel sobreposto. Fecha com clique no backdrop, no X ou com <code>Esc</code>. Drawer tem página própria.
+                Painel sobreposto. Fecha com clique no backdrop, no X ou com <code>Esc</code>.
+                <code>variant="blank"</code> é só um card com <code>p-4</code> e o <code>#body</code>,
+                sem header nem botão de fechar. Drawer tem página própria.
             </p>
         </section>
 
@@ -84,6 +86,77 @@
 
                                     @click="withFooter = false"
                                 />
+                            </div>
+                        </template>
+                    </Modal>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
+                Variantes
+            </h3>
+
+            <p>
+                <code>variant="modal / blank / preview"</code>.
+                <code>blank</code> não tem X nem título: só o conteúdo no card.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Tamanho">
+                <div class="p-4 flex flex-wrap gap-2">
+                    <Button label="Modal" @click="modal = true" />
+                    <Button label="Blank" @click="blank = true" />
+                    <Button label="Preview" @click="preview = true" />
+
+                    <Modal
+                        variant="modal"
+                        size="small"
+                        :isOpen="modal"
+
+                        @update:value="modal = $event"
+                    >
+                        <template #header>
+                            Modal comum
+                        </template>
+
+                        <template #description>
+                            Default
+                        </template>
+
+                        <template #body>
+                            <p>Variante default usado</p>
+                        </template>
+                    </Modal>
+
+                    <Modal
+                        variant="blank"
+                        size="small"
+                        :isOpen="blank"
+
+                        @update:value="blank = $event"
+                    >
+                        <template #body>
+                            <p>Modal blank <br><br> Neste variante o modal só é um card comum.</p>
+                        </template>
+                    </Modal>
+
+                    <Modal
+                        variant="preview"
+                        size="large"
+                        :isOpen="preview"
+
+                        @update:value="preview = $event"
+                    >
+                        <template #body>
+                            <div class="flex justify-center items-center gap-2 flex-col">
+                                <p>Modal preview</p>
+
+                                <p>Neste variante o modal é vazio visualmente.</p>
+
+                                <Button>Click me</Button>
                             </div>
                         </template>
                     </Modal>
@@ -296,6 +369,9 @@ export default defineComponent({
             plain: false,
             withDescription: false,
             withFooter: false,
+            modal: false,
+            blank: false,
+            preview: false,
             small: false,
             medium: false,
             large: false,

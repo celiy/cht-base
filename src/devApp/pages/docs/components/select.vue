@@ -8,6 +8,7 @@
             <p>
                 Campo de escolha com lista flutuante. Aceita pesquisa local, tooltips nas opções,
                 seleção múltipla, persistência em <code>localStorage</code> e textos de ajuda dentro e fora do painel.
+                Em mobile abre um modal blank (<code>mobileModal</code> / <code>forceModal</code>).
             </p>
         </section>
 

@@ -10,6 +10,7 @@
                 Com <code>sent</code>, <code>read</code>, <code>pending</code> ou <code>failed</code>
                 a bolha vai para a direita; sem isso, para a esquerda.
                 Clique direito (ou long-press) abre o menu: copiar texto ou a imagem clicada.
+                Só um menu de contexto fica aberto de cada vez.
             </p>
         </section>
 
@@ -41,7 +42,8 @@
 
             <p>
                 URLs <code>https://</code> ou <code>www.</code> no <code>text</code> viram links
-                (sublinhados, abrem noutro separador).
+                (sublinhados, abrem noutro separador). A cor vem de <code>text-contrast</code>
+                para ficar legível no fundo da bolha.
             </p>
         </section>
 
@@ -60,8 +62,8 @@
 
             <p>
                 <code>images</code> é um array de URLs. Uma imagem fica no formato original;
-                várias ficam numa grelha 1:1. Mais de quatro mostra <code>+N</code> e abre
-                um carousel na 4.ª foto.
+                várias ficam numa grelha 1:1. Clique em qualquer foto abre o carousel
+                da mensagem nesse índice. Mais de quatro mostra <code>+N</code> na 4.ª.
             </p>
         </section>
 

@@ -9,6 +9,9 @@
                 Faixa deslizante de slides. Cada slide é um slot <code>#item-0</code>,
                 <code>#item-1</code>, … — imagem, texto ou qualquer markup.
                 Setas, pontos e swipe no telemóvel mudam o slide.
+                <code>showArrows</code>, <code>edgeClick</code> e
+                <code>stepsViewer</code> controlam a navegação.
+                Clique no padding em volta do item emite <code>click:outside</code>.
             </p>
         </section>
 
@@ -44,6 +47,88 @@
                             />
                         </template>
                     </Carousel>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
+                Setas e clique nas extremidades
+            </h3>
+
+            <p>
+                <code>showArrows</code> (default <code>true</code>) mostra as setas laterais.
+                Com <code>edgeClick</code>, cerca de 18% de cada lado do viewport
+                avança ou recua o slide — útil quando as setas estão escondidas.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Sem setas, clique nas bordas">
+                <div class="p-4">
+                    <Carousel
+                        :showArrows="false"
+                        edge-click
+                    >
+                        <template
+                            v-for="(image, idx) in images"
+                            :key="idx"
+
+                            #[`item-${idx}`]
+                        >
+                            <Image
+                                imageClass="max-h-[40vh] rounded"
+
+                                :src="image.src"
+                                :alt="image.alt"
+                            />
+                        </template>
+                    </Carousel>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
+                Indicador de passos
+            </h3>
+
+            <p>
+                <code>stepsViewer="simplified"</code> (default) são as bolinhas sobre o slide.
+                <code>advanced</code> fica <b>abaixo</b> dos itens: chevrons e
+                <code>n / n</code>, no estilo do input.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Steps advanced">
+                <div class="p-4">
+                    <Carousel
+                        :showArrows="false"
+                        edge-click
+                        steps-viewer="advanced"
+
+                        @click:outside="outsideCount += 1"
+                    >
+                        <template
+                            v-for="(image, idx) in images"
+                            :key="idx"
+
+                            #[`item-${idx}`]
+                        >
+                            <Image
+                                imageClass="max-h-[40vh] rounded"
+
+                                :src="image.src"
+                                :alt="image.alt"
+                            />
+                        </template>
+                    </Carousel>
+
+                    <p class="mt-3 text-sm text-muted-foreground!">
+                        Clique fora do item (padding do carousel):
+                        <code>click:outside</code> disparou {{ outsideCount }} vez(es).
+                    </p>
                 </div>
             </DocsExample>
         </section>
@@ -127,7 +212,8 @@ export default defineComponent({
                 { src: "https://i.imgur.com/vN9nvON.jpeg", alt: "Image 1" },
                 { src: "https://i.imgur.com/wAwAYzQ.jpeg", alt: "Image 2" },
                 { src: "https://i.imgur.com/4dIoDgD.jpeg", alt: "Image 3" }
-            ]
+            ],
+            outsideCount: 0
         };
     }
 });

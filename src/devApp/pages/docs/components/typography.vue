@@ -112,6 +112,48 @@
 
         <section>
             <h3>
+                Contraste
+            </h3>
+
+            <p>
+                <code>text-contrast</code> escolhe <code>--color-foreground</code> ou
+                <code>--color-background</code> (com <code>!important</code>) consoante o fundo
+                for escuro ou claro.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="text-contrast">
+                <div class="p-4 grid sm:grid-cols-2 gap-3">
+                    <div class="rounded p-4 bg-primary">
+                        <p class="text-contrast">
+                            Sobre <code>primary</code>
+                        </p>
+                    </div>
+
+                    <div class="rounded p-4 bg-secondary">
+                        <p class="text-contrast">
+                            Sobre <code>secondary</code>
+                        </p>
+                    </div>
+
+                    <div class="rounded p-4 bg-warning">
+                        <p class="text-contrast">
+                            Sobre <code>warning</code>
+                        </p>
+                    </div>
+
+                    <div class="rounded p-4 bg-background border">
+                        <p class="text-contrast">
+                            Sobre <code>background</code>
+                        </p>
+                    </div>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
                 Combinações
             </h3>
 

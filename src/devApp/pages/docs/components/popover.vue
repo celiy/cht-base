@@ -7,6 +7,8 @@
 
             <p>
                 Painel flutuante com conteúdo livre. Pode abrir no clique ou no hover.
+                Ao contrário do Dropdown, <b>não</b> abre o modal do <code>FloatingPanel</code> no mobile.
+                Use <code>mobileModal</code> ou <code>forceModal</code> se quiser esse comportamento.
             </p>
         </section>
 
