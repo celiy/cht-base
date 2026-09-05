@@ -19,12 +19,19 @@
                         <Button
                             label="GitHub"
                             left-icon="fa-brands fa-github"
+                            @click="openGitHub"
                         />
 
                         <Marker separator orientation="vertical" />
 
-                        <Button variant="transparent">
-                            <span class="fa-solid fa-moon" />
+                        <Button
+                            variant="transparent"
+                            @click="toggleTheme"
+                        >
+                            <span
+                                class="fa-solid"
+                                :class="isDarkTheme ? 'fa-sun' : 'fa-moon'"
+                            />
                         </Button>
                     </div>
                 </div>
@@ -92,9 +99,21 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import { componentsNav } from "./ts/componentsNav.ts";
 import { navLinks } from "../js/navLinks.ts";
 import DocsOutline from "./components/DocsOutline.vue";
+import { project } from "../project";
+
+const isDarkTheme = computed(() => project.style.activeTheme === "dark");
+
+function toggleTheme() {
+    project.style.theme(isDarkTheme.value ? "light" : "dark");
+}
+
+function openGitHub() {
+    window.open('https://github.com/celiy/cht-main', '_blank');
+}
 </script>
 
 <style>

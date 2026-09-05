@@ -151,10 +151,10 @@
                         @update:value="preview = $event"
                     >
                         <template #body>
-                            <div class="flex justify-center items-center gap-2 flex-col">
+                            <div class="flex justify-center items-center gap-2 flex-col bg-accent p-4 rounded">
                                 <p>Modal preview</p>
 
-                                <p>Neste variante o modal é vazio visualmente.</p>
+                                <p>Neste variante o modal é vazio visualmente. E totalmente customizável.</p>
 
                                 <Button>Click me</Button>
                             </div>

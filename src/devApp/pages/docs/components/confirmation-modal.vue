@@ -25,23 +25,23 @@
         <section class="mb-8">
             <DocsExample label="Variações">
                 <div class="p-4 flex flex-wrap gap-2">
-                    <Button label="Primary" variant="primary" @click="open.primary = true" />
+                    <Button label="Info" variant="info" @click="open.info = true" />
                     <Button label="Warning" variant="warning" @click="open.warning = true" />
                     <Button label="Success" variant="success" @click="open.success = true" />
                     <Button label="Destructive" variant="destructive" @click="open.destructive = true" />
 
                     <ConfirmationModal
-                        variant="primary"
+                        variant="info"
                         title="Confirmar ação"
-                        description="Variante primary."
+                        description="Variante info."
                         body="Deseja continuar?"
                         confirm-text="Confirmar"
                         cancel-text="Cancelar"
-                        :is-open="open.primary"
+                        :is-open="open.info"
 
-                        @update:is-open="open.primary = $event"
-                        @confirm="open.primary = false"
-                        @cancel="open.primary = false"
+                        @update:is-open="open.info = $event"
+                        @confirm="open.info = false"
+                        @cancel="open.info = false"
                     />
 
                     <ConfirmationModal
@@ -109,7 +109,7 @@
 
                     <ConfirmationModal
                         size="small"
-                        variant="primary"
+                        variant="info"
                         title="Small"
                         description="size=&quot;small&quot;"
                         body="Largura compacta, padrão do componente."
@@ -122,7 +122,7 @@
 
                     <ConfirmationModal
                         size="medium"
-                        variant="primary"
+                        variant="info"
                         title="Medium"
                         description="size=&quot;medium&quot;"
                         body="Mais espaço para o texto do corpo."
@@ -135,7 +135,7 @@
 
                     <ConfirmationModal
                         size="large"
-                        variant="primary"
+                        variant="info"
                         title="Large"
                         description="size=&quot;large&quot;"
                         body="Use quando o texto de confirmação for longo ou precisar de mais respiro."
@@ -167,7 +167,7 @@ export default defineComponent({
     data() {
         return {
             open: {
-                primary: false,
+                info: false,
                 warning: false,
                 success: false,
                 destructive: false,

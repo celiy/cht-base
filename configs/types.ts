@@ -1,3 +1,5 @@
+import type { ClientThemeConfig } from "./theme/types";
+
 /**
  * Config for a client (sister folder + build-time metadata).
  *
@@ -8,6 +10,7 @@ export interface ClientConfig {
     name: string;
     clientDir?: string;
     siteTitle: string;
+    theme?: ClientThemeConfig;
     frontend?: {
         repo?: string;
     };

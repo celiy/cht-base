@@ -1,5 +1,5 @@
 <template>
-    <pre class="docs-code p-4 pr-12 overflow-x-auto text-sm leading-6 font-mono text-foreground"><code v-html="highlighted" /></pre>
+    <pre class="docs-code p-4 pr-12 overflow-x-auto text-sm leading-6 font-mono text-foreground bg-secondary/10 rounded light:brightness-80"><code v-html="highlighted" /></pre>
 </template>
 
 <script lang="ts">

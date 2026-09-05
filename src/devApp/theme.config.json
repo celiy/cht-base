@@ -1,0 +1,17 @@
+{
+    "default": "dark",
+    "radius": "xl",
+    "themes": {
+        "dark": {
+            "colors": {
+                "extra": "oklch(0.72 0.14 200)",
+                "primary": "oklch(0.55 0.22 265)"
+            }
+        },
+        "light": {
+            "colors": {
+                "primary": "oklch(0.55 0.22 265)"
+            }
+        }
+    }
+}

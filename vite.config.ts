@@ -4,6 +4,7 @@ import path from "path";
 import tailwindcss from "@tailwindcss/vite";
 import { loadConfig, resolveClientDir } from "./configs";
 import { docsExampleSourcePlugin } from "./vite-plugins/docsExampleSource";
+import { clientThemePlugin } from "./vite-plugins/clientTheme";
 
 const clientName = process.env.CLIENT;
 const clientConfig = loadConfig(clientName);
@@ -24,6 +25,7 @@ const alias: Record<string, string> = {
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [
+        clientThemePlugin(),
         docsExampleSourcePlugin(),
         vue(),
         tailwindcss()

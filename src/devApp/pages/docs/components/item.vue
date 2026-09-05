@@ -109,12 +109,47 @@
         <section class="mb-8">
             <DocsExample label="Cores">
                 <div class="p-4 grid gap-2 sm:grid-cols-2">
-                    <Item label="Primary" icon="fa-star" variant="primary" />
-                    <Item label="Secondary" icon="fa-layer-group" variant="secondary" />
-                    <Item label="Success" icon="fa-check" variant="success" />
-                    <Item label="Warning" icon="fa-triangle-exclamation" variant="warning" />
-                    <Item label="Destructive" icon="fa-trash" variant="destructive" />
-                    <Item label="Info" icon="fa-circle-info" variant="info" />
+                    <Item
+                        label="Primary"
+                        icon="fa-star"
+                        variant="primary"
+                        description="Variante primary"
+                    />
+
+                    <Item
+                        label="Secondary"
+                        icon="fa-layer-group"
+                        variant="secondary"
+                        description="Variante secondary"
+                    />
+
+                    <Item
+                        label="Success"
+                        icon="fa-check"
+                        variant="success"
+                        description="Variante success"
+                    />
+
+                    <Item
+                        label="Warning"
+                        icon="fa-triangle-exclamation"
+                        variant="warning"
+                        description="Variante warning"
+                    />
+
+                    <Item
+                        label="Destructive"
+                        icon="fa-trash"
+                        variant="destructive"
+                        description="Variante destructive"
+                    />
+
+                    <Item
+                        label="Info"
+                        icon="fa-circle-info"
+                        variant="info"
+                        description="Variante info"
+                    />
                 </div>
             </DocsExample>
         </section>
