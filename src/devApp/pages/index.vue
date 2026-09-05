@@ -47,7 +47,7 @@
                                     <Badge label="Secondary" variant="secondary" />
                                 </div>
 
-                                <div class="flex items-center gap-1">
+                                <div class="flex items-center justify-center gap-1">
                                     <Radio
                                         id="demo-radio-a"
                                         v-model="demoRadio"
