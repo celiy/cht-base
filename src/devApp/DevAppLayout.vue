@@ -1,9 +1,34 @@
 <template>
     <main class="relative flex flex-col h-dvh overflow-hidden">
         <div class="shrink-0 relative z-60">
-            <Navigator
-                :links="navLinks"
-            />
+            <Navigator>
+                <div class="flex justify-between py-4 px-6">
+                    <!-- Left side -->
+                    <div class="flex flex-row gap-2">
+                        <!-- Links -->
+                        <div v-for="link in navLinks" :key="link.path">
+                            <Button
+                                variant="transparent"
+                                :label="link.label"
+                                @click="$router.push(link.path)"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="flex gap-2">
+                        <Button
+                            label="GitHub"
+                            left-icon="fa-brands fa-github"
+                        />
+
+                        <Marker separator orientation="vertical" />
+
+                        <Button variant="transparent">
+                            <span class="fa-solid fa-moon" />
+                        </Button>
+                    </div>
+                </div>
+            </Navigator>
 
             <div
                 v-show="$project.route.isLoading"

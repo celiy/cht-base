@@ -19,7 +19,6 @@
                         <template #step-title-0>
                             Lorem ipsum dolor sit amet consectetur
                         </template>
-
                         <template #step-0>
                             <p>
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -30,12 +29,15 @@
                         <template #step-title-1>
                             Segundo passo
                         </template>
-
                         <template #step-1>
                             <p>
                                 Nobis optio sequi, laborum voluptatum repellat quod ad totam.
                                 Eum, nobis adipisci.
                             </p>
+                        </template>
+                        
+                        <template #step-title-2>
+                            Lorem ipsum dolor sit amet consectetur
                         </template>
                     </Steps>
                 </div>

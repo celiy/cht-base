@@ -1,30 +1,45 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <main class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
         <section>
-            <h1>
-                Checkbox
-            </h1>
+            <h1>Checkbox</h1>
 
             <p>
-                Seleção booleana em formato clássico, card ou switch.
-                Label e descrição não são selecionáveis (<code>select-none</code>).
+                Seleção booleana em formato clássico, card ou switch. Label e descrição não são
+                selecionáveis (<code>select-none</code>).
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Checkbox">
-                <div class="p-4 flex flex-col gap-2">
-                    <Checkbox id="docs-cb-1" label="Checkbox normal" name="docs-cb-1" :value="false" />
-                    <Checkbox id="docs-cb-2" label="Já marcado" name="docs-cb-2" :checked="true" :value="true" />
-                    <Checkbox id="docs-cb-3" label="Desabilitado" name="docs-cb-3" :value="false" :disabled="true" />
+                <div class="flex flex-col gap-2 p-4">
+                    <Checkbox
+                        id="docs-cb-1"
+                        label="Checkbox normal"
+                        name="docs-cb-1"
+                        :value="false"
+                    />
+
+                    <Checkbox
+                        id="docs-cb-2"
+                        label="Já marcado"
+                        name="docs-cb-2"
+                        :checked="true"
+                        :value="true"
+                    />
+
+                    <Checkbox
+                        id="docs-cb-3"
+                        label="Desabilitado"
+                        name="docs-cb-3"
+                        :value="false"
+                        :disabled="true"
+                    />
                 </div>
             </DocsExample>
         </section>
 
         <section>
-            <h3>
-                Variações
-            </h3>
+            <h3>Variações</h3>
 
             <p>
                 <code>variant="normal / card"</code><br />
@@ -34,7 +49,7 @@
 
         <section class="mb-8">
             <DocsExample label="Variações">
-                <div class="p-4 flex flex-col gap-2">
+                <div class="flex flex-col gap-2 p-4">
                     <Checkbox
                         id="docs-cb-4"
                         label="Card"
@@ -45,9 +60,9 @@
                     />
 
                     <Checkbox
-                        id="docs-cb-4"
+                        id="docs-cb-7"
                         label="Card desabilitado"
-                        name="docs-cb-4"
+                        name="docs-cb-7"
                         description="Descrição ao lado do checkbox em layout de card."
                         variant="card"
                         :value="false"
@@ -55,9 +70,9 @@
                     />
 
                     <Checkbox
-                        id="docs-cb-5"
+                        id="docs-cb-6"
                         label="Switch"
-                        name="docs-cb-5"
+                        name="docs-cb-6"
                         description="O clique no interruptor e no texto altera o mesmo estado."
                         checkbox-style="switch"
                         :value="false"
