@@ -130,11 +130,14 @@ export default defineComponent({
         return {
             statusMessages: [
                 { text: "Só texto, à esquerda." },
+                { text: "Texto do meio." },
+                { text: "Último texto." },
                 { text: "Enviada.", sent: true, date: new Date() },
                 { text: "Agrupada com a anterior.", sent: true, date: new Date() },
                 { text: "Editada.", read: true, edited: true, editedAt: new Date(), date: new Date() },
                 { text: "Ainda a enviar.", pending: true, date: new Date() },
-                { text: "Falhou o envio.", failed: true, date: new Date() }
+                { text: "Falhou o envio.", failed: true, date: new Date() },
+                { text: "Texto sozinho." }
             ],
             linkMessages: [
                 {

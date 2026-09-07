@@ -1,50 +1,90 @@
 <template>
     <main class="bg-background">
         <article class="container mx-auto">
-            <section class="flex flex-col justify-center items-center my-20 mx-12 md:mx-4 text-center">
-                <h1 class="text-balance">
-                    A Fundação para o seu Projeto
-                </h1>
+            <section
+                class="mx-12 my-20 flex flex-col items-center justify-center text-center md:mx-4"
+            >
+                <h1 class="text-balance">A Fundação para o seu Projeto</h1>
 
                 <p class="mt-3 text-balance">
-                    Uma fundação em <code>Vue/TS</code> seguindo a filosofia de design aplicada pela <a target="_blank" rel="noopener noreferrer" href="https://github.com/celiy/cht-main">Workspace CHT. <br> </a> Código open source. A base visual foi feita inspirada em <a target="_blank" rel="noopener noreferrer" href="https://ui.shadcn.com/" >shadcn/ui</a>.
+                    Uma fundação em <code>Vue/TS</code> seguindo a filosofia de design aplicada pela
+                    <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://github.com/celiy/cht-main"
+                        >Workspace CHT. <br />
+                    </a>
+                    Código open source. A base visual foi feita inspirada em
+                    <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://ui.shadcn.com/"
+                        >shadcn/ui</a
+                    >.
                 </p>
 
                 <Button
                     variant="primary"
                     class="mt-6"
+
                     @click="$router.push('/docs')"
                 >
-                    <span>
-                        Explorar <span class="fa-solid fa-arrow-right text-xs" />
-                    </span>
+                    <span> Explorar <span class="fa-solid fa-arrow-right text-xs" /> </span>
                 </Button>
             </section>
         </article>
 
-        <article class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mx-4 md:mx-8 mb-8 relative">
-            <div class="bg-linear-to-t from-background to-transparent absolute w-full h-82 -translate-y-9 z-50 bottom-0" />
-            <div class="bg-background absolute w-full h-12 translate-y-3 z-51 bottom-0" />
+        <article
+            class="relative mx-4 mb-8 grid gap-4 md:mx-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        >
+            <div
+                class="absolute bottom-0 z-50 h-82 w-full -translate-y-9 bg-linear-to-t from-background to-transparent"
+            />
+            <div class="absolute bottom-0 z-51 h-12 w-full translate-y-3 bg-background" />
 
             <section class="flex flex-col gap-4">
                 <Card>
                     <template #body>
                         <div class="flex flex-col gap-4">
                             <div class="flex gap-2">
-                                <Button label="Button" right-icon="fa-arrow-right" variant="primary" />
-                                <Button label="Seconday" variant="secondary" />
-                                <Button label="Outline" variant="outline" />
+                                <Button
+                                    label="Button"
+                                    right-icon="fa-arrow-right"
+                                    variant="primary"
+                                />
+                                <Button
+                                    label="Seconday"
+                                    variant="secondary"
+                                />
+                                <Button
+                                    label="Outline"
+                                    variant="outline"
+                                />
                             </div>
 
                             <div class="flex flex-col gap-2">
-                                <Input id="name" type="text" placeholder="Name"/>
-                                <Input id="name" type="textarea" placeholder="Message"/>
+                                <Input
+                                    id="name"
+                                    type="text"
+                                    placeholder="Name"
+                                />
+                                <Input
+                                    id="name"
+                                    type="textarea"
+                                    placeholder="Message"
+                                />
                             </div>
 
                             <div class="flex justify-between gap-2">
                                 <div class="flex gap-2">
-                                    <Badge label="Badge" variant="primary" />
-                                    <Badge label="Secondary" variant="secondary" />
+                                    <Badge
+                                        label="Badge"
+                                        variant="primary"
+                                    />
+                                    <Badge
+                                        label="Secondary"
+                                        variant="secondary"
+                                    />
                                 </div>
 
                                 <div class="flex items-center justify-center gap-1">
@@ -78,7 +118,12 @@
                             </div>
 
                             <div class="flex justify-between gap-2">
-                                <Button label="Warning modal" variant="outline" @click="alertModal = true" />
+                                <Button
+                                    label="Warning modal"
+                                    variant="outline"
+
+                                    @click="alertModal = true"
+                                />
 
                                 <ConfirmationModal
                                     variant="warning"
@@ -88,18 +133,23 @@
                                     confirm-text="Continuar"
                                     cancel-text="Cancelar"
                                     :is-open="alertModal"
+
                                     @update:is-open="alertModal = $event"
                                     @confirm="alertModal = false"
                                     @cancel="alertModal = false"
                                 />
 
                                 <div class="btn-group">
-                                    <Button label="Group" variant="outline" />
+                                    <Button
+                                        label="Group"
+                                        variant="outline"
+                                    />
                                     <Dropdown :options="actionOptions">
                                         <template #button="{ toggle }">
                                             <Button
                                                 variant="outline"
                                                 label="Drop"
+
                                                 @click="toggle"
                                             />
                                         </template>
@@ -113,56 +163,140 @@
                 <div class="grid grid-cols-2 gap-4">
                     <Card>
                         <template #card>
-                            <div class="flex flex-col gap-1 py-2 px-1 pb-3">
+                            <div class="flex flex-col gap-1 px-1 py-2 pb-3">
                                 <Option label="Planejamento" />
-                          
-                                <Option label="Documentos" value="documents" icon="fa-file-lines" />
-                                <Option label="Orçamento" value="budget" icon="fa-wallet" />
-                                <Option label="Relatórios" value="reports" icon="fa-clipboard-list" />
-                                <Option label="Metas" value="goals" icon="fa-bullseye" />
-                                <Option label="Calendário" value="calendar" icon="fa-calendar-days" />
+
+                                <Option
+                                    label="Documentos"
+                                    value="documents"
+                                    icon="fa-file-lines"
+                                />
+                                <Option
+                                    label="Orçamento"
+                                    value="budget"
+                                    icon="fa-wallet"
+                                />
+                                <Option
+                                    label="Relatórios"
+                                    value="reports"
+                                    icon="fa-clipboard-list"
+                                />
+                                <Option
+                                    label="Metas"
+                                    value="goals"
+                                    icon="fa-bullseye"
+                                />
+                                <Option
+                                    label="Calendário"
+                                    value="calendar"
+                                    icon="fa-calendar-days"
+                                />
                             </div>
                         </template>
                     </Card>
 
                     <Card>
                         <template #card>
-                            <div class="flex flex-col gap-1 py-2 px-1 pb-3">
+                            <div class="flex flex-col gap-1 px-1 py-2 pb-3">
                                 <Option label="Suporte" />
 
-                                <Option label="Central de Ajuda" value="help-center" icon="fa-circle-question" />
-                                <Option label="Documentação" value="docs" icon="fa-book" />
-                                <Option label="Fale Conosco" value="contact-us" icon="fa-envelope" />
-                                <Option label="Status" value="status" icon="fa-signal" />
-                                <Option label="Comunidade" value="community" icon="fa-users" />
+                                <Option
+                                    label="Central de Ajuda"
+                                    value="help-center"
+                                    icon="fa-circle-question"
+                                />
+                                <Option
+                                    label="Documentação"
+                                    value="docs"
+                                    icon="fa-book"
+                                />
+                                <Option
+                                    label="Fale Conosco"
+                                    value="contact-us"
+                                    icon="fa-envelope"
+                                />
+                                <Option
+                                    label="Status"
+                                    value="status"
+                                    icon="fa-signal"
+                                />
+                                <Option
+                                    label="Comunidade"
+                                    value="community"
+                                    icon="fa-users"
+                                />
                             </div>
                         </template>
                     </Card>
 
                     <Card>
                         <template #card>
-                            <div class="flex flex-col gap-1 py-2 px-1 pb-3">
+                            <div class="flex flex-col gap-1 px-1 py-2 pb-3">
                                 <Option label="Visão geral" />
 
-                                <Option label="Análise" value="analytics" icon="fa-chart-line" />
-                                <Option label="Transações" value="transactions" icon="fa-arrow-right-arrow-left" highlighted />
-                                <Option label="Investimentos" value="investments" icon="fa-piggy-bank" />
-                                <Option label="Contas" value="accounts" icon="fa-building-columns" />
-                                <Option label="Gastos" value="spending" icon="fa-credit-card" />
+                                <Option
+                                    label="Análise"
+                                    value="analytics"
+                                    icon="fa-chart-line"
+                                />
+                                <Option
+                                    label="Transações"
+                                    value="transactions"
+                                    icon="fa-arrow-right-arrow-left"
+                                    highlighted
+                                />
+                                <Option
+                                    label="Investimentos"
+                                    value="investments"
+                                    icon="fa-piggy-bank"
+                                />
+                                <Option
+                                    label="Contas"
+                                    value="accounts"
+                                    icon="fa-building-columns"
+                                />
+                                <Option
+                                    label="Gastos"
+                                    value="spending"
+                                    icon="fa-credit-card"
+                                />
                             </div>
                         </template>
                     </Card>
 
                     <Card>
                         <template #card>
-                            <div class="flex flex-col gap-1 py-2 px-1 pb-3">
+                            <div class="flex flex-col gap-1 px-1 py-2 pb-3">
                                 <Option label="Conta" />
 
-                                <Option label="Perfil" value="profile" icon="fa-user" selected highlighted show-checkmark />
-                                <Option label="Cobrança" value="billing" icon="fa-file-invoice-dollar" />
-                                <Option label="Notificações" value="notifications" icon="fa-bell" />
-                                <Option label="Segurança" value="security" icon="fa-shield-halved" />
-                                <Option label="Aparência" value="appearance" icon="fa-palette" />
+                                <Option
+                                    label="Perfil"
+                                    value="profile"
+                                    icon="fa-user"
+                                    selected
+                                    highlighted
+                                    show-checkmark
+                                />
+                                <Option
+                                    label="Cobrança"
+                                    value="billing"
+                                    icon="fa-file-invoice-dollar"
+                                />
+                                <Option
+                                    label="Notificações"
+                                    value="notifications"
+                                    icon="fa-bell"
+                                />
+                                <Option
+                                    label="Segurança"
+                                    value="security"
+                                    icon="fa-shield-halved"
+                                />
+                                <Option
+                                    label="Aparência"
+                                    value="appearance"
+                                    icon="fa-palette"
+                                />
                             </div>
                         </template>
                     </Card>
@@ -171,21 +305,28 @@
                 <Card>
                     <template #header>
                         <h5>Meta de economia</h5>
-                        <small class="text-muted-foreground! mb-2">Metas ativas para o ano de 2026 no seu portifólio. Monitore o quão perto você está da sua meta.</small>
+                        <small class="mb-2 text-muted-foreground!"
+                            >Metas ativas para o ano de 2026 no seu portifólio. Monitore o quão
+                            perto você está da sua meta.</small
+                        >
                     </template>
 
                     <template #body>
                         <div class="flex flex-col gap-2">
-                            <Item variant="secondary" head="META ATUAL" :hover-effect="false">
+                            <Item
+                                variant="secondary"
+                                head="META ATUAL"
+                                :hover-effect="false"
+                            >
                                 <template #body>
-                                    <div class="flex flex-col mt-1">
-                                        <span class="text-3xl text-foreground font-semibold">
+                                    <div class="mt-1 flex flex-col">
+                                        <span class="text-3xl font-semibold text-foreground">
                                             $ 5,000
                                         </span>
 
                                         <ProgressBar
                                             v-model="ProgressBarValue"
-                                            class="w-full my-1"
+                                            class="my-1 w-full"
                                             readonly
                                             show-progress
                                         />
@@ -195,24 +336,26 @@
                                                 35% completo
                                             </small>
 
-                                            <small>
-                                                $ 50,000
-                                            </small>
+                                            <small> $ 50,000 </small>
                                         </div>
                                     </div>
                                 </template>
                             </Item>
 
-                            <Item variant="secondary" head="GUARDADO" :hover-effect="false">
+                            <Item
+                                variant="secondary"
+                                head="GUARDADO"
+                                :hover-effect="false"
+                            >
                                 <template #body>
-                                    <div class="flex flex-col mt-1">
-                                        <span class="text-3xl text-foreground font-semibold">
+                                    <div class="mt-1 flex flex-col">
+                                        <span class="text-3xl font-semibold text-foreground">
                                             $ 2,000
                                         </span>
 
                                         <ProgressBar
                                             v-model="ProgressBarValue2"
-                                            class="w-full my-1"
+                                            class="my-1 w-full"
                                             readonly
                                             show-progress
                                         />
@@ -222,15 +365,12 @@
                                                 15% completo
                                             </small>
 
-                                            <small>
-                                                $ 100,000
-                                            </small>
+                                            <small> $ 100,000 </small>
                                         </div>
                                     </div>
                                 </template>
                             </Item>
                         </div>
-                        
                     </template>
                 </Card>
             </section>
@@ -239,9 +379,7 @@
                 <Card>
                     <template #header>
                         <h5>Vendas</h5>
-                        <small class="text-muted-foreground!">
-                            Vendas nos ultimos 5 meses
-                        </small>
+                        <small class="text-muted-foreground!"> Vendas nos ultimos 5 meses </small>
                     </template>
 
                     <template #body>
@@ -259,15 +397,34 @@
                                         { date: new Date(2023, 4, 1), value: 30 }
                                     ]
                                 }"
+                                color="chart-2"
                                 :hide-label="true"
                             />
 
                             <div class="flex gap-2">
-                                <Item head="EM BREVE" label="Previsão" description="Marcado" variant="secondary" :hover-effect="false" class="w-full" />
-                                <Item head="PLANOS" label="A seguir" description="Salvo" variant="secondary" :hover-effect="false" class="w-full" />
+                                <Item
+                                    head="EM BREVE"
+                                    label="Previsão"
+                                    description="Marcado"
+                                    variant="secondary"
+                                    :hover-effect="false"
+                                    class="w-full"
+                                />
+                                <Item
+                                    head="PLANOS"
+                                    label="A seguir"
+                                    description="Salvo"
+                                    variant="secondary"
+                                    :hover-effect="false"
+                                    class="w-full"
+                                />
                             </div>
 
-                            <Button label="Ver todas as vendas" class="w-full" variant="primary" />
+                            <Button
+                                label="Ver todas as vendas"
+                                class="w-full"
+                                variant="primary"
+                            />
                         </div>
                     </template>
                 </Card>
@@ -275,21 +432,23 @@
                 <Card>
                     <template #header>
                         <div>
-                            <small class="text-muted-foreground!">
-                                Saldo sacável
-                            </small>
+                            <small class="text-muted-foreground!"> Saldo sacável </small>
 
-                            <h2 class="whitespace-nowrap">
-                                $ 2,200.00
-                            </h2>
+                            <h2 class="whitespace-nowrap">$ 2,200.00</h2>
 
-                            <Badge label="Pendente" variant="warning" />
+                            <Badge
+                                label="Pendente"
+                                variant="warning"
+                            />
                         </div>
                     </template>
 
                     <template #body>
                         <div>
-                            <Item variant="secondary" class="my-2">
+                            <Item
+                                variant="secondary"
+                                class="my-2"
+                            >
                                 <template #body>
                                     <div class="flex flex-col gap-2">
                                         <div class="flex justify-between">
@@ -305,7 +464,9 @@
                                         <Marker separator />
 
                                         <div class="flex justify-between">
-                                            <small class="text-muted-foreground!">Total sacável</small>
+                                            <small class="text-muted-foreground!"
+                                                >Total sacável</small
+                                            >
                                             <small class="font-medium!">$ 2,100.00</small>
                                         </div>
                                     </div>
@@ -313,7 +474,8 @@
                             </Item>
 
                             <small class="text-muted-foreground!">
-                                Assim que seu banco for conectado você irá poder sacar o seu saldo. O valor fica na sua conta indefinidamente até você peformar a ação.
+                                Assim que seu banco for conectado você irá poder sacar o seu saldo.
+                                O valor fica na sua conta indefinidamente até você peformar a ação.
                             </small>
                         </div>
                     </template>
@@ -419,7 +581,6 @@
                         <div class="flex flex-col gap-4">
                             <Select
                                 id="preferred-currency"
-
                                 v-model="currency"
                                 label="Moeda preferida"
                                 :options="currencyOptions"
@@ -431,26 +592,24 @@
                                         Valor mínimo de saque
                                     </small>
 
-                                    <span class="text-3xl text-foreground font-semibold whitespace-nowrap">
+                                    <span
+                                        class="text-3xl font-semibold whitespace-nowrap text-foreground"
+                                    >
                                         {{ formatMoney(payoutAmount) }}
                                     </span>
                                 </div>
 
                                 <ProgressBar
                                     v-model="payoutAmount"
-                                    class="w-full my-1"
+                                    class="my-1 w-full"
                                     :min="50"
                                     :max="10000"
                                 />
 
                                 <div class="flex justify-between">
-                                    <small class="text-muted-foreground!">
-                                        $ 50 (MIN)
-                                    </small>
+                                    <small class="text-muted-foreground!"> $ 50 (MIN) </small>
 
-                                    <small class="text-muted-foreground!">
-                                        $ 10,000 (MAX)
-                                    </small>
+                                    <small class="text-muted-foreground!"> $ 10,000 (MAX) </small>
                                 </div>
                             </div>
 
@@ -517,12 +676,15 @@
             <section class="flex flex-col gap-4 lg:hidden xl:flex">
                 <Card>
                     <template #body>
-                        <div class="flex flex-col gap-4 justify-center items-center w-full">
+                        <div class="flex w-full flex-col items-center justify-center gap-4">
                             <QrCode value="https://example.com" />
-                            
+
                             <div class="px-8">
                                 <h5 class="text-center">Escaneie para conectar</h5>
-                                <p class="text-muted-foreground! text-center">Abra a camera do celu celular e escaneie o QR code para se conectar.</p>
+                                <p class="text-center text-muted-foreground!">
+                                    Abra a camera do celu celular e escaneie o QR code para se
+                                    conectar.
+                                </p>
                             </div>
                         </div>
                     </template>
@@ -530,13 +692,16 @@
 
                 <Card>
                     <template #header>
-                        <h4>Novo chat</h4>
+                        <h5>Novo chat</h5>
                         <small class="text-muted-foreground!">Como posso te ajudar hoje?</small>
                     </template>
 
                     <template #card>
                         <div>
-                            <Marker separator class="mt-4"/>
+                            <Marker
+                                separator
+                                class="mt-4"
+                            />
 
                             <div
                                 ref="chatThread"
@@ -547,7 +712,7 @@
                             </div>
 
                             <form
-                                class="pb-4 px-4"
+                                class="px-4 pb-4"
 
                                 @submit.prevent="sendChatMessage"
                                 @keydown.enter.exact.prevent="sendChatMessage"
@@ -564,9 +729,10 @@
                                     :max-size="2000"
                                 >
                                     <template #input>
-                                        <div class="w-full flex justify-between p-2">
+                                        <div class="flex w-full justify-between p-2">
                                             <Button
                                                 label="Limpar"
+
                                                 @click="resetChat"
                                             />
 
@@ -587,7 +753,9 @@
                 <Card>
                     <template #header>
                         <h5>O que deseja fazer hoje?</h5>
-                        <small class="text-muted-foreground!">Selecione uma ação para começar</small>
+                        <small class="text-muted-foreground!"
+                            >Selecione uma ação para começar</small
+                        >
                     </template>
 
                     <template #body>
@@ -629,9 +797,30 @@
             </section>
         </article>
 
-        <section class="w-full flex items-center justify-center my-8">
+        <section class="my-8 flex w-full items-center justify-center">
             <small class="text-muted-foreground!">
-                Feito por <a class="text-muted-foreground! hover:text-foreground!" href="https://github.com/celiy" target="_blank" rel="noopener noreferrer">Diogo</a>. Baseado no design de <a class="text-muted-foreground! hover:text-foreground!" href="https://ui.shadcn.com/" target="_blank" rel="noopener noreferrer">shadcn</a>. O código está disponível no <a class="text-muted-foreground! hover:text-foreground!" href="https://github.com/celiy/cht-main" target="_blank" rel="noopener noreferrer">GitHub</a>.
+                Feito por
+                <a
+                    class="text-muted-foreground! hover:text-foreground!"
+                    href="https://github.com/celiy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Diogo</a
+                >. Baseado no design de
+                <a
+                    class="text-muted-foreground! hover:text-foreground!"
+                    href="https://ui.shadcn.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >shadcn</a
+                >. O código está disponível no
+                <a
+                    class="text-muted-foreground! hover:text-foreground!"
+                    href="https://github.com/celiy/cht-main"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >GitHub</a
+                >.
             </small>
         </section>
     </main>
@@ -676,9 +865,19 @@ export default defineComponent({
             actionOptions: [
                 { label: "Conta" },
                 { label: "Perfil", value: "user", icon: "fa-user" },
-                { label: "Email", value: "email", icon: "fa-envelope", tooltip: "Abrir caixa de entrada" },
+                {
+                    label: "Email",
+                    value: "email",
+                    icon: "fa-envelope",
+                    tooltip: "Abrir caixa de entrada"
+                },
                 { separator: true },
-                { label: "Sair", value: "exit", icon: "fa-right-from-bracket", variant: "destructive" }
+                {
+                    label: "Sair",
+                    value: "exit",
+                    icon: "fa-right-from-bracket",
+                    variant: "destructive"
+                }
             ] as OptionItem[],
             ProgressBarValue: 35,
             ProgressBarValue2: 15,

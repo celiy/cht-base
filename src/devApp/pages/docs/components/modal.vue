@@ -235,7 +235,7 @@
             </h3>
 
             <p>
-                <code>color="primary / success / warning / destructive"</code>
+                <code>color="info / success / warning / destructive"</code>
             </p>
         </section>
 

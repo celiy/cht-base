@@ -1,29 +1,24 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <main class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
         <section>
-            <h1>
-                Carousel
-            </h1>
+            <h1>Carousel</h1>
 
             <p>
                 Faixa deslizante de slides. Cada slide é um slot <code>#item-0</code>,
-                <code>#item-1</code>, … — imagem, texto ou qualquer markup.
-                Setas, pontos e swipe no telemóvel mudam o slide.
-                <code>showArrows</code>, <code>edgeClick</code> e
-                <code>stepsViewer</code> controlam a navegação.
-                Clique no padding em volta do item emite <code>click:outside</code>.
+                <code>#item-1</code>, … — imagem, texto ou qualquer markup. Setas, pontos e swipe no
+                telemóvel mudam o slide. <code>showArrows</code>, <code>edgeClick</code> e
+                <code>stepsViewer</code> controlam a navegação. Clique no padding em volta do item
+                emite <code>click:outside</code>.
             </p>
         </section>
 
         <section>
-            <h3>
-                Imagens
-            </h3>
+            <h3>Imagens</h3>
 
             <p>
                 Com <code>v-for</code>, o nome do slot é <code>item-</code> seguido do índice
-                (<code>#item-0</code>, <code>#item-1</code>, …).
-                <code>startIndex</code> (0-based) define o slide inicial.
+                (<code>#item-0</code>, <code>#item-1</code>, …). <code>startIndex</code> (0-based)
+                define o slide inicial.
             </p>
         </section>
 
@@ -34,13 +29,11 @@
                         <template
                             v-for="(image, idx) in images"
                             :key="idx"
-
                             #[`item-${idx}`]
                         >
                             <Image
                                 image-class="max-h-[50vh] rounded"
                                 :draggable="true"
-
                                 :src="image.src"
                                 :alt="image.alt"
                                 :open-modal="true"
@@ -52,14 +45,12 @@
         </section>
 
         <section>
-            <h3>
-                Setas e clique nas extremidades
-            </h3>
+            <h3>Setas e clique nas extremidades</h3>
 
             <p>
-                <code>showArrows</code> (default <code>true</code>) mostra as setas laterais.
-                Com <code>edgeClick</code>, cerca de 18% de cada lado do viewport
-                avança ou recua o slide — útil quando as setas estão escondidas.
+                <code>showArrows</code> (default <code>true</code>) mostra as setas laterais. Com
+                <code>edgeClick</code>, cerca de 18% de cada lado do viewport avança ou recua o
+                slide — útil quando as setas estão escondidas.
             </p>
         </section>
 
@@ -73,12 +64,10 @@
                         <template
                             v-for="(image, idx) in images"
                             :key="idx"
-
                             #[`item-${idx}`]
                         >
                             <Image
                                 image-class="max-h-[40vh] rounded"
-
                                 :src="image.src"
                                 :alt="image.alt"
                             />
@@ -89,14 +78,12 @@
         </section>
 
         <section>
-            <h3>
-                Indicador de passos
-            </h3>
+            <h3>Indicador de passos</h3>
 
             <p>
                 <code>stepsViewer="simplified"</code> (default) são as bolinhas sobre o slide.
-                <code>advanced</code> fica <b>abaixo</b> dos itens: chevrons e
-                <code>n / n</code>, no estilo do input.
+                <code>advanced</code> fica <b>abaixo</b> dos itens: chevrons e <code>n / n</code>,
+                no estilo do input.
             </p>
         </section>
 
@@ -106,24 +93,32 @@
                     <Carousel
                         :show-arrows="false"
                         edge-click
-                        steps-viewer="advanced"
+                        :steps-viewer="stepsIndicator ? 'advanced' : 'simplified'"
 
                         @click:outside="outsideCount += 1"
                     >
                         <template
                             v-for="(image, idx) in images"
                             :key="idx"
-
                             #[`item-${idx}`]
                         >
                             <Image
                                 image-class="max-h-[40vh] rounded"
-
                                 :src="image.src"
                                 :alt="image.alt"
                             />
                         </template>
                     </Carousel>
+
+                    <div class="mt-4 flex items-center gap-2">
+                        <p>Variante do step viewer:</p>
+
+                        <Button
+                            :label="stepsIndicator ? 'Advanced' : 'Simplified'"
+
+                            @click="stepsIndicator = !stepsIndicator"
+                        />
+                    </div>
 
                     <p class="mt-3 text-sm text-muted-foreground!">
                         Clique fora do item (padding do carousel):
@@ -134,13 +129,11 @@
         </section>
 
         <section>
-            <h3>
-                Conteúdo livre
-            </h3>
+            <h3>Conteúdo livre</h3>
 
             <p>
-                Cada slot recebe o que quiser: um bloco, um card, um formulário.
-                Não há prop <code>images</code> — o conteúdo vem só dos slots.
+                Cada slot recebe o que quiser: um bloco, um card, um formulário. Não há prop
+                <code>images</code> — o conteúdo vem só dos slots.
             </p>
         </section>
 
@@ -149,28 +142,31 @@
                 <div class="p-4">
                     <Carousel>
                         <template #item-0>
-                            <div class="w-full max-w-md rounded border border-border bg-card p-6 text-center">
-                                <p class="font-semibold text-lg">
-                                    Slide de texto
-                                </p>
+                            <div
+                                class="w-full max-w-md rounded border border-border bg-card p-6 text-center"
+                            >
+                                <p class="text-lg font-semibold">Slide de texto</p>
 
                                 <p class="mt-2">
                                     Qualquer HTML cabe no carousel, não só imagens. <br />
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque temporibus doloribus quis cupiditate, eveniet illum molestiae? Ipsam commodi praesentium beatae ipsa quasi, ut odio voluptatum modi quis, impedit sit distinctio.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque
+                                    temporibus doloribus quis cupiditate, eveniet illum molestiae?
+                                    Ipsam commodi praesentium beatae ipsa quasi, ut odio voluptatum
+                                    modi quis, impedit sit distinctio.
                                 </p>
                             </div>
                         </template>
 
                         <template #item-1>
-                            <div class="w-full max-w-md rounded border border-border bg-card p-6 flex flex-col items-center gap-3">
+                            <div
+                                class="flex w-full max-w-md flex-col items-center gap-3 rounded border border-border bg-card p-6"
+                            >
                                 <Badge
                                     label="Badge"
                                     variant="success"
                                 />
 
-                                <p>
-                                    Mix de componentes no mesmo slide.
-                                </p>
+                                <p>Mix de componentes no mesmo slide.</p>
                             </div>
                         </template>
 
@@ -213,7 +209,8 @@ export default defineComponent({
                 { src: "https://i.imgur.com/wAwAYzQ.jpeg", alt: "Image 2" },
                 { src: "https://i.imgur.com/4dIoDgD.jpeg", alt: "Image 3" }
             ],
-            outsideCount: 0
+            outsideCount: 0,
+            stepsIndicator: true
         };
     }
 });

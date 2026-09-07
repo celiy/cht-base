@@ -36,7 +36,10 @@
                             :max-height="240"
                         >
                             <p class="text-sm">
-                                Arraste qualquer borda ou canto.
+                                width="220" <br>
+                                height="140" <br>
+                                max-width="400" <br>
+                                max-height="240"
                             </p>
                         </Resizable>
                     </div>
