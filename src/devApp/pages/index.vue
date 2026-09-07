@@ -397,7 +397,7 @@
                                         { date: new Date(2023, 4, 1), value: 30 }
                                     ]
                                 }"
-                                color="chart-2"
+                                color="chart-3"
                                 :hide-label="true"
                             />
 

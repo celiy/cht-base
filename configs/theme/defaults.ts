@@ -2,8 +2,8 @@ import type { ThemeColorMap, ThemeName } from "./types";
 
 const primaryColor = {
     primary: "oklch(0.48 0.25 265.5)",
-    "primary-foreground": "oklch(0.97 0.014 254.604)",
-}
+    "primary-foreground": "oklch(0.97 0.014 254.604)"
+};
 
 const darkImportantColors = {
     destructive: "oklch(0.5959 0.2294 20.6)",
@@ -14,7 +14,7 @@ const darkImportantColors = {
     "warning-foreground": "oklch(0.145 0 0)",
     info: "var(--color-sky-500)",
     "info-foreground": "oklch(0.985 0 0)"
-}
+};
 
 const lightImportantColors = {
     destructive: "oklch(0.5959 0.2294 20.6)",
@@ -25,7 +25,7 @@ const lightImportantColors = {
     "warning-foreground": "oklch(0.145 0 0)",
     info: "var(--color-sky-600)",
     "info-foreground": "oklch(0.985 0 0)"
-}
+};
 
 /** System default dark palette (matches legacy style.css). */
 export const SYSTEM_DARK_COLORS: ThemeColorMap = {
