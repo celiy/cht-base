@@ -1,15 +1,19 @@
 <template>
-    <main class="relative flex flex-col h-dvh overflow-hidden">
-        <div class="shrink-0 relative z-60">
+    <main class="relative flex h-dvh flex-col overflow-hidden">
+        <div class="relative z-60 shrink-0">
             <Navigator>
-                <div class="flex justify-between py-4 px-6">
+                <div class="flex justify-between px-6 py-4">
                     <!-- Left side -->
                     <div class="flex flex-row gap-2">
                         <!-- Links -->
-                        <div v-for="link in navLinks" :key="link.path">
+                        <div
+                            v-for="link in navLinks"
+                            :key="link.path"
+                        >
                             <Button
                                 variant="transparent"
                                 :label="link.label"
+
                                 @click="$router.push(link.path)"
                             />
                         </div>
@@ -19,13 +23,18 @@
                         <Button
                             label="GitHub"
                             left-icon="fa-brands fa-github"
+
                             @click="openGitHub"
                         />
 
-                        <Marker separator orientation="vertical" />
+                        <Marker
+                            separator
+                            orientation="vertical"
+                        />
 
                         <Button
                             variant="transparent"
+
                             @click="toggleTheme"
                         >
                             <span
@@ -40,15 +49,19 @@
             <div
                 v-show="$project.route.isLoading"
 
-                class="route-loading-track pointer-events-none absolute bottom-0 left-0 right-0 h-0.5 overflow-hidden"
+                class="route-loading-track pointer-events-none absolute right-0 bottom-0 left-0 h-0.5 overflow-hidden"
                 aria-hidden="true"
             >
                 <div class="route-loading-bar absolute inset-y-0 w-1/3 bg-primary" />
             </div>
         </div>
 
-        <div v-if="$route.path.startsWith('/docs')" class="flex-1 min-h-0 relative">
-            <Sidebar 
+        <div
+            v-if="$route.path.startsWith('/docs')"
+
+            class="relative min-h-0 flex-1"
+        >
+            <Sidebar
                 title="CHT Docs"
                 description="The CHT documentation."
                 variant="minimalist"
@@ -56,11 +69,12 @@
             >
                 <div class="relative min-h-full">
                     <RouterView v-slot="{ Component, route }">
-                        <Transition name="docs-page-slide" mode="out-in">
+                        <Transition
+                            name="docs-page-slide"
+                            mode="out-in"
+                        >
                             <DocsOutline :key="route.path">
-                                <component
-                                    :is="Component"
-                                />
+                                <component :is="Component" />
                             </DocsOutline>
                         </Transition>
                     </RouterView>
@@ -73,8 +87,12 @@
                 </div>
             </Sidebar>
         </div>
-            
-        <div v-else class="relative flex-1 min-h-0 overflow-y-auto">
+
+        <div
+            v-else
+
+            class="relative min-h-0 flex-1 overflow-y-auto"
+        >
             <RouterView />
 
             <div
@@ -93,7 +111,7 @@
                 />
             </div>
         </ViewportCenter>
-        
+
         <Toast position="bottom" />
     </main>
 </template>
@@ -112,14 +130,16 @@ function toggleTheme() {
 }
 
 function openGitHub() {
-    window.open('https://github.com/celiy/cht-main', '_blank');
+    window.open("https://github.com/celiy/cht-main", "_blank");
 }
 </script>
 
 <style>
 .docs-page-slide-enter-active,
 .docs-page-slide-leave-active {
-    transition: opacity 0.1s ease, transform 0.1s ease;
+    transition:
+        opacity 0.1s ease,
+        transform 0.1s ease;
 }
 
 .docs-page-slide-enter-from {
