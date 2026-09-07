@@ -46,14 +46,16 @@
                 </div>
             </Navigator>
 
-            <div
-                v-show="$project.route.isLoading"
+            <Transition name="fade-loading">
+                <div
+                    v-if="$project.route.isLoading"
 
-                class="route-loading-track pointer-events-none absolute right-0 bottom-0 left-0 h-0.5 overflow-hidden"
-                aria-hidden="true"
-            >
-                <div class="route-loading-bar absolute inset-y-0 w-1/3 bg-primary" />
-            </div>
+                    class="route-loading-track pointer-events-none absolute right-0 bottom-0 left-0 h-0.5 overflow-hidden"
+                    aria-hidden="true"
+                >
+                    <div class="route-loading-bar absolute inset-y-0 w-1/3 bg-primary" />
+                </div>
+            </Transition>
         </div>
 
         <div
@@ -78,12 +80,6 @@
                             </DocsOutline>
                         </Transition>
                     </RouterView>
-
-                    <div
-                        v-if="$project.route.isLoading"
-
-                        class="absolute inset-0 z-20 bg-background/80"
-                    />
                 </div>
             </Sidebar>
         </div>
@@ -94,23 +90,24 @@
             class="relative min-h-0 flex-1 overflow-y-auto"
         >
             <RouterView />
+        </div>
 
+        <Transition name="fade-loading">
             <div
                 v-if="$project.route.isLoading"
 
-                class="absolute inset-0 z-20 bg-background/80"
-            />
-        </div>
-
-        <ViewportCenter v-if="$project.route.isLoading">
-            <div class="w-8 shrink-0">
-                <ProgressBar
-                    variant="circular"
-                    size="small"
-                    loading
-                />
+                class="pointer-events-none absolute inset-0 z-50 flex items-center justify-center bg-background/40"
+                aria-hidden="true"
+            >
+                <div class="w-8 shrink-0">
+                    <ProgressBar
+                        variant="circular"
+                        size="small"
+                        loading
+                    />
+                </div>
             </div>
-        </ViewportCenter>
+        </Transition>
 
         <Toast position="bottom" />
     </main>
@@ -135,21 +132,36 @@ function openGitHub() {
 </script>
 
 <style>
-.docs-page-slide-enter-active,
+.docs-page-slide-enter-active {
+    transition:
+        opacity 0.15s ease-out,
+        transform 0.15s ease-out;
+}
+
 .docs-page-slide-leave-active {
     transition:
-        opacity 0.1s ease,
-        transform 0.1s ease;
+        opacity 0.15s ease-in,
+        transform 0.15s ease-in;
 }
 
 .docs-page-slide-enter-from {
-    opacity: 0;
-    transform: translateX(-1.25rem);
+    opacity: 0.6;
+    transform: translateX(-1rem);
 }
 
 .docs-page-slide-leave-to {
+    opacity: 0.6;
+    transform: translateX(1rem);
+}
+
+.fade-loading-enter-active,
+.fade-loading-leave-active {
+    transition: opacity 0.2s ease;
+}
+
+.fade-loading-enter-from,
+.fade-loading-leave-to {
     opacity: 0;
-    transform: translateX(1.25rem);
 }
 
 .route-loading-bar {

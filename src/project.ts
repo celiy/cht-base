@@ -173,30 +173,11 @@ export const project = reactive<ProjectState>({
     }
 });
 
-const ROUTE_LOADING_DELAY_MS = 150;
-
-let routeLoadingTimer: ReturnType<typeof setTimeout> | null = null;
-
-function clearRouteLoadingTimer() {
-    if (routeLoadingTimer === null) {
-        return;
-    }
-
-    clearTimeout(routeLoadingTimer);
-    routeLoadingTimer = null;
-}
-
 function beginRouteLoading() {
-    clearRouteLoadingTimer();
-
-    routeLoadingTimer = setTimeout(() => {
-        project.route.isLoading = true;
-        routeLoadingTimer = null;
-    }, ROUTE_LOADING_DELAY_MS);
+    project.route.isLoading = true;
 }
 
 function endRouteLoading() {
-    clearRouteLoadingTimer();
     project.route.isLoading = false;
 }
 
