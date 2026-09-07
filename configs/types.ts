@@ -10,6 +10,8 @@ export interface ClientConfig {
     name: string;
     clientDir?: string;
     siteTitle: string;
+    version?: string;
+    versionCheckUrl?: string;
     theme?: ClientThemeConfig;
     frontend?: {
         repo?: string;

@@ -73,6 +73,10 @@ export interface ProjectState {
     labels: {
         siteTitle: string;
     };
+    version: {
+        current: string;
+        checkUrl: string;
+    };
     style: ProjectStyleState;
     user: {
         name: string | null;
@@ -147,6 +151,10 @@ export const project = reactive<ProjectState>({
     },
     labels: {
         siteTitle: ""
+    },
+    version: {
+        current: import.meta.env.VITE_APP_VERSION || "1.0.0",
+        checkUrl: import.meta.env.VITE_VERSION_CHECK_URL || ""
     },
     style: {
         activeTheme: DEFAULT_THEME,

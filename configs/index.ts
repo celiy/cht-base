@@ -16,6 +16,87 @@ export function resolveClientDir(cfg: ClientConfig): string {
     return cfg.clientDir || `${CLIENT_DIR_PREFIX}${cfg.name}`;
 }
 
+export function parseVersionInfo(content: string): { version?: string; versionCheckUrl?: string } {
+    if (!content || typeof content !== "string") {
+        return {};
+    }
+
+    const trimmed = content.trim();
+
+    if (trimmed.startsWith("{") && trimmed.endsWith("}")) {
+        try {
+            const parsed = JSON.parse(trimmed) as { version?: unknown; versionCheckUrl?: unknown };
+
+            return {
+                version: typeof parsed.version === "string" ? parsed.version.trim() : undefined,
+                versionCheckUrl:
+                    typeof parsed.versionCheckUrl === "string" ? parsed.versionCheckUrl.trim() : undefined
+            };
+        } catch {
+            // Fallback to plain text parsing
+        }
+    }
+
+    const result: { version?: string; versionCheckUrl?: string } = {};
+    const lines = trimmed.split(/\r?\n/);
+
+    for (const rawLine of lines) {
+        const line = rawLine.trim();
+
+        if (!line || line.startsWith("#") || line.startsWith("//")) {
+            continue;
+        }
+
+        const matchVersion = line.match(/^version[:\s=]+(.+)$/i);
+        const matchUrl = line.match(/^versionCheckUrl[:\s=]+(.+)$/i);
+
+        if (matchVersion && matchVersion[1]) {
+            result.version = matchVersion[1].trim();
+        } else if (matchUrl && matchUrl[1]) {
+            result.versionCheckUrl = matchUrl[1].trim();
+        } else if (!result.version && /^\d+(\.\d+)+/.test(line)) {
+            result.version = line.trim();
+        }
+    }
+
+    return result;
+}
+
+export function loadVersionFromFile(dirPath: string): { version?: string; versionCheckUrl?: string } {
+    const candidateFiles = ["version", "version.json", "version.txt"];
+
+    for (const filename of candidateFiles) {
+        const filePath = path.join(dirPath, filename);
+
+        if (fs.existsSync(filePath)) {
+            try {
+                const content = fs.readFileSync(filePath, "utf8");
+
+                return parseVersionInfo(content);
+            } catch {
+                // Ignore read failures
+            }
+        }
+    }
+
+    return {};
+}
+
+export function loadWorkspaceVersion(): { version?: string; versionCheckUrl?: string } {
+    return loadVersionFromFile(WORKSPACE_ROOT);
+}
+
+export function loadDevAppVersion(): { version?: string; versionCheckUrl?: string } {
+    const devAppDir = path.resolve(HERE, "..", "src", "devApp");
+    const devInfo = loadVersionFromFile(devAppDir);
+
+    if (devInfo.version || devInfo.versionCheckUrl) {
+        return devInfo;
+    }
+
+    return loadWorkspaceVersion();
+}
+
 function listDiscoveredClientNames(): string[] {
     if (!fs.existsSync(WORKSPACE_ROOT)) {
         return [];
@@ -54,7 +135,8 @@ export function loadConfig(name: string | undefined | null): ClientConfig | null
     }
 
     const clientDir = `${CLIENT_DIR_PREFIX}${name}`;
-    const configPath = path.join(WORKSPACE_ROOT, clientDir, CLIENT_CONFIG_FILE);
+    const clientDirPath = path.join(WORKSPACE_ROOT, clientDir);
+    const configPath = path.join(clientDirPath, CLIENT_CONFIG_FILE);
 
     if (!fs.existsSync(configPath)) {
         const known = listDiscoveredClientNames().join(", ") || "(none)";
@@ -83,11 +165,20 @@ export function loadConfig(name: string | undefined | null): ClientConfig | null
         );
     }
 
+    const fileVersion = loadVersionFromFile(clientDirPath);
+    const workspaceVersion = loadWorkspaceVersion();
+
     return {
         ...parsed,
         name: configName,
         siteTitle: parsed.siteTitle || name,
-        clientDir: parsed.clientDir || clientDir
+        clientDir: parsed.clientDir || clientDir,
+        version: parsed.version || fileVersion.version || workspaceVersion.version || "1.0.0",
+        versionCheckUrl:
+            parsed.versionCheckUrl ||
+            fileVersion.versionCheckUrl ||
+            workspaceVersion.versionCheckUrl ||
+            ""
     };
 }
 

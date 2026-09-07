@@ -8,6 +8,7 @@ import App from "@client/App.vue";
 import routes from "@client/routes";
 import tooltip from "./directives/tooltip";
 import { projectPlugin, projectActions } from "./project";
+import { checkAppVersion } from "./version/versionCheck";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -35,3 +36,5 @@ if (typeof document !== "undefined") {
 }
 
 app.mount("#app");
+
+void checkAppVersion();

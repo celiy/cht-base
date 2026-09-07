@@ -2,17 +2,21 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
 import tailwindcss from "@tailwindcss/vite";
-import { loadConfig, resolveClientDir } from "./configs";
+import { loadConfig, resolveClientDir, loadDevAppVersion } from "./configs";
 import { docsExampleSourcePlugin } from "./vite-plugins/docsExampleSource";
 import { clientThemePlugin } from "./vite-plugins/clientTheme";
 
 const clientName = process.env.CLIENT;
 const clientConfig = loadConfig(clientName);
+const devVersionInfo = loadDevAppVersion();
+
 const clientRoot = clientConfig
     ? path.resolve(__dirname, "..", resolveClientDir(clientConfig), "src")
     : path.resolve(__dirname, "src/devApp");
 
 const siteTitle = clientConfig?.siteTitle ?? "cht-base dev";
+const appVersion = clientConfig?.version ?? devVersionInfo.version ?? "1.0.0";
+const versionCheckUrl = clientConfig?.versionCheckUrl ?? devVersionInfo.versionCheckUrl ?? "";
 
 const alias: Record<string, string> = {
     "@": path.resolve(__dirname, "src"),
@@ -34,7 +38,9 @@ export default defineConfig({
         alias
     },
     define: {
-        "import.meta.env.VITE_SITE_TITLE": JSON.stringify(siteTitle)
+        "import.meta.env.VITE_SITE_TITLE": JSON.stringify(siteTitle),
+        "import.meta.env.VITE_APP_VERSION": JSON.stringify(appVersion),
+        "import.meta.env.VITE_VERSION_CHECK_URL": JSON.stringify(versionCheckUrl)
     },
     server: {
         fs: {
