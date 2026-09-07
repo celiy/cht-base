@@ -35,7 +35,7 @@
         </article>
 
         <article
-            class="relative mx-4 mb-8 grid gap-4 md:mx-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            class="relative mx-4 mb-8 grid gap-4 bg-linear-to-t from-muted to-transparent md:mx-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
         >
             <div
                 class="absolute bottom-0 z-50 h-82 w-full -translate-y-9 bg-linear-to-t from-background to-transparent"
