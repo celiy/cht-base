@@ -3,12 +3,14 @@
 import type { Router, RouteLocationNormalizedLoaded } from "vue-router";
 import type { ProjectState } from "./project";
 import type { ToastApi } from "@design/toast/toast";
+import type { HttpClient } from "./http";
 
 interface ImportMetaEnv {
     readonly VITE_SITE_TITLE: string;
     readonly VITE_DEFAULT_THEME: string;
     readonly VITE_AVAILABLE_THEMES: string;
     readonly VITE_THEME_STORAGE_KEY: string;
+    readonly VITE_API_BASE_URL: string;
 }
 
 interface ImportMeta {
@@ -21,6 +23,7 @@ declare module "vue" {
         $route: RouteLocationNormalizedLoaded;
         $project: ProjectState;
         $toast: ToastApi;
+        $http: HttpClient;
     }
 
     interface GlobalDirectives {
@@ -40,6 +43,7 @@ declare module "@vue/runtime-core" {
         $route: RouteLocationNormalizedLoaded;
         $project: ProjectState;
         $toast: ToastApi;
+        $http: HttpClient;
     }
 
     interface GlobalDirectives {

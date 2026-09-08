@@ -13,6 +13,7 @@ export interface ClientConfig {
     version?: string;
     versionCheckUrl?: string;
     theme?: ClientThemeConfig;
+    apiBaseUrl?: string;
     frontend?: {
         repo?: string;
     };

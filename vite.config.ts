@@ -17,9 +17,11 @@ const clientRoot = clientConfig
 const siteTitle = clientConfig?.siteTitle ?? "cht-base dev";
 const appVersion = clientConfig?.version ?? devVersionInfo.version ?? "1.0.0";
 const versionCheckUrl = clientConfig?.versionCheckUrl ?? devVersionInfo.versionCheckUrl ?? "";
+const apiBaseUrl = clientConfig?.apiBaseUrl ?? "http://127.0.0.1:8000";
 
 const alias: Record<string, string> = {
     "@": path.resolve(__dirname, "src"),
+    "@base": path.resolve(__dirname, "src"),
     "@design": path.resolve(__dirname, "../cht-design-system/src"),
     "@shared": path.resolve(__dirname, "../cht-shared/src"),
     "@client": clientRoot,
@@ -40,7 +42,8 @@ export default defineConfig({
     define: {
         "import.meta.env.VITE_SITE_TITLE": JSON.stringify(siteTitle),
         "import.meta.env.VITE_APP_VERSION": JSON.stringify(appVersion),
-        "import.meta.env.VITE_VERSION_CHECK_URL": JSON.stringify(versionCheckUrl)
+        "import.meta.env.VITE_VERSION_CHECK_URL": JSON.stringify(versionCheckUrl),
+        "import.meta.env.VITE_API_BASE_URL": JSON.stringify(apiBaseUrl)
     },
     server: {
         fs: {

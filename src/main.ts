@@ -9,6 +9,8 @@ import routes from "@client/routes";
 import tooltip from "./directives/tooltip";
 import { projectPlugin, projectActions } from "./project";
 import { checkAppVersion } from "./version/versionCheck";
+import { httpPlugin, hydrateHttpAuth } from "./http/plugin";
+import { installClientPlugins } from "@client/bootstrap";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -26,6 +28,11 @@ app.use(toastPlugin, {
 app.directive("tooltip", tooltip);
 
 app.use(projectPlugin, { router });
+
+app.use(httpPlugin);
+hydrateHttpAuth();
+
+installClientPlugins(app, router);
 
 const title = import.meta.env.VITE_SITE_TITLE;
 
