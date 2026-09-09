@@ -1,4 +1,5 @@
-import { app, BrowserWindow, ipcMain } from "electron";
+import { app, BrowserWindow, ipcMain, Menu } from "electron";
+import type { MenuItemConstructorOptions } from "electron";
 import fs from "node:fs";
 import path from "node:path";
 import { BackendManager } from "./backendManager";
@@ -59,6 +60,51 @@ function preloadPath(): string {
     return path.join(__dirname, "preload.cjs");
 }
 
+function attachContextMenu(window: BrowserWindow): void {
+    window.webContents.on("context-menu", (_event, params) => {
+        const template: MenuItemConstructorOptions[] = [];
+
+        if (params.editFlags.canCut) {
+            template.push({ label: "Recortar", role: "cut" });
+        }
+
+        if (params.editFlags.canCopy) {
+            template.push({ label: "Copiar", role: "copy" });
+        }
+
+        if (params.editFlags.canPaste) {
+            template.push({ label: "Colar", role: "paste" });
+        }
+
+        if (params.editFlags.canSelectAll) {
+            template.push({ label: "Selecionar tudo", role: "selectAll" });
+        }
+
+        if (runtimeConfig.isDev) {
+            if (template.length > 0) {
+                template.push({ type: "separator" });
+            }
+
+            template.push({
+                label: "Inspecionar elemento",
+                click: () => {
+                    window.webContents.inspectElement(params.x, params.y);
+
+                    if (!window.webContents.isDevToolsOpened()) {
+                        window.webContents.openDevTools({ mode: "bottom" });
+                    }
+                }
+            });
+        }
+
+        if (template.length === 0) {
+            return;
+        }
+
+        Menu.buildFromTemplate(template).popup({ window });
+    });
+}
+
 function createWindow(): BrowserWindow {
     const width = runtimeConfig.window?.width ?? DEFAULT_WIDTH;
     const height = runtimeConfig.window?.height ?? DEFAULT_HEIGHT;
@@ -85,6 +131,8 @@ function createWindow(): BrowserWindow {
             mainWindow = null;
         }
     });
+
+    attachContextMenu(window);
 
     return window;
 }

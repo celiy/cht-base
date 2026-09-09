@@ -8,6 +8,7 @@
 
 @import "virtual:client-theme";
 @source "../../";
+@source "../../../cht-client-*/src";
 @source "../../../cht-design-system/src";
 @source inline(
     "bg-{neutral,stone,zinc,slate,gray,red,orange,amber,yellow,lime,green,emerald,teal,cyan,sky,blue,indigo,violet,purple,fuchsia,pink,rose}-{50,{100..900..100}}"

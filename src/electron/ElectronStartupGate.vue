@@ -1,5 +1,5 @@
 <template>
-    <div class="relative min-h-dvh">
+    <div class="relative min-h-dvh flex flex-col">
         <slot />
 
         <Transition name="electron-startup-fade">

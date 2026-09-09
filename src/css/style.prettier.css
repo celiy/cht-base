@@ -1,6 +1,17 @@
 /* Prettier / Tailwind class sorting only — no Vite virtual imports. */
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
+
+@source "../../";
+@source "../../../cht-client-*/src";
+@source "../../../cht-design-system/src";
+@source "../../../cht-shared/src";
+@source inline(
+    "bg-{neutral,stone,zinc,slate,gray,red,orange,amber,yellow,lime,green,emerald,teal,cyan,sky,blue,indigo,violet,purple,fuchsia,pink,rose}-{50,{100..900..100}}"
+);
+
 @theme {
     --color-background: oklch(0.145 0 0);
     --color-foreground: oklch(0.95 0 0);
