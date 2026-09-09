@@ -21,5 +21,13 @@ export interface ClientConfig {
         dir?: string;
         repo?: string;
         script?: string;
+        startScript?: string;
+        host?: string;
+        port?: number;
+        healthPath?: string;
+    };
+    electron?: {
+        width?: number;
+        height?: number;
     };
 }

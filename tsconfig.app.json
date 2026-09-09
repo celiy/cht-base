@@ -35,6 +35,7 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "src/**/*.d.ts",
-    "../cht-design-system/src/types/**/*.d.ts"
+    "../cht-design-system/src/types/**/*.d.ts",
+    "electron/types.ts"
   ]
 }

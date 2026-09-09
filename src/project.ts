@@ -3,6 +3,7 @@ import type { Router } from "vue-router";
 import { reactive } from "vue";
 import { applyTextContrast } from "@design/textContrast";
 import type { ThemeName } from "../configs/theme/types";
+import type { BackendStatus, BackendStatusState } from "../electron/types";
 import {
     syncReactiveQuerySnapshot,
     syncReactiveParamsSnapshot
@@ -60,6 +61,15 @@ export interface ProjectStyleState {
     theme: (name: ThemeName) => void;
 }
 
+export interface ProjectElectronState {
+    isElectron: boolean;
+    platform: string;
+    hasBackend: boolean;
+    backendReady: boolean;
+    backendStatus: BackendStatusState;
+    backendMessage: string;
+}
+
 /**
  * The current project state.
  */
@@ -85,6 +95,7 @@ export interface ProjectState {
     route: {
         isLoading: boolean;
     };
+    electron: ProjectElectronState;
 }
 
 const urlQuerySnapshot = reactive<Record<string, string>>({});
@@ -170,6 +181,14 @@ export const project = reactive<ProjectState>({
     },
     route: {
         isLoading: false
+    },
+    electron: {
+        isElectron: false,
+        platform: "",
+        hasBackend: import.meta.env.VITE_HAS_BACKEND === "true",
+        backendReady: import.meta.env.VITE_HAS_BACKEND !== "true",
+        backendStatus: "idle",
+        backendMessage: ""
     }
 });
 
@@ -251,6 +270,48 @@ function startDeviceWatcher() {
     deviceWatcherStarted = true;
 }
 
+function applyBackendStatus(status: BackendStatus) {
+    project.electron.backendStatus = status.state;
+    project.electron.backendMessage = status.message;
+    project.electron.backendReady = status.state === "ready" || !project.electron.hasBackend;
+}
+
+let electronStarted = false;
+
+function initElectron() {
+    if (electronStarted || typeof window === "undefined") {
+        return;
+    }
+
+    electronStarted = true;
+
+    const api = window.electronAPI;
+
+    if (!api?.isElectron) {
+        project.electron.backendReady = true;
+        return;
+    }
+
+    project.electron.isElectron = true;
+    project.electron.platform = api.platform;
+
+    if (!project.electron.hasBackend) {
+        project.electron.backendReady = true;
+        return;
+    }
+
+    project.electron.backendReady = false;
+    project.electron.backendStatus = "starting";
+
+    void api.getBackendStatus().then((status) => {
+        applyBackendStatus(status);
+    });
+
+    api.onBackendStatus((status) => {
+        applyBackendStatus(status);
+    });
+}
+
 function initTheme() {
     const storedTheme = readStoredTheme();
     const initialTheme = storedTheme ?? DEFAULT_THEME;
@@ -265,6 +326,7 @@ export const projectActions = {
     init() {
         initTheme();
         startDeviceWatcher();
+        initElectron();
     },
 
     setSiteTitle(title: string) {

@@ -14,3 +14,4 @@ Ele define estrutura global, layouts, roteamento e integração com os demais pa
 - Monta rotas de páginas do cliente (`@client/routes.ts`).
 - Consome componentes do `cht-design-system` e utilitários do `cht-shared`.
 - Mantém modo `dev` interno para desenvolvimento de telas/labs do base.
+- Pode ser executado como app desktop Electron (`electron/`), iniciando o backend do cliente em paralelo com o frontend.

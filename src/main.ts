@@ -1,5 +1,5 @@
 import { createApp } from "vue";
-import { createWebHistory, createRouter } from "vue-router";
+import { createWebHashHistory, createWebHistory, createRouter } from "vue-router";
 import { toastPlugin } from "@design/toast/plugin";
 import { designSystemPlugin } from "@design/plugin";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -12,8 +12,11 @@ import { checkAppVersion } from "./version/versionCheck";
 import { httpPlugin, hydrateHttpAuth } from "./http/plugin";
 import { installClientPlugins } from "@client/bootstrap";
 
+const useHashHistory =
+    typeof window !== "undefined" && window.location.protocol === "file:";
+
 const router = createRouter({
-    history: createWebHistory(),
+    history: useHashHistory ? createWebHashHistory() : createWebHistory(),
     routes
 });
 

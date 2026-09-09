@@ -1,32 +1,41 @@
 {
-  "name": "cht-base",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "dev:client": "vite",
-    "build": "vue-tsc -b && vite build",
-    "build:client": "vue-tsc -b && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-free": "^7.2.0",
-    "@tailwindcss/vite": "^4.2.1",
-    "highlight.js": "^11.12.0",
-    "tailwindcss": "^4.2.1",
-    "vue": "^3.5.25",
-    "vue-router": "^4.6.4"
-  },
-  "devDependencies": {
-    "@types/node": "^24.10.1",
-    "@vitejs/plugin-vue": "^6.0.2",
-    "@vue/tsconfig": "^0.8.1",
-    "cross-env": "^7.0.3",
-    "prettier": "^3.9.6",
-    "sass-embedded": "^1.99.0",
-    "typescript": "~5.9.3",
-    "vite": "^7.3.1",
-    "vue-tsc": "^3.1.5"
-  }
+    "name": "cht-base",
+    "private": true,
+    "version": "0.0.0",
+    "description": "CHT base Vue application",
+    "author": "Celi Herstal",
+    "type": "module",
+    "main": "electron-dist/main.cjs",
+    "scripts": {
+        "dev": "vite",
+        "dev:client": "vite",
+        "build": "vue-tsc -b && vite build",
+        "build:client": "vue-tsc -b && vite build",
+        "preview": "vite preview",
+        "electron:compile": "node electron/build.mjs",
+        "electron": "electron electron-dist/main.cjs",
+        "electron:build": "electron-builder --config electron/builder.config.cjs --linux"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^7.2.0",
+        "@tailwindcss/vite": "^4.2.1",
+        "highlight.js": "^11.12.0",
+        "tailwindcss": "^4.2.1",
+        "vue": "^3.5.25",
+        "vue-router": "^4.6.4"
+    },
+    "devDependencies": {
+        "@types/node": "^24.10.1",
+        "@vitejs/plugin-vue": "^6.0.2",
+        "@vue/tsconfig": "^0.8.1",
+        "cross-env": "^7.0.3",
+        "electron": "^44.3.0",
+        "electron-builder": "^26.15.3",
+        "esbuild": "^0.28.2",
+        "prettier": "^3.9.6",
+        "sass-embedded": "^1.99.0",
+        "typescript": "~5.9.3",
+        "vite": "^7.3.1",
+        "vue-tsc": "^3.1.5"
+    }
 }
