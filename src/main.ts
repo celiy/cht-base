@@ -35,8 +35,6 @@ app.use(projectPlugin, { router });
 app.use(httpPlugin);
 hydrateHttpAuth();
 
-installClientPlugins(app, router);
-
 const title = import.meta.env.VITE_SITE_TITLE;
 
 projectActions.setSiteTitle(title);
@@ -45,6 +43,8 @@ if (typeof document !== "undefined") {
     document.title = title;
 }
 
-app.mount("#app");
-
-void checkAppVersion();
+void (async () => {
+    await installClientPlugins(app, router);
+    app.mount("#app");
+    void checkAppVersion();
+})();
