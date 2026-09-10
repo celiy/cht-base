@@ -1,11 +1,11 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4 pb-16 docs-markdown">
+    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4 pb-16 docs-markdown">
         <div
             class="flex flex-col gap-4"
 
             v-html="html"
         />
-    </main>
+    </article>
 </template>
 
 <script lang="ts">

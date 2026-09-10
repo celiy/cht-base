@@ -1,5 +1,5 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4 pb-12">
+    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4 pb-12">
         <section>
             <h1>
                 Bem-vindo
@@ -102,7 +102,7 @@
                 @click="$router.push('/docs/about')"
             />
         </section>
-    </main>
+    </article>
 </template>
 
 <script lang="ts">

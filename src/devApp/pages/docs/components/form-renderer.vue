@@ -1,5 +1,5 @@
 <template>
-    <main class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
+    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
         <section>
             <h1>Form renderer</h1>
 
@@ -222,7 +222,7 @@
                 </div>
             </DocsExample>
         </section>
-    </main>
+    </article>
 </template>
 
 <script lang="ts">

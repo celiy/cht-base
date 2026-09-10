@@ -1,5 +1,5 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
             <h1>
                 Radio
@@ -196,7 +196,7 @@
                 </div>
             </DocsExample>
         </section>
-    </main>
+    </article>
 </template>
 
 <script lang="ts">

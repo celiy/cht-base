@@ -1,5 +1,5 @@
 <template>
-    <main class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
         <section>
             <h1>
                 Dropdown
@@ -152,7 +152,7 @@
                 Itens só com <code>label</code> (sem <code>value</code>) viram cabeçalhos de grupo.
             </p>
         </section>
-    </main>
+    </article>
 </template>
 
 <script lang="ts">
