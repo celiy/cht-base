@@ -113,6 +113,34 @@
                 </div>
             </DocsExample>
         </section>
+
+        <section>
+            <h3>
+                Botão de ação
+            </h3>
+
+            <p>
+                <code>actionIcon</code> e <code>actionLabel</code> renderizam um botão no mesmo estilo
+                do gatilho, à direita por padrão (<code>actionSide</code> aceita
+                <code>left</code> ou <code>right</code>). O clique emite
+                <code>click:action</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Botão de ação">
+                <div class="p-4 flex flex-col gap-4 max-w-sm">
+                    <Select
+                        header="Com ação"
+                        action-icon="fa-plus"
+                        action-side="right"
+                        :options="options"
+
+                        @click:action="onActionClick"
+                    />
+                </div>
+            </DocsExample>
+        </section>
     </article>
 </template>
 
@@ -135,6 +163,12 @@ export default defineComponent({
                 { label: "123", value: "unodunotres" }
             ]
         };
+    },
+
+    methods: {
+        onActionClick() {
+            this.$toast.info("Ação do select");
+        }
     }
 });
 </script>
