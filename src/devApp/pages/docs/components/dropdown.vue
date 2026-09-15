@@ -141,6 +141,32 @@
 
         <section>
             <h3>
+                Submenu
+            </h3>
+
+            <p>
+                Uma opção com <code>options</code> abre um painel ao lado no hover ou no clique.
+                <code>openOn="click"</code> restringe a abertura ao clique.
+                O submenu pode ter mais <code>options</code> (aninhamento).
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Submenu">
+                <div class="p-4 max-w-xs">
+                    <Dropdown
+                        header="Com submenu"
+                        :close-on-select="false"
+                        :options="nestedOptions"
+
+                        @click:value="lastClicked = $event"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
                 Opções
             </h3>
 
@@ -150,6 +176,7 @@
                 <code>tooltip</code>, <code>separator: true</code> para uma linha divisória e
                 <code>variant: "destructive"</code> para ações de exclusão (texto vermelho).
                 Itens só com <code>label</code> (sem <code>value</code>) viram cabeçalhos de grupo.
+                <code>options</code> no item abre um submenu ao lado; <code>disabled</code> impede o clique.
             </p>
         </section>
     </article>
@@ -185,7 +212,19 @@ export default defineComponent({
                 { label: "Team", value: "team" },
                 { label: "Integrations", value: "integrations" },
                 { label: "API keys", value: "api" }
-            ]
+            ],
+            nestedOptions: [
+                { label: "Exportar", value: "export" },
+                {
+                    label: "Status",
+                    value: "status",
+                    options: [
+                        { label: "Ativo", value: "ativo" },
+                        { label: "Inativo", value: "inativo" }
+                    ]
+                },
+                { label: "Arquivar", value: "archive" }
+            ] as OptionItem[]
         };
     }
 });

@@ -206,6 +206,10 @@ pre code {
     @apply h-[1px] w-full bg-border;
 }
 
+.container-center {
+    @apply mx-auto flex flex-col justify-center;
+}
+
 .container-sm {
     @apply px-4;
 
