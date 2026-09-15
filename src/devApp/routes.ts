@@ -14,6 +14,7 @@ const routes: RouteRecordRaw[] = [
             { path: "docs/about", name: "docs-about", component: () => import("./pages/docs/about.vue") },
             { path: "docs/installation", name: "docs-installation", component: () => import("./pages/docs/installation.vue") },
             { path: "docs/usage", name: "docs-usage", component: () => import("./pages/docs/usage.vue") },
+            { path: "docs/styling", name: "docs-styling", component: () => import("./pages/docs/styling.vue") },
             { path: "docs/components/accordion", name: "components-accordion", component: () => import("./pages/docs/components/accordion.vue") },
             { path: "docs/components/avatar", name: "components-avatar", component: () => import("./pages/docs/components/avatar.vue") },
             { path: "docs/components/badges", name: "components-badges", component: () => import("./pages/docs/components/badges.vue") },

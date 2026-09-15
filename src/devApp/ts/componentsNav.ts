@@ -22,6 +22,10 @@ export const componentsNav = [
             {
                 label: "Usage",
                 link: "/docs/usage"
+            },
+            {
+                label: "Styling",
+                link: "/docs/styling"
             }
         ]
     },

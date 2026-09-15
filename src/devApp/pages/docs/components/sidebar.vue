@@ -55,11 +55,13 @@
 
             <p>
                 <code>type: "link"</code> — item clicável. <code>label</code> e <code>link</code> (rota).
+                <code>leftIcon</code> (opcional) é uma classe Font Awesome, ex. <code>fa-user</code>.
             </p>
 
             <p>
-                <code>type: "group"</code> — accordion de sublinks. <code>label</code> e
-                <code>links: [{ label, link }]</code> (não use <code>children</code>).
+                <code>type: "group"</code> — accordion de sublinks. <code>label</code>,
+                <code>leftIcon</code> opcional e
+                <code>links: [{ label, link, leftIcon }]</code> (não use <code>children</code>).
                 O aberto/fechado é estado local; o primeiro clique abre na hora (animação CSS de
                 <code>grid-template-rows</code>, sem <code>&lt;transition&gt;</code>).
             </p>
@@ -67,7 +69,26 @@
 
         <section class="mb-8">
             <DocsExample label="navItems">
-                <pre class="p-4 text-xs overflow-auto bg-muted/60 rounded">{{ exampleNav }}</pre>
+                <pre class="p-4 text-xs overflow-auto bg-muted/60 rounded">{
+  title: "CHT Docs",
+  description: "The CHT documentation.",
+  variant: "minimalist",
+  sidebarWidth: 300,
+  navItems: [
+    { type: "section", label: "Form" },
+    { type: "link", label: "Form renderer", link: "/docs/components/form-renderer", leftIcon: "fa-list" },
+    { type: "section", label: "Custom" },
+    {
+      type: "group",
+      label: "Charts",
+      leftIcon: "fa-chart-column",
+      links: [
+        { label: "Barras", link: "/docs/components/charts", leftIcon: "fa-chart-bar" },
+        { label: "Onda", link: "/docs/components/charts" }
+      ]
+    }
+  ]
+}</pre>
             </DocsExample>
         </section>
 
@@ -88,30 +109,6 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-    name: "ComponentsSidebar",
-
-    data() {
-        return {
-            exampleNav: `{
-  title: "CHT Docs",
-  description: "The CHT documentation.",
-  variant: "minimalist",
-  sidebarWidth: 300,
-  navItems: [
-    { type: "section", label: "Form" },
-    { type: "link", label: "Form renderer", link: "/docs/components/form-renderer" },
-    { type: "section", label: "Custom" },
-    {
-      type: "group",
-      label: "Charts",
-      links: [
-        { label: "Barras", link: "/docs/components/charts" },
-        { label: "Onda", link: "/docs/components/charts" }
-      ]
-    }
-  ]
-}`
-        };
-    }
+    name: "ComponentsSidebar"
 });
 </script>

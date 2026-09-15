@@ -19,7 +19,13 @@
                     <Dropdown
                         header="Ações"
 
-                        :options="actionOptions"
+                        :options="[
+                            { label: 'Conta' },
+                            { label: 'Perfil', value: 'user', icon: 'fa-user' },
+                            { label: 'Email', value: 'email', icon: 'fa-envelope', tooltip: 'Abrir caixa de entrada' },
+                            { separator: true },
+                            { label: 'Sair', value: 'exit', icon: 'fa-right-from-bracket', variant: 'destructive' }
+                        ]"
 
                         @click:value="lastClicked = $event"
                     />
@@ -50,7 +56,13 @@
                     <Dropdown
                         header="Com pesquisa"
                         :search="{ external: false }"
-                        :options="searchOptions"
+                        :options="[
+                            { label: 'Account', value: 'account' },
+                            { label: 'Billing', value: 'billing' },
+                            { label: 'Team', value: 'team' },
+                            { label: 'Integrations', value: 'integrations' },
+                            { label: 'API keys', value: 'api' }
+                        ]"
                     />
                 </div>
             </DocsExample>
@@ -73,8 +85,14 @@
                     <Dropdown
                         header="Permanece aberto"
                         :close-on-select="false"
-                        :options="actionOptions"
                         :mobile-modal="false"
+                        :options="[
+                            { label: 'Conta' },
+                            { label: 'Perfil', value: 'user', icon: 'fa-user' },
+                            { label: 'Email', value: 'email', icon: 'fa-envelope', tooltip: 'Abrir caixa de entrada' },
+                            { separator: true },
+                            { label: 'Sair', value: 'exit', icon: 'fa-right-from-bracket', variant: 'destructive' }
+                        ]"
 
                         @click:value="lastClicked = $event"
                     />
@@ -101,7 +119,13 @@
                         header="Forçar modal"
                         force-modal
 
-                        :options="actionOptions"
+                        :options="[
+                            { label: 'Conta' },
+                            { label: 'Perfil', value: 'user', icon: 'fa-user' },
+                            { label: 'Email', value: 'email', icon: 'fa-envelope' },
+                            { separator: true },
+                            { label: 'Sair', value: 'exit', icon: 'fa-right-from-bracket', variant: 'destructive' }
+                        ]"
 
                         @click:value="lastClicked = $event"
                     />
@@ -125,7 +149,15 @@
         <section class="mb-8">
             <DocsExample label="Botão customizado">
                 <div class="p-4 max-w-xs">
-                    <Dropdown :options="actionOptions">
+                    <Dropdown
+                        :options="[
+                            { label: 'Conta' },
+                            { label: 'Perfil', value: 'user', icon: 'fa-user' },
+                            { label: 'Email', value: 'email', icon: 'fa-envelope' },
+                            { separator: true },
+                            { label: 'Sair', value: 'exit', icon: 'fa-right-from-bracket', variant: 'destructive' }
+                        ]"
+                    >
                         <template #button="{ toggle, isOpen }">
                             <Button
                                 variant="primary"
@@ -135,6 +167,49 @@
                             />
                         </template>
                     </Dropdown>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
+                Aberto controlado
+            </h3>
+
+            <p>
+                <code>v-model:open</code> controla o painel com um boolean.
+                Sem slot <code>#button</code>, o trigger interno some: use um botão à parte.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Aberto controlado">
+                <div class="p-4">
+                    <div class="relative w-fit">
+                        <Button
+                            class="p-2.5"
+                            aria-label="Filtros"
+
+                            @click.stop="externalOpen = !externalOpen"
+                        >
+                            <span class="fa-solid fa-filter text-xs" />
+                        </Button>
+
+                        <Dropdown
+                            v-model:open="externalOpen"
+
+                            hide-dropdown-arrow
+                            :options="[
+                                { label: 'Conta' },
+                                { label: 'Perfil', value: 'user', icon: 'fa-user' },
+                                { label: 'Email', value: 'email', icon: 'fa-envelope' },
+                                { separator: true },
+                                { label: 'Sair', value: 'exit', icon: 'fa-right-from-bracket', variant: 'destructive' }
+                            ]"
+
+                            @click:value="lastClicked = $event"
+                        />
+                    </div>
                 </div>
             </DocsExample>
         </section>
@@ -157,7 +232,18 @@
                     <Dropdown
                         header="Com submenu"
                         :close-on-select="false"
-                        :options="nestedOptions"
+                        :options="[
+                            { label: 'Exportar', value: 'export' },
+                            {
+                                label: 'Status',
+                                value: 'status',
+                                options: [
+                                    { label: 'Ativo', value: 'ativo' },
+                                    { label: 'Inativo', value: 'inativo' }
+                                ]
+                            },
+                            { label: 'Arquivar', value: 'archive' }
+                        ]"
 
                         @click:value="lastClicked = $event"
                     />
@@ -186,7 +272,6 @@
 import { defineComponent } from "vue";
 import Button from "@design/components/Button.vue";
 import Dropdown from "@design/components/Dropdown.vue";
-import type { OptionItem } from "@design/components/internal/OptionsList.vue";
 
 export default defineComponent({
     name: "ComponentsDropdown",
@@ -199,32 +284,7 @@ export default defineComponent({
     data() {
         return {
             lastClicked: "",
-            actionOptions: [
-                { label: "Conta" },
-                { label: "Perfil", value: "user", icon: "fa-user" },
-                { label: "Email", value: "email", icon: "fa-envelope", tooltip: "Abrir caixa de entrada" },
-                { separator: true },
-                { label: "Sair", value: "exit", icon: "fa-right-from-bracket", variant: "destructive" }
-            ] as OptionItem[],
-            searchOptions: [
-                { label: "Account", value: "account" },
-                { label: "Billing", value: "billing" },
-                { label: "Team", value: "team" },
-                { label: "Integrations", value: "integrations" },
-                { label: "API keys", value: "api" }
-            ],
-            nestedOptions: [
-                { label: "Exportar", value: "export" },
-                {
-                    label: "Status",
-                    value: "status",
-                    options: [
-                        { label: "Ativo", value: "ativo" },
-                        { label: "Inativo", value: "inativo" }
-                    ]
-                },
-                { label: "Arquivar", value: "archive" }
-            ] as OptionItem[]
+            externalOpen: false
         };
     }
 });

@@ -5,18 +5,20 @@
                 <div class="flex justify-between px-6 py-4">
                     <!-- Left side -->
                     <div class="flex flex-row gap-2">
-                        <!-- Links -->
-                        <div
+                        <RouterLink
                             v-for="link in navLinks"
                             :key="link.path"
+                            v-slot="{ navigate }"
+                            custom
+                            :to="link.path"
                         >
                             <Button
                                 variant="transparent"
                                 :label="link.label"
 
-                                @click="$router.push(link.path)"
+                                @click="navigate"
                             />
-                        </div>
+                        </RouterLink>
                     </div>
 
                     <div class="flex gap-2">

@@ -33,7 +33,11 @@
                         in-helper-text="Texto de ajuda dentro do painel"
                         helper-text="Texto de ajuda abaixo do campo"
 
-                        :options="options"
+                        :options="[
+                            { label: 'ABC', value: 'abc', tooltip: 'Este item tem um tooltip' },
+                            { label: 'DEF', value: 'def' },
+                            { label: '123', value: 'unodunotres' }
+                        ]"
                     />
                 </div>
             </DocsExample>
@@ -58,7 +62,11 @@
                     <Select
                         header="Com pesquisa"
                         :search="{ external: false }"
-                        :options="options"
+                        :options="[
+                            { label: 'ABC', value: 'abc', tooltip: 'Este item tem um tooltip' },
+                            { label: 'DEF', value: 'def' },
+                            { label: '123', value: 'unodunotres' }
+                        ]"
                     />
                 </div>
             </DocsExample>
@@ -74,6 +82,10 @@
                 <code>min</code> e <code>max</code> limitam quantos itens cabem;
                 <code>allSelected: true</code> começa com tudo marcado.
                 O valor emitido é um array de strings.
+                <code>showSelectedLabels</code> (padrão <code>true</code>) mostra os labels
+                selecionados no gatilho, com reticências se não couberem.
+                Com <code>false</code>, o gatilho usa o <code>header</code> (placeholder)
+                quando nada está pré-selecionado.
             </p>
         </section>
 
@@ -82,9 +94,27 @@
                 <div class="p-4 flex flex-col gap-4 max-w-sm">
                     <Select
                         header="Múltiplo"
-                        helper-text="Mínimo 0, máximo 2"
-                        :options="options"
-                        :select-multiple="{ min: 0, max: 2 }"
+                        helper-text="Labels no gatilho; mínimo 0, máximo 4"
+                        :options="[
+                            { label: 'Português', value: 'pt' },
+                            { label: 'Inglês', value: 'en' },
+                            { label: 'Espanhol', value: 'es' },
+                            { label: 'Francês', value: 'fr' },
+                            { label: 'Alemão', value: 'de' }
+                        ]"
+                        :select-multiple="{ min: 0, max: 4 }"
+                    />
+
+                    <Select
+                        header="Só placeholder"
+                        helper-text="showSelectedLabels false"
+                        :show-selected-labels="false"
+                        :options="[
+                            { label: 'Português', value: 'pt' },
+                            { label: 'Inglês', value: 'en' },
+                            { label: 'Espanhol', value: 'es' }
+                        ]"
+                        :select-multiple="{ min: 0, max: 3 }"
                     />
                 </div>
             </DocsExample>
@@ -109,7 +139,11 @@
                         header="Com memo"
                         helper-text="Recarregue a página: a escolha permanece"
                         :use-memo="true"
-                        :options="options"
+                        :options="[
+                            { label: 'ABC', value: 'abc' },
+                            { label: 'DEF', value: 'def' },
+                            { label: '123', value: 'unodunotres' }
+                        ]"
                     />
                 </div>
             </DocsExample>
@@ -135,7 +169,11 @@
                         header="Com ação"
                         action-icon="fa-plus"
                         action-side="right"
-                        :options="options"
+                        :options="[
+                            { label: 'ABC', value: 'abc' },
+                            { label: 'DEF', value: 'def' },
+                            { label: '123', value: 'unodunotres' }
+                        ]"
 
                         @click:action="onActionClick"
                     />
@@ -154,16 +192,6 @@ export default defineComponent({
 
     components: {
         Select
-    },
-
-    data() {
-        return {
-            options: [
-                { label: "ABC", value: "abc", tooltip: "Este item tem um tooltip" },
-                { label: "DEF", value: "def" },
-                { label: "123", value: "unodunotres" }
-            ]
-        };
     },
 
     methods: {
