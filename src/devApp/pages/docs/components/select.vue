@@ -141,6 +141,36 @@
 
         <section>
             <h3>
+                Combobox com opção fixa
+            </h3>
+
+            <p>
+                <code>combobox-option</code> junto com <code>combobox</code>: ao escolher na lista,
+                o valor fica travado (como um select) e um X no input limpa a seleção.
+                Texto livre só enquanto nenhuma opção está selecionada.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Combobox option">
+                <div class="p-4 flex flex-col gap-4 max-w-sm">
+                    <Select
+                        combobox
+                        combobox-option
+                        header="Cliente"
+                        :query="comboboxOptionQuery"
+                        :model-value="comboboxOptionValue"
+                        :options="comboboxOptions"
+
+                        @update:query="comboboxOptionQuery = $event"
+                        @update:value="comboboxOptionValue = $event"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
                 Múltipla seleção
             </h3>
 
@@ -317,6 +347,8 @@ export default defineComponent({
             ],
             externalLast: "",
             comboboxQuery: "",
+            comboboxOptionQuery: "",
+            comboboxOptionValue: "",
             comboboxOptions: [
                 { label: "Alinhamento", value: "1" },
                 { label: "Balanceamento", value: "2" },

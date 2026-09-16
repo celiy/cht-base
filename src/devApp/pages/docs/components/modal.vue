@@ -1,23 +1,33 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
         <section>
-            <h1>
-                Modal
-            </h1>
+            <h1>Modal</h1>
 
             <p>
                 Painel sobreposto. Fecha com clique no backdrop, no X ou com <code>Esc</code>.
-                <code>variant="blank"</code> é só um card com <code>p-4</code> e o <code>#body</code>,
-                sem header nem botão de fechar. Drawer tem página própria.
+                <code>variant="blank"</code> é só um card com <code>p-4</code> e o
+                <code>#body</code>, sem header nem botão de fechar. Drawer tem página própria.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Modal">
-                <div class="p-4 flex flex-wrap gap-2">
-                    <Button label="Só header e body" @click="plain = true" />
-                    <Button label="Com descrição" @click="withDescription = true" />
-                    <Button label="Com footer" @click="withFooter = true" />
+                <div class="flex flex-wrap gap-2 p-4">
+                    <Button
+                        label="Só header e body"
+
+                        @click="plain = true"
+                    />
+                    <Button
+                        label="Com descrição"
+
+                        @click="withDescription = true"
+                    />
+                    <Button
+                        label="Com footer"
+
+                        @click="withFooter = true"
+                    />
 
                     <Modal
                         size="small"
@@ -25,9 +35,7 @@
 
                         @update:value="plain = $event"
                     >
-                        <template #header>
-                            Sem footer
-                        </template>
+                        <template #header> Sem footer </template>
 
                         <template #body>
                             <p>Apenas cabeçalho e conteúdo. Esc fecha.</p>
@@ -40,13 +48,9 @@
 
                         @update:value="withDescription = $event"
                     >
-                        <template #header>
-                            Com descrição
-                        </template>
+                        <template #header> Com descrição </template>
 
-                        <template #description>
-                            Texto auxiliar abaixo do título.
-                        </template>
+                        <template #description> Texto auxiliar abaixo do título. </template>
 
                         <template #body>
                             <p>Corpo do modal com descrição no topo.</p>
@@ -59,13 +63,9 @@
 
                         @update:value="withFooter = $event"
                     >
-                        <template #header>
-                            Completo
-                        </template>
+                        <template #header> Completo </template>
 
-                        <template #description>
-                            Header, description, body e footer.
-                        </template>
+                        <template #description> Header, description, body e footer. </template>
 
                         <template #body>
                             <p>Use os botões ou Esc para fechar.</p>
@@ -94,22 +94,32 @@
         </section>
 
         <section>
-            <h3>
-                Variantes
-            </h3>
+            <h3>Variantes</h3>
 
             <p>
-                <code>variant="modal / blank / preview"</code>.
-                <code>blank</code> não tem X nem título: só o conteúdo no card.
+                <code>variant="modal / blank / preview"</code>. <code>blank</code> não tem X nem
+                título: só o conteúdo no card.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Tamanho">
-                <div class="p-4 flex flex-wrap gap-2">
-                    <Button label="Modal" @click="modal = true" />
-                    <Button label="Blank" @click="blank = true" />
-                    <Button label="Preview" @click="preview = true" />
+                <div class="flex flex-wrap gap-2 p-4">
+                    <Button
+                        label="Modal"
+
+                        @click="modal = true"
+                    />
+                    <Button
+                        label="Blank"
+
+                        @click="blank = true"
+                    />
+                    <Button
+                        label="Preview"
+
+                        @click="preview = true"
+                    />
 
                     <Modal
                         variant="modal"
@@ -118,13 +128,9 @@
 
                         @update:value="modal = $event"
                     >
-                        <template #header>
-                            Modal comum
-                        </template>
+                        <template #header> Modal comum </template>
 
-                        <template #description>
-                            Default
-                        </template>
+                        <template #description> Default </template>
 
                         <template #body>
                             <p>Variante default usado</p>
@@ -139,7 +145,10 @@
                         @update:value="blank = $event"
                     >
                         <template #body>
-                            <p class="p-4">Modal blank <br><br> Neste variante o modal só é um card comum.</p>
+                            <p class="p-4">
+                                Modal blank <br /><br />
+                                Neste variante o modal só é um card comum.
+                            </p>
                         </template>
                     </Modal>
 
@@ -151,10 +160,15 @@
                         @update:value="preview = $event"
                     >
                         <template #body>
-                            <div class="flex justify-center items-center gap-2 flex-col bg-accent p-4 rounded">
+                            <div
+                                class="flex flex-col items-center justify-center gap-2 rounded bg-accent p-4"
+                            >
                                 <p>Modal preview</p>
 
-                                <p>Neste variante o modal é vazio visualmente. E totalmente customizável.</p>
+                                <p>
+                                    Neste variante o modal é vazio visualmente. E totalmente
+                                    customizável.
+                                </p>
 
                                 <Button>Click me</Button>
                             </div>
@@ -165,21 +179,36 @@
         </section>
 
         <section>
-            <h3>
-                Tamanho
-            </h3>
+            <h3>Tamanho</h3>
 
             <p>
-                <code>size="small / medium / large"</code>
+                <code>size="small / medium / large / extra-large"</code>
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Tamanho">
-                <div class="p-4 flex flex-wrap gap-2">
-                    <Button label="Small" @click="small = true" />
-                    <Button label="Medium" @click="medium = true" />
-                    <Button label="Large" @click="large = true" />
+                <div class="flex flex-wrap gap-2 p-4">
+                    <Button
+                        label="Small"
+
+                        @click="small = true"
+                    />
+                    <Button
+                        label="Medium"
+
+                        @click="medium = true"
+                    />
+                    <Button
+                        label="Large"
+
+                        @click="large = true"
+                    />
+                    <Button
+                        label="Extra-large"
+
+                        @click="extralarge = true"
+                    />
 
                     <Modal
                         size="small"
@@ -187,9 +216,7 @@
 
                         @update:value="small = $event"
                     >
-                        <template #header>
-                            Small
-                        </template>
+                        <template #header> Small </template>
 
                         <template #body>
                             <p>Largura reduzida.</p>
@@ -202,9 +229,7 @@
 
                         @update:value="medium = $event"
                     >
-                        <template #header>
-                            Medium
-                        </template>
+                        <template #header> Medium </template>
 
                         <template #body>
                             <p>Largura padrão.</p>
@@ -217,12 +242,23 @@
 
                         @update:value="large = $event"
                     >
-                        <template #header>
-                            Large
-                        </template>
+                        <template #header> Large </template>
 
                         <template #body>
                             <p>Largura ampla para conteúdo maior.</p>
+                        </template>
+                    </Modal>
+
+                    <Modal
+                        size="extra-large"
+                        :is-open="extralarge"
+
+                        @update:value="extralarge = $event"
+                    >
+                        <template #header> Large </template>
+
+                        <template #body>
+                            <p>Modal para conteúdos grandes</p>
                         </template>
                     </Modal>
                 </div>
@@ -230,9 +266,7 @@
         </section>
 
         <section>
-            <h3>
-                Cor da borda
-            </h3>
+            <h3>Cor da borda</h3>
 
             <p>
                 <code>color="info / success / warning / destructive"</code>
@@ -241,10 +275,25 @@
 
         <section class="mb-8">
             <DocsExample label="Cor da borda">
-                <div class="p-4 flex flex-wrap gap-2">
-                    <Button label="Warning" variant="warning" @click="warning = true" />
-                    <Button label="Destructive" variant="destructive" @click="destructive = true" />
-                    <Button label="Success" variant="success" @click="success = true" />
+                <div class="flex flex-wrap gap-2 p-4">
+                    <Button
+                        label="Warning"
+                        variant="warning"
+
+                        @click="warning = true"
+                    />
+                    <Button
+                        label="Destructive"
+                        variant="destructive"
+
+                        @click="destructive = true"
+                    />
+                    <Button
+                        label="Success"
+                        variant="success"
+
+                        @click="success = true"
+                    />
 
                     <Modal
                         size="small"
@@ -253,9 +302,7 @@
 
                         @update:value="warning = $event"
                     >
-                        <template #header>
-                            Warning
-                        </template>
+                        <template #header> Warning </template>
 
                         <template #body>
                             <p>Borda de aviso.</p>
@@ -269,9 +316,7 @@
 
                         @update:value="destructive = $event"
                     >
-                        <template #header>
-                            Destructive
-                        </template>
+                        <template #header> Destructive </template>
 
                         <template #body>
                             <p>Borda destrutiva.</p>
@@ -285,9 +330,7 @@
 
                         @update:value="success = $event"
                     >
-                        <template #header>
-                            Success
-                        </template>
+                        <template #header> Success </template>
 
                         <template #body>
                             <p>Borda de sucesso.</p>
@@ -298,19 +341,19 @@
         </section>
 
         <section>
-            <h3>
-                Empilhamento
-            </h3>
+            <h3>Empilhamento</h3>
 
-            <p>
-                Vários modais abertos.
-            </p>
+            <p>Vários modais abertos.</p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Empilhamento">
                 <div class="p-4">
-                    <Button label="Abrir dois modais" @click="openStacked" />
+                    <Button
+                        label="Abrir dois modais"
+
+                        @click="openStacked"
+                    />
 
                     <Modal
                         size="medium"
@@ -318,16 +361,18 @@
 
                         @update:value="outer = $event"
                     >
-                        <template #header>
-                            Modal de baixo
-                        </template>
+                        <template #header> Modal de baixo </template>
 
                         <template #body>
                             <p class="mb-4">
                                 Este fica atrás. Abra o segundo e pressione Esc: só o de cima fecha.
                             </p>
 
-                            <Button label="Abrir o de cima" @click="inner = true" />
+                            <Button
+                                label="Abrir o de cima"
+
+                                @click="inner = true"
+                            />
                         </template>
                     </Modal>
 
@@ -337,9 +382,7 @@
 
                         @update:value="inner = $event"
                     >
-                        <template #header>
-                            Modal de cima
-                        </template>
+                        <template #header> Modal de cima </template>
 
                         <template #body>
                             <p>Esc fecha este primeiro.</p>
@@ -375,6 +418,7 @@ export default defineComponent({
             small: false,
             medium: false,
             large: false,
+            extralarge: false,
             warning: false,
             destructive: false,
             success: false,

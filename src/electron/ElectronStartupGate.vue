@@ -1,5 +1,5 @@
 <template>
-    <div class="relative min-h-dvh flex flex-col">
+    <div class="relative flex h-screen flex-col">
         <slot />
 
         <Transition name="electron-startup-fade">
@@ -107,7 +107,11 @@ export default defineComponent({
                 return project.electron.backendMessage || "Verifique os logs e tente novamente.";
             }
 
-            return project.electron.backendMessage || STATUS_HINTS[this.hintIndex] || "Iniciando serviços locais...";
+            return (
+                project.electron.backendMessage ||
+                STATUS_HINTS[this.hintIndex] ||
+                "Iniciando serviços locais..."
+            );
         }
     },
 
