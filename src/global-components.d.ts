@@ -34,6 +34,7 @@ type DesignSystemComponents = {
     CustomAvatar: typeof import("@design/components/custom/Avatar.vue").default;
     CustomSkeleton: typeof import("@design/components/custom/Skeleton.vue").default;
     Navigator: typeof import("@design/components/custom/Navigator.vue").default;
+    NotFoundPage: typeof import("@design/components/custom/NotFoundPage.vue").default;
     Pagination: typeof import("@design/components/custom/Pagination.vue").default;
     Resizable: typeof import("@design/components/custom/Resizable.vue").default;
     Sidebar: typeof import("@design/components/custom/Sidebar.vue").default;

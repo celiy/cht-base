@@ -3,6 +3,7 @@ import type { RouteRecordRaw } from "vue-router";
 import Index from "./pages/index.vue";
 import DevAppLayout from "./DevAppLayout.vue";
 import docs from "./pages/docs/docs.vue";
+import NotFoundPage from "@design/components/custom/NotFoundPage.vue";
 
 const routes: RouteRecordRaw[] = [
     {
@@ -50,8 +51,24 @@ const routes: RouteRecordRaw[] = [
             { path: "docs/components/toast", name: "components-toast", component: () => import("./pages/docs/components/toast.vue") },
             { path: "docs/components/tooltip", name: "components-tooltip", component: () => import("./pages/docs/components/tooltip.vue") },
             { path: "docs/components/colors", name: "components-colors", component: () => import("./pages/docs/components/colors.vue") },
-            { path: "docs/components/typography", name: "components-typography", component: () => import("./pages/docs/components/typography.vue") }
+            { path: "docs/components/typography", name: "components-typography", component: () => import("./pages/docs/components/typography.vue") },
+            {
+                path: ":pathMatch(.*)*",
+                name: "not-found",
+                component: NotFoundPage,
+                props: {
+                    homeHref: "/"
+                }
+            }
         ]
+    },
+    {
+        path: "/:pathMatch(.*)*",
+        name: "not-found-root",
+        component: NotFoundPage,
+        props: {
+            homeHref: "/"
+        }
     }
 ];
 

@@ -8,6 +8,7 @@
             <p>
                 Campo de escolha com lista flutuante. Aceita pesquisa local, tooltips nas opções,
                 seleção múltipla, persistência em <code>localStorage</code> e textos de ajuda dentro e fora do painel.
+                <code>combobox</code> usa um input no gatilho para texto livre com sugestões.
                 Uma opção com <code>options</code> abre um submenu ao lado (hover ou clique).
                 Em mobile abre um modal blank (<code>mobileModal</code> / <code>forceModal</code>).
             </p>
@@ -74,6 +75,72 @@
 
         <section>
             <h3>
+                Pesquisa externa
+            </h3>
+
+            <p>
+                <code>:search="{ external: true, field: 'modelo' }"</code> não filtra a lista:
+                a cada digitação (com debounce) emite <code>search:external</code> com
+                <code>{ field, value }</code>. O pai usa <code>field</code> e <code>value</code>
+                para procurar a entidade no backend, por exemplo
+                <code>GET /api/veiculo?modelo=gol</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Pesquisa externa">
+                <div class="p-4 flex flex-col gap-4 max-w-sm">
+                    <Select
+                        header="Modelo"
+                        :search="{ external: true, field: 'modelo' }"
+                        :options="externalOptions"
+
+                        @search:external="onExternalSearch"
+                    />
+
+                    <p class="text-sm text-muted-foreground">
+                        Última busca: {{ externalLast || "—" }}
+                    </p>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
+                Combobox
+            </h3>
+
+            <p>
+                <code>combobox</code> troca o botão do gatilho por um <code>Input</code>.
+                O texto livre fica em <code>v-model:query</code>; escolher uma opção
+                preenche o input com o label e emite o <code>value</code> da opção.
+                Com <code>:search="{ external: true }"</code> a digitação emite
+                <code>search:external</code> (com debounce), sem campo de busca dentro da lista.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Combobox">
+                <div class="p-4 flex flex-col gap-4 max-w-sm">
+                    <Select
+                        combobox
+                        header="Serviço"
+                        :query="comboboxQuery"
+                        :options="comboboxOptions"
+                        :search="{ external: false }"
+
+                        @update:query="comboboxQuery = $event"
+                    />
+
+                    <p class="text-sm text-muted-foreground">
+                        Texto: {{ comboboxQuery || "—" }}
+                    </p>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
                 Múltipla seleção
             </h3>
 
@@ -115,6 +182,39 @@
                             { label: 'Espanhol', value: 'es' }
                         ]"
                         :select-multiple="{ min: 0, max: 3 }"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
+                Seleção separada
+            </h3>
+
+            <p>
+                <code>separateSelected</code> (padrão <code>false</code>) só vale com
+                <code>selectMultiple</code>. As opções marcadas saem da lista e do gatilho:
+                ficam abaixo, em um <code>flex-wrap</code> de grupos de botões
+                (<code>variant="outline"</code>, <code>size="small"</code>).
+                O botão do label emite <code>click:selected</code> com o valor da opção;
+                o X devolve a opção à lista e emite <code>remove:selected</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Seleção separada">
+                <div class="p-4 flex flex-col gap-4 max-w-sm">
+                    <Select
+                        header="Veículos"
+                        helper-text="Marque na lista; os selecionados saem dela e ficam abaixo"
+                        :options="separateOptions"
+                        :select-multiple="{ min: 0 }"
+                        :separate-selected="true"
+                        v-model="separateSelectedValues"
+
+                        @click:selected="onSeparateSelectedClick"
+                        @remove:selected="onSeparateSelectedRemove"
                     />
                 </div>
             </DocsExample>
@@ -194,9 +294,66 @@ export default defineComponent({
         Select
     },
 
+    data() {
+        return {
+            separateSelectedValues: ["gol", "uno"],
+            separateOptions: [
+                { label: "Gol · ABC1D23", value: "gol" },
+                { label: "Uno · XYZ1A23", value: "uno" },
+                { label: "Onix · QWE2B34", value: "onix" },
+                { label: "Civic · RTY3C45", value: "civic" }
+            ],
+            allExternalOptions: [
+                { label: "Gol", value: "gol" },
+                { label: "Uno", value: "uno" },
+                { label: "Onix", value: "onix" },
+                { label: "Civic", value: "civic" }
+            ],
+            externalOptions: [
+                { label: "Gol", value: "gol" },
+                { label: "Uno", value: "uno" },
+                { label: "Onix", value: "onix" },
+                { label: "Civic", value: "civic" }
+            ],
+            externalLast: "",
+            comboboxQuery: "",
+            comboboxOptions: [
+                { label: "Alinhamento", value: "1" },
+                { label: "Balanceamento", value: "2" },
+                { label: "Troca de óleo", value: "3" },
+                { label: "Revisão", value: "4" }
+            ]
+        };
+    },
+
     methods: {
         onActionClick() {
             this.$toast.info("Ação do select");
+        },
+
+        onSeparateSelectedClick(value: string) {
+            this.$toast.info(`Opção: ${value}`);
+        },
+
+        onSeparateSelectedRemove(value: string) {
+            this.$toast.info(`Removido: ${value}`);
+        },
+
+        onExternalSearch(payload: { field: string; value: string }) {
+            this.externalLast = payload.field
+                ? `${payload.field}:${payload.value || "(vazio)"}`
+                : payload.value || "(vazio)";
+
+            const query = payload.value.trim().toLowerCase();
+
+            if (!query) {
+                this.externalOptions = [...this.allExternalOptions];
+                return;
+            }
+
+            this.externalOptions = this.allExternalOptions.filter((option) => {
+                return Boolean(option.label && option.label.toLowerCase().includes(query));
+            });
         }
     }
 });

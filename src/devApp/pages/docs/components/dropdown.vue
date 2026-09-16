@@ -46,7 +46,8 @@
                 <code>:search="{ external: false }"</code> mostra um campo no topo da lista e filtra por
                 <code>label</code> (e por <code>value</code> se nada bater no label).
                 Ao abrir, o campo recebe foco e o primeiro item fica pré-selecionado; setas navegam, Enter confirma, Esc fecha.
-                <code>external: true</code> deixa a filtragem a cargo do pai.
+                <code>:search="{ external: true, field: 'modelo' }"</code> deixa a filtragem a cargo do pai
+                e emite <code>search:external</code> com <code>{ field, value }</code>.
             </p>
         </section>
 
