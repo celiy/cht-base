@@ -1,57 +1,116 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
         <section>
-            <h1>
-                Badge
-            </h1>
+            <h1>Badge</h1>
 
-            <p>
-                Rótulo compacto para status, categorias ou links.
-            </p>
+            <p>Rótulo compacto para status, categorias ou links.</p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Badge">
-                <div class="p-4 flex flex-wrap gap-2">
+                <div class="flex flex-wrap gap-2 p-4">
                     <Badge label="Primary" />
-                    <Badge label="Secondary" variant="secondary" />
-                    <Badge label="Destructive" variant="destructive" />
-                    <Badge label="Warning" variant="warning" />
-                    <Badge label="Info" variant="info" />
-                    <Badge label="Success" variant="success" />
+                    <Badge
+                        label="Secondary"
+                        variant="secondary"
+                    />
+                    <Badge
+                        label="Destructive"
+                        variant="destructive"
+                    />
+                    <Badge
+                        label="Warning"
+                        variant="warning"
+                    />
+                    <Badge
+                        label="Info"
+                        variant="info"
+                    />
+                    <Badge
+                        label="Success"
+                        variant="success"
+                    />
                 </div>
             </DocsExample>
         </section>
 
         <section>
-            <h3>
-                Variações
-            </h3>
+            <h3>Variações</h3>
 
             <p>
                 Cores via <code>variant</code>. Semânticas:
-                <code>primary / secondary / destructive / warning / info / success</code>.
-                Paleta de gráficos (tokens <code>--color-chart-*</code> em <code>style.css</code>):
+                <code>primary / secondary / destructive / warning / info / success</code>. Paleta de
+                gráficos (tokens <code>--color-chart-*</code> em <code>style.css</code>):
                 <code>chart-1</code> … <code>chart-5</code>.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Variações">
-                <div class="p-4 flex flex-wrap gap-2">
-                    <Badge label="chart-1" variant="chart-1" />
-                    <Badge label="chart-2" variant="chart-2" />
-                    <Badge label="chart-3" variant="chart-3" />
-                    <Badge label="chart-4" variant="chart-4" />
-                    <Badge label="chart-5" variant="chart-5" />
+                <div class="flex flex-wrap gap-2 p-4">
+                    <Badge
+                        label="chart-1"
+                        variant="chart-1"
+                    />
+                    <Badge
+                        label="chart-2"
+                        variant="chart-2"
+                    />
+                    <Badge
+                        label="chart-3"
+                        variant="chart-3"
+                    />
+                    <Badge
+                        label="chart-4"
+                        variant="chart-4"
+                    />
+                    <Badge
+                        label="chart-5"
+                        variant="chart-5"
+                    />
                 </div>
             </DocsExample>
         </section>
 
         <section>
-            <h3>
-                Tipo link
-            </h3>
+            <h3>Custom color</h3>
+
+            <p>
+                Para usar uma cor customizada, use a prop <code>color</code> com um token Tailwind:
+                <code>Badge</code> aceita qualquer cor de <code>bg-*</code> do Tailwind (ex:
+                <code>sky-500</code>, <code>emerald-700</code>, <code>red-200</code>, etc).
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Cor customizada">
+                <div class="flex flex-wrap gap-2 p-4">
+                    <Badge
+                        label="sky-500"
+                        color="sky-500"
+                    />
+                    <Badge
+                        label="emerald-600"
+                        color="emerald-600"
+                    />
+                    <Badge
+                        label="amber-400"
+                        color="amber-400"
+                    />
+                    <Badge
+                        label="red-300"
+                        color="red-300"
+                    />
+                    <Badge
+                        label="violet-700"
+                        color="violet-700"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>Tipo link</h3>
 
             <p>
                 Com <code>type="link"</code> o badge navega. <code>external</code> abre em nova aba.
@@ -60,9 +119,20 @@
 
         <section class="mb-8">
             <DocsExample label="Tipo link">
-                <div class="p-4 flex flex-wrap gap-2">
-                    <Badge label="Link external" variant="secondary" type="link" :external="true" link="https://google.com" />
-                    <Badge label="Link internal" variant="secondary" type="link" link="/" />
+                <div class="flex flex-wrap gap-2 p-4">
+                    <Badge
+                        label="Link external"
+                        variant="secondary"
+                        type="link"
+                        :external="true"
+                        link="https://google.com"
+                    />
+                    <Badge
+                        label="Link internal"
+                        variant="secondary"
+                        type="link"
+                        link="/"
+                    />
                 </div>
             </DocsExample>
         </section>
