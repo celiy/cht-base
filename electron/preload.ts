@@ -1,11 +1,23 @@
-import { app, contextBridge, ipcRenderer } from "electron";
+import { contextBridge, ipcRenderer } from "electron";
 import type { BackendStatus, ElectronAPI, UpdateStatus } from "./types";
 import { IPC_CHANNELS } from "./types";
+
+const APP_VERSION_ARGUMENT = "--cht-app-version=";
+
+/**
+ * Sandboxed preloads cannot import `app`, so the main process forwards the
+ * version through `additionalArguments` instead of `app.getVersion()`.
+ */
+function readAppVersion(): string {
+    const argument = process.argv.find((value) => value.startsWith(APP_VERSION_ARGUMENT));
+
+    return argument ? argument.slice(APP_VERSION_ARGUMENT.length) : "";
+}
 
 const electronAPI: ElectronAPI = {
     isElectron: true,
     platform: process.platform,
-    appVersion: app.getVersion(),
+    appVersion: readAppVersion(),
     getBackendStatus: () => ipcRenderer.invoke(IPC_CHANNELS.getStatus) as Promise<BackendStatus>,
     onBackendStatus: (callback) => {
         const listener = (_event: unknown, status: BackendStatus) => {

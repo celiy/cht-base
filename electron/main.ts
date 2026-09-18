@@ -166,7 +166,8 @@ function createWindow(): BrowserWindow {
             preload: preloadPath(),
             contextIsolation: true,
             nodeIntegration: false,
-            sandbox: true
+            sandbox: true,
+            additionalArguments: [`--cht-app-version=${app.getVersion()}`]
         }
     });
 

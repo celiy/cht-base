@@ -30,6 +30,15 @@ const alias: Record<string, string> = {
     "@repo": path.resolve(__dirname, "..")
 };
 
+/**
+ * Every package in the workspace installs its own `vue`/`vue-router` copy for
+ * type-checking. Without dedupe, a component living in `cht-client-*` or
+ * `cht-design-system` imports a different instance than the one `cht-base`
+ * boots, so `useRouter()` injects the wrong key and returns `undefined`.
+ * Dev mode hides this because `optimizeDeps` pre-bundles a single copy.
+ */
+const dedupe = ["vue", "vue-router"];
+
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [
@@ -40,7 +49,8 @@ export default defineConfig({
     ],
     base: electronBuild ? "./" : "/",
     resolve: {
-        alias
+        alias,
+        dedupe
     },
     define: {
         "import.meta.env.VITE_SITE_TITLE": JSON.stringify(siteTitle),
