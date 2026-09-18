@@ -1,4 +1,5 @@
 import { spawn, spawnSync, type ChildProcess } from "node:child_process";
+import fs from "node:fs";
 import http from "node:http";
 import https from "node:https";
 import path from "node:path";
@@ -83,6 +84,12 @@ function spawnBackendProcess(config: ElectronBackendConfig): ChildProcess {
     };
 
     if (config.nodePath) {
+        const tsxCli = path.join(config.dir, "node_modules", "tsx", "dist", "cli.mjs");
+
+        if (fs.existsSync(tsxCli)) {
+            return spawn(config.nodePath, [tsxCli, "src/server.ts"], common);
+        }
+
         const tsxBin = path.join(
             config.dir,
             "node_modules",
@@ -90,7 +97,7 @@ function spawnBackendProcess(config: ElectronBackendConfig): ChildProcess {
             process.platform === "win32" ? "tsx.cmd" : "tsx"
         );
 
-        return spawn(config.nodePath, [tsxBin, "src/server.ts"], common);
+        return spawn(tsxBin, ["src/server.ts"], { ...common, shell: true });
     }
 
     return spawn(config.cmd, {
