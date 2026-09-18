@@ -1,6 +1,7 @@
 <template>
     <span
         v-if="isElectron"
+
         class="inline-flex"
         :title="tooltip"
     >

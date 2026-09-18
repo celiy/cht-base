@@ -58,6 +58,7 @@ export class UpdateManager {
         }
 
         this.wireAutoUpdater();
+        void this.check();
         this.interval = setInterval(() => {
             void this.check();
         }, REVALIDATE_INTERVAL_MS);
