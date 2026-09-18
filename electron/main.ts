@@ -3,14 +3,17 @@ import type { MenuItemConstructorOptions } from "electron";
 import fs from "node:fs";
 import path from "node:path";
 import { BackendManager } from "./backendManager";
-import type { ElectronRuntimeConfig } from "./types";
+import { UpdateManager } from "./updater";
+import type { ElectronBackendConfig, ElectronRuntimeConfig, UpdateStatus } from "./types";
 import { IPC_CHANNELS } from "./types";
 
 const DEFAULT_WIDTH = 1280;
 const DEFAULT_HEIGHT = 800;
+const NODE_RUNTIME_DIR = "node";
 
 let mainWindow: BrowserWindow | null = null;
 let backendManager: BackendManager | null = null;
+let updateManager: UpdateManager | null = null;
 let runtimeConfig: ElectronRuntimeConfig;
 let isShuttingDown = false;
 
@@ -54,6 +57,47 @@ function resolveBackendDir(dir: string): string {
     }
 
     return path.resolve(dir);
+}
+
+/**
+ * Node runtime shipped inside the installer. Using a plain Node build keeps the
+ * backend's prebuilt native addons (`better-sqlite3`, `bcrypt`) on the ABI they
+ * were installed for, instead of Electron's.
+ */
+function resolveBundledNode(): string | null {
+    const binaryName = process.platform === "win32" ? "node.exe" : "node";
+    const candidate = path.join(process.resourcesPath, NODE_RUNTIME_DIR, binaryName);
+
+    if (!app.isPackaged || !fs.existsSync(candidate)) {
+        return null;
+    }
+
+    return candidate;
+}
+
+function resolveBackendConfig(): ElectronBackendConfig | null {
+    const base = runtimeConfig.backend;
+
+    if (!base) {
+        return null;
+    }
+
+    const config: ElectronBackendConfig = {
+        ...base,
+        dir: resolveBackendDir(base.dir)
+    };
+
+    if (!app.isPackaged) {
+        return config;
+    }
+
+    const bundledNode = resolveBundledNode();
+
+    config.nodePath = bundledNode || process.execPath;
+    config.electronAsNode = !bundledNode;
+    config.dataDir = app.getPath("userData");
+
+    return config;
 }
 
 function preloadPath(): string {
@@ -159,6 +203,51 @@ function broadcastBackendStatus(): void {
     }
 }
 
+function currentUpdateStatus(): UpdateStatus {
+    if (updateManager) {
+        return updateManager.getStatus();
+    }
+
+    return {
+        state: "idle",
+        message: "",
+        currentVersion: app.getVersion(),
+        supported: false
+    };
+}
+
+function broadcastUpdateStatus(): void {
+    const status = currentUpdateStatus();
+
+    for (const window of BrowserWindow.getAllWindows()) {
+        window.webContents.send(IPC_CHANNELS.updateStatus, status);
+    }
+}
+
+function registerUpdateIpc(): void {
+    ipcMain.handle(IPC_CHANNELS.updateGetStatus, () => currentUpdateStatus());
+
+    ipcMain.handle(IPC_CHANNELS.updateCheck, async () => {
+        if (!updateManager) {
+            return currentUpdateStatus();
+        }
+
+        return updateManager.check();
+    });
+
+    ipcMain.handle(IPC_CHANNELS.updateDownload, async () => {
+        if (!updateManager) {
+            return currentUpdateStatus();
+        }
+
+        return updateManager.download();
+    });
+
+    ipcMain.handle(IPC_CHANNELS.updateInstall, () => {
+        updateManager?.install();
+    });
+}
+
 function registerIpc(): void {
     ipcMain.handle(IPC_CHANNELS.getStatus, () => {
         if (!backendManager) {
@@ -178,17 +267,28 @@ function registerIpc(): void {
 
         await backendManager.retry();
     });
+
+    registerUpdateIpc();
+}
+
+function startUpdates(): void {
+    updateManager = new UpdateManager();
+    updateManager.onStatus(() => {
+        broadcastUpdateStatus();
+    });
+    updateManager.start();
 }
 
 async function startBackend(): Promise<void> {
-    if (!runtimeConfig.hasBackend || !runtimeConfig.backend) {
+    if (!runtimeConfig.hasBackend) {
         return;
     }
 
-    const backendConfig = {
-        ...runtimeConfig.backend,
-        dir: resolveBackendDir(runtimeConfig.backend.dir)
-    };
+    const backendConfig = resolveBackendConfig();
+
+    if (!backendConfig) {
+        return;
+    }
 
     backendManager = new BackendManager(backendConfig);
     backendManager.onStatus(() => {
@@ -204,6 +304,9 @@ async function createAppWindow(): Promise<void> {
 }
 
 async function shutdown(): Promise<void> {
+    updateManager?.stop();
+    updateManager = null;
+
     if (backendManager) {
         await backendManager.stop();
         backendManager = null;
@@ -234,6 +337,7 @@ function main(): void {
 
     app.whenReady().then(async () => {
         registerIpc();
+        startUpdates();
         await Promise.all([startBackend(), createAppWindow()]);
     });
 

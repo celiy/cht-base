@@ -1,7 +1,8 @@
 /**
  * Default electron-builder skeleton.
  * The CLI (`scripts/electron.mjs`) writes a client-specific config to
- * `electron-dist/electron-builder.json` before packaging.
+ * `electron-dist/electron-builder.json` before packaging, including the app
+ * version, the update feed and the bundled backend/node runtime.
  */
 module.exports = {
     appId: "dev.cht.app",
@@ -9,7 +10,7 @@ module.exports = {
     directories: {
         output: "release"
     },
-    files: ["dist/**/*", "electron-dist/**/*", "package.json"],
+    files: ["dist/**/*", "electron-dist/**/*", "package.json", "!node_modules/**/*"],
     extraMetadata: {
         main: "electron-dist/main.cjs"
     },
@@ -18,7 +19,11 @@ module.exports = {
         category: "Utility"
     },
     win: {
-        target: ["nsis", "portable"]
+        target: ["nsis"]
+    },
+    nsis: {
+        oneClick: false,
+        allowToChangeInstallationDirectory: true
     },
     mac: {
         target: ["dmg", "zip"]

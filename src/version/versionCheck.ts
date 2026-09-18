@@ -16,6 +16,12 @@ export async function checkAppVersion(options: VersionCheckOptions = {}): Promis
         return;
     }
 
+    // The desktop app updates through `electron-updater`, so the web reload
+    // dance would only fight the installer.
+    if (window.electronAPI?.isElectron) {
+        return;
+    }
+
     const currentVersion = options.currentVersion
         || import.meta.env.VITE_APP_VERSION
         || "1.0.0";

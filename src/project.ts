@@ -3,7 +3,7 @@ import type { Router } from "vue-router";
 import { reactive } from "vue";
 import { applyTextContrast } from "@design/textContrast";
 import type { ThemeName } from "../configs/theme/types";
-import type { BackendStatus, BackendStatusState } from "../electron/types";
+import type { BackendStatus, BackendStatusState, UpdateStatus, UpdateStatusState } from "../electron/types";
 import {
     syncReactiveQuerySnapshot,
     syncReactiveParamsSnapshot
@@ -70,6 +70,15 @@ export interface ProjectElectronState {
     backendMessage: string;
 }
 
+export interface ProjectUpdateState {
+    supported: boolean;
+    status: UpdateStatusState;
+    message: string;
+    currentVersion: string;
+    availableVersion: string | null;
+    percent: number | null;
+}
+
 /**
  * The current project state.
  */
@@ -96,6 +105,7 @@ export interface ProjectState {
         isLoading: boolean;
     };
     electron: ProjectElectronState;
+    update: ProjectUpdateState;
 }
 
 const urlQuerySnapshot = reactive<Record<string, string>>({});
@@ -189,6 +199,14 @@ export const project = reactive<ProjectState>({
         backendReady: import.meta.env.VITE_HAS_BACKEND !== "true",
         backendStatus: "idle",
         backendMessage: ""
+    },
+    update: {
+        supported: false,
+        status: "idle",
+        message: "",
+        currentVersion: import.meta.env.VITE_APP_VERSION || "1.0.0",
+        availableVersion: null,
+        percent: null
     }
 });
 
@@ -319,6 +337,43 @@ function initTheme() {
     setTheme(initialTheme);
 }
 
+function applyUpdateStatus(status: UpdateStatus) {
+    project.update.supported = status.supported;
+    project.update.status = status.state;
+    project.update.message = status.message;
+    project.update.currentVersion = status.currentVersion;
+    project.update.availableVersion = status.availableVersion ?? null;
+    project.update.percent = status.percent ?? null;
+    project.version.current = status.currentVersion;
+}
+
+let updatesStarted = false;
+
+/**
+ * Wire the desktop updater into the reactive state. No-op outside Electron.
+ */
+function initElectronUpdates() {
+    if (updatesStarted || typeof window === "undefined") {
+        return;
+    }
+
+    const api = window.electronAPI;
+
+    if (!api?.isElectron) {
+        return;
+    }
+
+    updatesStarted = true;
+
+    void api.getUpdateStatus().then((status) => {
+        applyUpdateStatus(status);
+    });
+
+    api.onUpdateStatus((status) => {
+        applyUpdateStatus(status);
+    });
+}
+
 /**
  * Actions to interact with the project state.
  */
@@ -327,6 +382,7 @@ export const projectActions = {
         initTheme();
         startDeviceWatcher();
         initElectron();
+        initElectronUpdates();
     },
 
     setSiteTitle(title: string) {
@@ -343,6 +399,18 @@ export const projectActions = {
 
     setTheme(theme: ThemeName) {
         setTheme(theme);
+    },
+
+    checkForUpdates() {
+        return window.electronAPI?.checkForUpdates();
+    },
+
+    downloadUpdate() {
+        return window.electronAPI?.downloadUpdate();
+    },
+
+    installUpdate() {
+        return window.electronAPI?.installUpdate();
     }
 };
 

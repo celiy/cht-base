@@ -65,7 +65,7 @@ function killProcessTree(child: ChildProcess): void {
     }
 }
 
-function spawnBackendProcess(config: ElectronBackendConfig): ChildProcess {
+function backendEnv(config: ElectronBackendConfig): NodeJS.ProcessEnv {
     const env: NodeJS.ProcessEnv = {
         ...process.env,
         HOST: config.host,
@@ -75,19 +75,40 @@ function spawnBackendProcess(config: ElectronBackendConfig): ChildProcess {
 
     delete env.ELECTRON_RUN_AS_NODE;
 
+    if (config.electronAsNode) {
+        env.ELECTRON_RUN_AS_NODE = "1";
+    }
+
+    if (config.dataDir) {
+        env.DB_PATH = path.join(config.dataDir, "mecarvit.sqlite");
+        env.EMPRESAS_DIR = path.join(config.dataDir, "empresas");
+    }
+
+    return env;
+}
+
+function resolveTsxCli(dir: string): string | null {
+    const cli = path.join(dir, "node_modules", "tsx", "dist", "cli.mjs");
+
+    return fs.existsSync(cli) ? cli : null;
+}
+
+function spawnBackendProcess(config: ElectronBackendConfig): ChildProcess {
     const common = {
         cwd: config.dir,
-        env,
+        env: backendEnv(config),
         stdio: ["ignore", "pipe", "pipe"] as ["ignore", "pipe", "pipe"],
         windowsHide: true,
         detached: process.platform !== "win32"
     };
 
-    if (config.nodePath) {
-        const tsxCli = path.join(config.dir, "node_modules", "tsx", "dist", "cli.mjs");
+    const entry = config.entry || "src/server.ts";
 
-        if (fs.existsSync(tsxCli)) {
-            return spawn(config.nodePath, [tsxCli, "src/server.ts"], common);
+    if (config.nodePath) {
+        const tsxCli = resolveTsxCli(config.dir);
+
+        if (tsxCli) {
+            return spawn(config.nodePath, [tsxCli, entry], common);
         }
 
         const tsxBin = path.join(
@@ -97,7 +118,9 @@ function spawnBackendProcess(config: ElectronBackendConfig): ChildProcess {
             process.platform === "win32" ? "tsx.cmd" : "tsx"
         );
 
-        return spawn(tsxBin, ["src/server.ts"], { ...common, shell: true });
+        if (fs.existsSync(tsxBin)) {
+            return spawn(tsxBin, [entry], { ...common, shell: true });
+        }
     }
 
     return spawn(config.cmd, {

@@ -30,4 +30,9 @@ export interface ClientConfig {
         width?: number;
         height?: number;
     };
+    publish?: {
+        provider?: string;
+        owner?: string;
+        repo?: string;
+    };
 }
