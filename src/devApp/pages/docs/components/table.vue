@@ -183,6 +183,40 @@
 
         <section>
             <h3>
+                Estado vazio
+            </h3>
+
+            <p>
+                O slot <code>empty</code> renderiza quando a tabela não possui registros. Isso permite
+                mostrar um estado customizado, como botão de ação, chamada vazia ou texto explicativo.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Estado vazio">
+                <div class="p-4">
+                    <Table
+                        :headers="[
+                            { label: 'Nome', field: 'name', position: 'start' },
+                            { label: 'Status', field: 'badge', position: 'center' }
+                        ]"
+                        :data="[]"
+                    >
+                        <template #empty>
+                            <div class="flex flex-col items-center gap-2 py-4">
+                                <span class="font-medium text-foreground">Nenhuma linha cadastrada</span>
+                                <button class="rounded bg-primary px-3 py-2 text-sm text-primary-foreground">
+                                    Novo registro
+                                </button>
+                            </div>
+                        </template>
+                    </Table>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
                 Loading
             </h3>
 

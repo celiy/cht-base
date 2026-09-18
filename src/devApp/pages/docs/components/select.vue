@@ -10,6 +10,9 @@
                 seleção múltipla, persistência em <code>localStorage</code> e textos de ajuda dentro e fora do painel.
                 <code>combobox</code> usa um input no gatilho para texto livre com sugestões.
                 Uma opção com <code>options</code> abre um submenu ao lado (hover ou clique).
+                O slot <code>#inside-empty-panel</code> aparece dentro do painel, abaixo de
+                “Nenhum resultado encontrado.”, quando a lista visível está vazia (sem opções ou
+                pesquisa sem resultado).
                 Em mobile abre um modal blank (<code>mobileModal</code> / <code>forceModal</code>).
             </p>
         </section>
@@ -236,12 +239,12 @@
             <DocsExample label="Seleção separada">
                 <div class="p-4 flex flex-col gap-4 max-w-sm">
                     <Select
+                        v-model="separateSelectedValues"
                         header="Veículos"
                         helper-text="Marque na lista; os selecionados saem dela e ficam abaixo"
                         :options="separateOptions"
                         :select-multiple="{ min: 0 }"
                         :separate-selected="true"
-                        v-model="separateSelectedValues"
 
                         @click:selected="onSeparateSelectedClick"
                         @remove:selected="onSeparateSelectedRemove"
@@ -310,17 +313,73 @@
                 </div>
             </DocsExample>
         </section>
+
+        <section>
+            <h3>
+                Painel vazio
+            </h3>
+
+            <p>
+                Use o slot <code>#inside-empty-panel</code> para ações quando não há itens na lista
+                (catálogo vazio ou filtro/pesquisa sem correspondência). O conteúdo fica centralizado
+                logo abaixo do texto “Nenhum resultado encontrado.”. No Mecarvit, o cadastro de cliente
+                usa esse slot nos selects de endereços e veículos com botões
+                “Cadastrar endereço” / “Cadastrar veículo”.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Inside empty panel">
+                <div class="p-4 flex flex-col gap-4 max-w-sm">
+                    <Select
+                        ref="emptyPanelSelect"
+                        header="Endereços"
+                        placeholder="Selecione os endereços"
+                        :search="{ external: false }"
+                        :options="emptyPanelOptions"
+                        :select-multiple="{ min: 0 }"
+                        :separate-selected="true"
+                        action-icon="fa-plus"
+                        action-side="right"
+
+                        @click:action="onEmptyPanelActionClick"
+                    >
+                        <template #inside-empty-panel>
+                            <Button
+                                type="button"
+                                variant="outline"
+                                size="small"
+                                left-icon="fa-plus"
+                                label="Cadastrar endereço"
+
+                                @click="onEmptyPanelInsideClick"
+                            />
+                        </template>
+                    </Select>
+
+                    <p class="text-sm text-muted-foreground">
+                        Abra o select sem opções ou pesquise por um texto inexistente para ver o slot.
+                    </p>
+                </div>
+            </DocsExample>
+        </section>
     </article>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import Button from "@design/components/Button.vue";
 import Select from "@design/components/Select.vue";
+
+type EmptyPanelSelectExpose = {
+    close?: () => void;
+};
 
 export default defineComponent({
     name: "ComponentsSelect",
 
     components: {
+        Button,
         Select
     },
 
@@ -354,13 +413,27 @@ export default defineComponent({
                 { label: "Balanceamento", value: "2" },
                 { label: "Troca de óleo", value: "3" },
                 { label: "Revisão", value: "4" }
-            ]
+            ],
+            emptyPanelOptions: [] as Array<{ label: string; value: string }>
         };
     },
 
     methods: {
+        emptyPanelSelectRef(): EmptyPanelSelectExpose | undefined {
+            return this.$refs.emptyPanelSelect as EmptyPanelSelectExpose | undefined;
+        },
+
         onActionClick() {
             this.$toast.info("Ação do select");
+        },
+
+        onEmptyPanelActionClick() {
+            this.$toast.info("Ação ao lado do gatilho (click:action)");
+        },
+
+        onEmptyPanelInsideClick() {
+            this.emptyPanelSelectRef()?.close?.();
+            this.$toast.success("Slot inside-empty-panel (ex.: abrir cadastro)");
         },
 
         onSeparateSelectedClick(value: string) {

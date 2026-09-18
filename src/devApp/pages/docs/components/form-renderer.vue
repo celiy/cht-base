@@ -9,6 +9,11 @@
                 <code>disabled</code> e helper. Checkbox aceita
                 <code>checkboxStyle: "switch"</code> — o interruptor e o texto compartilham o mesmo
                 estado.
+                Em campos <code>type: "select"</code>, o slot
+                <code>#select-inside-empty-panel="{ field }"</code> repassa o conteúdo para o
+                <code>#inside-empty-panel</code> do <code>Select</code> daquele campo.
+                O renderer expõe <code>closeSelect(fieldId)</code> para fechar o painel após uma ação
+                no slot (o <code>ItemViewEdit</code> do Mecarvit repassa o mesmo método).
             </p>
         </section>
 
@@ -222,6 +227,45 @@
                 </div>
             </DocsExample>
         </section>
+
+        <section>
+            <h3>Select com painel vazio</h3>
+
+            <p>
+                Quando <code>field.options</code> está vazio (ou a pesquisa não retorna itens), o
+                slot <code>#select-inside-empty-panel</code> recebe o <code>field</code> do select
+                correspondente. Útil para “cadastrar o primeiro item” sem sair do formulário.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Select inside empty panel">
+                <div class="p-4 max-w-sm">
+                    <FormRenderer
+                        ref="emptyPanelForm"
+                        :fields="emptyPanelFields"
+                        :values="emptyPanelValues"
+
+                        @submit="onEmptyPanelSubmit"
+                        @click:select-action="onEmptyPanelSelectAction"
+                    >
+                        <template #select-inside-empty-panel="{ field }">
+                            <Button
+                                v-if="field.id === 'tags'"
+
+                                type="button"
+                                variant="outline"
+                                size="small"
+                                left-icon="fa-plus"
+                                label="Cadastrar tag"
+
+                                @click="onEmptyPanelCadastrar(field.id)"
+                            />
+                        </template>
+                    </FormRenderer>
+                </div>
+            </DocsExample>
+        </section>
     </article>
 </template>
 
@@ -241,13 +285,52 @@ export default defineComponent({
 
     data() {
         return {
-            submitted: null
+            submitted: null,
+            emptyPanelValues: {
+                tags: [] as string[]
+            },
+            emptyPanelFields: [
+                {
+                    id: "tags",
+                    label: "Tags",
+                    type: "select",
+                    placeholder: "Selecione as tags",
+                    options: [],
+                    selectMultiple: { min: 0 },
+                    selectSeparateSelected: true,
+                    selectSearch: { external: false },
+                    selectAction: {
+                        icon: "fa-plus",
+                        side: "right",
+                        tooltip: "Cadastrar tag"
+                    }
+                }
+            ]
         };
     },
 
     methods: {
         onSubmit(payload) {
             this.submitted = payload;
+        },
+
+        emptyPanelFormRef() {
+            return this.$refs.emptyPanelForm as { closeSelect?: (fieldId: string) => void } | undefined;
+        },
+
+        onEmptyPanelCadastrar(fieldId: string) {
+            this.emptyPanelFormRef()?.closeSelect?.(fieldId);
+            this.$toast.success(`Slot select-inside-empty-panel (${fieldId})`);
+        },
+
+        onEmptyPanelSelectAction(payload: { id: string }) {
+            if (payload.id === "tags") {
+                this.onEmptyPanelCadastrar(payload.id);
+            }
+        },
+
+        onEmptyPanelSubmit() {
+            // Demo: submit não usado neste exemplo.
         }
     }
 });
