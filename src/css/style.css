@@ -8,7 +8,7 @@
 
 @import "virtual:client-theme";
 @source "../../";
-@source "../../../cht-client-*/src";
+@source "virtual:client-source";
 @source "../../../cht-design-system/src";
 @source inline(
     "bg-{neutral,stone,zinc,slate,gray,red,orange,amber,yellow,lime,green,emerald,teal,cyan,sky,blue,indigo,violet,purple,fuchsia,pink,rose}-{50,{100..900..100}}"
@@ -115,6 +115,10 @@ pre code {
 
 pre code {
     @apply rounded-none bg-transparent p-0;
+}
+
+.hover-ring {
+    @apply ring-[3px] ring-transparent ring-offset-0 transition-all hover:ring-ring/50!;
 }
 
 .shadow-2xs {

@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, Menu } from "electron";
+import { app, BrowserWindow, ipcMain, Menu, nativeImage, Tray } from "electron";
 import type { MenuItemConstructorOptions } from "electron";
 import fs from "node:fs";
 import path from "node:path";
@@ -14,6 +14,7 @@ const NODE_RUNTIME_DIR = "node";
 let mainWindow: BrowserWindow | null = null;
 let backendManager: BackendManager | null = null;
 let updateManager: UpdateManager | null = null;
+let tray: Tray | null = null;
 let runtimeConfig: ElectronRuntimeConfig;
 let isShuttingDown = false;
 
@@ -202,6 +203,8 @@ function broadcastBackendStatus(): void {
     for (const window of BrowserWindow.getAllWindows()) {
         window.webContents.send(IPC_CHANNELS.status, status);
     }
+
+    refreshTrayMenu();
 }
 
 function currentUpdateStatus(): UpdateStatus {
@@ -222,6 +225,185 @@ function broadcastUpdateStatus(): void {
 
     for (const window of BrowserWindow.getAllWindows()) {
         window.webContents.send(IPC_CHANNELS.updateStatus, status);
+    }
+
+    refreshTrayMenu();
+}
+
+function trayIconPath(): string | null {
+    const configured = runtimeConfig.trayIcon;
+
+    if (!configured) {
+        return null;
+    }
+
+    const resolved = path.isAbsolute(configured)
+        ? configured
+        : path.join(process.resourcesPath, configured);
+
+    return fs.existsSync(resolved) ? resolved : null;
+}
+
+function backendStatusLabel(): string {
+    const status = backendManager?.getStatus();
+
+    if (!status) {
+        return runtimeConfig.hasBackend ? "Servidor local: aguardando" : "Servidor local: desativado";
+    }
+
+    switch (status.state) {
+        case "starting":
+            return "Servidor local: iniciando...";
+        case "ready":
+            return "Servidor local: em execução";
+        case "error":
+            return "Servidor local: com erro";
+        case "stopped":
+            return "Servidor local: encerrado";
+        default:
+            return "Servidor local: aguardando";
+    }
+}
+
+function updateStatusLabel(): string | null {
+    const status = currentUpdateStatus();
+
+    switch (status.state) {
+        case "checking":
+            return "Atualizações: procurando...";
+        case "available":
+            return `Atualizações: versão ${status.availableVersion ?? "nova"} disponível`;
+        case "not-available":
+            return "Atualizações: nenhuma disponível";
+        case "downloading":
+            return `Atualizações: baixando (${Math.round(status.percent ?? 0)}%)`;
+        case "downloaded":
+            return "Atualizações: pronta para instalar";
+        case "error":
+            return "Atualizações: falhou";
+        default:
+            return null;
+    }
+}
+
+function showMainWindow(): void {
+    if (!mainWindow) {
+        void createAppWindow();
+
+        return;
+    }
+
+    if (mainWindow.isMinimized()) {
+        mainWindow.restore();
+    }
+
+    mainWindow.show();
+    mainWindow.focus();
+}
+
+function buildTrayTemplate(): MenuItemConstructorOptions[] {
+    const backendStatus = backendManager?.getStatus();
+    const template: MenuItemConstructorOptions[] = [
+        { label: runtimeConfig.siteTitle, enabled: false },
+        { label: `Versão ${app.getVersion()}`, enabled: false },
+        { type: "separator" },
+        { label: backendStatusLabel(), enabled: false }
+    ];
+
+    if (backendStatus?.state === "error" && backendStatus.message) {
+        template.push({ label: backendStatus.message, enabled: false });
+    }
+
+    if (backendStatus?.healthUrl) {
+        template.push({ label: backendStatus.healthUrl, enabled: false });
+    }
+
+    const updateLabel = updateStatusLabel();
+
+    if (updateLabel) {
+        template.push({ label: updateLabel, enabled: false });
+    }
+
+    template.push(
+        { type: "separator" },
+        {
+            label: "Abrir janela",
+            click: () => showMainWindow()
+        }
+    );
+
+    if (runtimeConfig.hasBackend) {
+        template.push({
+            label: "Reiniciar servidor local",
+            click: () => {
+                void backendManager?.retry();
+            }
+        });
+    }
+
+    const updateStatus = currentUpdateStatus();
+
+    if (updateStatus.supported) {
+        if (updateStatus.state === "downloaded") {
+            template.push({
+                label: "Instalar atualização",
+                click: () => updateManager?.install()
+            });
+        } else if (updateStatus.state === "available") {
+            template.push({
+                label: "Baixar atualização",
+                click: () => {
+                    void updateManager?.download();
+                }
+            });
+        } else {
+            template.push({
+                label: "Verificar atualizações",
+                click: () => {
+                    void updateManager?.check();
+                }
+            });
+        }
+    }
+
+    template.push(
+        { type: "separator" },
+        {
+            label: "Sair",
+            click: () => app.quit()
+        }
+    );
+
+    return template;
+}
+
+function refreshTrayMenu(): void {
+    if (!tray) {
+        return;
+    }
+
+    tray.setContextMenu(Menu.buildFromTemplate(buildTrayTemplate()));
+    tray.setToolTip(`${runtimeConfig.siteTitle} - ${backendStatusLabel()}`);
+}
+
+/**
+ * The tray is a convenience, not a requirement: a desktop that does not support
+ * it must not stop the app from starting.
+ */
+function createTray(): void {
+    const iconPath = trayIconPath();
+
+    if (!iconPath) {
+        return;
+    }
+
+    try {
+        tray = new Tray(nativeImage.createFromPath(iconPath));
+        tray.on("click", () => showMainWindow());
+        refreshTrayMenu();
+    } catch (error) {
+        console.warn("[electron] Tray indisponível:", error);
+        tray = null;
     }
 }
 
@@ -308,6 +490,11 @@ async function shutdown(): Promise<void> {
     updateManager?.stop();
     updateManager = null;
 
+    if (tray) {
+        tray.destroy();
+        tray = null;
+    }
+
     if (backendManager) {
         await backendManager.stop();
         backendManager = null;
@@ -340,6 +527,7 @@ function main(): void {
         registerIpc();
         startUpdates();
         await Promise.all([startBackend(), createAppWindow()]);
+        createTray();
     });
 
     app.on("activate", () => {

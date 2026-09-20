@@ -5,6 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { loadConfig, resolveClientDir, loadDevAppVersion } from "./configs";
 import { docsExampleSourcePlugin } from "./vite-plugins/docsExampleSource";
 import { clientThemePlugin } from "./vite-plugins/clientTheme";
+import { clientSourcePlugin } from "./vite-plugins/clientSource";
 
 const clientName = process.env.CLIENT;
 const clientConfig = loadConfig(clientName);
@@ -42,6 +43,7 @@ const dedupe = ["vue", "vue-router"];
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [
+        clientSourcePlugin(),
         clientThemePlugin(),
         docsExampleSourcePlugin(),
         vue(),

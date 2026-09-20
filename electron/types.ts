@@ -52,6 +52,11 @@ export interface ElectronRuntimeConfig {
     viteUrl?: string;
     hasBackend: boolean;
     backend?: ElectronBackendConfig;
+    /**
+     * Tray icon: relative to `process.resourcesPath` when packaged, absolute in
+     * dev. The tray is skipped when this is missing or the file does not exist.
+     */
+    trayIcon?: string;
     window?: {
         width?: number;
         height?: number;
