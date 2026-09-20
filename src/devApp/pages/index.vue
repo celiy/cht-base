@@ -31,11 +31,11 @@
                 >
                     <span> Explorar <span class="fa-solid fa-arrow-right text-xs" /> </span>
                 </Button>
-        </section>
+            </section>
         </article>
 
         <article
-            class="light:from-muted relative mx-4 mb-8 grid gap-4 bg-linear-to-t to-transparent md:mx-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 dark:from-muted/50"
+            class="relative mx-4 mb-8 grid gap-4 bg-linear-to-t to-transparent md:mx-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 dark:from-muted/50 light:from-muted"
         >
             <div
                 class="absolute bottom-0 z-50 h-82 w-full -translate-y-9 bg-linear-to-t from-background to-transparent"
@@ -43,10 +43,10 @@
             <div class="absolute bottom-0 z-51 h-12 w-full translate-y-3 bg-background" />
 
             <section class="flex flex-col gap-4">
-            <Card>
-                <template #body>
-                    <div class="flex flex-col gap-4">
-                        <div class="flex gap-2">
+                <Card>
+                    <template #body>
+                        <div class="flex flex-col gap-4">
+                            <div class="flex gap-2">
                                 <Button
                                     label="Button"
                                     right-icon="fa-arrow-right"
@@ -709,8 +709,8 @@
                                 class="max-h-80 min-h-40 overflow-y-auto px-4 pt-2"
                             >
                                 <Chat :messages="chatMessages" />
-                    </div>
-                    
+                            </div>
+
                             <form
                                 class="px-4 pb-4"
 
@@ -792,8 +792,8 @@
                                 small-text="Lorem ipsum dolor sit amet consectetur adipisicing elit."
                             />
                         </div>
-                </template>
-            </Card>
+                    </template>
+                </Card>
             </section>
         </article>
 

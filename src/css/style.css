@@ -121,40 +121,31 @@ pre code {
     @apply ring-[3px] ring-transparent ring-offset-0 transition-all hover:ring-ring/50!;
 }
 
-.shadow-2xs {
-    box-shadow: 0 1px var(--color-shadow);
-}
-
-.shadow-xs {
-    box-shadow: 0 1px 2px 0 var(--color-shadow);
-}
-
-.shadow-sm {
-    box-shadow:
+/*
+ * Sombras do tema.
+ *
+ * Declaradas no `@theme` para o Tailwind gerar `.shadow-*` dentro de
+ * `@layer utilities`, com a propriedade `box-shadow` compondo o encadeamento
+ * completo (`--tw-ring-shadow` incluso). Regras soltas, fora de layer, vencem
+ * as utilities e — por declararem `box-shadow` direto — apagavam o anel de
+ * foco de qualquer campo que também tivesse uma sombra.
+ */
+@theme {
+    --shadow-2xs: 0 1px var(--color-shadow);
+    --shadow-xs: 0 1px 2px 0 var(--color-shadow);
+    --shadow-sm:
         0 1px 3px 0 var(--color-shadow),
         0 1px 2px -1px var(--color-shadow);
-}
-
-.shadow-md {
-    box-shadow:
+    --shadow-md:
         0 4px 6px -1px var(--color-shadow),
         0 2px 4px -2px var(--color-shadow);
-}
-
-.shadow-lg {
-    box-shadow:
+    --shadow-lg:
         0 10px 15px -3px var(--color-shadow),
         0 4px 6px -4px var(--color-shadow);
-}
-
-.shadow-xl {
-    box-shadow:
+    --shadow-xl:
         0 20px 25px -5px var(--color-shadow),
         0 8px 10px -6px var(--color-shadow);
-}
-
-.shadow-2xl {
-    box-shadow: 0 25px 50px -12px var(--color-shadow);
+    --shadow-2xl: 0 25px 50px -12px var(--color-shadow);
 }
 
 .border,

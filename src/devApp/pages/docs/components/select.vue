@@ -119,6 +119,9 @@
                 preenche o input com o label e emite o <code>value</code> da opção.
                 Com <code>:search="{ external: true }"</code> a digitação emite
                 <code>search:external</code> (com debounce), sem campo de busca dentro da lista.
+                <code>variant</code> é repassado ao <code>Input</code> do gatilho
+                (<code>secondary</code> por padrão); <code>transparent</code> encaixa o combobox em
+                layouts densos, como células de tabela.
             </p>
         </section>
 
@@ -138,6 +141,20 @@
                     <p class="text-sm text-muted-foreground">
                         Texto: {{ comboboxQuery || "—" }}
                     </p>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Combobox sem moldura">
+                <div class="p-4 max-w-sm rounded border border-border">
+                    <Select
+                        combobox
+                        variant="transparent"
+                        header="Serviço"
+                        :options="comboboxOptions"
+                        :search="{ external: false }"
+                    />
                 </div>
             </DocsExample>
         </section>
