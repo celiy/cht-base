@@ -1,7 +1,8 @@
 import { createHttpClient } from "./http";
 import { getStoredAuthToken, setStoredAuthToken } from "./token";
+import { resolveReachableApiBaseUrl } from "./resolveApiBaseUrl";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://127.0.0.1:8000";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://127.0.0.1:3001";
 
 export const http = createHttpClient({
     baseURL: API_BASE_URL,
@@ -15,6 +16,22 @@ export const http = createHttpClient({
 
 export function hydrateHttpAuth(): void {
     http.setAuthToken(getStoredAuthToken());
+}
+
+export async function discoverApiBaseUrl(): Promise<string> {
+    const configured = import.meta.env.VITE_API_BASE_URL ?? "http://127.0.0.1:3001";
+
+    if (import.meta.env.VITE_HAS_BACKEND !== "true") {
+        return configured;
+    }
+
+    const maxOffset = Number(import.meta.env.VITE_API_PORT_SCAN_LIMIT || "20");
+    const limit = Number.isFinite(maxOffset) && maxOffset >= 0 ? maxOffset : 20;
+    const resolved = await resolveReachableApiBaseUrl(configured, limit);
+
+    http.setBaseURL(resolved);
+
+    return resolved;
 }
 
 export function persistAuthToken(token: string): void {

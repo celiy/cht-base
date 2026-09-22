@@ -4,6 +4,7 @@ export interface BackendStatus {
     state: BackendStatusState;
     message: string;
     healthUrl?: string;
+    apiBaseUrl?: string;
 }
 
 export interface ElectronBackendConfig {
@@ -14,6 +15,7 @@ export interface ElectronBackendConfig {
     healthUrl: string;
     host: string;
     port: number;
+    portScanLimit?: number;
     /** Absolute Node binary used to spawn the backend. */
     nodePath?: string;
     /** Set when `nodePath` is the Electron binary running as Node. */

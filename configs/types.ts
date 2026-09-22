@@ -14,6 +14,13 @@ export interface ClientConfig {
     versionCheckUrl?: string;
     theme?: ClientThemeConfig;
     apiBaseUrl?: string;
+    api?: {
+        dev?: string;
+        web?: string;
+        electron?: string;
+        mobile?: string;
+    };
+    apiPortScanLimit?: number;
     frontend?: {
         repo?: string;
     };
@@ -24,6 +31,7 @@ export interface ClientConfig {
         startScript?: string;
         host?: string;
         port?: number;
+        portScanLimit?: number;
         healthPath?: string;
     };
     electron?: {

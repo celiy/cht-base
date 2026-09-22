@@ -1,4 +1,4 @@
-import { http, hydrateHttpAuth, persistAuthToken, clearAuthToken, HttpError } from "./index";
+import { http, hydrateHttpAuth, persistAuthToken, clearAuthToken, HttpError, discoverApiBaseUrl } from "./index";
 import type { HttpClient } from "./index";
 
 type HttpApp = {
@@ -16,7 +16,8 @@ export {
     hydrateHttpAuth,
     persistAuthToken,
     clearAuthToken,
-    HttpError
+    HttpError,
+    discoverApiBaseUrl
 };
 
 export type { HttpClient };

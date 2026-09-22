@@ -263,6 +263,14 @@ export function createHttpClient(options: HttpClientOptions = {}) {
 
         getAuthToken() {
             return authToken ?? options.getAuthToken?.() ?? null;
+        },
+
+        setBaseURL(baseURL: string) {
+            options.baseURL = baseURL;
+        },
+
+        getBaseURL() {
+            return options.baseURL ?? "";
         }
     };
 }

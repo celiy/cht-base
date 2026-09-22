@@ -11,6 +11,8 @@ interface ImportMetaEnv {
     readonly VITE_AVAILABLE_THEMES: string;
     readonly VITE_THEME_STORAGE_KEY: string;
     readonly VITE_API_BASE_URL: string;
+    readonly VITE_API_TARGET: string;
+    readonly VITE_API_PORT_SCAN_LIMIT: string;
     readonly VITE_APP_VERSION: string;
     readonly VITE_VERSION_CHECK_URL: string;
     readonly VITE_HAS_BACKEND: string;

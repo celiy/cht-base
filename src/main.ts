@@ -9,8 +9,8 @@ import routes from "@client/routes";
 import tooltip from "./directives/tooltip";
 import { projectPlugin, projectActions } from "./project";
 import { checkAppVersion } from "./version/versionCheck";
-import { httpPlugin, hydrateHttpAuth } from "./http/plugin";
-import { installClientPlugins } from "@client/bootstrap";
+import { httpPlugin, hydrateHttpAuth, discoverApiBaseUrl } from "./http/plugin";
+import { installClientPlugins, setupAuthGuard } from "@client/bootstrap";
 
 const useHashHistory =
     typeof window !== "undefined" && window.location.protocol === "file:";
@@ -34,6 +34,7 @@ app.use(projectPlugin, { router });
 
 app.use(httpPlugin);
 hydrateHttpAuth();
+setupAuthGuard(router);
 
 const title = import.meta.env.VITE_SITE_TITLE;
 
@@ -44,6 +45,7 @@ if (typeof document !== "undefined") {
 }
 
 void (async () => {
+    await discoverApiBaseUrl();
     await installClientPlugins(app, router);
     app.mount("#app");
     void checkAppVersion();

@@ -4,6 +4,7 @@ import http from "node:http";
 import https from "node:https";
 import path from "node:path";
 import type { BackendStatus, ElectronBackendConfig } from "./types";
+import { parseChtApiUrlFromText } from "../../cht-shared/src/net/portScan";
 
 const HEALTH_INTERVAL_MS = 300;
 const HEALTH_TIMEOUT_MS = 60_000;
@@ -70,6 +71,7 @@ function backendEnv(config: ElectronBackendConfig): NodeJS.ProcessEnv {
         ...process.env,
         HOST: config.host,
         PORT: String(config.port),
+        PORT_SCAN_LIMIT: String(config.portScanLimit ?? 20),
         NODE_ENV: process.env.NODE_ENV || "development"
     };
 
@@ -139,6 +141,8 @@ export class BackendManager {
     private pollTimer: ReturnType<typeof setTimeout> | null = null;
     private stopped = false;
     private runId = 0;
+    private stdoutBuf = "";
+    private announcedBaseUrl: string | null = null;
 
     constructor(private readonly config: ElectronBackendConfig) {}
 
@@ -161,15 +165,21 @@ export class BackendManager {
         const runId = ++this.runId;
         this.setStatus("starting", "Iniciando o servidor local...");
 
+        this.stdoutBuf = "";
+        this.announcedBaseUrl = null;
         const child = spawnBackendProcess(this.config);
         this.child = child;
 
         child.stdout?.on("data", (chunk: Buffer) => {
+            const text = chunk.toString();
             process.stdout.write(`[backend] ${chunk}`);
+            this.ingestBackendOutput(text);
         });
 
         child.stderr?.on("data", (chunk: Buffer) => {
+            const text = chunk.toString();
             process.stderr.write(`[backend] ${chunk}`);
+            this.ingestBackendOutput(text);
         });
 
         const exitPromise = new Promise<void>((resolve) => {
@@ -268,7 +278,7 @@ export class BackendManager {
                 throw new Error("Tempo esgotado ao aguardar o servidor local.");
             }
 
-            const healthy = await pingHealth(this.config.healthUrl);
+            const healthy = await this.pingAnnouncedHealth();
 
             if (healthy) {
                 return;
@@ -281,6 +291,31 @@ export class BackendManager {
                 }, HEALTH_INTERVAL_MS);
             });
         }
+    }
+
+    private ingestBackendOutput(text: string) {
+        this.stdoutBuf += text;
+
+        if (this.stdoutBuf.length > 16_384) {
+            this.stdoutBuf = this.stdoutBuf.slice(-8_192);
+        }
+
+        const parsed = parseChtApiUrlFromText(this.stdoutBuf);
+
+        if (!parsed) {
+            return;
+        }
+
+        this.announcedBaseUrl = parsed;
+        this.config.healthUrl = `${parsed}/health`;
+    }
+
+    private async pingAnnouncedHealth(): Promise<boolean> {
+        if (!this.announcedBaseUrl) {
+            return false;
+        }
+
+        return pingHealth(`${this.announcedBaseUrl}/health`);
     }
 
     private clearPollTimer(): void {
@@ -296,7 +331,8 @@ export class BackendManager {
         this.status = {
             state,
             message,
-            healthUrl: this.config.healthUrl
+            healthUrl: this.config.healthUrl,
+            apiBaseUrl: this.announcedBaseUrl ?? undefined
         };
 
         for (const listener of this.listeners) {
