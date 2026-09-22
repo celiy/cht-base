@@ -26,6 +26,10 @@ export const componentsNav = [
             {
                 label: "Styling",
                 link: "/docs/styling"
+            },
+            {
+                label: "$project",
+                link: "/docs/project"
             }
         ]
     },
