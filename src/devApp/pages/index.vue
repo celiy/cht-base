@@ -128,8 +128,7 @@
                                 <ConfirmationModal
                                     variant="warning"
                                     title="Atenção"
-                                    description="Variante warning"
-                                    body="Confirmation modal"
+                                    description="Variante warning — confirmation modal"
                                     confirm-text="Continuar"
                                     cancel-text="Cancelar"
                                     :is-open="alertModal"
