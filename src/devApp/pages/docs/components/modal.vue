@@ -5,6 +5,8 @@
 
             <p>
                 Painel sobreposto. Fecha com clique no backdrop, no X ou com <code>Esc</code>.
+                Com <code>keep-open</code>, o backdrop e cliques fora do painel não fecham
+                (o X e <code>Esc</code> continuam a fechar).
                 <code>variant="blank"</code> é só um card com <code>p-4</code> e o
                 <code>#body</code>, sem header nem botão de fechar. Drawer tem página própria.
             </p>
@@ -182,13 +184,18 @@
             <h3>Tamanho</h3>
 
             <p>
-                <code>size="small / medium / large / extra-large"</code>
+                <code>size="extra-small / small / medium / large / extra-large"</code>
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Tamanho">
                 <div class="flex flex-wrap gap-2 p-4">
+                    <Button
+                        label="Extra-Small"
+
+                        @click="extrasmall = true"
+                    />
                     <Button
                         label="Small"
 
@@ -209,6 +216,19 @@
 
                         @click="extralarge = true"
                     />
+
+                    <Modal
+                        size="extra-small"
+                        :is-open="extrasmall"
+
+                        @update:value="extrasmall = $event"
+                    >
+                        <template #header> Extra-Small </template>
+
+                        <template #body>
+                            <p>Largura super reduzida.</p>
+                        </template>
+                    </Modal>
 
                     <Modal
                         size="small"
@@ -415,6 +435,7 @@ export default defineComponent({
             modal: false,
             blank: false,
             preview: false,
+            extrasmall: false,
             small: false,
             medium: false,
             large: false,
