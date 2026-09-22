@@ -6,6 +6,7 @@ import { loadConfig, resolveClientDir, loadDevAppVersion } from "./configs";
 import { docsExampleSourcePlugin } from "./vite-plugins/docsExampleSource";
 import { clientThemePlugin } from "./vite-plugins/clientTheme";
 import { clientSourcePlugin } from "./vite-plugins/clientSource";
+import { clientFaviconPlugin } from "./vite-plugins/clientFavicon";
 import {
     DEFAULT_API_PORT_SCAN_LIMIT,
     pickApiBaseUrl,
@@ -58,6 +59,7 @@ export default defineConfig(({ command }) => {
         plugins: [
             clientSourcePlugin(),
             clientThemePlugin(),
+            clientFaviconPlugin(),
             docsExampleSourcePlugin(),
             vue(),
             tailwindcss()
