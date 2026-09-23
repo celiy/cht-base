@@ -31,7 +31,7 @@
                 >
                     <span> Explorar <span class="fa-solid fa-arrow-right text-xs" /> </span>
                 </Button>
-            </section>
+        </section>
         </article>
 
         <article
@@ -43,10 +43,10 @@
             <div class="absolute bottom-0 z-51 h-12 w-full translate-y-3 bg-background" />
 
             <section class="flex flex-col gap-4">
-                <Card>
-                    <template #body>
-                        <div class="flex flex-col gap-4">
-                            <div class="flex gap-2">
+            <Card>
+                <template #body>
+                    <div class="flex flex-col gap-4">
+                        <div class="flex gap-2">
                                 <Button
                                     label="Button"
                                     right-icon="fa-arrow-right"
@@ -708,8 +708,8 @@
                                 class="max-h-80 min-h-40 overflow-y-auto px-4 pt-2"
                             >
                                 <Chat :messages="chatMessages" />
-                            </div>
-
+                    </div>
+                    
                             <form
                                 class="px-4 pb-4"
 
@@ -791,8 +791,8 @@
                                 small-text="Lorem ipsum dolor sit amet consectetur adipisicing elit."
                             />
                         </div>
-                    </template>
-                </Card>
+                </template>
+            </Card>
             </section>
         </article>
 

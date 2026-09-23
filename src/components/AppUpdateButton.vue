@@ -2,8 +2,8 @@
     <span
         v-if="isElectron"
 
+        v-tooltip="tooltip"
         class="inline-flex"
-        :title="tooltip"
     >
         <Button
             :disabled="isDisabled"
@@ -91,10 +91,51 @@ const label = computed(() => {
 
 const tooltip = computed(() => {
     if (!project.update.supported) {
-        return "Disponível apenas na versão instalada.";
+        return "Atualizações automáticas estão disponíveis apenas na versão instalada do aplicativo.";
     }
 
-    return project.update.message || "Verificar se há uma nova versão do aplicativo.";
+    const { status, message, currentVersion, availableVersion, percent } = project.update;
+
+    switch (status) {
+        case "checking":
+            return "Consultando o servidor de atualizações. Aguarde um instante.";
+        case "available":
+            if (availableVersion) {
+                return `Versão ${availableVersion} disponível. Clique para baixar a atualização.`;
+            }
+
+            return "Há uma atualização disponível. Clique para iniciar o download.";
+        case "downloading":
+            if (percent != null) {
+                return `Baixando a atualização (${percent}% concluído). Não feche o aplicativo.`;
+            }
+
+            return message || "Baixando a atualização. Não feche o aplicativo.";
+        case "downloaded":
+            if (availableVersion) {
+                return `Versão ${availableVersion} pronta para instalar. Clique para reiniciar o aplicativo.`;
+            }
+
+            return "A atualização foi baixada. Clique para reiniciar e instalar.";
+        case "error":
+            if (message) {
+                return `${message} Clique para tentar novamente.`;
+            }
+
+            return "Não foi possível verificar ou baixar a atualização. Clique para tentar novamente.";
+        case "not-available":
+            if (currentVersion) {
+                return `Você já está na versão mais recente (${currentVersion}).`;
+            }
+
+            return message || "Você já está na versão mais recente.";
+        default:
+            if (currentVersion) {
+                return `Verificar se há uma nova versão do aplicativo. Versão instalada: ${currentVersion}.`;
+            }
+
+            return "Verificar se há uma nova versão do aplicativo.";
+    }
 });
 
 function onClick() {
