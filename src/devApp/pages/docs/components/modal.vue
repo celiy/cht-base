@@ -6,7 +6,11 @@
             <p>
                 Painel sobreposto. Fecha com clique no backdrop, no X ou com <code>Esc</code>.
                 Com <code>keep-open</code>, o backdrop e cliques fora do painel não fecham
-                (o X e <code>Esc</code> continuam a fechar).
+                (o X e <code>Esc</code> continuam a fechar).                 Ao abrir, a URL ganha
+                <code>?modal=[id,...]</code> (cada instância recebe um id numérico automático;
+                vários abertos: <code>[1,2]</code>) com uma entrada no histórico — no mobile,
+                <strong>Voltar</strong> remove a query e fecha o modal. Remover um id da URL
+                manualmente também fecha o modal correspondente.
                 <code>variant="blank"</code> é só um card com <code>p-4</code> e o
                 <code>#body</code>, sem header nem botão de fechar. Drawer tem página própria.
             </p>

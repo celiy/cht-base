@@ -110,6 +110,42 @@
         </section>
 
         <section>
+            <h3>Borda</h3>
+
+            <p>
+                Para adicionar uma borda ao <code>Badge</code>, use
+                <code>variant-style="bordered"</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Badge com borda">
+                <div class="flex flex-wrap gap-2 p-4">
+                    <Badge
+                        label="Primário"
+                        variant="primary"
+                        variant-style="bordered"
+                    />
+                    <Badge
+                        label="Secundário"
+                        variant="secondary"
+                        variant-style="bordered"
+                    />
+                    <Badge
+                        label="Sucesso"
+                        variant="success"
+                        variant-style="bordered"
+                    />
+                    <Badge
+                        label="sky-500"
+                        color="sky-500"
+                        variant-style="bordered"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
             <h3>Tipo link</h3>
 
             <p>

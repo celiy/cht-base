@@ -1,6 +1,9 @@
 <template>
     <main class="p-8">
-        <h1 class="text-2xl font-semibold">{{ $project.labels.siteTitle }}</h1>
+        <h1 class="text-2xl font-semibold">
+            {{ $project.labels.siteTitle }}
+        </h1>
+
         <p class="mt-2 text-muted-foreground">
             Home
         </p>
@@ -11,6 +14,6 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-    name: "Home"
+    name: "IndexPage"
 });
 </script>

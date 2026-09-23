@@ -3,8 +3,8 @@ import type { ClientThemeConfig } from "./theme/types";
 /**
  * Config for a client (sister folder + build-time metadata).
  *
- * Loaded from `cht-client-<name>/cht.config.json`. `clientDir` is optional;
- * when omitted, the build falls back to the convention `cht-client-<name>`.
+ * Loaded from `<folder>/cht.config.json`. The folder name is free; `name` in
+ * the file is the client id used by `--client:<name>`.
  */
 export interface ClientConfig {
     name: string;
@@ -25,10 +25,23 @@ export interface ClientConfig {
         repo?: string;
     };
     backend?: {
-        dir?: string;
+        /** Folder relative to the workspace root (required when `backend` is set). */
+        dir: string;
         repo?: string;
+        /** Full shell command run in `dir` for watch/dev (Node, Java, …). */
+        cmd?: string;
+        /** npm script used when `cmd` is omitted (default `dev`). */
         script?: string;
+        /** Command used by Electron (local window). Defaults to `cmd`. */
+        startCmd?: string;
         startScript?: string;
+        /** Command used inside the packaged Electron app. Defaults to the Node `tsx` entry. */
+        packagedCmd?: string;
+        /**
+         * Copy this backend into the Electron installer.
+         * Default `true`. Set `false` when the API is remote or not Node.
+         */
+        packageWithElectron?: boolean;
         host?: string;
         port?: number;
         portScanLimit?: number;
@@ -37,6 +50,13 @@ export interface ClientConfig {
     electron?: {
         width?: number;
         height?: number;
+    };
+    /**
+     * Debug FAB during `npx chtmain dev --client:<name>`.
+     * Set to `false` or `{ enabled: false }` to hide it.
+     */
+    devTools?: boolean | {
+        enabled?: boolean;
     };
     publish?: {
         provider?: string;

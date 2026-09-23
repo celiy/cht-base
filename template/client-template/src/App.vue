@@ -6,6 +6,6 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-    name: "ClientApp"
+    name: "__APP_NAME__"
 });
 </script>

@@ -10,6 +10,7 @@ import tooltip from "./directives/tooltip";
 import { projectPlugin, projectActions } from "./project";
 import { checkAppVersion } from "./version/versionCheck";
 import { httpPlugin, hydrateHttpAuth, discoverApiBaseUrl } from "./http/plugin";
+import { startRealtime } from "./realtime";
 import { installClientPlugins, setupAuthGuard } from "@client/bootstrap";
 
 const useHashHistory =
@@ -47,6 +48,7 @@ if (typeof document !== "undefined") {
 void (async () => {
     await discoverApiBaseUrl();
     await installClientPlugins(app, router);
+    startRealtime();
     app.mount("#app");
     void checkAppVersion();
 })();

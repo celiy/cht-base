@@ -11,6 +11,7 @@ export const http = createHttpClient({
     onUnauthorized: () => {
         setStoredAuthToken(null);
         http.setAuthToken(null);
+        emitAuthTokenChange(null);
     }
 });
 
@@ -37,11 +38,29 @@ export async function discoverApiBaseUrl(): Promise<string> {
 export function persistAuthToken(token: string): void {
     setStoredAuthToken(token);
     http.setAuthToken(token);
+    emitAuthTokenChange(token);
 }
 
 export function clearAuthToken(): void {
     setStoredAuthToken(null);
     http.setAuthToken(null);
+    emitAuthTokenChange(null);
+}
+
+const authTokenListeners = new Set<(token: string | null) => void>();
+
+function emitAuthTokenChange(token: string | null): void {
+    for (const listener of authTokenListeners) {
+        listener(token);
+    }
+}
+
+export function onAuthTokenChange(listener: (token: string | null) => void): () => void {
+    authTokenListeners.add(listener);
+
+    return () => {
+        authTokenListeners.delete(listener);
+    };
 }
 
 export { HttpError } from "./http";

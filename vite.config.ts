@@ -13,15 +13,35 @@ import {
     resolveApiTarget
 } from "../cht-shared/src/net/portScan";
 
-const clientName = process.env.CLIENT;
+const isDevAppServer = process.env.CHT_DEVAPP === "1";
+const clientName = isDevAppServer ? undefined : process.env.CLIENT;
 const clientConfig = loadConfig(clientName);
 const devVersionInfo = loadDevAppVersion();
+const devappUrl = process.env.CHT_DEVAPP_URL || "";
+
+function isDevToolsEnabled(): boolean {
+    if (!devappUrl) {
+        return false;
+    }
+
+    const flag = clientConfig?.devTools;
+
+    if (flag === false) {
+        return false;
+    }
+
+    if (flag && typeof flag === "object" && flag.enabled === false) {
+        return false;
+    }
+
+    return true;
+}
 
 const clientRoot = clientConfig
     ? path.resolve(__dirname, "..", resolveClientDir(clientConfig), "src")
     : path.resolve(__dirname, "src/devApp");
 
-const siteTitle = clientConfig?.siteTitle ?? "cht-base dev";
+const siteTitle = clientConfig?.siteTitle ?? "CHT-Base";
 const appVersion = clientConfig?.version ?? devVersionInfo.version ?? "1.0.0";
 const versionCheckUrl = clientConfig?.versionCheckUrl ?? devVersionInfo.versionCheckUrl ?? "";
 const hasBackend = Boolean(clientConfig?.backend);
@@ -76,8 +96,13 @@ export default defineConfig(({ command }) => {
             "import.meta.env.VITE_API_BASE_URL": JSON.stringify(apiBaseUrl),
             "import.meta.env.VITE_API_TARGET": JSON.stringify(apiTarget),
             "import.meta.env.VITE_API_PORT_SCAN_LIMIT": JSON.stringify(String(apiPortScanLimit)),
-            "import.meta.env.VITE_HAS_BACKEND": JSON.stringify(hasBackend ? "true" : "false")
+            "import.meta.env.VITE_HAS_BACKEND": JSON.stringify(hasBackend ? "true" : "false"),
+            "import.meta.env.VITE_DEVAPP_URL": JSON.stringify(devappUrl),
+            "import.meta.env.VITE_DEV_TOOLS": JSON.stringify(isDevToolsEnabled() ? "true" : "false")
         },
+        cacheDir: isDevAppServer
+            ? path.resolve(__dirname, "node_modules/.vite-devapp")
+            : path.resolve(__dirname, "node_modules/.vite"),
         server: {
             fs: {
                 allow: [path.resolve(__dirname, "..")]

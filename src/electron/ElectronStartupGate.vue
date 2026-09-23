@@ -2,6 +2,8 @@
     <div class="relative flex h-screen flex-col">
         <slot />
 
+        <DevToolsFab />
+
         <Transition name="electron-startup-fade">
             <div
                 v-if="showOverlay"
@@ -52,6 +54,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { project } from "../project";
+import DevToolsFab from "../devTools/DevToolsFab.vue";
 
 const STATUS_HINTS = [
     "Iniciando serviços locais...",
@@ -61,6 +64,10 @@ const STATUS_HINTS = [
 
 export default defineComponent({
     name: "ElectronStartupGate",
+
+    components: {
+        DevToolsFab
+    },
 
     data() {
         return {

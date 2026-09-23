@@ -1,30 +1,37 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm mt-4 mb-24 flex flex-col gap-4 md:mt-8">
         <section>
-            <h1>
-                Dropdown
-            </h1>
+            <h1>Dropdown</h1>
 
             <p>
-                Menu de ações a partir de um botão. Opções podem ter ícone, valor, tooltip e separadores.
-                Emite <code>@click:value</code> com o <code>value</code> da opção.
-                Em ecrãs estreitos abre um <code>Modal</code> <code>blank</code> por omissão
+                Menu de ações a partir de um botão. Opções podem ter ícone, valor, tooltip e
+                separadores. Emite <code>@click:value</code> com o <code>value</code> da opção. Em
+                ecrãs estreitos abre um <code>Modal</code> <code>blank</code> por omissão
                 (<code>mobileModal</code>; <code>forceModal</code> força no desktop).
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Dropdown">
-                <div class="p-4 max-w-xs flex flex-col gap-2">
+                <div class="flex max-w-xs flex-col gap-2 p-4">
                     <Dropdown
                         header="Ações"
-
                         :options="[
                             { label: 'Conta' },
                             { label: 'Perfil', value: 'user', icon: 'fa-user' },
-                            { label: 'Email', value: 'email', icon: 'fa-envelope', tooltip: 'Abrir caixa de entrada' },
+                            {
+                                label: 'Email',
+                                value: 'email',
+                                icon: 'fa-envelope',
+                                tooltip: 'Abrir caixa de entrada'
+                            },
                             { separator: true },
-                            { label: 'Sair', value: 'exit', icon: 'fa-right-from-bracket', variant: 'destructive' }
+                            {
+                                label: 'Sair',
+                                value: 'exit',
+                                icon: 'fa-right-from-bracket',
+                                variant: 'destructive'
+                            }
                         ]"
 
                         @click:value="lastClicked = $event"
@@ -38,22 +45,21 @@
         </section>
 
         <section>
-            <h3>
-                Pesquisa
-            </h3>
+            <h3>Pesquisa</h3>
 
             <p>
-                <code>:search="{ external: false }"</code> mostra um campo no topo da lista e filtra por
-                <code>label</code> (e por <code>value</code> se nada bater no label).
-                Ao abrir, o campo recebe foco e o primeiro item fica pré-selecionado; setas navegam, Enter confirma, Esc fecha.
-                <code>:search="{ external: true, field: 'modelo' }"</code> deixa a filtragem a cargo do pai
-                e emite <code>search:external</code> com <code>{ field, value }</code>.
+                <code>:search="{ external: false }"</code> mostra um campo no topo da lista e filtra
+                por <code>label</code> (e por <code>value</code> se nada bater no label). Ao abrir,
+                o campo recebe foco e o primeiro item fica pré-selecionado; setas navegam, Enter
+                confirma, Esc fecha.
+                <code>:search="{ external: true, field: 'modelo' }"</code> deixa a filtragem a cargo
+                do pai e emite <code>search:external</code> com <code>{ field, value }</code>.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Pesquisa">
-                <div class="p-4 max-w-xs">
+                <div class="max-w-xs p-4">
                     <Dropdown
                         header="Com pesquisa"
                         :search="{ external: false }"
@@ -70,19 +76,17 @@
         </section>
 
         <section>
-            <h3>
-                Fechar ao selecionar
-            </h3>
+            <h3>Fechar ao selecionar</h3>
 
             <p>
-                <code>closeOnSelect</code> (padrão <code>true</code>) fecha o painel depois do clique.
-                Passe <code>false</code> para menus que precisam de vários cliques seguidos.
+                <code>closeOnSelect</code> (padrão <code>true</code>) fecha o painel depois do
+                clique. Passe <code>false</code> para menus que precisam de vários cliques seguidos.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Fechar ao selecionar">
-                <div class="p-4 max-w-xs">
+                <div class="max-w-xs p-4">
                     <Dropdown
                         header="Permanece aberto"
                         :close-on-select="false"
@@ -90,9 +94,19 @@
                         :options="[
                             { label: 'Conta' },
                             { label: 'Perfil', value: 'user', icon: 'fa-user' },
-                            { label: 'Email', value: 'email', icon: 'fa-envelope', tooltip: 'Abrir caixa de entrada' },
+                            {
+                                label: 'Email',
+                                value: 'email',
+                                icon: 'fa-envelope',
+                                tooltip: 'Abrir caixa de entrada'
+                            },
                             { separator: true },
-                            { label: 'Sair', value: 'exit', icon: 'fa-right-from-bracket', variant: 'destructive' }
+                            {
+                                label: 'Sair',
+                                value: 'exit',
+                                icon: 'fa-right-from-bracket',
+                                variant: 'destructive'
+                            }
                         ]"
 
                         @click:value="lastClicked = $event"
@@ -102,9 +116,7 @@
         </section>
 
         <section>
-            <h3>
-                Modal
-            </h3>
+            <h3>Modal</h3>
 
             <p>
                 <code>mobileModal</code> (padrão <code>true</code>) usa um modal blank abaixo de
@@ -115,17 +127,21 @@
 
         <section class="mb-8">
             <DocsExample label="Modal no desktop">
-                <div class="p-4 max-w-xs">
+                <div class="max-w-xs p-4">
                     <Dropdown
                         header="Forçar modal"
                         force-modal
-
                         :options="[
                             { label: 'Conta' },
                             { label: 'Perfil', value: 'user', icon: 'fa-user' },
                             { label: 'Email', value: 'email', icon: 'fa-envelope' },
                             { separator: true },
-                            { label: 'Sair', value: 'exit', icon: 'fa-right-from-bracket', variant: 'destructive' }
+                            {
+                                label: 'Sair',
+                                value: 'exit',
+                                icon: 'fa-right-from-bracket',
+                                variant: 'destructive'
+                            }
                         ]"
 
                         @click:value="lastClicked = $event"
@@ -135,28 +151,33 @@
         </section>
 
         <section>
-            <h3>
-                Botão customizado
-            </h3>
+            <h3>Botão customizado</h3>
 
             <p>
-                O slot <code>#button</code> recebe <code>isOpen</code>, <code>toggle</code>, <code>open</code> e <code>close</code>.
-                <code>buttonVariant</code> e <code>buttonAtributes</code> valem só para o botão padrão.
-                <code>hideDropdownArrow</code> esconde a seta desse botão.
-                O painel tem largura mínima de <code>192px</code> (<code>minWidthPx</code>); o valor final é o maior entre o trigger e esse mínimo.
+                O slot <code>#button</code> recebe <code>isOpen</code>, <code>toggle</code>,
+                <code>open</code> e <code>close</code>. <code>buttonVariant</code> e
+                <code>buttonAtributes</code> valem só para o botão padrão.
+                <code>hideDropdownArrow</code> esconde a seta desse botão. O painel tem largura
+                mínima de <code>192px</code> (<code>minWidthPx</code>); o valor final é o maior
+                entre o trigger e esse mínimo.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Botão customizado">
-                <div class="p-4 max-w-xs">
+                <div class="max-w-xs p-4">
                     <Dropdown
                         :options="[
                             { label: 'Conta' },
                             { label: 'Perfil', value: 'user', icon: 'fa-user' },
                             { label: 'Email', value: 'email', icon: 'fa-envelope' },
                             { separator: true },
-                            { label: 'Sair', value: 'exit', icon: 'fa-right-from-bracket', variant: 'destructive' }
+                            {
+                                label: 'Sair',
+                                value: 'exit',
+                                icon: 'fa-right-from-bracket',
+                                variant: 'destructive'
+                            }
                         ]"
                     >
                         <template #button="{ toggle, isOpen }">
@@ -173,13 +194,11 @@
         </section>
 
         <section>
-            <h3>
-                Aberto controlado
-            </h3>
+            <h3>Aberto controlado</h3>
 
             <p>
-                <code>v-model:open</code> controla o painel com um boolean.
-                Sem slot <code>#button</code>, o trigger interno some: use um botão à parte.
+                <code>v-model:open</code> controla o painel com um boolean. Sem slot
+                <code>#button</code>, o trigger interno some: use um botão à parte.
             </p>
         </section>
 
@@ -198,14 +217,18 @@
 
                         <Dropdown
                             v-model:open="externalOpen"
-
                             hide-dropdown-arrow
                             :options="[
                                 { label: 'Conta' },
                                 { label: 'Perfil', value: 'user', icon: 'fa-user' },
                                 { label: 'Email', value: 'email', icon: 'fa-envelope' },
                                 { separator: true },
-                                { label: 'Sair', value: 'exit', icon: 'fa-right-from-bracket', variant: 'destructive' }
+                                {
+                                    label: 'Sair',
+                                    value: 'exit',
+                                    icon: 'fa-right-from-bracket',
+                                    variant: 'destructive'
+                                }
                             ]"
 
                             @click:value="lastClicked = $event"
@@ -216,20 +239,18 @@
         </section>
 
         <section>
-            <h3>
-                Submenu
-            </h3>
+            <h3>Submenu</h3>
 
             <p>
                 Uma opção com <code>options</code> abre um painel ao lado no hover ou no clique.
-                <code>openOn="click"</code> restringe a abertura ao clique.
-                O submenu pode ter mais <code>options</code> (aninhamento).
+                <code>openOn="click"</code> restringe a abertura ao clique. O submenu pode ter mais
+                <code>options</code> (aninhamento).
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Submenu">
-                <div class="p-4 max-w-xs">
+                <div class="max-w-xs p-4">
                     <Dropdown
                         header="Com submenu"
                         :close-on-select="false"
@@ -253,17 +274,16 @@
         </section>
 
         <section>
-            <h3>
-                Opções
-            </h3>
+            <h3>Opções</h3>
 
             <p>
                 Cada item: <code>label</code>, <code>value</code> (obrigatório para ser clicável),
                 <code>icon</code> (classe Font Awesome, ex. <code>fa-user</code>),
                 <code>tooltip</code>, <code>separator: true</code> para uma linha divisória e
-                <code>variant: "destructive"</code> para ações de exclusão (texto vermelho).
-                Itens só com <code>label</code> (sem <code>value</code>) viram cabeçalhos de grupo.
-                <code>options</code> no item abre um submenu ao lado; <code>disabled</code> impede o clique.
+                <code>variant: "destructive"</code> para ações de exclusão (texto vermelho). Itens
+                só com <code>label</code> (sem <code>value</code>) viram cabeçalhos de grupo.
+                <code>options</code> no item abre um submenu ao lado; <code>disabled</code> impede o
+                clique.
             </p>
         </section>
     </article>

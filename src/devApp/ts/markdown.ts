@@ -33,6 +33,71 @@ function renderInline(text: string): string {
     return html.replace(/%%CODE(\d+)%%/g, (_, index: string) => codes[Number(index)] ?? "");
 }
 
+function isMarkdownTableRow(line: string): boolean {
+    const trimmed = line.trim();
+
+    return trimmed.startsWith("|") && trimmed.includes("|", 1);
+}
+
+function isMarkdownTableSeparator(line: string): boolean {
+    return /^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$/.test(line.trim());
+}
+
+function splitMarkdownTableCells(line: string): string[] {
+    let body = line.trim();
+
+    if (body.startsWith("|")) {
+        body = body.slice(1);
+    }
+
+    if (body.endsWith("|")) {
+        body = body.slice(0, -1);
+    }
+
+    return body.split("|").map((cell) => cell.trim());
+}
+
+function renderMarkdownTable(tableLines: string[]): string {
+    const rows = tableLines.filter((line) => !isMarkdownTableSeparator(line));
+
+    if (rows.length === 0) {
+        return "";
+    }
+
+    const [headerLine, ...bodyLines] = rows;
+    const headers = splitMarkdownTableCells(headerLine ?? "");
+    const head = headers
+        .map(
+            (cell) =>
+                `<th class="border border-border bg-secondary/60 px-3 py-2 text-left font-semibold">${renderInline(cell)}</th>`
+        )
+        .join("");
+
+    const body = bodyLines
+        .map((line) => {
+            const cells = splitMarkdownTableCells(line);
+            const tds = headers
+                .map((_, cellIndex) => {
+                    const cell = cells[cellIndex] ?? "";
+
+                    return `<td class="border border-border px-3 py-2">${renderInline(cell)}</td>`;
+                })
+                .join("");
+
+            return `<tr>${tds}</tr>`;
+        })
+        .join("");
+
+    return [
+        `<div class="overflow-x-auto">`,
+        `<table class="w-full border-collapse text-sm text-foreground">`,
+        `<thead><tr>${head}</tr></thead>`,
+        `<tbody>${body}</tbody>`,
+        `</table>`,
+        `</div>`
+    ].join("");
+}
+
 /**
  * Extracts a slice of markdown from one heading up to (not including) another.
  *
@@ -144,6 +209,24 @@ export function renderMarkdown(markdown: string): string {
             continue;
         }
 
+        if (isMarkdownTableRow(trimmed)) {
+            const tableLines: string[] = [];
+
+            while (index < lines.length) {
+                const row = (lines[index] ?? "").trim();
+
+                if (!isMarkdownTableRow(row) && !isMarkdownTableSeparator(row)) {
+                    break;
+                }
+
+                tableLines.push(row);
+                index += 1;
+            }
+
+            html.push(renderMarkdownTable(tableLines));
+            continue;
+        }
+
         if (/^\d+\.\s+/.test(trimmed)) {
             const items: string[] = [];
 
@@ -176,6 +259,7 @@ export function renderMarkdown(markdown: string): string {
                 || next.startsWith("* ")
                 || /^\d+\.\s+/.test(next)
                 || next.startsWith("%%FENCE")
+                || isMarkdownTableRow(next)
             ) {
                 break;
             }

@@ -12,6 +12,11 @@
             </p>
         </section>
 
+        <DocsMarkdown
+            bare
+            :source="codeSource"
+        />
+
         <section>
             <h3>device</h3>
 
@@ -248,17 +253,50 @@
 import { defineComponent } from "vue";
 import Button from "@design/components/Button.vue";
 import { projectActions } from "@base/project";
+import DocsMarkdown from "../../components/DocsMarkdown.vue";
+
+const CODE_SOURCE = `## Como usar
+
+No template (Options API):
+
+\`\`\`vue
+<p>{{ $project.labels.siteTitle }}</p>
+<p v-if="$project.device.isMobile">Layout compacto</p>
+\`\`\`
+
+No script:
+
+\`\`\`ts
+import { project, projectActions } from "@base/project";
+
+projectActions.setTheme("dark");
+projectActions.setUserName(user.nome);
+
+if (project.electron.isElectron) {
+    void projectActions.checkForUpdates();
+}
+\`\`\`
+
+O plugin é instalado em \`cht-base/src/main.ts\`:
+
+\`\`\`ts
+app.use(projectPlugin, { router });
+projectActions.setSiteTitle(import.meta.env.VITE_SITE_TITLE);
+\`\`\`
+`;
 
 export default defineComponent({
     name: "DocsProject",
 
     components: {
-        Button
+        Button,
+        DocsMarkdown
     },
 
     data() {
         return {
-            projectActions
+            projectActions,
+            codeSource: CODE_SOURCE
         };
     },
 

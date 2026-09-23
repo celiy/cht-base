@@ -1,17 +1,23 @@
 <template>
-    <div class="flex items-start w-full min-w-0">
+    <div class="flex w-full min-w-0 items-start">
         <div
             ref="contentRef"
 
             class="min-w-0 flex-1"
         >
+            <DocsComponentStatus
+                v-if="componentDocSlug"
+
+                :slug="componentDocSlug"
+            />
+
             <slot />
         </div>
 
         <nav
             v-if="headings.length > 0"
 
-            class="hidden lg:flex sticky top-0 shrink-0 w-44 flex-col gap-1 pr-6 pt-8"
+            class="sticky top-0 hidden w-44 shrink-0 flex-col gap-1 pt-8 pr-6 lg:flex"
             aria-label="On this page"
         >
             <DocsTocLink
@@ -31,7 +37,9 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import DocsComponentStatus from "./DocsComponentStatus.vue";
 import DocsTocLink from "./DocsTocLink.vue";
+import { getComponentDocSlug } from "../ts/componentReadiness";
 
 type OutlineHeading = {
     id: string;
@@ -81,6 +89,7 @@ export default defineComponent({
     name: "DocsOutline",
 
     components: {
+        DocsComponentStatus,
         DocsTocLink
     },
 
@@ -95,6 +104,12 @@ export default defineComponent({
             clickLockId: "",
             clickLockUntil: 0
         };
+    },
+
+    computed: {
+        componentDocSlug(): string | null {
+            return getComponentDocSlug(this.$route.path);
+        }
     },
 
     mounted() {
@@ -230,7 +245,9 @@ export default defineComponent({
         bindScrollSpy() {
             const root = this.$refs.contentRef as HTMLElement | undefined;
             this.scrollParent = findScrollParent(root ?? null);
-            this.scrollParent.addEventListener("scroll", this.onScrollParentScroll, { passive: true });
+            this.scrollParent.addEventListener("scroll", this.onScrollParentScroll, {
+                passive: true
+            });
             window.addEventListener("resize", this.onScrollParentScroll);
         },
 

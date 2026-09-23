@@ -8,62 +8,97 @@ export const componentsNav = [
         label: "Introduction",
         links: [
             {
-                label: "Welcome",
+                label: "Bem-Vindo",
                 link: "/docs"
             },
             {
-                label: "About",
+                label: "Sobre",
                 link: "/docs/about"
             },
             {
-                label: "Installation",
+                label: "Instalação",
                 link: "/docs/installation"
             },
             {
-                label: "Usage",
+                label: "Uso",
                 link: "/docs/usage"
-            },
-            {
-                label: "Styling",
-                link: "/docs/styling"
-            },
-            {
-                label: "$project",
-                link: "/docs/project"
             }
         ]
     },
     {
         type: "section" as const,
-        label: "Foundation"
+        label: "Sistema"
+    },
+    {
+        type: "group" as const,
+        label: "Guia",
+        links: [
+            {
+                label: "$project",
+                link: "/docs/project"
+            },
+            {
+                label: "$http",
+                link: "/docs/http"
+            },
+            {
+                label: "Websocket",
+                link: "/docs/websocket"
+            },
+            {
+                label: "Temas",
+                link: "/docs/themes"
+            },
+            {
+                label: "cht.config",
+                link: "/docs/cht-config"
+            },
+            {
+                label: "Modo dev",
+                link: "/docs/dev-mode"
+            },
+            {
+                label: "Criar frontend",
+                link: "/docs/create-client"
+            }
+        ]
+    },
+    {
+        type: "section" as const,
+        label: "Fundamentos"
     },
     {
         type: "link" as const,
-        label: "Colors",
+        label: "Cores",
         link: "/docs/components/colors"
     },
     {
         type: "link" as const,
-        label: "Toast",
+        label: "Estilização",
+        link: "/docs/styling"
+    },
+    {
+        type: "link" as const,
+        label: "Toasts",
         link: "/docs/components/toast"
     },
     {
         type: "link" as const,
-        label: "Tooltip",
+        label: "Tooltips",
         link: "/docs/components/tooltip"
     },
     {
         type: "link" as const,
-        label: "Typography",
+        label: "Tipografia",
         link: "/docs/components/typography"
     },
     {
         type: "section" as const,
-        label: "Components"
+        label: "Componentes"
     },
     {
         type: "link" as const,
-        label: "Accordion",
+        label: "Acordion",
         link: "/docs/components/accordion"
     },
     {
@@ -110,6 +145,11 @@ export const componentsNav = [
         type: "link" as const,
         label: "Inputs",
         link: "/docs/components/inputs"
+    },
+    {
+        type: "link" as const,
+        label: "Image",
+        link: "/docs/components/image"
     },
     {
         type: "link" as const,

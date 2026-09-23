@@ -38,6 +38,36 @@ const routes: RouteRecordRaw[] = [
                 component: () => import("./pages/docs/project.vue")
             },
             {
+                path: "docs/http",
+                name: "docs-http",
+                component: () => import("./pages/docs/http.vue")
+            },
+            {
+                path: "docs/websocket",
+                name: "docs-websocket",
+                component: () => import("./pages/docs/websocket.vue")
+            },
+            {
+                path: "docs/themes",
+                name: "docs-themes",
+                component: () => import("./pages/docs/themes.vue")
+            },
+            {
+                path: "docs/cht-config",
+                name: "docs-cht-config",
+                component: () => import("./pages/docs/cht-config.vue")
+            },
+            {
+                path: "docs/dev-mode",
+                name: "docs-dev-mode",
+                component: () => import("./pages/docs/dev-mode.vue")
+            },
+            {
+                path: "docs/create-client",
+                name: "docs-create-client",
+                component: () => import("./pages/docs/create-client.vue")
+            },
+            {
                 path: "docs/components/accordion",
                 name: "components-accordion",
                 component: () => import("./pages/docs/components/accordion.vue")
@@ -96,6 +126,11 @@ const routes: RouteRecordRaw[] = [
                 path: "docs/components/inputs",
                 name: "components-inputs",
                 component: () => import("./pages/docs/components/inputs.vue")
+            },
+            {
+                path: "docs/components/image",
+                name: "components-image",
+                component: () => import("./pages/docs/components/image.vue")
             },
             {
                 path: "docs/components/item",

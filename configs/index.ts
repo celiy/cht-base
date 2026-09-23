@@ -5,15 +5,28 @@ import type { ClientConfig } from "./types";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(HERE, "..", "..");
-const CLIENT_DIR_PREFIX = "cht-client-";
 const CLIENT_CONFIG_FILE = "cht.config.json";
 
+const SKIP_DISCOVERY_DIRS = new Set([
+    "node_modules",
+    ".git",
+    "cht-base",
+    "cht-design-system",
+    "cht-shared",
+    "scripts",
+    "builds",
+    "dist"
+]);
+
 /**
- * Apply the monorepo convention `cht-client-<name>` when `clientDir`
- * is not explicitly set on the config.
+ * Folder that contained `cht.config.json`. `clientDir` is filled by `loadConfig`.
  */
 export function resolveClientDir(cfg: ClientConfig): string {
-    return cfg.clientDir || `${CLIENT_DIR_PREFIX}${cfg.name}`;
+    if (cfg.clientDir) {
+        return cfg.clientDir;
+    }
+
+    throw new Error(`[configs] clientDir missing for "${cfg.name}". Call loadConfig first.`);
 }
 
 export function parseVersionInfo(content: string): { version?: string; versionCheckUrl?: string } {
@@ -97,36 +110,50 @@ export function loadDevAppVersion(): { version?: string; versionCheckUrl?: strin
     return loadWorkspaceVersion();
 }
 
-function listDiscoveredClientNames(): string[] {
+function listDiscoveredClients(): Map<string, { dir: string; configPath: string }> {
+    const found = new Map<string, { dir: string; configPath: string }>();
+
     if (!fs.existsSync(WORKSPACE_ROOT)) {
-        return [];
+        return found;
     }
 
-    const names: string[] = [];
-
     for (const entry of fs.readdirSync(WORKSPACE_ROOT, { withFileTypes: true })) {
-        if (!entry.isDirectory() || !entry.name.startsWith(CLIENT_DIR_PREFIX)) {
-            continue;
-        }
-
-        const name = entry.name.slice(CLIENT_DIR_PREFIX.length);
-
-        if (!name) {
+        if (!entry.isDirectory() || SKIP_DISCOVERY_DIRS.has(entry.name) || entry.name.startsWith(".")) {
             continue;
         }
 
         const configPath = path.join(WORKSPACE_ROOT, entry.name, CLIENT_CONFIG_FILE);
 
-        if (fs.existsSync(configPath)) {
-            names.push(name);
+        if (!fs.existsSync(configPath)) {
+            continue;
         }
+
+        let parsed: { name?: unknown };
+
+        try {
+            parsed = JSON.parse(fs.readFileSync(configPath, "utf8")) as { name?: unknown };
+        } catch {
+            continue;
+        }
+
+        const name = typeof parsed.name === "string" ? parsed.name.trim() : "";
+
+        if (!name || found.has(name)) {
+            continue;
+        }
+
+        found.set(name, { dir: entry.name, configPath });
     }
 
-    return names.sort();
+    return found;
+}
+
+function listDiscoveredClientNames(): string[] {
+    return [...listDiscoveredClients().keys()].sort();
 }
 
 /**
- * Load a client config by name from `cht-client-<name>/cht.config.json`.
+ * Load a client config by `name` from any sibling folder that has `cht.config.json`.
  * Returns null when no client is active (base dev mode).
  */
 export function loadConfig(name: string | undefined | null): ClientConfig | null {
@@ -134,17 +161,19 @@ export function loadConfig(name: string | undefined | null): ClientConfig | null
         return null;
     }
 
-    const clientDir = `${CLIENT_DIR_PREFIX}${name}`;
-    const clientDirPath = path.join(WORKSPACE_ROOT, clientDir);
-    const configPath = path.join(clientDirPath, CLIENT_CONFIG_FILE);
+    const found = listDiscoveredClients().get(name);
 
-    if (!fs.existsSync(configPath)) {
+    if (!found) {
         const known = listDiscoveredClientNames().join(", ") || "(none)";
 
         throw new Error(
-            `[configs] Client config not found: "${name}" (${configPath}). Known clients: ${known}`
+            `[configs] Client config not found: "${name}". Add cht.config.json to a sibling folder. Known clients: ${known}`
         );
     }
+
+    const clientDir = found.dir;
+    const clientDirPath = path.join(WORKSPACE_ROOT, clientDir);
+    const configPath = found.configPath;
 
     const raw = fs.readFileSync(configPath, "utf8");
     let parsed: ClientConfig;
@@ -157,22 +186,14 @@ export function loadConfig(name: string | undefined | null): ClientConfig | null
         throw new Error(`[configs] Invalid JSON in ${configPath}: ${message}`);
     }
 
-    const configName = parsed.name || name;
-
-    if (configName !== name) {
-        throw new Error(
-            `[configs] Config name "${configName}" does not match folder suffix "${name}" (${clientDir}).`
-        );
-    }
-
     const fileVersion = loadVersionFromFile(clientDirPath);
     const workspaceVersion = loadWorkspaceVersion();
 
     return {
         ...parsed,
-        name: configName,
+        name,
         siteTitle: parsed.siteTitle || name,
-        clientDir: parsed.clientDir || clientDir,
+        clientDir,
         version: parsed.version || fileVersion.version || workspaceVersion.version || "1.0.0",
         versionCheckUrl:
             parsed.versionCheckUrl ||

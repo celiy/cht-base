@@ -16,6 +16,8 @@ interface ImportMetaEnv {
     readonly VITE_APP_VERSION: string;
     readonly VITE_VERSION_CHECK_URL: string;
     readonly VITE_HAS_BACKEND: string;
+    readonly VITE_DEVAPP_URL: string;
+    readonly VITE_DEV_TOOLS: string;
 }
 
 interface ImportMeta {
