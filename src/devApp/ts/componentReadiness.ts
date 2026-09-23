@@ -4,6 +4,7 @@ export type ComponentReadinessStatus = "success" | "info" | "warning" | "destruc
 
 type ReadinessMeta = {
     variant: ComponentReadinessStatus;
+    label: string;
     description: string;
     icon: string;
 };
@@ -11,23 +12,27 @@ type ReadinessMeta = {
 const READINESS_META: Record<ComponentReadinessStatus, ReadinessMeta> = {
     success: {
         variant: "success",
+        label: "Pronto para uso",
         description: "Implementado, testado e pronto para uso.",
         icon: "fa-circle-check"
     },
     info: {
         variant: "info",
+        label: "Implementado",
         description:
             "Implementado corretamente, mas ainda não validado em um caso de uso real. Pode mudar ou não cobrir todos os cenários.",
         icon: "fa-circle-info"
     },
     warning: {
         variant: "warning",
+        label: "Em evolução",
         description:
             "Base sólida, mas faltam partes e ainda não foi testado em uso real para ser considerado completo.",
         icon: "fa-triangle-exclamation"
     },
     destructive: {
         variant: "destructive",
+        label: "Em implementação",
         description: "Componente em implementação e não está pronto para uso.",
         icon: "fa-circle-xmark"
     }

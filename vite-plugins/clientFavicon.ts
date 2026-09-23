@@ -13,6 +13,11 @@ function resolveClientFaviconPath(clientName: string | undefined): string | null
     }
 
     const cfg = loadConfig(clientName);
+
+    if (!cfg) {
+        return null;
+    }
+
     const clientDir = path.resolve(WORKSPACE_ROOT, resolveClientDir(cfg));
     const candidates = [
         path.join(clientDir, "build", "icon.png"),
