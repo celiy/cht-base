@@ -75,6 +75,7 @@ Para empacotar um backend que não é Node, mantém \`packageWithElectron: true\
 | \`api\` / \`apiBaseUrl\` | URL da API por alvo (\`dev\`, \`web\`, \`electron\`, \`mobile\`) |
 | \`apiPortScanLimit\` | Quantas portas a seguir à configurada o cliente tenta |
 | \`frontend.repo\` | URL git do frontend (install / catálogo) |
+| \`frontend.ref\` | Branch, tag ou commit a fazer checkout no install |
 | \`backend\` | Se existir, o runner sobe o processo e \`VITE_HAS_BACKEND\` fica \`true\` |
 | \`backend.dir\` | Pasta do backend, relativa à raiz do workspace. **Obrigatório** se houver \`backend\`. |
 | \`backend.cmd\` | Comando a correr nessa pasta no watch/dev. Padrão: \`npm run dev\` (ou \`backend.script\`). |
@@ -82,6 +83,7 @@ Para empacotar um backend que não é Node, mantém \`packageWithElectron: true\
 | \`backend.packagedCmd\` | Comando no app Electron já instalado. Se omitido e o comando for npm/npx, usa-se o \`tsx\` embutido. |
 | \`backend.packageWithElectron\` | Copiar o backend para o instalador. **Padrão \`true\`**. |
 | \`backend.repo\` | URL git do backend para \`npx chtmain install --client:<name>\` |
+| \`backend.ref\` | Branch, tag ou commit do backend no install |
 | \`devTools\` | \`false\` ou \`{ "enabled": false }\` esconde o botão de debug |
 | \`publish\` | Dados do GitHub para updates Electron |
 | \`theme\` | Opcional; senão usa-se \`src/theme.config.json\` |
