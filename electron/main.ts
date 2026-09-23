@@ -18,6 +18,10 @@ let tray: Tray | null = null;
 let runtimeConfig: ElectronRuntimeConfig;
 let isShuttingDown = false;
 
+/**
+ * Resolves the runtime config path
+ * @returns {string} The runtime config path
+ */
 function resolveRuntimeConfigPath(): string {
     const fromEnv = process.env.CHT_ELECTRON_CONFIG;
 
@@ -42,12 +46,21 @@ function resolveRuntimeConfigPath(): string {
     throw new Error("Arquivo de configuração do Electron não encontrado (runtime-config.json).");
 }
 
+/**
+ * Loads the runtime config
+ * @returns {ElectronRuntimeConfig} The runtime config
+ */
 function loadRuntimeConfig(): ElectronRuntimeConfig {
     const configPath = resolveRuntimeConfigPath();
     const raw = fs.readFileSync(configPath, "utf8");
     return JSON.parse(raw) as ElectronRuntimeConfig;
 }
 
+/**
+ * Resolves the backend directory
+ * @param {string} dir The directory to resolve
+ * @returns {string} The resolved backend directory
+ */
 function resolveBackendDir(dir: string): string {
     if (path.isAbsolute(dir)) {
         return dir;
@@ -101,10 +114,18 @@ function resolveBackendConfig(): ElectronBackendConfig | null {
     return config;
 }
 
+/**
+ * Resolves the preload path
+ * @returns {string} The preload path
+ */
 function preloadPath(): string {
     return path.join(__dirname, "preload.cjs");
 }
 
+/**
+ * Attaches the context menu to the window
+ * @param {BrowserWindow} window The window to attach the context menu to
+ */
 function attachContextMenu(window: BrowserWindow): void {
     window.webContents.on("context-menu", (_event, params) => {
         const template: MenuItemConstructorOptions[] = [];
@@ -150,6 +171,10 @@ function attachContextMenu(window: BrowserWindow): void {
     });
 }
 
+/**
+ * Creates a new window
+ * @returns {BrowserWindow} The new window
+ */
 function createWindow(): BrowserWindow {
     const width = runtimeConfig.window?.width ?? DEFAULT_WIDTH;
     const height = runtimeConfig.window?.height ?? DEFAULT_HEIGHT;
@@ -183,6 +208,11 @@ function createWindow(): BrowserWindow {
     return window;
 }
 
+/**
+ * Loads the frontend
+ * @param {BrowserWindow} window The window to load the frontend into
+ * @returns {Promise<void>} A promise that resolves when the frontend is loaded
+ */
 async function loadFrontend(window: BrowserWindow): Promise<void> {
     if (runtimeConfig.isDev && runtimeConfig.viteUrl) {
         await window.loadURL(runtimeConfig.viteUrl);
@@ -193,6 +223,9 @@ async function loadFrontend(window: BrowserWindow): Promise<void> {
     await window.loadFile(indexHtml);
 }
 
+/**
+ * Broadcasts the backend status
+ */
 function broadcastBackendStatus(): void {
     if (!backendManager) {
         return;
@@ -207,6 +240,10 @@ function broadcastBackendStatus(): void {
     refreshTrayMenu();
 }
 
+/**
+ * Gets the current update status
+ * @returns {UpdateStatus} The current update status
+ */
 function currentUpdateStatus(): UpdateStatus {
     if (updateManager) {
         return updateManager.getStatus();
@@ -220,6 +257,9 @@ function currentUpdateStatus(): UpdateStatus {
     };
 }
 
+/**
+ * Broadcasts the update status
+ */
 function broadcastUpdateStatus(): void {
     const status = currentUpdateStatus();
 
@@ -230,6 +270,10 @@ function broadcastUpdateStatus(): void {
     refreshTrayMenu();
 }
 
+/**
+ * Resolves the tray icon path
+ * @returns {string | null} The tray icon path
+ */
 function trayIconPath(): string | null {
     const configured = runtimeConfig.trayIcon;
 
@@ -244,11 +288,17 @@ function trayIconPath(): string | null {
     return fs.existsSync(resolved) ? resolved : null;
 }
 
+/**
+ * Gets the backend status label
+ * @returns {string} The backend status label
+ */
 function backendStatusLabel(): string {
     const status = backendManager?.getStatus();
 
     if (!status) {
-        return runtimeConfig.hasBackend ? "Servidor local: aguardando" : "Servidor local: desativado";
+        return runtimeConfig.hasBackend
+            ? "Servidor local: aguardando"
+            : "Servidor local: desativado";
     }
 
     switch (status.state) {
@@ -265,6 +315,10 @@ function backendStatusLabel(): string {
     }
 }
 
+/**
+ * Gets the update status label
+ * @returns {string | null} The update status label
+ */
 function updateStatusLabel(): string | null {
     const status = currentUpdateStatus();
 
@@ -286,6 +340,9 @@ function updateStatusLabel(): string | null {
     }
 }
 
+/**
+ * Shows the main window
+ */
 function showMainWindow(): void {
     if (!mainWindow) {
         void createAppWindow();
@@ -301,6 +358,10 @@ function showMainWindow(): void {
     mainWindow.focus();
 }
 
+/**
+ * Builds the tray template
+ * @returns {MenuItemConstructorOptions[]} The tray template
+ */
 function buildTrayTemplate(): MenuItemConstructorOptions[] {
     const backendStatus = backendManager?.getStatus();
     const template: MenuItemConstructorOptions[] = [
@@ -377,6 +438,9 @@ function buildTrayTemplate(): MenuItemConstructorOptions[] {
     return template;
 }
 
+/**
+ * Refreshes the tray menu
+ */
 function refreshTrayMenu(): void {
     if (!tray) {
         return;
@@ -407,6 +471,9 @@ function createTray(): void {
     }
 }
 
+/**
+ * Registers the update IPC handlers
+ */
 function registerUpdateIpc(): void {
     ipcMain.handle(IPC_CHANNELS.updateGetStatus, () => currentUpdateStatus());
 
@@ -431,6 +498,9 @@ function registerUpdateIpc(): void {
     });
 }
 
+/**
+ * Registers the IPC handlers
+ */
 function registerIpc(): void {
     ipcMain.handle(IPC_CHANNELS.getStatus, () => {
         if (!backendManager) {
@@ -454,6 +524,9 @@ function registerIpc(): void {
     registerUpdateIpc();
 }
 
+/**
+ * Starts the updates
+ */
 function startUpdates(): void {
     updateManager = new UpdateManager();
     updateManager.onStatus(() => {
@@ -462,6 +535,10 @@ function startUpdates(): void {
     updateManager.start();
 }
 
+/**
+ * Starts the backend
+ * @returns {Promise<void>} A promise that resolves when the backend is started
+ */
 async function startBackend(): Promise<void> {
     if (!runtimeConfig.hasBackend) {
         return;
@@ -481,11 +558,19 @@ async function startBackend(): Promise<void> {
     void backendManager.start();
 }
 
+/**
+ * Creates the app window
+ * @returns {Promise<void>} A promise that resolves when the app window is created
+ */
 async function createAppWindow(): Promise<void> {
     mainWindow = createWindow();
     await loadFrontend(mainWindow);
 }
 
+/**
+ * Shuts down the app
+ * @returns {Promise<void>} A promise that resolves when the app is shut down
+ */
 async function shutdown(): Promise<void> {
     updateManager?.stop();
     updateManager = null;
@@ -501,6 +586,9 @@ async function shutdown(): Promise<void> {
     }
 }
 
+/**
+ * The main function
+ */
 function main(): void {
     runtimeConfig = loadRuntimeConfig();
 

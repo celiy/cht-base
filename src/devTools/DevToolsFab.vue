@@ -29,6 +29,7 @@
                 <Option
                     v-for="(option, index) in menuOptions"
                     :key="option.id || option.label"
+
                     :first="index === 0"
                     :last="index === menuOptions.length - 1"
                     :label="option.label"
@@ -50,10 +51,15 @@ export default defineComponent({
     name: "DevToolsFab",
 
     computed: {
+        /** Whether the dev tools are enabled */
         enabled(): boolean {
             return import.meta.env.DEV && import.meta.env.VITE_DEV_TOOLS === "true";
         },
 
+        /**
+         * Gets the documentation URL
+         * @returns {string} The documentation URL
+         */
         docsUrl(): string {
             const base = (import.meta.env.VITE_DEVAPP_URL || "").replace(/\/$/, "");
 
@@ -64,6 +70,10 @@ export default defineComponent({
             return `${base}/docs`;
         },
 
+        /**
+         * Gets the menu options
+         * @returns {DevToolsOption[]} The menu options
+         */
         menuOptions(): DevToolsOption[] {
             const options: DevToolsOption[] = [];
 
@@ -87,6 +97,10 @@ export default defineComponent({
     },
 
     methods: {
+        /**
+         * Runs the option
+         * @param {DevToolsOption} option The option to run
+         */
         runOption(option: DevToolsOption) {
             void option.run();
         }

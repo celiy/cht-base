@@ -14,6 +14,10 @@ function readAppVersion(): string {
     return argument ? argument.slice(APP_VERSION_ARGUMENT.length) : "";
 }
 
+/**
+ * The electron API
+ * @type {ElectronAPI}
+ */
 const electronAPI: ElectronAPI = {
     isElectron: true,
     platform: process.platform,
@@ -31,7 +35,8 @@ const electronAPI: ElectronAPI = {
         };
     },
     retryBackend: () => ipcRenderer.invoke(IPC_CHANNELS.retry) as Promise<void>,
-    getUpdateStatus: () => ipcRenderer.invoke(IPC_CHANNELS.updateGetStatus) as Promise<UpdateStatus>,
+    getUpdateStatus: () =>
+        ipcRenderer.invoke(IPC_CHANNELS.updateGetStatus) as Promise<UpdateStatus>,
     onUpdateStatus: (callback) => {
         const listener = (_event: unknown, status: UpdateStatus) => {
             callback(status);

@@ -6,17 +6,30 @@ import path from "node:path";
 import type { BackendStatus, ElectronBackendConfig } from "./types";
 import { parseChtApiUrlFromText } from "../../cht-shared/src/net/portScan";
 
+/** The health check interval in milliseconds */
 const HEALTH_INTERVAL_MS = 300;
+/** The health check timeout in milliseconds */
 const HEALTH_TIMEOUT_MS = 60_000;
 
+/** The backend status listener type */
 export type BackendStatusListener = (status: BackendStatus) => void;
 
+/**
+ * Sleeps for the given number of milliseconds
+ * @param {number} ms The number of milliseconds to sleep
+ * @returns {Promise<void>} A promise that resolves when the sleep is complete
+ */
 function sleep(ms: number): Promise<void> {
     return new Promise((resolve) => {
         setTimeout(resolve, ms);
     });
 }
 
+/**
+ * Pings the health of the backend
+ * @param {string} url The URL to ping
+ * @returns {Promise<boolean>} A promise that resolves to the health of the backend
+ */
 function pingHealth(url: string): Promise<boolean> {
     return new Promise((resolve) => {
         const parsed = new URL(url);
@@ -43,6 +56,10 @@ function pingHealth(url: string): Promise<boolean> {
     });
 }
 
+/**
+ * Kills the process tree
+ * @param {ChildProcess} child The child process to kill
+ */
 function killProcessTree(child: ChildProcess): void {
     if (!child.pid) {
         return;
@@ -66,6 +83,11 @@ function killProcessTree(child: ChildProcess): void {
     }
 }
 
+/**
+ * Sets the backend environment variables
+ * @param {ElectronBackendConfig} config The backend configuration
+ * @returns {NodeJS.ProcessEnv} The backend environment variables
+ */
 function backendEnv(config: ElectronBackendConfig): NodeJS.ProcessEnv {
     const env: NodeJS.ProcessEnv = {
         ...process.env,
@@ -89,12 +111,22 @@ function backendEnv(config: ElectronBackendConfig): NodeJS.ProcessEnv {
     return env;
 }
 
+/**
+ * Resolves the tsx CLI path
+ * @param {string} dir The directory to resolve the tsx CLI path from
+ * @returns {string | null} The tsx CLI path
+ */
 function resolveTsxCli(dir: string): string | null {
     const cli = path.join(dir, "node_modules", "tsx", "dist", "cli.mjs");
 
     return fs.existsSync(cli) ? cli : null;
 }
 
+/**
+ * Spawns the backend process
+ * @param {ElectronBackendConfig} config The backend configuration
+ * @returns {ChildProcess} The backend process
+ */
 function spawnBackendProcess(config: ElectronBackendConfig): ChildProcess {
     const common = {
         cwd: config.dir,
@@ -131,6 +163,9 @@ function spawnBackendProcess(config: ElectronBackendConfig): ChildProcess {
     });
 }
 
+/**
+ * The backend manager class
+ */
 export class BackendManager {
     private child: ChildProcess | null = null;
     private status: BackendStatus = {
@@ -146,10 +181,19 @@ export class BackendManager {
 
     constructor(private readonly config: ElectronBackendConfig) {}
 
+    /**
+     * Gets the status of the backend
+     * @returns {BackendStatus} The status of the backend
+     */
     getStatus(): BackendStatus {
         return { ...this.status };
     }
 
+    /**
+     * Adds a status listener
+     * @param {BackendStatusListener} listener The status listener to add
+     * @returns {() => void} A function to remove the status listener
+     */
     onStatus(listener: BackendStatusListener): () => void {
         this.listeners.add(listener);
         listener(this.getStatus());
@@ -159,6 +203,10 @@ export class BackendManager {
         };
     }
 
+    /**
+     * Starts the backend
+     * @returns {Promise<void>} A promise that resolves when the backend is started
+     */
     async start(): Promise<void> {
         await this.stop();
         this.stopped = false;
@@ -225,10 +273,18 @@ export class BackendManager {
         }
     }
 
+    /**
+     * Retries the backend
+     * @returns {Promise<void>} A promise that resolves when the backend is retried
+     */
     async retry(): Promise<void> {
         await this.start();
     }
 
+    /**
+     * Stops the backend
+     * @returns {Promise<void>} A promise that resolves when the backend is stopped
+     */
     async stop(): Promise<void> {
         this.stopped = true;
         this.clearPollTimer();
@@ -270,6 +326,11 @@ export class BackendManager {
         this.setStatus("stopped", "Servidor local encerrado.");
     }
 
+    /**
+     * Waits until the backend is healthy
+     * @param {number} runId The run ID
+     * @returns {Promise<void>} A promise that resolves when the backend is healthy
+     */
     private async waitUntilHealthy(runId: number): Promise<void> {
         const startedAt = Date.now();
 
@@ -293,6 +354,10 @@ export class BackendManager {
         }
     }
 
+    /**
+     * Ingests the backend output
+     * @param {string} text The text to ingest
+     */
     private ingestBackendOutput(text: string) {
         this.stdoutBuf += text;
 
@@ -310,6 +375,10 @@ export class BackendManager {
         this.config.healthUrl = `${parsed}/health`;
     }
 
+    /**
+     * Pings the announced health
+     * @returns {Promise<boolean>} A promise that resolves to the health of the backend
+     */
     private async pingAnnouncedHealth(): Promise<boolean> {
         if (!this.announcedBaseUrl) {
             return false;
@@ -318,6 +387,9 @@ export class BackendManager {
         return pingHealth(`${this.announcedBaseUrl}/health`);
     }
 
+    /**
+     * Clears the poll timer
+     */
     private clearPollTimer(): void {
         if (this.pollTimer === null) {
             return;
@@ -327,6 +399,11 @@ export class BackendManager {
         this.pollTimer = null;
     }
 
+    /**
+     * Sets the status of the backend
+     * @param {BackendStatus["state"]} state The state of the backend
+     * @param {string} message The message to set
+     */
     private setStatus(state: BackendStatus["state"], message: string): void {
         this.status = {
             state,

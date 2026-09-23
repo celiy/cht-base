@@ -24,6 +24,7 @@ import Button from "@design/components/Button.vue";
 import { project, projectActions } from "@base/project";
 import type { ButtonVariants } from "@shared/constants/ButtonTypes";
 
+/** Whether the current project is an Electron project */
 const isElectron = computed(() => project.electron.isElectron);
 
 const isDisabled = computed(() => {

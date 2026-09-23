@@ -9,10 +9,12 @@ import type { BackendStatus } from "../types/electron";
 const HEALTH_TIMEOUT_MS = 1200;
 const ELECTRON_API_WAIT_MS = 60_000;
 
+/** Constructs the health URL for the given base URL */
 function healthUrlFor(baseURL: string): string {
     return `${baseURL.replace(/\/$/, "")}/health`;
 }
 
+/** Pings the health URL */
 async function pingHealth(url: string): Promise<boolean> {
     const controller = new AbortController();
     const timeoutId = window.setTimeout(() => {
@@ -34,6 +36,7 @@ async function pingHealth(url: string): Promise<boolean> {
     }
 }
 
+/** Constructs the API base URL from the backend status */
 function apiBaseUrlFromStatus(status: BackendStatus): string | null {
     if (status.apiBaseUrl) {
         return status.apiBaseUrl.replace(/\/$/, "");
@@ -55,6 +58,7 @@ function apiBaseUrlFromStatus(status: BackendStatus): string | null {
     }
 }
 
+/** Waits for the Electron API base URL */
 function waitForElectronApiBaseUrl(): Promise<string | null> {
     const api = window.electronAPI;
 
@@ -97,9 +101,13 @@ function waitForElectronApiBaseUrl(): Promise<string | null> {
 }
 
 /**
+ * Resolves the reachable API base URL
  * Electron: wait for the main process to report the OS-assigned listen URL.
  * Browser loopback: probe startPort .. startPort+maxOffset until `/health` answers.
  * Remote URLs are used as-is.
+ * @param {string} configuredBaseUrl The configured base URL
+ * @param {number} maxOffset The maximum offset to probe
+ * @returns {Promise<string>} The reachable API base URL
  */
 export async function resolveReachableApiBaseUrl(
     configuredBaseUrl: string,

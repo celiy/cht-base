@@ -64,6 +64,9 @@ export class UpdateManager {
         }, REVALIDATE_INTERVAL_MS);
     }
 
+    /**
+     * Stops the periodic revalidation
+     */
     stop(): void {
         if (!this.interval) {
             return;
@@ -73,6 +76,10 @@ export class UpdateManager {
         this.interval = null;
     }
 
+    /**
+     * Checks for updates
+     * @returns {Promise<UpdateStatus>} A promise that resolves to the update status
+     */
     async check(): Promise<UpdateStatus> {
         if (!this.supported) {
             return this.getStatus();
@@ -90,6 +97,10 @@ export class UpdateManager {
         return this.getStatus();
     }
 
+    /**
+     * Downloads the update
+     * @returns {Promise<UpdateStatus>} A promise that resolves to the update status
+     */
     async download(): Promise<UpdateStatus> {
         if (!this.supported || this.status.state !== "available") {
             return this.getStatus();
@@ -106,6 +117,9 @@ export class UpdateManager {
         return this.getStatus();
     }
 
+    /**
+     * Installs the update
+     */
     install(): void {
         if (!this.supported || this.status.state !== "downloaded") {
             return;
@@ -117,6 +131,9 @@ export class UpdateManager {
         autoUpdater.quitAndInstall(false, true);
     }
 
+    /**
+     * Wires the auto updater
+     */
     private wireAutoUpdater(): void {
         if (this.wired) {
             return;
@@ -165,10 +182,20 @@ export class UpdateManager {
         });
     }
 
+    /**
+     * Sets the error status
+     * @param {unknown} error The error
+     */
     private setError(error: unknown): void {
         this.setStatus("error", `Falha ao atualizar: ${messageOf(error)}`);
     }
 
+    /**
+     * Sets the status
+     * @param {UpdateStatusState} state The state
+     * @param {string} message The message
+     * @param {Partial<UpdateStatus>} extra The extra status
+     */
     private setStatus(
         state: UpdateStatusState,
         message: string,

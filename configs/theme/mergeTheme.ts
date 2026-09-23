@@ -13,6 +13,11 @@ const STANDARD_COLOR_KEYS = new Set(
 );
 
 /**
+ * Converts a color key to a CSS color variable
+ * @example
+ * ```css
+ * --color-background
+ * ```
  * @param {string} key
  */
 export function toCssColorVar(key: string): string {
@@ -22,6 +27,7 @@ export function toCssColorVar(key: string): string {
 }
 
 /**
+ * Normalizes the color keys for the theme
  * @param {ThemeColorMap | undefined} colors
  */
 export function normalizeColorKeys(colors: ThemeColorMap | undefined): ThemeColorMap {
@@ -41,6 +47,7 @@ export function normalizeColorKeys(colors: ThemeColorMap | undefined): ThemeColo
 }
 
 /**
+ * Merges the system and client theme colors
  * @param {ThemeColorMap} system
  * @param {ThemeColorMap | undefined} clientPartial
  */
@@ -58,10 +65,14 @@ export function mergeThemeColors(
 }
 
 /**
+ * Resolves the theme variant
  * @param {ThemeName} themeName
  * @param {ThemeVariantConfig | undefined} variant
  */
-function resolveThemeVariant(themeName: ThemeName, variant: ThemeVariantConfig | undefined): ThemeColorMap {
+function resolveThemeVariant(
+    themeName: ThemeName,
+    variant: ThemeVariantConfig | undefined
+): ThemeColorMap {
     const system = SYSTEM_THEME_DEFAULTS[themeName];
     const systemVars = normalizeColorKeys(system);
 
@@ -69,9 +80,12 @@ function resolveThemeVariant(themeName: ThemeName, variant: ThemeVariantConfig |
 }
 
 /**
+ * Resolves the client theme config
  * @param {ClientThemeConfig | undefined} themeConfig
  */
-export function resolveClientThemeConfig(themeConfig: ClientThemeConfig | undefined): ResolvedThemeConfig {
+export function resolveClientThemeConfig(
+    themeConfig: ClientThemeConfig | undefined
+): ResolvedThemeConfig {
     const defaultTheme = themeConfig?.default === "light" ? "light" : "dark";
     const radius = themeConfig?.radius?.trim() || DEFAULT_RADIUS;
 
@@ -89,6 +103,7 @@ export function resolveClientThemeConfig(themeConfig: ClientThemeConfig | undefi
 }
 
 /**
+ * Resolves the theme from the sources
  * @param {ClientConfig | null} clientConfig
  * @param {ClientThemeConfig | undefined} devThemeConfig
  */
@@ -108,6 +123,7 @@ export function resolveThemeFromSources(
 }
 
 /**
+ * Collects the extra color variables
  * @param {Record<ThemeName, ThemeColorMap>} themes
  */
 export function collectExtraColorVars(themes: Record<ThemeName, ThemeColorMap>): string[] {

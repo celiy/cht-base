@@ -2,6 +2,15 @@ import { generateThemeUtilities } from "./generateUtilities";
 import type { ResolvedThemeConfig, ThemeColorMap, ThemeName } from "./types";
 
 /**
+ * Formats the theme color block to CSS
+ * @example
+ * ```css
+ * background: oklch(0.145 0 0);
+ * foreground: oklch(0.95 0 0);
+ * shadow: rgba(0, 0, 0, 0.25);
+ * card: oklch(0.205 0 0);
+ * "card-foreground": oklch(0.985 0 0);
+ * ```
  * @param {ThemeColorMap} colors
  */
 function formatColorBlock(colors: ThemeColorMap): string {
@@ -36,6 +45,15 @@ function generateThemeTokenRegistration(themes: Record<ThemeName, ThemeColorMap>
 }
 
 /**
+ * Generates the CSS for the client theme
+ * @example
+ * ```css
+ * :root, [data-theme="dark"] {
+ *   background: oklch(0.145 0 0);
+ *   foreground: oklch(0.95 0 0);
+ *   shadow: rgba(0, 0, 0, 0.25);
+ * }
+ * ```
  * @param {ResolvedThemeConfig} config
  */
 export function generateClientThemeCss(config: ResolvedThemeConfig): string {
@@ -59,6 +77,11 @@ ${utilities}
 }
 
 /**
+ * Generates the selector for the theme
+ * @example
+ * ```css
+ * :root, [data-theme="dark"]
+ * ```
  * @param {ThemeName} themeName
  */
 export function themeSelector(themeName: ThemeName): string {

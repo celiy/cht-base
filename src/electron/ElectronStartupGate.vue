@@ -77,22 +77,27 @@ export default defineComponent({
     },
 
     computed: {
+        /** Whether the current project is an Electron project */
         isElectron(): boolean {
             return project.electron.isElectron;
         },
 
+        /** Whether the backend is available */
         hasBackend(): boolean {
             return project.electron.hasBackend;
         },
 
+        /** Whether the backend is ready */
         backendReady(): boolean {
             return project.electron.backendReady;
         },
 
+        /** Whether the backend is in error */
         isError(): boolean {
             return project.electron.backendStatus === "error";
         },
 
+        /** Whether the overlay should be shown */
         showOverlay(): boolean {
             if (!this.isElectron || !this.hasBackend) {
                 return false;
@@ -101,6 +106,7 @@ export default defineComponent({
             return !this.backendReady;
         },
 
+        /** The heading to show */
         heading(): string {
             if (this.isError) {
                 return "Não foi possível iniciar o servidor local";
@@ -109,6 +115,7 @@ export default defineComponent({
             return this.$project.labels.siteTitle || "Carregando";
         },
 
+        /** The status message to show */
         statusMessage(): string {
             if (this.isError) {
                 return project.electron.backendMessage || "Verifique os logs e tente novamente.";
@@ -123,6 +130,7 @@ export default defineComponent({
     },
 
     watch: {
+        /** Whether the overlay should be shown */
         showOverlay: {
             handler(visible: boolean) {
                 if (visible && !this.isError) {
@@ -135,6 +143,7 @@ export default defineComponent({
             immediate: true
         },
 
+        /** Whether the backend is in error */
         isError(error: boolean) {
             if (error) {
                 this.stopHintTimer();
@@ -155,6 +164,7 @@ export default defineComponent({
     },
 
     methods: {
+        /** Starts the hint timer */
         startHintTimer() {
             if (this.hintTimer !== null) {
                 return;
@@ -165,6 +175,7 @@ export default defineComponent({
             }, 1800);
         },
 
+        /** Stops the hint timer */
         stopHintTimer() {
             if (this.hintTimer === null) {
                 return;
@@ -174,6 +185,7 @@ export default defineComponent({
             this.hintTimer = null;
         },
 
+        /** Retries the backend */
         retry() {
             void window.electronAPI?.retryBackend();
         }

@@ -29,6 +29,13 @@ export function resolveClientDir(cfg: ClientConfig): string {
     throw new Error(`[configs] clientDir missing for "${cfg.name}". Call loadConfig first.`);
 }
 
+/**
+ * Parses the version information from the content
+ * @param {string} content The content to parse
+ * @returns {Object} The version information
+ * @returns {string} version The version
+ * @returns {string} versionCheckUrl The version check URL
+ */
 export function parseVersionInfo(content: string): { version?: string; versionCheckUrl?: string } {
     if (!content || typeof content !== "string") {
         return {};
@@ -43,7 +50,9 @@ export function parseVersionInfo(content: string): { version?: string; versionCh
             return {
                 version: typeof parsed.version === "string" ? parsed.version.trim() : undefined,
                 versionCheckUrl:
-                    typeof parsed.versionCheckUrl === "string" ? parsed.versionCheckUrl.trim() : undefined
+                    typeof parsed.versionCheckUrl === "string"
+                        ? parsed.versionCheckUrl.trim()
+                        : undefined
             };
         } catch {
             // Fallback to plain text parsing
@@ -75,7 +84,17 @@ export function parseVersionInfo(content: string): { version?: string; versionCh
     return result;
 }
 
-export function loadVersionFromFile(dirPath: string): { version?: string; versionCheckUrl?: string } {
+/**
+ * Loads the version information from the file
+ * @param {string} dirPath The directory path to load the version information from
+ * @returns {Object} The version information
+ * @returns {string} version The version
+ * @returns {string} versionCheckUrl The version check URL
+ */
+export function loadVersionFromFile(dirPath: string): {
+    version?: string;
+    versionCheckUrl?: string;
+} {
     const candidateFiles = ["version", "version.json", "version.txt"];
 
     for (const filename of candidateFiles) {
@@ -95,10 +114,22 @@ export function loadVersionFromFile(dirPath: string): { version?: string; versio
     return {};
 }
 
+/**
+ * Loads the workspace version information
+ * @returns {Object} The version information
+ * @returns {string} version The version
+ * @returns {string} versionCheckUrl The version check URL
+ */
 export function loadWorkspaceVersion(): { version?: string; versionCheckUrl?: string } {
     return loadVersionFromFile(WORKSPACE_ROOT);
 }
 
+/**
+ * Loads the development application version information
+ * @returns {Object} The version information
+ * @returns {string} version The version
+ * @returns {string} versionCheckUrl The version check URL
+ */
 export function loadDevAppVersion(): { version?: string; versionCheckUrl?: string } {
     const devAppDir = path.resolve(HERE, "..", "src", "devApp");
     const devInfo = loadVersionFromFile(devAppDir);
@@ -110,6 +141,10 @@ export function loadDevAppVersion(): { version?: string; versionCheckUrl?: strin
     return loadWorkspaceVersion();
 }
 
+/**
+ * Lists the discovered clients
+ * @returns {Map<string, { dir: string; configPath: string }>} The discovered clients
+ */
 function listDiscoveredClients(): Map<string, { dir: string; configPath: string }> {
     const found = new Map<string, { dir: string; configPath: string }>();
 
@@ -118,7 +153,11 @@ function listDiscoveredClients(): Map<string, { dir: string; configPath: string 
     }
 
     for (const entry of fs.readdirSync(WORKSPACE_ROOT, { withFileTypes: true })) {
-        if (!entry.isDirectory() || SKIP_DISCOVERY_DIRS.has(entry.name) || entry.name.startsWith(".")) {
+        if (
+            !entry.isDirectory() ||
+            SKIP_DISCOVERY_DIRS.has(entry.name) ||
+            entry.name.startsWith(".")
+        ) {
             continue;
         }
 
@@ -148,6 +187,10 @@ function listDiscoveredClients(): Map<string, { dir: string; configPath: string 
     return found;
 }
 
+/**
+ * Lists the discovered client names
+ * @returns {string[]} The discovered client names
+ */
 function listDiscoveredClientNames(): string[] {
     return [...listDiscoveredClients().keys()].sort();
 }
@@ -155,6 +198,8 @@ function listDiscoveredClientNames(): string[] {
 /**
  * Load a client config by `name` from any sibling folder that has `cht.config.json`.
  * Returns null when no client is active (base dev mode).
+ * @param {string | undefined | null} name The name of the client to load
+ * @returns {ClientConfig | null} The client config
  */
 export function loadConfig(name: string | undefined | null): ClientConfig | null {
     if (!name) {
@@ -203,4 +248,8 @@ export function loadConfig(name: string | undefined | null): ClientConfig | null
     };
 }
 
+/**
+ * Exports the client config type
+ * @type {ClientConfig}
+ */
 export type { ClientConfig } from "./types";
