@@ -13,7 +13,6 @@
 @source inline(
     "bg-{neutral,stone,zinc,slate,gray,red,orange,amber,yellow,lime,green,emerald,teal,cyan,sky,blue,indigo,violet,purple,fuchsia,pink,rose}-{50,{100..900..100}}"
 );
-
 html {
     font-family: "Inter", sans-serif;
     background-color: var(--color-background);
@@ -118,7 +117,27 @@ pre code {
 }
 
 .hover-ring {
-    @apply ring-[3px] ring-transparent ring-offset-0 transition-all hover:ring-ring/50!;
+    @apply ring-[3px] ring-ring/50! ring-offset-0 transition-shadow;
+}
+
+.hover-ring-destructive {
+    @apply ring-[3px] ring-destructive/50! ring-offset-0 transition-shadow;
+}
+
+.hover-ring-primary {
+    @apply ring-[3px] ring-primary/50! ring-offset-0 transition-shadow;
+}
+
+.hover-ring-success {
+    @apply ring-[3px] ring-success/50! ring-offset-0 transition-shadow;
+}
+
+.hover-ring-warning {
+    @apply ring-[3px] ring-warning/50! ring-offset-0 transition-shadow;
+}
+
+.hover-ring-info {
+    @apply ring-[3px] ring-info/50! ring-offset-0 transition-shadow;
 }
 
 /*
@@ -133,18 +152,10 @@ pre code {
 @theme {
     --shadow-2xs: 0 1px var(--color-shadow);
     --shadow-xs: 0 1px 2px 0 var(--color-shadow);
-    --shadow-sm:
-        0 1px 3px 0 var(--color-shadow),
-        0 1px 2px -1px var(--color-shadow);
-    --shadow-md:
-        0 4px 6px -1px var(--color-shadow),
-        0 2px 4px -2px var(--color-shadow);
-    --shadow-lg:
-        0 10px 15px -3px var(--color-shadow),
-        0 4px 6px -4px var(--color-shadow);
-    --shadow-xl:
-        0 20px 25px -5px var(--color-shadow),
-        0 8px 10px -6px var(--color-shadow);
+    --shadow-sm: 0 1px 3px 0 var(--color-shadow), 0 1px 2px -1px var(--color-shadow);
+    --shadow-md: 0 4px 6px -1px var(--color-shadow), 0 2px 4px -2px var(--color-shadow);
+    --shadow-lg: 0 10px 15px -3px var(--color-shadow), 0 4px 6px -4px var(--color-shadow);
+    --shadow-xl: 0 20px 25px -5px var(--color-shadow), 0 8px 10px -6px var(--color-shadow);
     --shadow-2xl: 0 25px 50px -12px var(--color-shadow);
 }
 

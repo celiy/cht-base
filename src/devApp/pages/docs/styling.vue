@@ -1,32 +1,26 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
         <section>
-            <h1>
-                Estilização
-            </h1>
+            <h1>Estilização</h1>
 
             <p>
                 Classes globais do CHT, definidas em
-                <code>cht-base/src/css/style.css</code>,
-                para layout e chrome comuns. Tokens de cor ficam em
-                <a href="/docs/components/colors">Colors</a>.
-                Utilitários Tailwind (como <code>rounded</code>,
-                <code>flex</code>, <code>gap-2</code>) também estão disponíveis.
+                <code>cht-base/src/css/style.css</code>, para layout e chrome comuns. Tokens de cor
+                ficam em <a href="/docs/components/colors">Colors</a>. Utilitários Tailwind (como
+                <code>rounded</code>, <code>flex</code>, <code>gap-2</code>) também estão
+                disponíveis.
             </p>
         </section>
 
         <section>
-            <h3>
-                Containers
-            </h3>
+            <h3>Containers</h3>
 
             <p>
-                <code>container-sm</code> e <code>container-lg</code> centralizam
-                o bloco e aplicam padding horizontal; a largura máxima cresce
-                com o breakpoint.
-                <code>container-center</code> só alinha o conteúdo no eixo
-                vertical (<code>flex-col justify-center</code>) e no eixo
-                horizontal (<code>mx-auto</code>).
+                <code>container-sm</code> e <code>container-lg</code> centralizam o bloco e aplicam
+                padding horizontal; a largura máxima cresce com o breakpoint.
+                <code>container-center</code> só alinha o conteúdo no eixo vertical (<code
+                    >flex-col justify-center</code
+                >) e no eixo horizontal (<code>mx-auto</code>).
             </p>
         </section>
 
@@ -51,14 +45,11 @@
         </section>
 
         <section>
-            <h3>
-                Bordas arredondadas
-            </h3>
+            <h3>Bordas arredondadas</h3>
 
             <p>
-                <code>rounded</code> vem do Tailwind (raio padrão do tema).
-                Combine com tamanhos (<code>rounded-md</code>,
-                <code>rounded-xl</code>, <code>rounded-full</code>) quando
+                <code>rounded</code> vem do Tailwind (raio padrão do tema). Combine com tamanhos
+                (<code>rounded-md</code>, <code>rounded-xl</code>, <code>rounded-full</code>) quando
                 precisar de outro raio.
             </p>
         </section>
@@ -66,22 +57,20 @@
         <section class="mb-8">
             <DocsExample label="Rounded">
                 <div class="flex flex-wrap items-end gap-4 p-4">
-                    <div class="h-16 w-16 border bg-secondary rounded" />
-                    <div class="h-16 w-16 border bg-secondary rounded-md" />
-                    <div class="h-16 w-16 border bg-secondary rounded-xl" />
-                    <div class="h-16 w-16 border bg-secondary rounded-full" />
+                    <div class="h-16 w-16 rounded border bg-secondary" />
+                    <div class="h-16 w-16 rounded-md border bg-secondary" />
+                    <div class="h-16 w-16 rounded-xl border bg-secondary" />
+                    <div class="h-16 w-16 rounded-full border bg-secondary" />
                 </div>
             </DocsExample>
         </section>
 
         <section>
-            <h3>
-                Grupo de botões
-            </h3>
+            <h3>Grupo de botões</h3>
 
             <p>
-                <code>btn-group</code> cola botões lado a lado: remove o raio
-                interno, compartilha a borda e alinha a altura.
+                <code>btn-group</code> cola botões lado a lado: remove o raio interno, compartilha a
+                borda e alinha a altura.
             </p>
         </section>
 
@@ -98,15 +87,11 @@
         </section>
 
         <section>
-            <h3>
-                Separator e sombras
-            </h3>
+            <h3>Separator e sombras</h3>
 
             <p>
-                <code>separator</code> é uma linha de 1px com
-                <code>bg-border</code>.
-                Sombras usam <code>--color-shadow</code>:
-                <code>shadow-2xs</code> até <code>shadow-2xl</code>.
+                <code>separator</code> é uma linha de 1px com <code>bg-border</code>. Sombras usam
+                <code>--color-shadow</code>: <code>shadow-2xs</code> até <code>shadow-2xl</code>.
             </p>
         </section>
 
@@ -133,15 +118,11 @@
         </section>
 
         <section>
-            <h3>
-                Contraste de texto
-            </h3>
+            <h3>Contraste de texto</h3>
 
             <p>
-                <code>text-contrast</code> força
-                <code>var(--color-foreground)</code>.
-                Com <code>data-contrast="background"</code> usa
-                <code>var(--color-background)</code>.
+                <code>text-contrast</code> força <code>var(--color-foreground)</code>. Com
+                <code>data-contrast="background"</code> usa <code>var(--color-background)</code>.
             </p>
         </section>
 
@@ -152,18 +133,37 @@
                         Sem a classe, o parágrafo herda o token do tema.
                     </p>
 
-                    <p class="bg-primary p-3 text-contrast">
+                    <p class="text-contrast bg-primary p-3">
                         <code>text-contrast</code>
                     </p>
 
                     <p
-                        class="bg-primary p-3 text-contrast"
+                        class="text-contrast bg-primary p-3"
                         data-contrast="background"
                     >
                         <code>data-contrast="background"</code>
                     </p>
                 </div>
             </DocsExample>
+        </section>
+
+        <section>
+            <h3>CSS override do cliente</h3>
+
+            <p>
+                Cada cliente pode ter
+                <code>src/override.css</code>
+                na raiz de
+                <code>src</code>. O Vite injeta esse ficheiro
+                <strong>depois</strong>
+                de
+                <code>cht-base/src/css/style.css</code>, então as regras locais vencem as globais
+                (incluindo
+                <code>.hover-ring</code>
+                e as variantes
+                <code>.hover-ring-*</code>
+                usadas no hover/foco dos botões). Sem o ficheiro, o import é omitido.
+            </p>
         </section>
     </article>
 </template>

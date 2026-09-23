@@ -88,6 +88,8 @@ Para empacotar um backend que não é Node, mantém \`packageWithElectron: true\
 | \`publish\` | Dados do GitHub para updates Electron |
 | \`theme\` | Opcional; senão usa-se \`src/theme.config.json\` |
 
+CSS extra do cliente: ficheiro \`src/override.css\` (não é campo do JSON). Carrega depois do CSS base; ver [Estilização](/docs/styling).
+
 O \`install\` clona as URLs do \`cht.config.json\` e do catálogo em \`clients.json\` (para o primeiro clone, antes da pasta existir). Não inventa repositórios a partir do nome da pasta.
 
 Depois de o ficheiro existir na pasta irmã, corre \`npx chtmain sync-tsconfig\` (o \`dev\` também sincroniza) e \`npx chtmain dev --client:<name>\`.

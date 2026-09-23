@@ -7,6 +7,7 @@ import { docsExampleSourcePlugin } from "./vite-plugins/docsExampleSource";
 import { clientThemePlugin } from "./vite-plugins/clientTheme";
 import { clientSourcePlugin } from "./vite-plugins/clientSource";
 import { clientFaviconPlugin } from "./vite-plugins/clientFavicon";
+import { clientOverridePlugin } from "./vite-plugins/clientOverride";
 import {
     DEFAULT_API_PORT_SCAN_LIMIT,
     pickApiBaseUrl,
@@ -82,7 +83,8 @@ export default defineConfig(({ command }) => {
             clientFaviconPlugin(),
             docsExampleSourcePlugin(),
             vue(),
-            tailwindcss()
+            tailwindcss(),
+            clientOverridePlugin()
         ],
         base: electronBuild ? "./" : "/",
         resolve: {
