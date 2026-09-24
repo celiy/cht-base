@@ -106,6 +106,7 @@
             <p>
                 <code>labelHelper</code> adiciona um texto de ajuda ao label.
                 <code>labelHelperPosition</code> define a posição do texto de ajuda.
+                <code>optionHelperText</code> adiciona um texto de ajuda ao option.
             </p>
         </section>
 
@@ -116,6 +117,7 @@
                         label="Label Helper"
                         label-helper="Texto de ajuda"
                         label-helper-position="left"
+                        option-helper-text="Texto de ajuda do helper"
                         value="ab"
                         first
                     />
@@ -124,6 +126,7 @@
                         label="Label Helper"
                         label-helper="Texto de ajuda"
                         label-helper-position="right"
+                        option-helper-text="Texto de ajuda do helper"
                         value="bc"
                         selected
                         show-checkmark

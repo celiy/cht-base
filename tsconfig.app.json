@@ -17,7 +17,7 @@
       // client folders by scripts/sync-tsconfig.mjs. TypeScript uses the
       // first existing path: with CLIENT set that client is first, otherwise
       // `src/devApp`. Runtime alias still comes from vite.config.ts.
-      "@client/*": ["../cht-client-mecarvit/src/*","./src/devApp/*"]
+      "@client/*": ["../cht-client-mecarvit/src/*","../cht-client-override-demo/src/*","./src/devApp/*"]
     },
 
     /* Linting */
