@@ -1,5 +1,10 @@
 import { createHttpClient } from "./http";
-import { getStoredAuthToken, setStoredAuthToken } from "./token";
+import {
+    getStoredAuthToken,
+    getStoredSystemToken,
+    setStoredAuthToken,
+    setStoredSystemToken
+} from "./token";
 import { resolveReachableApiBaseUrl } from "./resolveApiBaseUrl";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://127.0.0.1:3001";
@@ -9,6 +14,7 @@ export const http = createHttpClient({
     baseURL: API_BASE_URL,
     withCredentials: true,
     getAuthToken: getStoredAuthToken,
+    getSystemToken: getStoredSystemToken,
     onUnauthorized: () => {
         setStoredAuthToken(null);
         http.setAuthToken(null);
@@ -19,6 +25,7 @@ export const http = createHttpClient({
 /** Hydrates the HTTP authentication token */
 export function hydrateHttpAuth(): void {
     http.setAuthToken(getStoredAuthToken());
+    http.setSystemToken(getStoredSystemToken());
 }
 
 /** Discovers the API base URL */
@@ -52,6 +59,17 @@ export function clearAuthToken(): void {
     emitAuthTokenChange(null);
 }
 
+/** Persists the system-owner token for this session */
+export function persistSystemToken(token: string): void {
+    setStoredSystemToken(token);
+    http.setSystemToken(token);
+}
+
+export function clearSystemToken(): void {
+    setStoredSystemToken(null);
+    http.setSystemToken(null);
+}
+
 /** The authentication token listeners */
 const authTokenListeners = new Set<(token: string | null) => void>();
 
@@ -74,3 +92,4 @@ export function onAuthTokenChange(listener: (token: string | null) => void): () 
 /** The HTTP error type */
 export { HttpError } from "./http";
 export type { HttpClient } from "./http";
+export { getStoredAuthToken, getStoredSystemToken } from "./token";

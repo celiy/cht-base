@@ -1,11 +1,4 @@
-import {
-    http,
-    hydrateHttpAuth,
-    persistAuthToken,
-    clearAuthToken,
-    HttpError,
-    discoverApiBaseUrl
-} from "./index";
+import { http } from "./index";
 import type { HttpClient } from "./index";
 
 /** The HTTP app type */
@@ -21,7 +14,18 @@ export function httpPlugin(app: HttpApp): void {
 }
 
 /** Exports the HTTP client */
-export { http, hydrateHttpAuth, persistAuthToken, clearAuthToken, HttpError, discoverApiBaseUrl };
+export {
+    http,
+    hydrateHttpAuth,
+    persistAuthToken,
+    persistSystemToken,
+    clearAuthToken,
+    clearSystemToken,
+    getStoredAuthToken,
+    getStoredSystemToken,
+    HttpError,
+    discoverApiBaseUrl
+} from "./index";
 
 /** The HTTP client type */
 export type { HttpClient };
