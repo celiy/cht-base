@@ -1,5 +1,4 @@
 import { spawn, spawnSync, type ChildProcess } from "node:child_process";
-import crypto from "node:crypto";
 import fs from "node:fs";
 import http from "node:http";
 import https from "node:https";
@@ -84,48 +83,6 @@ function killProcessTree(child: ChildProcess): void {
     }
 }
 
-function upsertEnvValue(filePath: string, key: string, value: string): void {
-    let existing = "";
-
-    if (fs.existsSync(filePath)) {
-        existing = fs.readFileSync(filePath, "utf8");
-    }
-
-    const lines = existing.split(/\r?\n/).filter((line) => {
-        const trimmed = line.trim();
-
-        if (!trimmed || trimmed.startsWith("#")) {
-            return true;
-        }
-
-        return trimmed.split("=")[0]?.trim() !== key;
-    });
-
-    while (lines.length > 0 && lines[lines.length - 1] === "") {
-        lines.pop();
-    }
-
-    lines.push(`${key}=${value}`);
-    fs.mkdirSync(path.dirname(filePath), { recursive: true });
-    fs.writeFileSync(filePath, `${lines.join("\n")}\n`, { encoding: "utf8" });
-}
-
-function ensurePackagedJwtSecret(envFile: string, env: NodeJS.ProcessEnv): void {
-    const existing = fs.existsSync(envFile) ? fs.readFileSync(envFile, "utf8") : "";
-    const match = existing.match(/^JWT_SECRET=(.*)$/m);
-    const current = match?.[1]?.trim() ?? env.JWT_SECRET?.trim() ?? "";
-
-    if (current && current !== "change-me-please") {
-        env.JWT_SECRET = current;
-        return;
-    }
-
-    const secret = crypto.randomBytes(48).toString("hex");
-
-    upsertEnvValue(envFile, "JWT_SECRET", secret);
-    env.JWT_SECRET = secret;
-}
-
 /**
  * Sets the backend environment variables
  * @param {ElectronBackendConfig} config The backend configuration
@@ -137,7 +94,7 @@ function backendEnv(config: ElectronBackendConfig): NodeJS.ProcessEnv {
         HOST: config.host,
         PORT: String(config.port),
         PORT_SCAN_LIMIT: String(config.portScanLimit ?? 20),
-        NODE_ENV: config.packaged ? "production" : process.env.NODE_ENV || "development"
+        NODE_ENV: process.env.NODE_ENV || "development"
     };
 
     delete env.ELECTRON_RUN_AS_NODE;
@@ -149,17 +106,8 @@ function backendEnv(config: ElectronBackendConfig): NodeJS.ProcessEnv {
     if (config.dataDir) {
         fs.mkdirSync(config.dataDir, { recursive: true });
 
-        const envFile = path.join(config.dataDir, ".env");
-
         env.DB_PATH = path.join(config.dataDir, "mecarvit.sqlite");
         env.EMPRESAS_DIR = path.join(config.dataDir, "empresas");
-        env.DOTENV_CONFIG_PATH = envFile;
-        env.SYSTEM_ENV_PATH = envFile;
-        env.SYSTEM_OWNER_SETUP_PATH = path.join(config.dataDir, "system-owner.setup");
-
-        if (config.packaged) {
-            ensurePackagedJwtSecret(envFile, env);
-        }
     }
 
     return env;

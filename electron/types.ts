@@ -22,8 +22,6 @@ export interface ElectronBackendConfig {
     electronAsNode?: boolean;
     /** Absolute writable directory for the SQLite databases (userData). */
     dataDir?: string;
-    /** Packaged desktop build (production env + owner setup file). */
-    packaged?: boolean;
 }
 
 export type UpdateStatusState =

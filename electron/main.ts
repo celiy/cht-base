@@ -110,7 +110,6 @@ function resolveBackendConfig(): ElectronBackendConfig | null {
     config.nodePath = bundledNode || process.execPath;
     config.electronAsNode = !bundledNode;
     config.dataDir = app.getPath("userData");
-    config.packaged = true;
 
     return config;
 }

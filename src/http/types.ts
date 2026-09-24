@@ -28,7 +28,6 @@ export interface HttpClientOptions {
     withCredentials?: boolean;
     timeout?: number;
     getAuthToken?: () => string | null;
-    getSystemToken?: () => string | null;
     onUnauthorized?: () => void;
 }
 

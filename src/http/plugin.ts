@@ -18,11 +18,8 @@ export {
     http,
     hydrateHttpAuth,
     persistAuthToken,
-    persistSystemToken,
     clearAuthToken,
-    clearSystemToken,
     getStoredAuthToken,
-    getStoredSystemToken,
     HttpError,
     discoverApiBaseUrl
 } from "./index";

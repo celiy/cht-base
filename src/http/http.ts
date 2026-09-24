@@ -235,7 +235,6 @@ function createTimeoutSignal(
  */
 export function createHttpClient(options: HttpClientOptions = {}) {
     let authToken: string | null = null;
-    let systemTokenValue: string | null = null;
 
     /**
      * Makes a request
@@ -252,13 +251,11 @@ export function createHttpClient(options: HttpClientOptions = {}) {
         config: HttpRequestConfig = {}
     ): Promise<HttpResponse<T>> {
         const token = authToken ?? options.getAuthToken?.() ?? null;
-        const systemToken = systemTokenValue ?? options.getSystemToken?.() ?? null;
 
         const headers = mergeHeaders(
             options.headers,
             config.headers,
-            token ? { Authorization: `Bearer ${token}` } : undefined,
-            systemToken ? { "X-Cht-System-Token": systemToken } : undefined
+            token ? { Authorization: `Bearer ${token}` } : undefined
         );
 
         const body = buildRequestBody(data, headers);
@@ -382,22 +379,6 @@ export function createHttpClient(options: HttpClientOptions = {}) {
          */
         getAuthToken() {
             return authToken ?? options.getAuthToken?.() ?? null;
-        },
-
-        /**
-         * Sets the system-owner token used to unlock local databases.
-         * @param {string | null} token The system token
-         */
-        setSystemToken(token: string | null) {
-            systemTokenValue = token;
-        },
-
-        /**
-         * Gets the system-owner token
-         * @returns {string | null} The system token
-         */
-        getSystemToken() {
-            return systemTokenValue ?? options.getSystemToken?.() ?? null;
         },
 
         /**
