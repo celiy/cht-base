@@ -1,19 +1,25 @@
 !include "nsDialogs.nsh"
 !include "LogicLib.nsh"
-!include "WinMessages.nsh"
 
-Var chtOwnerDialog
-Var chtOwnerLoginField
-Var chtOwnerPasswordField
-Var chtOwnerLogin
-Var chtOwnerPassword
+!macro customPageAfterChangeDir
+  !ifndef BUILD_UNINSTALLER
+    Page custom chtOwnerPageCreate chtOwnerPageLeave
+  !endif
+!macroend
 
-Function chtOwnerPageCreate
+!ifndef BUILD_UNINSTALLER
+  Var chtOwnerDialog
+  Var chtOwnerLoginField
+  Var chtOwnerPasswordField
+  Var chtOwnerLogin
+  Var chtOwnerPassword
+
+  Function chtOwnerPageCreate
     nsDialogs::Create 1018
     Pop $chtOwnerDialog
 
     ${If} $chtOwnerDialog == error
-        Abort
+      Abort
     ${EndIf}
 
     ${NSD_CreateLabel} 0 0 100% 36u "Crie o login do dono do sistema. Ele e a senha protegem os bancos das oficinas salvos neste computador."
@@ -30,30 +36,28 @@ Function chtOwnerPageCreate
     Pop $chtOwnerPasswordField
 
     nsDialogs::Show
-FunctionEnd
+  FunctionEnd
 
-Function chtOwnerPageLeave
+  Function chtOwnerPageLeave
     ${NSD_GetText} $chtOwnerLoginField $chtOwnerLogin
     ${NSD_GetText} $chtOwnerPasswordField $chtOwnerPassword
 
     StrLen $0 $chtOwnerLogin
     ${If} $0 < 3
-        MessageBox MB_ICONEXCLAMATION "Informe um login com pelo menos 3 caracteres."
-        Abort
+      MessageBox MB_ICONEXCLAMATION "Informe um login com pelo menos 3 caracteres."
+      Abort
     ${EndIf}
 
     StrLen $0 $chtOwnerPassword
     ${If} $0 < 8
-        MessageBox MB_ICONEXCLAMATION "Informe uma senha com pelo menos 8 caracteres."
-        Abort
+      MessageBox MB_ICONEXCLAMATION "Informe uma senha com pelo menos 8 caracteres."
+      Abort
     ${EndIf}
-FunctionEnd
-
-!macro customPageAfterChangeDir
-    Page custom chtOwnerPageCreate chtOwnerPageLeave
-!macroend
+  FunctionEnd
+!endif
 
 !macro customInstall
+  !ifndef BUILD_UNINSTALLER
     CreateDirectory "$APPDATA\${PRODUCT_NAME}"
     FileOpen $0 "$APPDATA\${PRODUCT_NAME}\system-owner.setup" w
     FileWrite $0 "login="
@@ -62,4 +66,5 @@ FunctionEnd
     FileWrite $0 $chtOwnerPassword
     FileWrite $0 "$\r$\n"
     FileClose $0
+  !endif
 !macroend
