@@ -18,6 +18,8 @@
     "select": "success",
     "skeleton": "success",
     "tabs": "success",
+    "toggle": "info",
+    "toggleable": "info",
     "confirmation-modal": "success",
     "pagination": "success",
     "resizable": "warning",

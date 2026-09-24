@@ -218,6 +218,16 @@ const routes: RouteRecordRaw[] = [
                 component: () => import("./pages/docs/components/tabs.vue")
             },
             {
+                path: "docs/components/toggle",
+                name: "components-toggle",
+                component: () => import("./pages/docs/components/toggle.vue")
+            },
+            {
+                path: "docs/components/toggleable",
+                name: "components-toggleable",
+                component: () => import("./pages/docs/components/toggleable.vue")
+            },
+            {
                 path: "docs/components/charts",
                 name: "components-charts",
                 component: () => import("./pages/docs/components/charts.vue")

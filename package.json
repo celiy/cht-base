@@ -9,8 +9,8 @@
     "scripts": {
         "dev": "vite",
         "dev:client": "vite",
-        "build": "node ../scripts/sync-tsconfig.mjs && vue-tsc -b && vite build",
-        "build:client": "node ../scripts/sync-tsconfig.mjs && vue-tsc -b && vite build",
+        "build": "vue-tsc -b && vite build",
+        "build:client": "vue-tsc -b && vite build",
         "preview": "vite preview",
         "electron:compile": "node electron/build.mjs",
         "electron": "electron electron-dist/main.cjs",

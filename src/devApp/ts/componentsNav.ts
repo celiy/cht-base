@@ -217,6 +217,16 @@ export const componentsNav = [
         link: "/docs/components/tabs"
     },
     {
+        type: "link" as const,
+        label: "Toggle",
+        link: "/docs/components/toggle"
+    },
+    {
+        type: "link" as const,
+        label: "Toggleable",
+        link: "/docs/components/toggleable"
+    },
+    {
         type: "section" as const,
         label: "Custom"
     },

@@ -4,11 +4,14 @@
             <h1>Form renderer</h1>
 
             <p>
-                Monta um formulário a partir de seções e campos tipados: inputs, checkbox, radio e
-                select. Campos podem ter <code>condition</code>, <code>required</code>,
-                <code>disabled</code> e helper. Checkbox aceita
+                Monta um formulário a partir de seções e campos tipados: inputs, checkbox, radio,
+                select, toggle e toggleable. Campos podem ter <code>condition</code>,
+                <code>required</code>, <code>disabled</code> e helper. Checkbox aceita
                 <code>checkboxStyle: "switch"</code> — o interruptor e o texto compartilham o mesmo
                 estado.
+                <code>type: "toggle"</code> usa o componente <code>Toggle</code> (booleano).
+                <code>type: "toggleable"</code> usa <code>Toggleable</code> com
+                <code>options</code> (<code>label</code> + <code>value</code>).
                 Em campos <code>type: "select"</code>, o slot
                 <code>#select-inside-empty-panel="{ field }"</code> repassa o conteúdo para o
                 <code>#inside-empty-panel</code> do <code>Select</code> daquele campo.
@@ -169,6 +172,25 @@
                                                 description: 'Alguns dias no escritório'
                                             },
                                             { label: 'Presencial', value: 'office' }
+                                        ]
+                                    },
+                                    {
+                                        id: 'highlight',
+                                        label: 'Destacar perfil',
+                                        type: 'toggle',
+                                        variant: 'primary',
+                                        value: false
+                                    },
+                                    {
+                                        id: 'priority',
+                                        label: 'Prioridade',
+                                        type: 'toggleable',
+                                        variant: 'warning',
+                                        value: 'medium',
+                                        options: [
+                                            { label: 'Baixa', value: 'low' },
+                                            { label: 'Média', value: 'medium' },
+                                            { label: 'Alta', value: 'high' }
                                         ]
                                     }
                                 ]

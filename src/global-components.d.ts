@@ -25,6 +25,8 @@ type DesignSystemComponents = {
     Table: typeof import("@design/components/Table.vue").default;
     Tabs: typeof import("@design/components/Tabs.vue").default;
     Toast: typeof import("@design/components/Toast.vue").default;
+    Toggle: typeof import("@design/components/Toggle.vue").default;
+    Toggleable: typeof import("@design/components/Toggleable.vue").default;
     ViewportCenter: typeof import("@design/components/ViewportCenter.vue").default;
     BarChart: typeof import("@design/components/custom/charts/BarChart.vue").default;
     WaveChart: typeof import("@design/components/custom/charts/WaveChart.vue").default;
