@@ -1,20 +1,16 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
         <section>
-            <h1>
-                Table
-            </h1>
+            <h1>Table</h1>
 
             <p>
-                Tabela de dados com headers, alinhamento por coluna, seleção de linhas,
-                escolha de colunas visíveis, badges (incluindo paleta <code>chart-*</code>) e ações por linha.
+                Tabela de dados com headers, alinhamento por coluna, seleção de linhas, escolha de
+                colunas visíveis, badges (incluindo paleta <code>chart-*</code>) e ações por linha.
             </p>
         </section>
 
         <section>
-            <h3>
-                Alinhamento
-            </h3>
+            <h3>Alinhamento</h3>
 
             <p>
                 Cada header tem <code>label</code>, <code>field</code> (chave do objeto na linha) e
@@ -46,13 +42,12 @@
         </section>
 
         <section>
-            <h3>
-                Badges
-            </h3>
+            <h3>Badges</h3>
 
             <p>
                 Um campo pode ser <code>{ label, variant }</code> e renderiza um <code>Badge</code>.
-                <code>variant</code> aceita as cores semânticas e <code>chart-1</code> … <code>chart-5</code>.
+                <code>variant</code> aceita as cores semânticas e <code>chart-1</code> …
+                <code>chart-5</code>.
             </p>
         </section>
 
@@ -75,15 +70,14 @@
         </section>
 
         <section>
-            <h3>
-                Seleção de linhas
-            </h3>
+            <h3>Seleção de linhas</h3>
 
             <p>
-                <code>selectable</code> adiciona um checkbox por linha e um “selecionar todos” no header.
-                Com linhas marcadas, aparece um rodapé com a contagem.
+                <code>selectable</code> adiciona um checkbox por linha e um “selecionar todos” no
+                header. Com linhas marcadas, aparece um rodapé com a contagem.
                 <code>selectableActions</code> é a lista do Dropdown do rodapé; o clique emite
-                <code>click:selectableAction</code> com o <code>value</code> e as linhas selecionadas.
+                <code>click:selectableAction</code> com o <code>value</code> e as linhas
+                selecionadas.
             </p>
         </section>
 
@@ -106,7 +100,7 @@
                         @click:selectable-action="onSelectableAction"
                     />
 
-                    <p class="text-sm text-muted-foreground mt-2">
+                    <p class="mt-2 text-sm text-muted-foreground">
                         Última ação em lote: {{ lastSelectableAction || "—" }}
                     </p>
                 </div>
@@ -114,13 +108,12 @@
         </section>
 
         <section>
-            <h3>
-                Colunas visíveis
-            </h3>
+            <h3>Colunas visíveis</h3>
 
             <p>
-                <code>selectCols</code> mostra um Select no canto do título para ligar e desligar colunas.
-                Exige <code>title</code>. A escolha usa memo interno (<code>id="table-select-cols"</code>).
+                <code>selectCols</code> mostra um Select no canto do título para ligar e desligar
+                colunas. Exige <code>title</code>. A escolha usa memo interno
+                (<code>id="table-select-cols"</code>).
             </p>
         </section>
 
@@ -145,15 +138,13 @@
         </section>
 
         <section>
-            <h3>
-                Ações
-            </h3>
+            <h3>Ações</h3>
 
             <p>
-                <code>actions</code> é a mesma lista de opções do Dropdown
-                (<code>label</code>, <code>value</code>, <code>icon</code>, <code>tooltip</code>, <code>separator</code>,
-                <code>variant: "destructive"</code> para exclusão).
-                Abre um menu por linha e emite <code>click:action</code> com o <code>value</code> e o objeto da linha.
+                <code>actions</code> é a mesma lista de opções do Dropdown (<code>label</code>,
+                <code>value</code>, <code>icon</code>, <code>tooltip</code>, <code>separator</code>,
+                <code>variant: "destructive"</code> para exclusão). Abre um menu por linha e emite
+                <code>click:action</code> com o <code>value</code> e o objeto da linha.
             </p>
         </section>
 
@@ -166,15 +157,23 @@
                             { label: 'Status', field: 'badge', position: 'center' }
                         ]"
                         :data="[
-                            { id: '1', name: 'Celi', badge: { label: 'Aprovado', variant: 'success' } },
-                            { id: '2', name: 'Herstal', badge: { label: 'Pendente', variant: 'warning' } }
+                            {
+                                id: '1',
+                                name: 'Celi',
+                                badge: { label: 'Aprovado', variant: 'success' }
+                            },
+                            {
+                                id: '2',
+                                name: 'Herstal',
+                                badge: { label: 'Pendente', variant: 'warning' }
+                            }
                         ]"
                         :actions="rowActions"
 
                         @click:action="onRowAction"
                     />
 
-                    <p class="text-sm text-muted-foreground mt-2">
+                    <p class="mt-2 text-sm text-muted-foreground">
                         Última ação: {{ lastRowAction || "—" }}
                     </p>
                 </div>
@@ -182,13 +181,64 @@
         </section>
 
         <section>
-            <h3>
-                Estado vazio
-            </h3>
+            <h3>Sort de colunas</h3>
 
             <p>
-                O slot <code>empty</code> renderiza quando a tabela não possui registros. Isso permite
-                mostrar um estado customizado, como botão de ação, chamada vazia ou texto explicativo.
+                <code>canSort</code> adiciona um ícone de seta para ordenar a coluna. Clica no
+                header para ordenar. Emite <code>sort:field</code> com o <code>field</code> e a
+                direção (<code>asc</code> ou <code>desc</code>).
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Sort de colunas">
+                <div class="p-4">
+                    <Table
+                        :headers="[
+                            { label: 'Nome', field: 'name', position: 'start', canSort: true },
+                            { label: 'Idade', field: 'age', position: 'center', canSort: true },
+                            { label: 'Status', field: 'badge', position: 'center' }
+                        ]"
+                        :data="[
+                            {
+                                name: 'Celi',
+                                age: 25,
+                                badge: { label: 'Aprovado', variant: 'success' }
+                            },
+                            {
+                                name: 'Herstal',
+                                age: 30,
+                                badge: { label: 'Pendente', variant: 'warning' }
+                            },
+                            {
+                                name: 'Luna',
+                                age: 28,
+                                badge: { label: 'Série A', variant: 'chart-3' }
+                            },
+                            {
+                                name: 'João',
+                                age: 32,
+                                badge: { label: 'Série B', variant: 'chart-4' }
+                            }
+                        ]"
+
+                        @sort:field="onSortField"
+                    />
+
+                    <p class="mt-2 text-sm text-muted-foreground">
+                        Última coluna ordenada: {{ lastSortField || "—" }}
+                    </p>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>Estado vazio</h3>
+
+            <p>
+                O slot <code>empty</code> renderiza quando a tabela não possui registros. Isso
+                permite mostrar um estado customizado, como botão de ação, chamada vazia ou texto
+                explicativo.
             </p>
         </section>
 
@@ -204,8 +254,12 @@
                     >
                         <template #empty>
                             <div class="flex flex-col items-center gap-2 py-4">
-                                <span class="font-medium text-foreground">Nenhuma linha cadastrada</span>
-                                <button class="rounded bg-primary px-3 py-2 text-sm text-primary-foreground">
+                                <span class="font-medium text-foreground"
+                                    >Nenhuma linha cadastrada</span
+                                >
+                                <button
+                                    class="rounded bg-primary px-3 py-2 text-sm text-primary-foreground"
+                                >
                                     Novo registro
                                 </button>
                             </div>
@@ -216,13 +270,9 @@
         </section>
 
         <section>
-            <h3>
-                Loading
-            </h3>
+            <h3>Loading</h3>
 
-            <p>
-                
-            </p>
+            <p></p>
         </section>
 
         <section class="mb-8">
@@ -257,6 +307,7 @@ export default defineComponent({
 
     data() {
         return {
+            lastSortField: "",
             lastRowAction: "",
             lastSelectableAction: "",
             rowActions: [
@@ -268,7 +319,12 @@ export default defineComponent({
             selectableActions: [
                 { label: "Exportar", value: "export", icon: "fa-download" },
                 { separator: true },
-                { label: "Excluir itens selecionados", value: "delete", icon: "fa-trash", variant: "destructive" }
+                {
+                    label: "Excluir itens selecionados",
+                    value: "delete",
+                    icon: "fa-trash",
+                    variant: "destructive"
+                }
             ] as OptionItem[]
         };
     },
@@ -281,6 +337,10 @@ export default defineComponent({
         onSelectableAction(value: string, items: Record<string, unknown>[]) {
             const names = items.map((item) => item.name ?? item.id).join(", ");
             this.lastSelectableAction = `${value} · ${names}`;
+        },
+
+        onSortField(field: { field: string; direction: "asc" | "desc" }) {
+            this.lastSortField = `${field.field} · ${field.direction}`;
         }
     }
 });

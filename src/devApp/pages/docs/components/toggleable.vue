@@ -1,22 +1,19 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
         <section>
-            <h1>
-                Toggleable
-            </h1>
+            <h1>Toggleable</h1>
 
             <p>
-                Grupo de <code>Toggle</code> a partir de <code>options</code>
-                (<code>label</code> + <code>value</code>). Fundo
-                <code>bg-input/30</code>; a borda segue o
-                <code>variant</code> (padrão <code>default</code>). A opção
-                ativa usa o mesmo variant no botão; as demais ficam transparentes.
+                Grupo de <code>Toggle</code> a partir de <code>options</code> (<code>label</code> +
+                <code>value</code>). Fundo <code>bg-input/30</code>; a borda segue o
+                <code>variant</code> (padrão <code>default</code>). A opção ativa usa o mesmo
+                variant no botão; as demais ficam transparentes.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Toggleable">
-                <div class="p-4 flex flex-col gap-4">
+                <div class="flex flex-col gap-4 p-4">
                     <Toggleable
                         v-model="status"
                         label="Status"
@@ -31,9 +28,7 @@
         </section>
 
         <section>
-            <h3>
-                Variantes
-            </h3>
+            <h3>Variantes</h3>
 
             <p>
                 A borda do grupo e o toggle ativo usam
@@ -43,7 +38,7 @@
 
         <section class="mb-8">
             <DocsExample label="Variantes">
-                <div class="p-4 flex flex-col gap-4">
+                <div class="flex flex-col gap-4 p-4">
                     <Toggleable
                         v-model="priority"
                         label="Prioridade"
@@ -64,6 +59,45 @@
                         label="Saúde"
                         variant="success"
                         :options="healthOptions"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>Posição</h3>
+
+            <p>
+                A posição do <code>label</code> e do toggle dentro do grupo pode ser
+                <code>left</code>, <code>center</code> ou <code>right</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Posição">
+                <div class="flex flex-col gap-4 p-4">
+                    <Toggleable
+                        v-model="toggleablePosition"
+                        label="Toggleable Position Left"
+                        label-position="left"
+                        toggleable-position="left"
+                        :options="toggleablePositionOptions"
+                    />
+
+                    <Toggleable
+                        v-model="toggleablePosition"
+                        label="Toggleable Position Center"
+                        label-position="center"
+                        toggleable-position="center"
+                        :options="toggleablePositionOptions"
+                    />
+
+                    <Toggleable
+                        v-model="toggleablePosition"
+                        label="Toggleable Position Right"
+                        label-position="right"
+                        toggleable-position="right"
+                        :options="toggleablePositionOptions"
                     />
                 </div>
             </DocsExample>
@@ -107,6 +141,12 @@ export default defineComponent({
                 { label: "OK", value: "ok" },
                 { label: "Atenção", value: "warn" },
                 { label: "Crítico", value: "critical" }
+            ],
+            toggleablePosition: "left" as "left" | "center" | "right",
+            toggleablePositionOptions: [
+                { label: "Left", value: "left" },
+                { label: "Center", value: "center" },
+                { label: "Right", value: "right" }
             ]
         };
     }
