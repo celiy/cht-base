@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import type { IncomingMessage, ServerResponse } from "node:http";
 import type { Connect, Plugin } from "vite";
 
 const PLUGIN_DIR = path.dirname(fileURLToPath(import.meta.url));
@@ -245,8 +246,8 @@ function scanRepo(spec: RepoSpec): RepoUpdateInfo | null {
 }
 
 function handleRepoUpdates(
-    req: Connect.IncomingMessage,
-    res: Connect.ServerResponse,
+    req: IncomingMessage,
+    res: ServerResponse,
     next: Connect.NextFunction,
     clientName: string | undefined
 ): void {

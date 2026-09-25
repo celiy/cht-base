@@ -10,6 +10,11 @@
             "@design/*": ["../cht-design-system/src/*"],
             "@shared/*": ["../cht-shared/src/*"],
             "@repo/*": ["../*"],
+            // Single Vue copy for typecheck: client SFCs must not resolve a
+            // separate `cht-client-*/node_modules/vue` or module augmentation
+            // (`$mecarvit`, etc.) never attaches to component instances.
+            "vue": ["./node_modules/vue"],
+            "@vue/runtime-core": ["./node_modules/@vue/runtime-core"],
             // `cht-design-system` has no runtime dependency on vue-router, so its
             // global `RouterLink`/`RouterView` declarations resolve it from here.
             "vue-router": ["./node_modules/vue-router"]
