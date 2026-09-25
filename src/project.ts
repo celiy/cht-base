@@ -35,6 +35,11 @@ function parseAvailableThemes(): ThemeName[] {
     }
 }
 
+/**
+ * Parse the default theme from the environment variables.
+ * @param availableThemes The available themes.
+ * @returns The default theme.
+ */
 function parseDefaultTheme(availableThemes: ThemeName[]): ThemeName {
     const configured = import.meta.env.VITE_DEFAULT_THEME;
 
