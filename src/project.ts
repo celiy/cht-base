@@ -11,6 +11,10 @@ import {
 
 const MOBILE_BREAKPOINT_PX = 768;
 
+/**
+ * Parse the available themes from the environment variables.
+ * @returns The available themes.
+ */
 function parseAvailableThemes(): ThemeName[] {
     try {
         const raw = import.meta.env.VITE_AVAILABLE_THEMES;
