@@ -8,6 +8,7 @@ import { clientThemePlugin } from "./vite-plugins/clientTheme";
 import { clientSourcePlugin } from "./vite-plugins/clientSource";
 import { clientFaviconPlugin } from "./vite-plugins/clientFavicon";
 import { clientOverridePlugin } from "./vite-plugins/clientOverride";
+import { repoUpdatesPlugin } from "./vite-plugins/repoUpdates";
 import {
     DEFAULT_API_PORT_SCAN_LIMIT,
     pickApiBaseUrl,
@@ -32,6 +33,21 @@ function isDevToolsEnabled(): boolean {
     }
 
     if (flag && typeof flag === "object" && flag.enabled === false) {
+        return false;
+    }
+
+    return true;
+}
+
+/** Repo-update FAB; default on when DevTools is on. */
+function isRepoUpdateNotificationsEnabled(): boolean {
+    if (!isDevToolsEnabled()) {
+        return false;
+    }
+
+    const flag = clientConfig?.devTools;
+
+    if (flag && typeof flag === "object" && flag.repoUpdateNotifications === false) {
         return false;
     }
 
@@ -82,6 +98,7 @@ export default defineConfig(({ command }) => {
             clientThemePlugin(),
             clientFaviconPlugin(),
             docsExampleSourcePlugin(),
+            repoUpdatesPlugin(clientName),
             vue(),
             tailwindcss(),
             clientOverridePlugin()
@@ -100,7 +117,10 @@ export default defineConfig(({ command }) => {
             "import.meta.env.VITE_API_PORT_SCAN_LIMIT": JSON.stringify(String(apiPortScanLimit)),
             "import.meta.env.VITE_HAS_BACKEND": JSON.stringify(hasBackend ? "true" : "false"),
             "import.meta.env.VITE_DEVAPP_URL": JSON.stringify(devappUrl),
-            "import.meta.env.VITE_DEV_TOOLS": JSON.stringify(isDevToolsEnabled() ? "true" : "false")
+            "import.meta.env.VITE_DEV_TOOLS": JSON.stringify(isDevToolsEnabled() ? "true" : "false"),
+            "import.meta.env.VITE_REPO_UPDATE_NOTIFICATIONS": JSON.stringify(
+                isRepoUpdateNotificationsEnabled() ? "true" : "false"
+            )
         },
         cacheDir: isDevAppServer
             ? path.resolve(__dirname, "node_modules/.vite-devapp")

@@ -19,6 +19,7 @@ interface ImportMetaEnv {
     readonly VITE_HAS_BACKEND: string;
     readonly VITE_DEVAPP_URL: string;
     readonly VITE_DEV_TOOLS: string;
+    readonly VITE_REPO_UPDATE_NOTIFICATIONS: string;
 }
 
 interface ImportMeta {

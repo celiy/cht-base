@@ -54,9 +54,11 @@ export interface ClientConfig {
     /**
      * Debug FAB during `npx chtmain dev --client:<name>`.
      * Set to `false` or `{ enabled: false }` to hide it.
+     * `repoUpdateNotifications: false` hides only the repo-update bell (default on).
      */
     devTools?: boolean | {
         enabled?: boolean;
+        repoUpdateNotifications?: boolean;
     };
     publish?: {
         provider?: string;

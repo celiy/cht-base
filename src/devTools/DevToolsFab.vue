@@ -1,10 +1,16 @@
 <template>
     <div
-        v-if="enabled && menuOptions.length > 0"
+        v-if="showCorner"
 
-        class="pointer-events-none fixed right-4 bottom-4 z-[1200]"
+        class="pointer-events-none fixed right-4 bottom-4 z-[1200] flex items-end gap-1"
     >
-        <div class="pointer-events-auto w-fit">
+        <RepoUpdatesFab />
+
+        <div
+            v-if="enabled && menuOptions.length > 0"
+
+            class="pointer-events-auto w-fit"
+        >
             <Popover
                 close-on-content-click
                 hide-dropdown-arrow
@@ -46,14 +52,30 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { extraDevToolsOptions, type DevToolsOption } from "./registry";
+import RepoUpdatesFab from "./RepoUpdatesFab.vue";
 
 export default defineComponent({
     name: "DevToolsFab",
 
+    components: {
+        RepoUpdatesFab
+    },
+
     computed: {
-        /** Whether the dev tools are enabled */
+        /** Whether the debug FAB is enabled */
         enabled(): boolean {
             return import.meta.env.DEV && import.meta.env.VITE_DEV_TOOLS === "true";
+        },
+
+        repoUpdatesEnabled(): boolean {
+            return (
+                this.enabled
+                && import.meta.env.VITE_REPO_UPDATE_NOTIFICATIONS === "true"
+            );
+        },
+
+        showCorner(): boolean {
+            return this.enabled || this.repoUpdatesEnabled;
         },
 
         /**

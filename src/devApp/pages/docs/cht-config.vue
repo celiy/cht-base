@@ -84,7 +84,7 @@ Para empacotar um backend que não é Node, mantém \`packageWithElectron: true\
 | \`backend.packageWithElectron\` | Copiar o backend para o instalador. **Padrão \`true\`**. |
 | \`backend.repo\` | URL git do backend para \`npx chtmain install --client:<name>\` |
 | \`backend.ref\` | Branch, tag ou commit do backend no install |
-| \`devTools\` | \`false\` ou \`{ "enabled": false }\` esconde o botão de debug |
+| \`devTools\` | \`false\` ou \`{ "enabled": false }\` esconde o botão de debug; \`{ "repoUpdateNotifications": false }\` esconde só o sino de repos atualizados (ver [Modo dev](/docs/dev-mode)) |
 | \`publish\` | Dados do GitHub para updates Electron |
 | \`theme\` | Opcional; senão usa-se \`src/theme.config.json\` |
 
