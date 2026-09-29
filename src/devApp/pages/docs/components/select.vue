@@ -1,42 +1,37 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
         <section>
-            <h1>
-                Select
-            </h1>
+            <h1>Select</h1>
 
             <p>
                 Campo de escolha com lista flutuante. Aceita pesquisa local, tooltips nas opções,
-                seleção múltipla, persistência em <code>localStorage</code> e textos de ajuda dentro e fora do painel.
-                <code>combobox</code> usa um input no gatilho para texto livre com sugestões.
-                Uma opção com <code>options</code> abre um submenu ao lado (hover ou clique).
-                O slot <code>#inside-empty-panel</code> aparece dentro do painel, abaixo de
+                seleção múltipla, persistência em <code>localStorage</code> e textos de ajuda dentro
+                e fora do painel. <code>combobox</code> usa um input no gatilho para texto livre com
+                sugestões. Uma opção com <code>options</code> abre um submenu ao lado (hover ou
+                clique). O slot <code>#inside-empty-panel</code> aparece dentro do painel, abaixo de
                 “Nenhum resultado encontrado.”, quando a lista visível está vazia (sem opções ou
-                pesquisa sem resultado).
-                Em mobile abre um modal blank (<code>mobileModal</code> / <code>forceModal</code>).
+                pesquisa sem resultado). Em mobile abre um modal blank (<code>mobileModal</code> /
+                <code>forceModal</code>).
             </p>
         </section>
 
         <section>
-            <h3>
-                Helper texts
-            </h3>
+            <h3>Helper texts</h3>
 
             <p>
                 <code>inHelperText</code> aparece dentro do painel, acima da lista.
-                <code>helperText</code> fica abaixo do botão, fora do menu.
-                <code>header</code> é o rótulo do gatilho quando nada está selecionado.
+                <code>helperText</code> fica abaixo do botão, fora do menu. <code>header</code> é o
+                rótulo do gatilho quando nada está selecionado.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Helper texts">
-                <div class="p-4 flex flex-col gap-4 max-w-sm">
+                <div class="flex max-w-sm flex-col gap-4 p-4">
                     <Select
                         header="Select"
                         in-helper-text="Texto de ajuda dentro do painel"
                         helper-text="Texto de ajuda abaixo do campo"
-
                         :options="[
                             { label: 'ABC', value: 'abc', tooltip: 'Este item tem um tooltip' },
                             { label: 'DEF', value: 'def' },
@@ -48,21 +43,19 @@
         </section>
 
         <section>
-            <h3>
-                Pesquisa e tooltips
-            </h3>
+            <h3>Pesquisa e tooltips</h3>
 
             <p>
-                <code>:search="{ external: false }"</code> filtra a lista localmente.
-                Ao abrir, o campo recebe foco e o primeiro item fica pré-selecionado;
-                as setas sobem e descem na lista. Enter confirma. Esc fecha o painel.
-                Uma opção pode ter <code>tooltip</code> — o texto aparece ao lado no hover.
+                <code>:search="{ external: false }"</code> filtra a lista localmente. Ao abrir, o
+                campo recebe foco e o primeiro item fica pré-selecionado; as setas sobem e descem na
+                lista. Enter confirma. Esc fecha o painel. Uma opção pode ter <code>tooltip</code> —
+                o texto aparece ao lado no hover.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Pesquisa e tooltips">
-                <div class="p-4 flex flex-col gap-4 max-w-sm">
+                <div class="flex max-w-sm flex-col gap-4 p-4">
                     <Select
                         header="Com pesquisa"
                         :search="{ external: false }"
@@ -77,13 +70,11 @@
         </section>
 
         <section>
-            <h3>
-                Pesquisa externa
-            </h3>
+            <h3>Pesquisa externa</h3>
 
             <p>
-                <code>:search="{ external: true, field: 'modelo' }"</code> não filtra a lista:
-                a cada digitação (com debounce) emite <code>search:external</code> com
+                <code>:search="{ external: true, field: 'modelo' }"</code> não filtra a lista: a
+                cada digitação (com debounce) emite <code>search:external</code> com
                 <code>{ field, value }</code>. O pai usa <code>field</code> e <code>value</code>
                 para procurar a entidade no backend, por exemplo
                 <code>GET /api/veiculo?modelo=gol</code>.
@@ -92,7 +83,7 @@
 
         <section class="mb-8">
             <DocsExample label="Pesquisa externa">
-                <div class="p-4 flex flex-col gap-4 max-w-sm">
+                <div class="flex max-w-sm flex-col gap-4 p-4">
                     <Select
                         header="Modelo"
                         :search="{ external: true, field: 'modelo' }"
@@ -109,25 +100,25 @@
         </section>
 
         <section>
-            <h3>
-                Combobox
-            </h3>
+            <h3>Combobox</h3>
 
             <p>
-                <code>combobox</code> troca o botão do gatilho por um <code>Input</code>.
-                O texto livre fica em <code>v-model:query</code>; escolher uma opção
-                preenche o input com o label e emite o <code>value</code> da opção.
-                Com <code>:search="{ external: true }"</code> a digitação emite
+                <code>combobox</code> troca o botão do gatilho por um <code>Input</code>. O texto
+                livre fica em <code>v-model:query</code>; escolher uma opção preenche o input com o
+                label e emite o <code>value</code> da opção. Com
+                <code>:search="{ external: true }"</code> a digitação emite
                 <code>search:external</code> (com debounce), sem campo de busca dentro da lista.
-                <code>variant</code> é repassado ao <code>Input</code> do gatilho
-                (<code>secondary</code> por padrão); <code>transparent</code> encaixa o combobox em
-                layouts densos, como células de tabela.
+                <code>variant</code> é repassado ao <code>Input</code> do gatilho (<code
+                    >secondary</code
+                >
+                por padrão); <code>transparent</code> encaixa o combobox em layouts densos, como
+                células de tabela.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Combobox">
-                <div class="p-4 flex flex-col gap-4 max-w-sm">
+                <div class="flex max-w-sm flex-col gap-4 p-4">
                     <Select
                         combobox
                         header="Serviço"
@@ -138,16 +129,14 @@
                         @update:query="comboboxQuery = $event"
                     />
 
-                    <p class="text-sm text-muted-foreground">
-                        Texto: {{ comboboxQuery || "—" }}
-                    </p>
+                    <p class="text-sm text-muted-foreground">Texto: {{ comboboxQuery || "—" }}</p>
                 </div>
             </DocsExample>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Combobox sem moldura">
-                <div class="p-4 max-w-sm rounded border border-border">
+                <div class="max-w-sm rounded border border-border p-4">
                     <Select
                         combobox
                         variant="transparent"
@@ -160,20 +149,18 @@
         </section>
 
         <section>
-            <h3>
-                Combobox com opção fixa
-            </h3>
+            <h3>Combobox com opção fixa</h3>
 
             <p>
                 <code>combobox-option</code> junto com <code>combobox</code>: ao escolher na lista,
-                o valor fica travado (como um select) e um X no input limpa a seleção.
-                Texto livre só enquanto nenhuma opção está selecionada.
+                o valor fica travado (como um select) e um X no input limpa a seleção. Texto livre
+                só enquanto nenhuma opção está selecionada.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Combobox option">
-                <div class="p-4 flex flex-col gap-4 max-w-sm">
+                <div class="flex max-w-sm flex-col gap-4 p-4">
                     <Select
                         combobox
                         combobox-option
@@ -190,25 +177,21 @@
         </section>
 
         <section>
-            <h3>
-                Múltipla seleção
-            </h3>
+            <h3>Múltipla seleção</h3>
 
             <p>
-                <code>selectMultiple="{ min, max, allSelected }"</code>.
-                <code>min</code> e <code>max</code> limitam quantos itens cabem;
-                <code>allSelected: true</code> começa com tudo marcado.
-                O valor emitido é um array de strings.
+                <code>selectMultiple="{ min, max, allSelected }"</code>. <code>min</code> e
+                <code>max</code> limitam quantos itens cabem; <code>allSelected: true</code> começa
+                com tudo marcado. O valor emitido é um array de strings.
                 <code>showSelectedLabels</code> (padrão <code>true</code>) mostra os labels
-                selecionados no gatilho, com reticências se não couberem.
-                Com <code>false</code>, o gatilho usa o <code>header</code> (placeholder)
-                quando nada está pré-selecionado.
+                selecionados no gatilho, com reticências se não couberem. Com <code>false</code>, o
+                gatilho usa o <code>header</code> (placeholder) quando nada está pré-selecionado.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Múltipla seleção">
-                <div class="p-4 flex flex-col gap-4 max-w-sm">
+                <div class="flex max-w-sm flex-col gap-4 p-4">
                     <Select
                         header="Múltiplo"
                         helper-text="Labels no gatilho; mínimo 0, máximo 4"
@@ -238,23 +221,21 @@
         </section>
 
         <section>
-            <h3>
-                Seleção separada
-            </h3>
+            <h3>Seleção separada</h3>
 
             <p>
                 <code>separateSelected</code> (padrão <code>false</code>) só vale com
-                <code>selectMultiple</code>. As opções marcadas saem da lista e do gatilho:
-                ficam abaixo, em um <code>flex-wrap</code> de grupos de botões
-                (<code>variant="outline"</code>, <code>size="small"</code>).
-                O botão do label emite <code>click:selected</code> com o valor da opção;
-                o X devolve a opção à lista e emite <code>remove:selected</code>.
+                <code>selectMultiple</code>. As opções marcadas saem da lista e do gatilho: ficam
+                abaixo, em um <code>flex-wrap</code> de grupos de botões
+                (<code>variant="outline"</code>, <code>size="small"</code>). O botão do label emite
+                <code>click:selected</code> com o valor da opção; o X devolve a opção à lista e
+                emite <code>remove:selected</code>.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Seleção separada">
-                <div class="p-4 flex flex-col gap-4 max-w-sm">
+                <div class="flex max-w-sm flex-col gap-4 p-4">
                     <Select
                         v-model="separateSelectedValues"
                         header="Veículos"
@@ -271,9 +252,7 @@
         </section>
 
         <section>
-            <h3>
-                Memo
-            </h3>
+            <h3>Memo</h3>
 
             <p>
                 Com <code>useMemo</code> e um <code>id</code> estável, a escolha é gravada em
@@ -283,7 +262,7 @@
 
         <section class="mb-8">
             <DocsExample label="Memo">
-                <div class="p-4 flex flex-col gap-4 max-w-sm">
+                <div class="flex max-w-sm flex-col gap-4 p-4">
                     <Select
                         id="docs-select-memo"
                         header="Com memo"
@@ -300,21 +279,18 @@
         </section>
 
         <section>
-            <h3>
-                Botão de ação
-            </h3>
+            <h3>Botão de ação</h3>
 
             <p>
-                <code>actionIcon</code> e <code>actionLabel</code> renderizam um botão no mesmo estilo
-                do gatilho, à direita por padrão (<code>actionSide</code> aceita
-                <code>left</code> ou <code>right</code>). O clique emite
-                <code>click:action</code>.
+                <code>actionIcon</code> e <code>actionLabel</code> renderizam um botão no mesmo
+                estilo do gatilho, à direita por padrão (<code>actionSide</code> aceita
+                <code>left</code> ou <code>right</code>). O clique emite <code>click:action</code>.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Botão de ação">
-                <div class="p-4 flex flex-col gap-4 max-w-sm">
+                <div class="flex max-w-sm flex-col gap-4 p-4">
                     <Select
                         header="Com ação"
                         action-icon="fa-plus"
@@ -332,24 +308,23 @@
         </section>
 
         <section>
-            <h3>
-                Painel vazio
-            </h3>
+            <h3>Painel vazio</h3>
 
             <p>
                 Use o slot <code>#inside-empty-panel</code> para ações quando não há itens na lista
-                (catálogo vazio ou filtro/pesquisa sem correspondência). O conteúdo fica centralizado
-                logo abaixo do texto “Nenhum resultado encontrado.”. No Mecarvit, o cadastro de cliente
-                usa esse slot nos selects de endereços e veículos com botões
+                (catálogo vazio ou filtro/pesquisa sem correspondência). O conteúdo fica
+                centralizado logo abaixo do texto “Nenhum resultado encontrado.”. No Mecarvit, o
+                cadastro de cliente usa esse slot nos selects de endereços e veículos com botões
                 “Cadastrar endereço” / “Cadastrar veículo”.
             </p>
         </section>
 
-        <section class="mb-8">
+        <section class="mb-24">
             <DocsExample label="Inside empty panel">
-                <div class="p-4 flex flex-col gap-4 max-w-sm">
+                <div class="flex max-w-sm flex-col gap-4 p-4">
                     <Select
                         ref="emptyPanelSelect"
+
                         header="Endereços"
                         placeholder="Selecione os endereços"
                         :search="{ external: false }"
@@ -368,6 +343,7 @@
                                 size="small"
                                 left-icon="fa-plus"
                                 label="Cadastrar endereço"
+                                class="mt-2"
 
                                 @click="onEmptyPanelInsideClick"
                             />
@@ -375,7 +351,8 @@
                     </Select>
 
                     <p class="text-sm text-muted-foreground">
-                        Abra o select sem opções ou pesquise por um texto inexistente para ver o slot.
+                        Abra o select sem opções ou pesquise por um texto inexistente para ver o
+                        slot.
                     </p>
                 </div>
             </DocsExample>

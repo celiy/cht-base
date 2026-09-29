@@ -6,6 +6,7 @@ export const componentsNav = [
     {
         type: "group" as const,
         label: "Introduction",
+        openByDefault: true,
         links: [
             {
                 label: "Bem-Vindo",
@@ -32,6 +33,7 @@ export const componentsNav = [
     {
         type: "group" as const,
         label: "Guia",
+        openByDefault: true,
         links: [
             {
                 label: "$project",
