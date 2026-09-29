@@ -10,7 +10,9 @@
                 sugestões. Uma opção com <code>options</code> abre um submenu ao lado (hover ou
                 clique). O slot <code>#inside-empty-panel</code> aparece dentro do painel, abaixo de
                 “Nenhum resultado encontrado.”, quando a lista visível está vazia (sem opções ou
-                pesquisa sem resultado). Em mobile abre um modal blank (<code>mobileModal</code> /
+                pesquisa sem resultado). O slot <code>#panel-footer</code> fica fixo no rodapé do
+                painel (com borda superior) enquanto houver opções visíveis — útil para ações como
+                “Cadastrar…”. Em mobile abre um modal blank (<code>mobileModal</code> /
                 <code>forceModal</code>).
             </p>
         </section>
@@ -134,20 +136,6 @@
             </DocsExample>
         </section>
 
-        <section class="mb-8">
-            <DocsExample label="Combobox sem moldura">
-                <div class="max-w-sm rounded border border-border p-4">
-                    <Select
-                        combobox
-                        variant="transparent"
-                        header="Serviço"
-                        :options="comboboxOptions"
-                        :search="{ external: false }"
-                    />
-                </div>
-            </DocsExample>
-        </section>
-
         <section>
             <h3>Combobox com opção fixa</h3>
 
@@ -227,9 +215,10 @@
                 <code>separateSelected</code> (padrão <code>false</code>) só vale com
                 <code>selectMultiple</code>. As opções marcadas saem da lista e do gatilho: ficam
                 abaixo, em um <code>flex-wrap</code> de grupos de botões
-                (<code>variant="outline"</code>, <code>size="small"</code>). O botão do label emite
-                <code>click:selected</code> com o valor da opção; o X devolve a opção à lista e
-                emite <code>remove:selected</code>.
+                (<code>variant="outline"</code>, <code>size="small"</code>). O painel flutuante abre
+                preferencialmente para cima (e vira para baixo se não couber). O botão do label
+                emite <code>click:selected</code> com o valor da opção; o X devolve a opção à lista
+                e emite <code>remove:selected</code>.
             </p>
         </section>
 
@@ -279,30 +268,41 @@
         </section>
 
         <section>
-            <h3>Botão de ação</h3>
+            <h3>Panel footer</h3>
 
             <p>
-                <code>actionIcon</code> e <code>actionLabel</code> renderizam um botão no mesmo
-                estilo do gatilho, à direita por padrão (<code>actionSide</code> aceita
-                <code>left</code> ou <code>right</code>). O clique emite <code>click:action</code>.
+                O slot <code>#panel-footer</code> aparece no fim do painel, sticky, só quando a
+                lista tem opções visíveis. Combine com <code>#inside-empty-panel</code> se a mesma
+                ação também fizer sentido com a lista vazia.
             </p>
         </section>
 
         <section class="mb-8">
-            <DocsExample label="Botão de ação">
+            <DocsExample label="Panel footer">
                 <div class="flex max-w-sm flex-col gap-4 p-4">
                     <Select
-                        header="Com ação"
-                        action-icon="fa-plus"
-                        action-side="right"
-                        :options="[
-                            { label: 'ABC', value: 'abc' },
-                            { label: 'DEF', value: 'def' },
-                            { label: '123', value: 'unodunotres' }
-                        ]"
+                        ref="panelFooterSelect"
 
-                        @click:action="onActionClick"
-                    />
+                        header="Veículos"
+                        :options="[
+                            { label: 'Gol · ABC1D23', value: 'gol' },
+                            { label: 'Uno · XYZ1A23', value: 'uno' },
+                            { label: 'Onix · QWE2B34', value: 'onix' }
+                        ]"
+                    >
+                        <template #panel-footer>
+                            <Button
+                                type="button"
+                                variant="outline"
+                                size="small"
+                                left-icon="fa-plus"
+                                label="Cadastrar veículo"
+                                class="w-full"
+
+                                @click="onPanelFooterClick"
+                            />
+                        </template>
+                    </Select>
                 </div>
             </DocsExample>
         </section>
@@ -331,10 +331,6 @@
                         :options="emptyPanelOptions"
                         :select-multiple="{ min: 0 }"
                         :separate-selected="true"
-                        action-icon="fa-plus"
-                        action-side="right"
-
-                        @click:action="onEmptyPanelActionClick"
                     >
                         <template #inside-empty-panel>
                             <Button
@@ -417,12 +413,13 @@ export default defineComponent({
             return this.$refs.emptyPanelSelect as EmptyPanelSelectExpose | undefined;
         },
 
-        onActionClick() {
-            this.$toast.info("Ação do select");
+        panelFooterSelectRef(): EmptyPanelSelectExpose | undefined {
+            return this.$refs.panelFooterSelect as EmptyPanelSelectExpose | undefined;
         },
 
-        onEmptyPanelActionClick() {
-            this.$toast.info("Ação ao lado do gatilho (click:action)");
+        onPanelFooterClick() {
+            this.panelFooterSelectRef()?.close?.();
+            this.$toast.success("Slot panel-footer (ex.: abrir cadastro)");
         },
 
         onEmptyPanelInsideClick() {

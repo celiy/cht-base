@@ -2,6 +2,7 @@
 @layer reset, base, components, utilities;
 @import "./resetCSS.css" layer(reset);
 @import "tailwindcss";
+@plugin "./borderUtilitiesPlugin.js";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @custom-variant light (&:where([data-theme=light], [data-theme=light] *));
@@ -159,15 +160,22 @@ pre code {
     --shadow-2xl: 0 25px 50px -12px var(--color-shadow);
 }
 
-.border,
-.border-t,
-.border-b,
-.border-x,
-.border-y,
-.border-r,
-.border-l,
-.border-border {
-    border-color: var(--color-border);
+/*
+ * Default border color for width-only utilities (`border`, `border-b`, …).
+ * Keep in `@layer base` so colored utilities (`border-primary`, `border-2-success/30`)
+ * in `@layer utilities` can override when both classes are present.
+ */
+@layer base {
+    .border,
+    .border-t,
+    .border-b,
+    .border-x,
+    .border-y,
+    .border-r,
+    .border-l,
+    .border-border {
+        border-color: var(--color-border);
+    }
 }
 
 .btn-group {
@@ -274,6 +282,10 @@ pre code {
     .container-lg {
         max-width: 1536px;
     }
+}
+
+.docs-article {
+    @apply mt-4 mb-24 flex flex-col gap-4 md:mt-8;
 }
 
 /* Modern browsers */

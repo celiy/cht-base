@@ -45,6 +45,34 @@
         </section>
 
         <section>
+            <h3>Bordas coloridas</h3>
+
+            <p>
+                <code>border-primary</code>, <code>border-muted</code>, <code>border-red-500</code>
+                (e qualquer cor do tema/paleta) já aplicam largura 1px + cor — não precisa de
+                <code>border</code> à parte. Com tamanho:
+                <code>border-1-primary</code>, <code>border-2-red-200</code>. Direções
+                (<code>t</code>/<code>r</code>/<code>b</code>/<code>l</code>/<code>x</code>/<code
+                    >y</code
+                >): <code>border-b-primary</code>, <code>border-b-2-red-500</code>,
+                <code>border-x-2/primary</code>. Largura arbitrária usa barra:
+                <code>border-[1rem]/muted</code>, <code>border-b-[4px]/primary</code> (o Tailwind
+                não aceita token depois de <code>]</code>).
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Bordas coloridas">
+                <div class="flex flex-wrap items-end gap-4 p-4">
+                    <div class="border-primary h-16 w-16 rounded bg-card" />
+                    <div class="border-b-2-red-500 h-16 w-16 rounded bg-card" />
+                    <div class="border-x-2-primary h-16 w-16 rounded bg-card" />
+                    <div class="border-t-[4px]/muted h-16 w-16 rounded bg-card" />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
             <h3>Bordas arredondadas</h3>
 
             <p>

@@ -1,31 +1,25 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
         <section>
-            <h1>
-                Tooltip
-            </h1>
+            <h1>Tooltip</h1>
 
             <p>
-                Diretiva <code>v-tooltip</code>. Aceita string ou objeto com <code>content</code>, <code>placement</code>, <code>html</code>, <code>offset</code> e <code>maxWidth</code>.
+                Diretiva <code>v-tooltip</code>. Aceita string ou objeto com <code>content</code>,
+                <code>placement</code>, <code>html</code>, <code>offset</code>,
+                <code>maxWidth</code> e <code>delay</code>.
             </p>
         </section>
 
         <section>
-            <h3>
-                String
-            </h3>
+            <h3>String</h3>
 
-            <p>
-                Atalho: <code>v-tooltip="'texto'"</code>. Placement padrão é <code>top</code>.
-            </p>
+            <p>Atalho: <code>v-tooltip="'texto'"</code>. Placement padrão é <code>top</code>.</p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="String">
-                <div class="p-4 flex flex-wrap gap-2">
-                    <Button v-tooltip="'Texto curto'">
-                        Curto
-                    </Button>
+                <div class="flex flex-wrap gap-2 p-4">
+                    <Button v-tooltip="'Texto curto'"> Curto </Button>
 
                     <Button v-tooltip="'Lorem ipsum dolor sit amet consectetur adipisicing elit.'">
                         Longo
@@ -39,9 +33,7 @@
         </section>
 
         <section>
-            <h3>
-                Placement
-            </h3>
+            <h3>Placement</h3>
 
             <p>
                 <code>placement="top / bottom / left / right / center"</code>
@@ -50,34 +42,22 @@
 
         <section class="mb-8">
             <DocsExample label="Placement">
-                <div class="p-8 flex flex-wrap gap-3 justify-center items-center">
-                    <Button
-                        v-tooltip="{ content: 'Acima do alvo', placement: 'top' }"
-                    >
+                <div class="flex flex-wrap items-center justify-center gap-3 p-8">
+                    <Button v-tooltip="{ content: 'Acima do alvo', placement: 'top' }">
                         Top
                     </Button>
 
-                    <Button
-                        v-tooltip="{ content: 'Abaixo do alvo', placement: 'bottom' }"
-                    >
+                    <Button v-tooltip="{ content: 'Abaixo do alvo', placement: 'bottom' }">
                         Bottom
                     </Button>
 
-                    <Button
-                        v-tooltip="{ content: 'À esquerda', placement: 'left' }"
-                    >
-                        Left
-                    </Button>
+                    <Button v-tooltip="{ content: 'À esquerda', placement: 'left' }"> Left </Button>
 
-                    <Button
-                        v-tooltip="{ content: 'À direita', placement: 'right' }"
-                    >
+                    <Button v-tooltip="{ content: 'À direita', placement: 'right' }">
                         Right
                     </Button>
 
-                    <Button
-                        v-tooltip="{ content: 'Sobre o alvo', placement: 'center' }"
-                    >
+                    <Button v-tooltip="{ content: 'Sobre o alvo', placement: 'center' }">
                         Center
                     </Button>
                 </div>
@@ -85,18 +65,14 @@
         </section>
 
         <section>
-            <h3>
-                HTML
-            </h3>
+            <h3>HTML</h3>
 
-            <p>
-                <code>html: true</code> interpreta <code>content</code> como HTML.
-            </p>
+            <p><code>html: true</code> interpreta <code>content</code> como HTML.</p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="HTML">
-                <div class="p-4 flex flex-wrap gap-2">
+                <div class="flex flex-wrap gap-2 p-4">
                     <Button
                         v-tooltip="htmlTooltip"
                         variant="secondary"
@@ -115,18 +91,51 @@
         </section>
 
         <section>
-            <h3>
-                Offset e maxWidth
-            </h3>
+            <h3>Delay</h3>
 
             <p>
-                <code>offset</code> é o espaço em pixels. <code>maxWidth</code> limita a largura do balão.
+                <code>delay</code> é o tempo em milissegundos antes do tooltip aparecer após o
+                hover. Padrão: <code>100</code>. Use <code>0</code> para aparecer imediatamente. O
+                timer é cancelado se o mouse sair antes.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Delay">
+                <div class="flex flex-wrap gap-2 p-4">
+                    <Button v-tooltip="{ content: 'Padrão (250ms)', placement: 'bottom' }">
+                        Padrão 250ms
+                    </Button>
+
+                    <Button v-tooltip="{ content: 'Sem espera', placement: 'bottom', delay: 0 }">
+                        delay 0
+                    </Button>
+
+                    <Button
+                        v-tooltip="{
+                            content: 'Espera meio segundo',
+                            placement: 'bottom',
+                            delay: 500
+                        }"
+                    >
+                        delay 500
+                    </Button>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>Offset e maxWidth</h3>
+
+            <p>
+                <code>offset</code> é o espaço em pixels. <code>maxWidth</code> limita a largura do
+                balão.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Offset e maxWidth">
-                <div class="p-4 flex flex-wrap gap-2">
+                <div class="flex flex-wrap gap-2 p-4">
                     <Button
                         v-tooltip="{ content: 'Offset 4', placement: 'bottom', offset: 4 }"
                         variant="outline"
@@ -159,36 +168,29 @@
         </section>
 
         <section>
-            <h3>
-                Em outros elementos
-            </h3>
+            <h3>Em outros elementos</h3>
 
-            <p>
-                Qualquer elemento com hover: ícone, texto, input ou opção de select.
-            </p>
+            <p>Qualquer elemento com hover: ícone, texto, input ou opção de select.</p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Em outros elementos">
-                <div class="p-4 flex flex-col gap-6">
+                <div class="flex flex-col gap-6 p-4">
                     <div class="flex flex-wrap items-center gap-4">
                         <i
                             v-tooltip="'Ajuda sobre este ícone'"
-
-                            class="fa-solid fa-circle-info text-muted-foreground cursor-help"
+                            class="fa-solid fa-circle-info cursor-help text-muted-foreground"
                         />
 
                         <span
                             v-tooltip="'Texto truncado com dica completa'"
-
-                            class="underline decoration-dotted cursor-help text-foreground"
+                            class="cursor-help text-foreground underline decoration-dotted"
                         >
                             Passe o mouse aqui
                         </span>
 
                         <Badge
                             v-tooltip="{ content: 'Status do pedido', placement: 'right' }"
-
                             label="Ativo"
                             variant="success"
                         />
@@ -196,7 +198,6 @@
 
                     <Input
                         id="tooltip-docs-email"
-
                         v-tooltip="{ content: 'Informe o e-mail corporativo', placement: 'right' }"
                         type="email"
                         label="E-mail"
@@ -207,7 +208,6 @@
                     <Select
                         class="max-w-sm"
                         header="Opções com tooltip"
-
                         :options="selectOptions"
                     />
                 </div>
@@ -243,7 +243,8 @@ export default defineComponent({
                 placement: "top" as const
             },
             htmlListTooltip: {
-                content: "<div>Atalhos:</div><div><b>S</b> sidebar</div><div><b>Esc</b> fechar</div>",
+                content:
+                    "<div>Atalhos:</div><div><b>S</b> sidebar</div><div><b>Esc</b> fechar</div>",
                 html: true,
                 placement: "bottom" as const
             },
