@@ -102,6 +102,70 @@
                 </div>
             </DocsExample>
         </section>
+
+        <section>
+            <h3>Customização</h3>
+
+            <p>
+                <code>background-style</code> para mudar a cor de fundo.
+                <code>border-style</code> para mudar a cor da borda. <code>radius-style</code> para
+                mudar o raio da borda.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Customização">
+                <div class="flex flex-col gap-4 p-4">
+                    <div class="flex flex-col gap-2">
+                        <label> background-style="bg-orange-700" </label>
+
+                        <Toggleable
+                            label="Exemplo"
+                            background-style="bg-orange-700"
+                            :options="statusOptions"
+                        />
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label>
+                            background-style="bg-red-700" <br />
+                            border-style="border-2 border-yellow-500"
+                        </label>
+
+                        <Toggleable
+                            label="Exemplo"
+                            background-style="bg-red-700"
+                            border-style="border-2 border-yellow-500"
+                            :options="statusOptions"
+                        />
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label>
+                            background-style="bg-blue-700" <br />
+                            border-style="border-4 border-green-500"
+                        </label>
+
+                        <Toggleable
+                            label="Exemplo"
+                            background-style="bg-blue-700"
+                            border-style="border-4 border-green-500"
+                            :options="statusOptions"
+                        />
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label> radius-style="rounded" </label>
+
+                        <Toggleable
+                            label="Exemplo"
+                            radius-style="rounded"
+                            :options="statusOptions"
+                        />
+                    </div>
+                </div>
+            </DocsExample>
+        </section>
     </article>
 </template>
 

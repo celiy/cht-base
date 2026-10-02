@@ -78,6 +78,43 @@
                 </div>
             </DocsExample>
         </section>
+
+        <section>
+            <h3>Customizações</h3>
+
+            <p>
+                Accordion pode ter a superfície customizada via
+                <code>backgroundStyle</code> e <code>borderStyle</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Customizações">
+                <div class="flex flex-col gap-4 p-4">
+                    <Accordion
+                        header='background-style="bg-muted"'
+                        background-style="bg-muted"
+                    >
+                        <p>Fundo customizado.</p>
+                    </Accordion>
+
+                    <Accordion
+                        header='border-style="border-2-primary"'
+                        border-style="border-2-primary"
+                    >
+                        <p>Borda customizada.</p>
+                    </Accordion>
+
+                    <Accordion
+                        header="Fundo + borda"
+                        background-style="bg-orange-700/15"
+                        border-style="border-2-orange-700"
+                    >
+                        <p>background-style e border-style juntos.</p>
+                    </Accordion>
+                </div>
+            </DocsExample>
+        </section>
     </article>
 </template>
 

@@ -31,7 +31,7 @@
                 >
                     <span> Explorar <span class="fa-solid fa-arrow-right text-xs" /> </span>
                 </Button>
-        </section>
+            </section>
         </article>
 
         <article
@@ -43,10 +43,10 @@
             <div class="absolute bottom-0 z-51 h-12 w-full translate-y-3 bg-background" />
 
             <section class="flex flex-col gap-4">
-            <Card>
-                <template #body>
-                    <div class="flex flex-col gap-4">
-                        <div class="flex gap-2">
+                <Card>
+                    <template #body>
+                        <div class="flex flex-col gap-4">
+                            <div class="flex gap-2">
                                 <Button
                                     label="Button"
                                     right-icon="fa-arrow-right"
@@ -392,8 +392,7 @@
                                         { date: new Date(2023, 0, 15), value: 8 },
                                         { date: new Date(2023, 1, 1), value: 28 },
                                         { date: new Date(2023, 2, 1), value: 24 },
-                                        { date: new Date(2023, 3, 1), value: 32 },
-                                        { date: new Date(2023, 4, 1), value: 30 }
+                                        { date: new Date(2023, 3, 1), value: 32 }
                                     ]
                                 }"
                                 color="chart-3"
@@ -708,8 +707,8 @@
                                 class="max-h-80 min-h-40 overflow-y-auto px-4 pt-2"
                             >
                                 <Chat :messages="chatMessages" />
-                    </div>
-                    
+                            </div>
+
                             <form
                                 class="px-4 pb-4"
 
@@ -791,8 +790,8 @@
                                 small-text="Lorem ipsum dolor sit amet consectetur adipisicing elit."
                             />
                         </div>
-                </template>
-            </Card>
+                    </template>
+                </Card>
             </section>
         </article>
 

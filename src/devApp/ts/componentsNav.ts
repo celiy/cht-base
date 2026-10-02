@@ -239,6 +239,11 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
+        label: "Custom Tooltip",
+        link: "/docs/components/custom-tooltip"
+    },
+    {
+        type: "link" as const,
         label: "Chat",
         link: "/docs/components/chat"
     },

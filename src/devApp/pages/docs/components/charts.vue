@@ -7,7 +7,17 @@
 
             <p>
                 <code>TableCharts</code> envolve barras ou onda. Itens com <code>date</code> agrupam por mês; itens com <code>group</code> agregam na ordem da array (chave case-insensitive).
-                A prop <code>color</code> escolhe o token <code>chart-1</code> … <code>chart-5</code> (padrão <code>chart-3</code>).
+                A prop <code>color</code> aceita token de tema/Tailwind (<code>chart-1</code> …
+                <code>chart-5</code>, <code>green-500</code>, <code>success</code>, …; padrão
+                <code>chart-3</code>). Em barras, <code>negativeColor</code> pinta valores negativos
+                (padrão <code>chart-5</code>) e <code>direction</code> escolhe
+                <code>vertical</code> / <code>horizontal</code>. Com <code>colorEnd</code>
+                (e <code>negativeColorEnd</code>) cada barra é uma cor sólida no caminho
+                da primeira até a última: a primeira usa <code>color</code>, a última
+                usa <code>colorEnd</code>, as do meio misturam as duas. Um item pode ter
+                <code>value</code> e <code>valueNegative</code> para desenhar as duas
+                metades na mesma coluna. Cada barra e cada ponto da onda usam o
+                componente <code>Tooltip</code> (Custom): o balão segue o ponteiro.
             </p>
         </section>
 
@@ -17,9 +27,10 @@
             </h3>
 
             <p>
-                Tokens em <code>style.css</code> (<code>--color-chart-*</code>). Barras positivas usam <code>color</code>;
-                negativas ficam em <code>chart-5</code>. A onda desenha a linha na cor escolhida e preenche abaixo dela
-                com a mesma cor a 50% de opacidade.
+                Tokens em <code>style.css</code> (<code>--color-chart-*</code>) ou qualquer cor do
+                tema. Barras positivas usam <code>color</code>; negativas usam
+                <code>negativeColor</code> (padrão <code>chart-5</code>). A onda desenha a linha na
+                cor escolhida e preenche abaixo dela com a mesma cor a 50% de opacidade.
             </p>
         </section>
 
@@ -91,10 +102,155 @@
                 <div class="p-4">
                     <TableCharts
                         header="Saldo com negativos"
-                        description="Valores positivos e negativos, displayAs currency"
+                        description="Valores positivos e negativos; negativeColor custom"
                         variant="bars"
                         :data="signedBars"
+                        negative-color="destructive"
                     />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
+                Degradê
+            </h3>
+
+            <p>
+                <code>colorEnd</code> pinta a série da primeira barra até a última:
+                cada barra é uma cor sólida no caminho entre <code>color</code> e
+                <code>colorEnd</code> (vermelho → roxo → azul). Negativos usam
+                <code>negativeColor</code> → <code>negativeColorEnd</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Degradê">
+                <div class="p-4">
+                    <TableCharts
+                        header="Do vermelho ao azul"
+                        description="cada barra é uma mistura sólida"
+                        variant="bars"
+                        color="red-500"
+                        color-end="blue-500"
+                        negative-color="orange-400"
+                        negative-color-end="red-700"
+                        :data="signedBars"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
+                Conjunto
+            </h3>
+
+            <p>
+                <code>valueNegative</code> desenha a barra de baixo na mesma coluna,
+                sem precisar de um <code>value</code> negativo.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Conjunto">
+                <div class="p-4">
+                    <TableCharts
+                        header="Entradas e saídas juntas"
+                        description="value + valueNegative"
+                        variant="bars"
+                        color="green-400"
+                        color-end="green-700"
+                        negative-color="orange-400"
+                        negative-color-end="orange-700"
+                        :data="dualBars"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
+                Direção
+            </h3>
+
+            <p>
+                <code>direction="vertical / horizontal"</code>. Horizontal cresce para a direita e
+                não desenha valores negativos (ficam em 0).
+            </p>
+
+            <p>
+                Na vertical as barras ficam agrupadas (largura máxima <code>5rem</code>, mínima
+                <code>2rem</code> se a label for estreita) e não se espalham quando sobra espaço.
+                <code>align="left / center / right"</code> posiciona o grupo (padrão
+                <code>center</code>). Se as colunas não couberem, o gráfico ganha scroll horizontal.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Muitas barras / uma barra">
+                <div class="grid gap-4 p-4 md:grid-cols-2">
+                    <TableCharts
+                        header="24 meses"
+                        description="Scroll horizontal"
+                        variant="bars"
+                        :data="manyBars"
+                    />
+
+                    <TableCharts
+                        header="Um mês"
+                        description="Largura máxima"
+                        variant="bars"
+                        :data="singleBar"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Barras horizontais">
+                <div class="p-4">
+                    <TableCharts
+                        header="Categorias horizontais"
+                        description='direction="horizontal"'
+                        variant="bars"
+                        direction="horizontal"
+                        :data="categoryBars"
+                        :hide-label="true"
+                        color="success"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
+                Clicável
+            </h3>
+
+            <p>
+                <code>clickable</code> no <code>TableCharts</code> / <code>BarChart</code> aplica
+                <code>cursor-pointer</code> e <code>brightness</code> no hover de cada barra, e emite
+                <code>click:bar</code> com o ponto (incluindo <code>id</code> se o item tiver).
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Barras clicáveis">
+                <div class="p-4">
+                    <TableCharts
+                        header="Cliques por região"
+                        description="Clique numa barra"
+                        variant="bars"
+                        clickable
+                        :data="clickableBars"
+
+                        @click:bar="lastClickedBar = $event.id || $event.dateLong"
+                    />
+
+                    <p class="mt-3 text-sm text-muted-foreground">
+                        Último clique: {{ lastClickedBar || "nenhum" }}
+                    </p>
                 </div>
             </DocsExample>
         </section>
@@ -206,6 +362,18 @@ export default defineComponent({
                     { date: new Date(2023, 5, 1), value: 42 }
                 ]
             },
+            dualBars: {
+                label: "Fluxo",
+                displayAs: "currency",
+                items: [
+                    { date: new Date(2023, 0, 1), value: 18, valueNegative: 10 },
+                    { date: new Date(2023, 1, 1), value: 26, valueNegative: 8 },
+                    { date: new Date(2023, 2, 1), value: 12, valueNegative: 20 },
+                    { date: new Date(2023, 3, 1), value: 32, valueNegative: 14 },
+                    { date: new Date(2023, 4, 1), value: 22, valueNegative: 22 },
+                    { date: new Date(2023, 5, 1), value: 42, valueNegative: 16 }
+                ]
+            },
             dailyWave: {
                 label: "Acessos",
                 displayAs: "sum",
@@ -258,6 +426,30 @@ export default defineComponent({
                     { value: 9, group: "Centro-Oeste" },
                     { value: 22, group: "Sul" }
                 ]
+            },
+            lastClickedBar: "",
+            clickableBars: {
+                label: "OS",
+                displayAs: "sum",
+                items: [
+                    { value: 4, group: "Seg", id: "2026-09-28" },
+                    { value: 2, group: "Ter", id: "2026-09-29" },
+                    { value: 6, group: "Qua", id: "2026-09-30" },
+                    { value: 1, group: "Qui", id: "2026-10-01" }
+                ]
+            },
+            manyBars: {
+                label: "OS",
+                displayAs: "sum",
+                items: Array.from({ length: 24 }, (_, index) => ({
+                    value: (index * 7) % 11 + 1,
+                    group: `${["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"][index % 12]}/${25 + Math.floor(index / 12)}`
+                }))
+            },
+            singleBar: {
+                label: "OS",
+                displayAs: "sum",
+                items: [{ value: 3, group: "Out/26" }]
             }
         };
     }

@@ -211,6 +211,52 @@
                 </div>
             </DocsExample>
         </section>
+
+        <section>
+            <h3>Customizações</h3>
+
+            <p>
+                Item pode ter a superfície customizada via
+                <code>backgroundStyle</code>, <code>borderStyle</code> e
+                <code>hoverStyle</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Customizações">
+                <div class="flex max-w-sm flex-col gap-2 p-4">
+                    <Item
+                        label="Fundo"
+                        description='background-style="bg-muted"'
+                        icon="fa-palette"
+                        background-style="bg-muted"
+                    />
+
+                    <Item
+                        label="Borda"
+                        description='border-style="border-2-yellow-500"'
+                        icon="fa-border-all"
+                        border-style="border-2-yellow-500"
+                    />
+
+                    <Item
+                        label="Hover"
+                        description='hover-style="hover:opacity-50"'
+                        icon="fa-hand-pointer"
+                        hover-style="hover:opacity-50"
+                    />
+
+                    <Item
+                        label="Combinado"
+                        description="fundo + borda + hover"
+                        icon="fa-star"
+                        background-style="bg-blue-700 text-white"
+                        border-style="border-2-green-500"
+                        hover-style="hover:opacity-50"
+                    />
+                </div>
+            </DocsExample>
+        </section>
     </article>
 </template>
 

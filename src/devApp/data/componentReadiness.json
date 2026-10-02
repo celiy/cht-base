@@ -34,6 +34,7 @@
     "media-uploader": "warning",
     "form-renderer": "warning",
     "charts": "destructive",
+    "custom-tooltip": "info",
     "chat": "destructive",
     "websocket": "warning",
     "dev-mode": "warning"

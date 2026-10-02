@@ -9,6 +9,7 @@
                             v-for="link in navLinks"
                             :key="link.path"
                             v-slot="{ navigate }"
+
                             custom
                             :to="link.path"
                         >
@@ -71,6 +72,12 @@
                 variant="minimalist"
                 :nav-items="componentsNav"
             >
+                <template #header>
+                    <div class="flex items-center gap-2 px-4 pt-3">
+                        <h4>CHT Docs</h4>
+                    </div>
+                </template>
+
                 <div class="relative min-h-full">
                     <RouterView v-slot="{ Component, route }">
                         <Transition

@@ -6,6 +6,9 @@
             <p>
                 Tabela de dados com headers, alinhamento por coluna, seleção de linhas, escolha de
                 colunas visíveis, badges (incluindo paleta <code>chart-*</code>) e ações por linha.
+                Células com <code>value</code> + <code>altValue</code> e <code>buttonProps</code>
+                (os mesmos props de <code>Button</code>) mostram um valor e um botão que troca
+                para o outro.
             </p>
         </section>
 
@@ -35,6 +38,41 @@
                             { name: 'João', phone: '51 9 99887766', role: 'DevOps' },
                             { name: 'Ana', phone: '51 9 88776655', role: 'PO' },
                             { name: 'Carlos', phone: '51 9 77665544', role: 'Manager' }
+                        ]"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>
+                Valor oculto
+            </h3>
+
+            <p>
+                Passe <code>{ value, altValue, buttonProps }</code> na célula.
+                <code>value</code> é o texto inicial; o botão à direita (props de
+                <code>Button</code>) revela <code>altValue</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Valor oculto">
+                <div class="p-4">
+                    <Table
+                        :headers="[
+                            { label: 'Nome', field: 'name', position: 'start' },
+                            { label: 'CPF', field: 'cpf', position: 'start' }
+                        ]"
+                        :data="[
+                            {
+                                name: 'Celi',
+                                cpf: {
+                                    value: '***.***.***-25',
+                                    altValue: '529.982.247-25',
+                                    buttonProps: { variant: 'transparent', size: 'small' }
+                                }
+                            }
                         ]"
                     />
                 </div>

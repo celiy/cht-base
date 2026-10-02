@@ -156,6 +156,7 @@ function applyThemeToDocument(theme: ThemeName) {
     }
 
     document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
     applyTextContrast(document);
 }
 

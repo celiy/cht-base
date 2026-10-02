@@ -42,6 +42,7 @@ type DesignSystemComponents = {
     Sidebar: typeof import("@design/components/custom/Sidebar.vue").default;
     Steps: typeof import("@design/components/custom/Steps.vue").default;
     TableCharts: typeof import("@design/components/custom/TableCharts.vue").default;
+    Tooltip: typeof import("@design/components/custom/Tooltip.vue").default;
 };
 
 declare module "vue" {

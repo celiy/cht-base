@@ -233,6 +233,11 @@ const routes: RouteRecordRaw[] = [
                 component: () => import("./pages/docs/components/charts.vue")
             },
             {
+                path: "docs/components/custom-tooltip",
+                name: "components-custom-tooltip",
+                component: () => import("./pages/docs/components/custom-tooltip.vue")
+            },
+            {
                 path: "docs/components/media-uploader",
                 name: "components-media-uploader",
                 component: () => import("./pages/docs/components/media-uploader.vue")

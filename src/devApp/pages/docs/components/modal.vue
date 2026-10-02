@@ -6,14 +6,75 @@
             <p>
                 Painel sobreposto. Fecha com clique no backdrop, no X ou com <code>Esc</code>.
                 Com <code>keep-open</code>, o backdrop e cliques fora do painel não fecham
-                (o X e <code>Esc</code> continuam a fechar).                 Ao abrir, a URL ganha
-                <code>?modal=[id,...]</code> (cada instância recebe um id numérico automático;
-                vários abertos: <code>[1,2]</code>) com uma entrada no histórico — no mobile,
-                <strong>Voltar</strong> remove a query e fecha o modal. Remover um id da URL
-                manualmente também fecha o modal correspondente.
+                (o X e <code>Esc</code> continuam a fechar).
                 <code>variant="blank"</code> é só um card com <code>p-4</code> e o
                 <code>#body</code>, sem header nem botão de fechar. Drawer tem página própria.
             </p>
+        </section>
+
+        <section>
+            <h3>URL (<code>?modal</code>)</h3>
+
+            <p>
+                Com <code>url-sync</code> (padrão <code>true</code>), ao abrir a URL ganha
+                <code>?modal=[id,...]</code> — cada instância recebe um id numérico automático;
+                vários abertos ficam como <code>[1,2]</code>, com entrada no histórico. No mobile,
+                <strong>Voltar</strong> remove o id e fecha o modal; remover o id da URL também
+                fecha. Um <strong>reload</strong> da página limpa <code>?modal</code> e
+                <strong>não</strong> reabre modais (os ids são remapeados no boot). Use
+                <code>:url-sync="false"</code> quando o modal não deve tocar na query.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="URL sync">
+                <div class="flex flex-wrap gap-2 p-4">
+                    <Button
+                        label="Com url-sync (padrão)"
+
+                        @click="urlSyncOn = true"
+                    />
+
+                    <Button
+                        label="Sem url-sync"
+
+                        @click="urlSyncOff = true"
+                    />
+
+                    <Modal
+                        size="small"
+                        :is-open="urlSyncOn"
+
+                        @update:value="urlSyncOn = $event"
+                    >
+                        <template #header> Com sync </template>
+
+                        <template #body>
+                            <p>
+                                Abra e veja <code>?modal=</code> na URL. Recarregar a página
+                                remove a query e deixa o modal fechado.
+                            </p>
+                        </template>
+                    </Modal>
+
+                    <Modal
+                        size="small"
+                        :url-sync="false"
+                        :is-open="urlSyncOff"
+
+                        @update:value="urlSyncOff = $event"
+                    >
+                        <template #header> Sem sync </template>
+
+                        <template #body>
+                            <p>
+                                Com <code>:url-sync="false"</code> a URL não muda ao abrir ou
+                                fechar.
+                            </p>
+                        </template>
+                    </Modal>
+                </div>
+            </DocsExample>
         </section>
 
         <section class="mb-8">
@@ -415,6 +476,86 @@
                 </div>
             </DocsExample>
         </section>
+
+        <section>
+            <h3>Customizações</h3>
+
+            <p>
+                Modal pode ter cada parte principal customizada via
+                <code>backgroundStyle</code>, <code>borderStyle</code> e
+                <code>footerStyle</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Customizações">
+                <div class="flex flex-wrap gap-2 p-4">
+                    <Button
+                        label="background-style"
+
+                        @click="customBg = true"
+                    />
+
+                    <Button
+                        label="border-style"
+
+                        @click="customBorder = true"
+                    />
+
+                    <Button
+                        label="footer-style"
+
+                        @click="customFooter = true"
+                    />
+
+                    <Modal
+                        size="small"
+                        background-style="bg-muted"
+                        :is-open="customBg"
+
+                        @update:value="customBg = $event"
+                    >
+                        <template #header> Fundo </template>
+
+                        <template #body>
+                            <p>background-style="bg-muted"</p>
+                        </template>
+                    </Modal>
+
+                    <Modal
+                        size="small"
+                        border-style="border-2-primary"
+                        :is-open="customBorder"
+
+                        @update:value="customBorder = $event"
+                    >
+                        <template #header> Borda </template>
+
+                        <template #body>
+                            <p>border-style="border-2-primary"</p>
+                        </template>
+                    </Modal>
+
+                    <Modal
+                        size="small"
+                        footer-style="rounded-b border-b-2-red-500 bg-muted/50 p-4"
+                        :is-open="customFooter"
+
+                        @update:value="customFooter = $event"
+                    >
+                        <template #header> Footer </template>
+
+                        <template #body>
+                            <p>Body</p>
+                        </template>
+
+                        <template #footer>
+                            <p>footer-style="rounded-b border-b-2-red-500 bg-muted/50 p-4"</p>
+                        </template>
+                    </Modal>
+                </div>
+            </DocsExample>
+        </section>
     </article>
 </template>
 
@@ -448,7 +589,12 @@ export default defineComponent({
             destructive: false,
             success: false,
             outer: false,
-            inner: false
+            inner: false,
+            customBg: false,
+            customBorder: false,
+            customFooter: false,
+            urlSyncOn: false,
+            urlSyncOff: false
         };
     },
 

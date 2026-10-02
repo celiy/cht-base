@@ -6,7 +6,8 @@
             <p>
                 Diretiva <code>v-tooltip</code>. Aceita string ou objeto com <code>content</code>,
                 <code>placement</code>, <code>html</code>, <code>offset</code>,
-                <code>maxWidth</code> e <code>delay</code>.
+                <code>maxWidth</code> e <code>delay</code>. Para conteúdo Vue que segue o ponteiro,
+                use o componente <code>Tooltip</code> em Custom.
             </p>
         </section>
 

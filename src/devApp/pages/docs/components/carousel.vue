@@ -189,6 +189,9 @@ import Carousel from "@design/components/Carousel.vue";
 import Badge from "@design/components/Badge.vue";
 import Button from "@design/components/Button.vue";
 import Image from "@design/components/Image.vue";
+import landscapeImage from "@/assets/images/landscape.jpg";
+import portraitImage from "@/assets/images/portrait.jpg";
+import squareImage from "@/assets/images/square_image.webp";
 
 const docsComponents: Record<string, Component> = {
     Carousel: Carousel as Component,
@@ -205,9 +208,9 @@ export default defineComponent({
     data() {
         return {
             images: [
-                { src: "https://i.imgur.com/vN9nvON.jpeg", alt: "Image 1" },
-                { src: "https://i.imgur.com/wAwAYzQ.jpeg", alt: "Image 2" },
-                { src: "https://i.imgur.com/4dIoDgD.jpeg", alt: "Image 3" }
+                { src: landscapeImage, alt: "Paisagem" },
+                { src: portraitImage, alt: "Retrato" },
+                { src: squareImage, alt: "Quadrada" }
             ],
             outsideCount: 0,
             stepsIndicator: true
