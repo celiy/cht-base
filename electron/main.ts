@@ -1,3 +1,8 @@
+/**
+ * The main module
+ * This module is responsible for the main process of the electron app.
+ */
+
 import { app, BrowserWindow, ipcMain, Menu, nativeImage, Tray } from "electron";
 import type { MenuItemConstructorOptions } from "electron";
 import fs from "node:fs";
@@ -89,6 +94,10 @@ function resolveBundledNode(): string | null {
     return candidate;
 }
 
+/**
+ * Resolves the backend config
+ * @returns {ElectronBackendConfig | null} The backend config
+ */
 function resolveBackendConfig(): ElectronBackendConfig | null {
     const base = runtimeConfig.backend;
 

@@ -1,3 +1,8 @@
+/**
+ * The repo updates plugin module
+ * This module is responsible for the repo updates plugin of the project.
+ */
+
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
@@ -24,12 +29,23 @@ export type RepoUpdateInfo = {
     ahead: number;
 };
 
+/**
+ * Gets the repository name from the URL
+ * @param {string} url The URL
+ * @returns {string} The repository name
+ */
 function repoNameFromUrl(url: string): string {
     const last = url.split("/").pop() || "";
 
     return last.replace(/\.git$/, "");
 }
 
+/**
+ * Parses the repository specification
+ * @param {string | { url?: string; repo?: string; ref?: string } | null | undefined} value The value
+ * @param {string | null} extraRef The extra reference
+ * @returns {RepoSpec | null} The repository specification
+ */
 function parseRepoSpec(
     value: string | { url?: string; repo?: string; ref?: string } | null | undefined,
     extraRef?: string | null
@@ -58,6 +74,12 @@ function parseRepoSpec(
     return { url, ref };
 }
 
+/**
+ * Adds a repository specification to the list
+ * @param {RepoSpec[]} list The list
+ * @param {RepoSpec | null} spec The specification
+ * @returns {void}
+ */
 function addRepoSpec(list: RepoSpec[], spec: RepoSpec | null): void {
     if (!spec) {
         return;
@@ -76,6 +98,11 @@ function addRepoSpec(list: RepoSpec[], spec: RepoSpec | null): void {
     list.push({ url: spec.url, ref: spec.ref });
 }
 
+/**
+ * Reads a JSON file
+ * @param {string} filePath The file path
+ * @returns {Record<string, unknown> | null} The JSON file
+ */
 function readJson(filePath: string): Record<string, unknown> | null {
     try {
         const raw = fs.readFileSync(filePath, "utf8");
@@ -93,6 +120,8 @@ function readJson(filePath: string): Record<string, unknown> | null {
 
 /**
  * Same discovery set as install for the active CLIENT (shared + that client).
+ * @param {string | undefined} clientName The client name
+ * @returns {RepoSpec[]} The repository specifications
  */
 function collectScanRepos(clientName: string | undefined): RepoSpec[] {
     const list: RepoSpec[] = [];
@@ -158,6 +187,12 @@ function collectScanRepos(clientName: string | undefined): RepoSpec[] {
     return list;
 }
 
+/**
+ * Runs a Git command
+ * @param {string} cwd The current working directory
+ * @param {string[]} args The arguments
+ * @returns { { ok: boolean; stdout: string }} The result
+ */
 function git(cwd: string, args: string[]): { ok: boolean; stdout: string } {
     const result = spawnSync("git", args, {
         cwd,
@@ -172,6 +207,11 @@ function git(cwd: string, args: string[]): { ok: boolean; stdout: string } {
     return { ok: true, stdout: (result.stdout || "").trim() };
 }
 
+/**
+ * Resolves the remote tip
+ * @param {string} dir The directory
+ * @returns {string | null} The remote tip
+ */
 function resolveRemoteTip(dir: string): string | null {
     const upstream = git(dir, ["rev-parse", "@{upstream}"]);
 
@@ -200,6 +240,11 @@ function resolveRemoteTip(dir: string): string | null {
     return null;
 }
 
+/**
+ * Scans a repository
+ * @param {RepoSpec} spec The specification
+ * @returns {RepoUpdateInfo | null} The repository update information
+ */
 function scanRepo(spec: RepoSpec): RepoUpdateInfo | null {
     const name = repoNameFromUrl(spec.url);
     const dir = path.join(WORKSPACE_ROOT, name);
@@ -248,6 +293,14 @@ function scanRepo(spec: RepoSpec): RepoUpdateInfo | null {
     };
 }
 
+/**
+ * Handles the repository updates
+ * @param {IncomingMessage} req The request
+ * @param {ServerResponse} res The response
+ * @param {Connect.NextFunction} next The next function
+ * @param {string | undefined} clientName The client name
+ * @returns {void}
+ */
 function handleRepoUpdates(
     req: IncomingMessage,
     res: ServerResponse,
@@ -297,6 +350,8 @@ function handleRepoUpdates(
 /**
  * Dev-only middleware: GET /__cht/repo-updates lists remotes ahead of HEAD
  * and core-repo version pins that differ from the local workspace.
+ * @param {string | undefined} clientName The client name
+ * @returns {Plugin} The repo updates plugin
  */
 export function repoUpdatesPlugin(clientName?: string): Plugin {
     return {

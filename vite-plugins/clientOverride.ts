@@ -1,3 +1,8 @@
+/**
+ * The client override plugin module
+ * This module is responsible for the client override plugin of the project.
+ */
+
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -10,6 +15,11 @@ const WORKSPACE_ROOT = path.resolve(BASE_DIR, "..");
 const OVERRIDE_DEV_URL = "/__client-override.css";
 const OVERRIDE_BUILD_FILE = "client-override.css";
 
+/**
+ * Resolves the override path
+ * @param {string | undefined} clientName The client name
+ * @returns {string | null} The override path
+ */
 function resolveOverridePath(clientName: string | undefined): string | null {
     if (!clientName) {
         return null;
@@ -48,11 +58,21 @@ export function clientOverridePlugin(): Plugin {
         name: "client-override",
         enforce: "post",
 
+        /**
+         * Resolves the config
+         * @param {Config} config The config
+         * @returns {void}
+         */
         configResolved(config) {
             isBuild = config.command === "build";
             syncOverridePath();
         },
 
+        /**
+         * Configures the server
+         * @param {Server} server The server
+         * @returns {void}
+         */
         configureServer(server) {
             syncOverridePath();
 
@@ -74,6 +94,10 @@ export function clientOverridePlugin(): Plugin {
             });
         },
 
+        /**
+         * Transforms the index HTML
+         * @returns {Array<{tag: string, attrs: Record<string, string>, injectTo: string}>} The transformed HTML
+         */
         transformIndexHtml() {
             if (!overridePath) {
                 return [];
@@ -95,6 +119,10 @@ export function clientOverridePlugin(): Plugin {
             ];
         },
 
+        /**
+         * Generates the bundle
+         * @returns {void}
+         */
         generateBundle() {
             if (!overridePath) {
                 return;
@@ -107,6 +135,12 @@ export function clientOverridePlugin(): Plugin {
             });
         },
 
+        /**
+         * Handles the hot update
+         * @param {string} file The file
+         * @param {Server} server The server
+         * @returns {Array<{type: string}>} The hot update
+         */
         handleHotUpdate({ file, server }) {
             if (!overridePath || file !== overridePath) {
                 return undefined;

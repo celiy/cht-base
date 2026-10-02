@@ -1,3 +1,8 @@
+/**
+ * The HTTP types module
+ * This module is responsible for the types of the HTTP client.
+ */
+
 export type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "HEAD" | "OPTIONS";
 
 export type HttpResponseType = "json" | "text" | "blob" | "arrayBuffer";

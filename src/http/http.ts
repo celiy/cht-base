@@ -1,3 +1,8 @@
+/**
+ * The HTTP module
+ * This module is responsible for the HTTP client of the project.
+ */
+
 import type { ApiErrorResponse } from "@shared/errors/ApiError";
 import type {
     HttpClientOptions,

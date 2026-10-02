@@ -1,3 +1,9 @@
+/**
+ * The backend manager
+ * This module is responsible for managing the backend process.
+ * It is used to start, stop, and manage the backend process.
+ */
+
 import { spawn, spawnSync, type ChildProcess } from "node:child_process";
 import fs from "node:fs";
 import http from "node:http";
@@ -167,6 +173,7 @@ function spawnBackendProcess(config: ElectronBackendConfig): ChildProcess {
 
 /**
  * The backend manager class
+ * This class is responsible for managing the backend process.
  */
 export class BackendManager {
     private child: ChildProcess | null = null;

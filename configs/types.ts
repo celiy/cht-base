@@ -1,3 +1,8 @@
+/**
+ * The configs types
+ * This module is responsible for the types of the configs.
+ */
+
 import type { ClientThemeConfig } from "./theme/types";
 
 /**

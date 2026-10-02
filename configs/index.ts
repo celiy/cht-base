@@ -1,3 +1,8 @@
+/**
+ * The configs module
+ * This module is responsible for loading the client config and the workspace version information.
+ */
+
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -7,6 +12,9 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(HERE, "..", "..");
 const CLIENT_CONFIG_FILE = "cht.config.json";
 
+/**
+ * The directories to skip during discovery
+ */
 const SKIP_DISCOVERY_DIRS = new Set([
     "node_modules",
     ".git",

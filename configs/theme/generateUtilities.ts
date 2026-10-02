@@ -1,3 +1,8 @@
+/**
+ * The utilities module
+ * This module is responsible for generating the utilities for the theme.
+ */
+
 const ROUNDED_SUFFIXES = [
     "",
     "-t",

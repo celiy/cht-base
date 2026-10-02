@@ -1,3 +1,8 @@
+/**
+ * The format docs source plugin module
+ * This module is responsible for the format docs source plugin of the project.
+ */
+
 import * as prettier from "prettier";
 import * as prettierPluginBabel from "prettier/plugins/babel";
 import * as prettierPluginEstree from "prettier/plugins/estree";

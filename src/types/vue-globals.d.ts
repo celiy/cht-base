@@ -1,3 +1,8 @@
+/**
+ * The Vue globals types module
+ * This module is responsible for the Vue globals types of the project.
+ */
+
 import type { ToastInterface } from "vue-toastification";
 import type { ProjectState } from "../project";
 import type { AriaAttributes } from "@vue/runtime-dom";

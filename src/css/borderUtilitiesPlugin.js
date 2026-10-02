@@ -1,3 +1,8 @@
+/**
+ * The border utilities plugin
+ * This plugin is responsible for the border utilities of the theme.
+ */
+
 import plugin from "tailwindcss/plugin";
 
 /** Named border widths (matches Tailwind’s default border scale + `1`). */
@@ -85,6 +90,7 @@ function flattenColors(obj, prefix = "") {
 }
 
 /**
+ * Creates an object with the given properties and values
  * @param {string[]} props
  * @param {string} value
  */
@@ -100,6 +106,7 @@ function propsObject(props, value) {
 }
 
 /**
+ * Creates the CSS for the border
  * @param {{ widths: string[], colors: string[], styles: string[] }} side
  * @param {string} width
  * @param {string} color

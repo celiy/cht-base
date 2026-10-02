@@ -1,3 +1,8 @@
+/**
+ * The project module
+ * This module is responsible for the project of the project.
+ */
+
 import type { App } from "vue";
 import type { Router } from "vue-router";
 import { reactive } from "vue";
@@ -13,7 +18,7 @@ const MOBILE_BREAKPOINT_PX = 768;
 
 /**
  * Parse the available themes from the environment variables.
- * @returns The available themes.
+ * @returns {ThemeName[]} The available themes.
  */
 function parseAvailableThemes(): ThemeName[] {
     try {
@@ -38,7 +43,7 @@ function parseAvailableThemes(): ThemeName[] {
 /**
  * Parse the default theme from the environment variables.
  * @param availableThemes The available themes.
- * @returns The default theme.
+ * @returns {ThemeName} The default theme.
  */
 function parseDefaultTheme(availableThemes: ThemeName[]): ThemeName {
     const configured = import.meta.env.VITE_DEFAULT_THEME;
@@ -120,6 +125,10 @@ export interface ProjectState {
 const urlQuerySnapshot = reactive<Record<string, string>>({});
 const urlParamsSnapshot = reactive<Record<string, string>>({});
 
+/**
+ * Reads the stored theme from the local storage
+ * @returns {ThemeName | null} The stored theme
+ */
 function readStoredTheme(): ThemeName | null {
     if (typeof window === "undefined") {
         return null;
@@ -138,6 +147,11 @@ function readStoredTheme(): ThemeName | null {
     return null;
 }
 
+/**
+ * Persists the theme to the local storage
+ * @param {ThemeName} theme The theme
+ * @returns {void}
+ */
 function persistTheme(theme: ThemeName) {
     if (typeof window === "undefined") {
         return;
@@ -150,6 +164,11 @@ function persistTheme(theme: ThemeName) {
     }
 }
 
+/**
+ * Applies the theme to the document
+ * @param {ThemeName} theme The theme
+ * @returns {void}
+ */
 function applyThemeToDocument(theme: ThemeName) {
     if (typeof document === "undefined") {
         return;
@@ -160,6 +179,11 @@ function applyThemeToDocument(theme: ThemeName) {
     applyTextContrast(document);
 }
 
+/**
+ * Sets the theme
+ * @param {ThemeName} theme The theme
+ * @returns {void}
+ */
 function setTheme(theme: ThemeName) {
     if (!AVAILABLE_THEMES.includes(theme)) {
         return;
@@ -220,10 +244,18 @@ export const project = reactive<ProjectState>({
     }
 });
 
+/**
+ * Begins the route loading
+ * @returns {void}
+ */
 function beginRouteLoading() {
     project.route.isLoading = true;
 }
 
+/**
+ * Ends the route loading
+ * @returns {void}
+ */
 function endRouteLoading() {
     project.route.isLoading = false;
 }
@@ -298,6 +330,11 @@ function startDeviceWatcher() {
     deviceWatcherStarted = true;
 }
 
+/**
+ * Applies the backend status to the project state
+ * @param {BackendStatus} status The backend status
+ * @returns {void}
+ */
 function applyBackendStatus(status: BackendStatus) {
     project.electron.backendStatus = status.state;
     project.electron.backendMessage = status.message;
@@ -306,6 +343,10 @@ function applyBackendStatus(status: BackendStatus) {
 
 let electronStarted = false;
 
+/**
+ * Initializes the electron
+ * @returns {void}
+ */
 function initElectron() {
     if (electronStarted || typeof window === "undefined") {
         return;
@@ -340,6 +381,10 @@ function initElectron() {
     });
 }
 
+/**
+ * Initializes the theme
+ * @returns {void}
+ */
 function initTheme() {
     const storedTheme = readStoredTheme();
     const initialTheme = storedTheme ?? DEFAULT_THEME;
@@ -347,6 +392,11 @@ function initTheme() {
     setTheme(initialTheme);
 }
 
+/**
+ * Applies the update status to the project state
+ * @param {UpdateStatus} status The update status
+ * @returns {void}
+ */
 function applyUpdateStatus(status: UpdateStatus) {
     project.update.supported = status.supported;
     project.update.status = status.state;
@@ -362,7 +412,7 @@ let updatesStarted = false;
 /**
  * Wire the desktop updater into the reactive state. No-op outside Electron.
  */
-function initElectronUpdates() {
+function initElectronUpdates(): void {
     if (updatesStarted || typeof window === "undefined") {
         return;
     }
@@ -424,12 +474,16 @@ export const projectActions = {
     }
 };
 
+/** The project plugin options type */
 export interface ProjectPluginOptions {
     router: Router;
 }
 
 /**
  * Plugin to install the project state into the Vue app.
+ * @param {App} app The app
+ * @param {ProjectPluginOptions} options The options
+ * @returns {void}
  */
 export const projectPlugin = {
     install(app: App, options?: ProjectPluginOptions) {
@@ -443,4 +497,5 @@ export const projectPlugin = {
     }
 };
 
+/** The theme name type */
 export type { ThemeName } from "../configs/theme/types";

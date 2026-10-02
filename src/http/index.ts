@@ -1,3 +1,8 @@
+/**
+ * The HTTP index module
+ * This module is responsible for the HTTP client of the project.
+ */
+
 import { createHttpClient } from "./http";
 import { resolveReachableApiBaseUrl } from "./resolveApiBaseUrl";
 

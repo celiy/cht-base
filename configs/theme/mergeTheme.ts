@@ -1,3 +1,8 @@
+/**
+ * The theme merger
+ * This module is responsible for merging the theme config with the system theme defaults.
+ */
+
 import type { ClientConfig } from "../types";
 import { AVAILABLE_THEMES, DEFAULT_RADIUS, SYSTEM_THEME_DEFAULTS } from "./defaults";
 import type {

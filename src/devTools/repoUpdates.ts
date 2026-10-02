@@ -1,3 +1,8 @@
+/**
+ * The repo updates module
+ * This module is responsible for the repo updates of the project.
+ */
+
 /** Remote tip the user already confirmed as seen. */
 export type DismissedRepoTip = {
     remoteSha: string;
@@ -62,6 +67,9 @@ export function buildDismissals(repos: RepoUpdate[]): DismissalsMap {
 
 /**
  * Merge new dismissals into an existing map (preserve unrelated ids).
+ * @param {DismissalsMap} existing The existing dismissals
+ * @param {DismissalsMap} confirmed The confirmed dismissals
+ * @returns {DismissalsMap} The merged dismissals
  */
 export function mergeDismissals(
     existing: DismissalsMap,
@@ -70,6 +78,11 @@ export function mergeDismissals(
     return { ...existing, ...confirmed };
 }
 
+/**
+ * Reads the dismissals from the storage
+ * @param {Storage} storage The storage
+ * @returns {DismissalsMap} The dismissals
+ */
 export function readDismissals(storage: Storage = localStorage): DismissalsMap {
     try {
         const raw = storage.getItem(REPO_UPDATE_STORAGE_KEY);
@@ -104,6 +117,12 @@ export function readDismissals(storage: Storage = localStorage): DismissalsMap {
     }
 }
 
+/**
+ * Writes the dismissals to the storage
+ * @param {DismissalsMap} dismissals The dismissals
+ * @param {Storage} storage The storage
+ * @returns {void}
+ */
 export function writeDismissals(
     dismissals: DismissalsMap,
     storage: Storage = localStorage
@@ -111,6 +130,11 @@ export function writeDismissals(
     storage.setItem(REPO_UPDATE_STORAGE_KEY, JSON.stringify(dismissals));
 }
 
+/**
+ * Fetches the repo updates
+ * @param {typeof fetch} fetchImpl The fetch implementation
+ * @returns {Promise<RepoUpdatesPayload>} The repo updates
+ */
 export async function fetchRepoUpdates(
     fetchImpl: typeof fetch = fetch
 ): Promise<RepoUpdatesPayload> {
@@ -168,12 +192,24 @@ export async function fetchRepoUpdates(
     };
 }
 
+/**
+ * Dismisses the repo updates
+ * @param {RepoUpdate[]} repos The repos
+ * @param {Storage} storage The storage
+ * @returns {void}
+ */
 export function dismissRepoUpdates(repos: RepoUpdate[], storage: Storage = localStorage): void {
     const existing = readDismissals(storage);
     const confirmed = buildDismissals(repos);
     writeDismissals(mergeDismissals(existing, confirmed), storage);
 }
 
+/**
+ * Asserts a condition
+ * @param {boolean} condition The condition
+ * @param {string} message The message
+ * @returns {void}
+ */
 function assert(condition: boolean, message: string): void {
     if (!condition) {
         throw new Error(`[repoUpdates] ${message}`);

@@ -1,3 +1,8 @@
+/**
+ * The dev tools registry module
+ * This module is responsible for the registry of the dev tools.
+ */
+
 import { reactive } from "vue";
 
 /** The dev tools option type */

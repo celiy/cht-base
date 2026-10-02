@@ -1,3 +1,8 @@
+/**
+ * The preload module
+ * This module is responsible for the preload process of the electron app.
+ */
+
 import { contextBridge, ipcRenderer } from "electron";
 import type { BackendStatus, ElectronAPI, UpdateStatus } from "./types";
 import { IPC_CHANNELS } from "./types";
@@ -16,6 +21,7 @@ function readAppVersion(): string {
 
 /**
  * The electron API
+ * This API is used to communicate with the main process.
  * @type {ElectronAPI}
  */
 const electronAPI: ElectronAPI = {
@@ -34,9 +40,11 @@ const electronAPI: ElectronAPI = {
             ipcRenderer.removeListener(IPC_CHANNELS.status, listener);
         };
     },
+
     retryBackend: () => ipcRenderer.invoke(IPC_CHANNELS.retry) as Promise<void>,
     getUpdateStatus: () =>
         ipcRenderer.invoke(IPC_CHANNELS.updateGetStatus) as Promise<UpdateStatus>,
+
     onUpdateStatus: (callback) => {
         const listener = (_event: unknown, status: UpdateStatus) => {
             callback(status);
@@ -48,6 +56,7 @@ const electronAPI: ElectronAPI = {
             ipcRenderer.removeListener(IPC_CHANNELS.updateStatus, listener);
         };
     },
+
     checkForUpdates: () => ipcRenderer.invoke(IPC_CHANNELS.updateCheck) as Promise<UpdateStatus>,
     downloadUpdate: () => ipcRenderer.invoke(IPC_CHANNELS.updateDownload) as Promise<UpdateStatus>,
     installUpdate: () => ipcRenderer.invoke(IPC_CHANNELS.updateInstall) as Promise<void>

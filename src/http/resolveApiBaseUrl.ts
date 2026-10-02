@@ -1,3 +1,8 @@
+/**
+ * The resolve API base URL module
+ * This module is responsible for resolving the API base URL of the project.
+ */
+
 import {
     candidatePorts,
     isLoopbackHttpUrl,

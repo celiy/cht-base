@@ -1,3 +1,8 @@
+/**
+ * The theme CSS generator
+ * This module is responsible for generating the CSS for the client theme.
+ */
+
 import { generateThemeUtilities } from "./generateUtilities";
 import type { ResolvedThemeConfig, ThemeColorMap, ThemeName } from "./types";
 

@@ -1,3 +1,8 @@
+/**
+ * The updater module
+ * This module is responsible for the updater process of the electron app.
+ */
+
 import { app } from "electron";
 import { autoUpdater } from "electron-updater";
 import type { UpdateStatus, UpdateStatusState } from "./types";
@@ -6,6 +11,11 @@ export type UpdateStatusListener = (status: UpdateStatus) => void;
 
 const REVALIDATE_INTERVAL_MS = 30 * 60 * 1000;
 
+/**
+ * Converts an error to a message
+ * @param {unknown} error The error
+ * @returns {string} The message
+ */
 function messageOf(error: unknown): string {
     if (error instanceof Error) {
         return error.message;
@@ -36,10 +46,19 @@ export class UpdateManager {
         };
     }
 
+    /**
+     * Gets the status
+     * @returns {UpdateStatus} The status
+     */
     getStatus(): UpdateStatus {
         return { ...this.status };
     }
 
+    /**
+     * Adds a status listener
+     * @param {UpdateStatusListener} listener The listener
+     * @returns {() => void} A function to remove the listener
+     */
     onStatus(listener: UpdateStatusListener): () => void {
         this.listeners.add(listener);
         listener(this.getStatus());

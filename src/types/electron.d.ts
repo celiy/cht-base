@@ -1,3 +1,8 @@
+/**
+ * The electron types module
+ * This module is responsible for the types of the electron app.
+ */
+
 import type { BackendStatus, ElectronAPI } from "../../electron/types";
 
 declare global {

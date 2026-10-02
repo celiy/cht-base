@@ -1,5 +1,11 @@
+/**
+ * The version check module
+ * This module is responsible for checking the version of the project.
+ */
+
 import { compareSemver, normalizeCheckUrl, parseVersionInfo } from "./versionUtils";
 
+/** The version check options type */
 export interface VersionCheckOptions {
     currentVersion?: string;
     checkUrl?: string;
@@ -10,6 +16,8 @@ export interface VersionCheckOptions {
 /**
  * Checks the running app version against the remote deploy version.
  * If the current app version is outdated, triggers a page reload with `?ver=<remoteVersion>`.
+ * @param {VersionCheckOptions} options The options
+ * @returns {Promise<void>} A promise that resolves when the version check is complete
  */
 export async function checkAppVersion(options: VersionCheckOptions = {}): Promise<void> {
     if (typeof window === "undefined") {

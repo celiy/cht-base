@@ -1,3 +1,8 @@
+/**
+ * The types module
+ * This module is responsible for the types of the electron app.
+ */
+
 export type BackendStatusState = "idle" | "starting" | "ready" | "error" | "stopped";
 
 export interface BackendStatus {

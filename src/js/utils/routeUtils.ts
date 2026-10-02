@@ -1,7 +1,14 @@
+/**
+ * The route utils module
+ * This module is responsible for the route utils of the project.
+ */
+
 import type { LocationQuery, RouteParams } from "vue-router";
 
 /**
  * Normalizes vue-router query values to a single string per key (first value if array).
+ * @param {LocationQuery} query The query
+ * @returns {Record<string, string>} The flattened query
  */
 export function flattenQuery(query: LocationQuery): Record<string, string> {
     const out: Record<string, string> = {};
@@ -19,6 +26,8 @@ export function flattenQuery(query: LocationQuery): Record<string, string> {
 
 /**
  * Normalizes vue-router route params to a single string per key (first value if array).
+ * @param {RouteParams} params The params
+ * @returns {Record<string, string>} The flattened params
  */
 export function flattenParams(params: RouteParams): Record<string, string> {
     const out: Record<string, string> = {};
@@ -36,6 +45,8 @@ export function flattenParams(params: RouteParams): Record<string, string> {
 
 /**
  * Builds a LocationQuery from a flat string map (for router.push).
+ * @param {Record<string, string>} record The record
+ * @returns {LocationQuery} The location query
  */
 export function toLocationQuery(record: Record<string, string>): LocationQuery {
     const q: LocationQuery = {};
@@ -49,6 +60,9 @@ export function toLocationQuery(record: Record<string, string>): LocationQuery {
 
 /**
  * Keeps a reactive snapshot object in sync with the current route query.
+ * @param {LocationQuery} query The query
+ * @param {Record<string, string>} snapshot The snapshot
+ * @returns {void}
  */
 export function syncReactiveQuerySnapshot(
     query: LocationQuery,
@@ -69,6 +83,9 @@ export function syncReactiveQuerySnapshot(
 
 /**
  * Keeps a reactive snapshot object in sync with the current route params.
+ * @param {RouteParams} params The params
+ * @param {Record<string, string>} snapshot The snapshot
+ * @returns {void}
  */
 export function syncReactiveParamsSnapshot(
     params: RouteParams,

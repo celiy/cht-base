@@ -4,9 +4,15 @@ import { toastPlugin } from "@design/toast/plugin";
 import { designSystemPlugin } from "@design/plugin";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./css/style.css";
+
+/*
+ * @client Dynamically imports the App.vue and routes from the client directory
+ * when it's being built for the client.
+ */
 import App from "@client/App.vue";
 import routes from "@client/routes";
 import tooltip from "./directives/tooltip";
+
 import { projectPlugin, projectActions } from "./project";
 import { checkAppVersion } from "./version/versionCheck";
 import { httpPlugin, discoverApiBaseUrl } from "./http/plugin";

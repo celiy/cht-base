@@ -1,3 +1,8 @@
+/**
+ * The client favicon plugin module
+ * This module is responsible for the client favicon plugin of the project.
+ */
+
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -7,6 +12,11 @@ import { loadConfig, resolveClientDir } from "../configs";
 const PLUGIN_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(PLUGIN_DIR, "..", "..");
 
+/**
+ * Resolves the client favicon path
+ * @param {string | undefined} clientName The client name
+ * @returns {string | null} The client favicon path
+ */
 function resolveClientFaviconPath(clientName: string | undefined): string | null {
     if (!clientName) {
         return null;
@@ -27,6 +37,10 @@ function resolveClientFaviconPath(clientName: string | undefined): string | null
     return candidates.find((candidate) => fs.existsSync(candidate)) ?? null;
 }
 
+/**
+ * The client favicon plugin
+ * @returns {Plugin} The client favicon plugin
+ */
 export function clientFaviconPlugin(): Plugin {
     let faviconPath: string | null = null;
     let base = "/";

@@ -1,3 +1,8 @@
+/**
+ * The version utils module
+ * This module is responsible for the version utils of the project.
+ */
+
 export interface ParsedVersionInfo {
     version?: string;
     versionCheckUrl?: string;
@@ -8,6 +13,8 @@ export interface ParsedVersionInfo {
  * - Key-value lines: `version 1.0.0` and `versionCheckUrl https://...`
  * - JSON format: `{"version": "1.0.0", "versionCheckUrl": "..."}`
  * - Plain semver string: `1.0.0`
+ * @param {string} content The content
+ * @returns {ParsedVersionInfo} The parsed version info
  */
 export function parseVersionInfo(content: string): ParsedVersionInfo {
     if (!content || typeof content !== "string") {
@@ -57,6 +64,8 @@ export function parseVersionInfo(content: string): ParsedVersionInfo {
 
 /**
  * Normalizes GitHub web URLs to raw.githubusercontent.com for CORS and direct text fetching.
+ * @param {string} url The URL
+ * @returns {string} The normalized URL
  */
 export function normalizeCheckUrl(url: string): string {
     if (!url) {
@@ -80,6 +89,9 @@ export function normalizeCheckUrl(url: string): string {
  *   1 if v1 > v2
  *  -1 if v1 < v2
  *   0 if v1 === v2
+ * @param {string} v1 The first version
+ * @param {string} v2 The second version
+ * @returns {number} The comparison result
  */
 export function compareSemver(v1: string, v2: string): number {
     const clean = (v: string) => v.trim().replace(/^v/i, "");

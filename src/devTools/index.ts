@@ -1,3 +1,8 @@
+/**
+ * The dev tools module
+ * This module is responsible for the dev tools of the project.
+ */
+
 export { extraDevToolsOptions, registerDevToolsOptions } from "./registry";
 export type { DevToolsOption } from "./registry";
 export {

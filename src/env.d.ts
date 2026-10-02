@@ -1,5 +1,10 @@
 /// <reference types="vite/client" />
 
+/**
+ * The environment types module
+ * This module is responsible for the environment types of the project.
+ */
+
 import type { Router, RouteLocationNormalizedLoaded } from "vue-router";
 import type { ProjectState } from "./project";
 import type { ToastApi } from "@design/toast/toast";

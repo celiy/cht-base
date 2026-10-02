@@ -1,3 +1,8 @@
+/**
+ * The docs example source plugin module
+ * This module is responsible for the docs example source plugin of the project.
+ */
+
 import type { Plugin } from "vite";
 import { dedentSource } from "./dedentSource";
 import { formatDocsSource, getDocsExampleLanguage } from "./formatDocsSource";

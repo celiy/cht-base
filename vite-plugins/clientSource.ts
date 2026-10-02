@@ -1,3 +1,8 @@
+/**
+ * The client source plugin module
+ * This module is responsible for the client source plugin of the project.
+ */
+
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import type { Plugin } from "vite";
@@ -9,10 +14,9 @@ const STYLE_CSS = path.join(BASE_DIR, "src", "css", "style.css");
 const SOURCE_DIRECTIVE = '@source "virtual:client-source";';
 
 /**
- * CSS paths always use forward slashes, including on Windows.
- *
- * @param value Absolute path.
- * @returns Path with `/` separators.
+ * Converts a path to a POSIX path
+ * @param {string} value The value
+ * @returns {string} The POSIX path
  */
 function toPosix(value: string): string {
     return value.split(path.sep).join("/");

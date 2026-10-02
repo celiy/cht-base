@@ -1,3 +1,8 @@
+/**
+ * The client theme plugin module
+ * This module is responsible for the client theme plugin of the project.
+ */
+
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -14,6 +19,9 @@ const BASE_DIR = path.resolve(PLUGIN_DIR, "..");
 const STYLE_CSS = path.join(BASE_DIR, "src", "css", "style.css");
 
 /**
+ * Reads a JSON file
+ * @param {string} filePath The file path
+ * @returns {T | undefined} The JSON file
  * @param {string} filePath
  */
 function readJsonFile<T>(filePath: string): T | undefined {
@@ -29,8 +37,10 @@ function readJsonFile<T>(filePath: string): T | undefined {
 }
 
 /**
- * @param {string} baseDir
- * @param {string | undefined} clientName
+ * Loads the development theme config
+ * @param {string} baseDir The base directory
+ * @param {string | undefined} clientName The client name
+ * @returns {ClientThemeConfig | undefined} The development theme config
  */
 function loadDevThemeConfig(baseDir: string, clientName: string | undefined): ClientThemeConfig | undefined {
     if (clientName) {
@@ -41,8 +51,10 @@ function loadDevThemeConfig(baseDir: string, clientName: string | undefined): Cl
 }
 
 /**
- * @param {string} baseDir
- * @param {string | undefined} clientName
+ * Gets the client config path
+ * @param {string} baseDir The base directory
+ * @param {string | undefined} clientName The client name
+ * @returns {string | null} The client config path
  */
 function getClientConfigPath(baseDir: string, clientName: string | undefined): string | null {
     if (!clientName) {
@@ -58,11 +70,20 @@ function getClientConfigPath(baseDir: string, clientName: string | undefined): s
     return path.join(baseDir, "..", clientConfig.clientDir ?? `cht-client-${clientName}`, "cht.config.json");
 }
 
+/**
+ * The client theme plugin
+ * @returns {Plugin} The client theme plugin
+ */
 export function clientThemePlugin(): Plugin {
     let generatedCss = "";
     let watchFiles: string[] = [];
 
-    const buildTheme = (clientName: string | undefined) => {
+    /**
+     * Builds the theme
+     * @param {string | undefined} clientName The client name
+     * @returns {ClientThemeConfig} The resolved theme
+     */
+    const buildTheme = (clientName: string | undefined): ClientThemeConfig => {
         const clientConfig = clientName ? loadConfig(clientName) : null;
         const devThemeConfig = loadDevThemeConfig(BASE_DIR, clientName);
         const resolvedTheme = resolveThemeFromSources(clientConfig, devThemeConfig);
@@ -91,6 +112,10 @@ export function clientThemePlugin(): Plugin {
         name: "client-theme",
         enforce: "pre",
 
+        /**
+         * Configures the plugin
+         * @returns {Config} The plugin config
+         */
         config() {
             const clientName = process.env.CLIENT;
             const clientConfig = clientName ? loadConfig(clientName) : null;
@@ -109,6 +134,12 @@ export function clientThemePlugin(): Plugin {
             };
         },
 
+        /**
+         * Transforms the code
+         * @param {string} code The code
+         * @param {string} id The file ID
+         * @returns {string | undefined} The transformed code
+         */
         transform(code, id) {
             if (!id.endsWith("/src/css/style.css") || !code.includes(THEME_IMPORT)) {
                 return undefined;
@@ -124,6 +155,12 @@ export function clientThemePlugin(): Plugin {
             };
         },
 
+        /**
+         * Handles the hot update
+         * @param {string} file The file
+         * @param {Server} server The server
+         * @returns {Array<{type: string}>} The hot update
+         */
         handleHotUpdate({ file, server }) {
             if (!watchFiles.includes(file)) {
                 return undefined;
@@ -140,6 +177,11 @@ export function clientThemePlugin(): Plugin {
             return [];
         },
 
+        /**
+         * Configures the server
+         * @param {Server} server The server
+         * @returns {void}
+         */
         configureServer(server) {
             watchFiles.forEach((file) => {
                 server.watcher.add(file);

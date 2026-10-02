@@ -1,3 +1,8 @@
+/**
+ * The HTTP plugin module
+ * This module is responsible for the HTTP plugin of the project.
+ */
+
 import { http } from "./index";
 import type { HttpClient } from "./index";
 
