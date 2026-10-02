@@ -41,7 +41,8 @@ declare module "vue" {
             html?: boolean;
             offset?: number;
             maxWidth?: string;
-        }>;
+            delay?: number;
+        } | undefined>;
     }
 }
 
@@ -61,7 +62,8 @@ declare module "@vue/runtime-core" {
             html?: boolean;
             offset?: number;
             maxWidth?: string;
-        }>;
+            delay?: number;
+        } | undefined>;
     }
 }
 
