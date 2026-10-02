@@ -9,7 +9,7 @@ import routes from "@client/routes";
 import tooltip from "./directives/tooltip";
 import { projectPlugin, projectActions } from "./project";
 import { checkAppVersion } from "./version/versionCheck";
-import { httpPlugin, hydrateHttpAuth, discoverApiBaseUrl } from "./http/plugin";
+import { httpPlugin, discoverApiBaseUrl } from "./http/plugin";
 import { startRealtime } from "./realtime";
 import { installClientPlugins, setupAuthGuard } from "@client/bootstrap";
 
@@ -34,7 +34,6 @@ app.directive("tooltip", tooltip);
 app.use(projectPlugin, { router });
 
 app.use(httpPlugin);
-hydrateHttpAuth();
 setupAuthGuard(router);
 
 const title = import.meta.env.VITE_SITE_TITLE;

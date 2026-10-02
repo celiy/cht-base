@@ -34,9 +34,9 @@ O botão vem do \`cht-base\` (\`ElectronStartupGate\` + \`DevToolsFab\`), não d
 
 ## Notificações de repos
 
-À esquerda do botão de debug aparece um sino quando algum repositório do workspace (\`shared.repos\` + frontend/backend do cliente) tem commits no remoto à frente do HEAD local. O scan corre no arranque via \`GET /__cht/repo-updates\` (plugin Vite).
+À esquerda do botão de debug aparece um sino quando algum repositório do workspace (\`shared.repos\` + frontend/backend do cliente) tem commits no remoto à frente do HEAD local, **ou** quando uma repo principal (\`cht-shared\`, \`cht-base\`, \`cht-design-system\`) tem no ficheiro \`version\` um número diferente do que o \`cht-main\` pede. O scan é local (ficheiros \`version\` no disco) mais \`GET /__cht/repo-updates\` (plugin Vite) para os remotes.
 
-A lista abre num painel flutuante. **Confirmar** grava em \`localStorage\` (\`cht.repoUpdateDismissals\`) o tip remoto visto; se o remoto avançar de novo, o sino volta.
+A lista abre num painel flutuante. O alerta de versão da workspace fica até as versões baterem — **Confirmar** só esconde os commits remotos já vistos (\`localStorage\` \`cht.repoUpdateDismissals\`).
 
 \`\`\`ts
 import { registerDevToolsOptions } from "@base/devTools";

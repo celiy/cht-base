@@ -12,6 +12,18 @@ export type RepoUpdate = {
     ahead: number;
 };
 
+export type VersionMismatch = {
+    id: string;
+    name: string;
+    expected: string;
+    actual: string | null;
+};
+
+export type RepoUpdatesPayload = {
+    updates: RepoUpdate[];
+    versionMismatches: VersionMismatch[];
+};
+
 export type DismissalsMap = Record<string, DismissedRepoTip>;
 
 export const REPO_UPDATE_STORAGE_KEY = "cht.repoUpdateDismissals";
@@ -101,44 +113,59 @@ export function writeDismissals(
 
 export async function fetchRepoUpdates(
     fetchImpl: typeof fetch = fetch
-): Promise<RepoUpdate[]> {
+): Promise<RepoUpdatesPayload> {
+    const empty: RepoUpdatesPayload = { updates: [], versionMismatches: [] };
     const response = await fetchImpl(REPO_UPDATES_ENDPOINT, {
         method: "GET",
         headers: { Accept: "application/json" }
     });
 
     if (!response.ok) {
-        return [];
+        return empty;
     }
 
     const payload: unknown = await response.json();
 
     if (!payload || typeof payload !== "object") {
-        return [];
+        return empty;
     }
 
-    const updates = (payload as { updates?: unknown }).updates;
+    const body = payload as { updates?: unknown; versionMismatches?: unknown };
+    const updates = Array.isArray(body.updates) ? body.updates : [];
+    const mismatches = Array.isArray(body.versionMismatches) ? body.versionMismatches : [];
 
-    if (!Array.isArray(updates)) {
-        return [];
-    }
+    return {
+        updates: updates.filter((row): row is RepoUpdate => {
+            if (!row || typeof row !== "object") {
+                return false;
+            }
 
-    return updates.filter((row): row is RepoUpdate => {
-        if (!row || typeof row !== "object") {
-            return false;
-        }
+            const item = row as Partial<RepoUpdate>;
 
-        const item = row as Partial<RepoUpdate>;
+            return (
+                typeof item.id === "string"
+                && typeof item.name === "string"
+                && typeof item.remoteSha === "string"
+                && typeof item.localSha === "string"
+                && typeof item.ahead === "number"
+                && item.ahead > 0
+            );
+        }),
+        versionMismatches: mismatches.filter((row): row is VersionMismatch => {
+            if (!row || typeof row !== "object") {
+                return false;
+            }
 
-        return (
-            typeof item.id === "string"
-            && typeof item.name === "string"
-            && typeof item.remoteSha === "string"
-            && typeof item.localSha === "string"
-            && typeof item.ahead === "number"
-            && item.ahead > 0
-        );
-    });
+            const item = row as Partial<VersionMismatch>;
+
+            return (
+                typeof item.id === "string"
+                && typeof item.name === "string"
+                && typeof item.expected === "string"
+                && (item.actual === null || typeof item.actual === "string")
+            );
+        })
+    };
 }
 
 export function dismissRepoUpdates(repos: RepoUpdate[], storage: Storage = localStorage): void {
@@ -194,4 +221,22 @@ export function selfCheckRepoUpdates(): void {
     );
     assert(merged["cht-base"]?.remoteSha === "bbb", "confirm writes tip");
     assert(merged["cht-shared"]?.remoteSha === "ddd", "merge keeps others");
+
+    const payload: RepoUpdatesPayload = {
+        updates: remote,
+        versionMismatches: [
+            {
+                id: "cht-base",
+                name: "cht-base",
+                expected: "1.0.1",
+                actual: "1.0.2"
+            }
+        ]
+    };
+    const pending = filterPendingUpdates(payload.updates, {
+        "cht-base": { remoteSha: "bbb" },
+        "cht-shared": { remoteSha: "ddd" }
+    });
+    assert(pending.length === 0, "git dismiss does not drop version mismatches");
+    assert(payload.versionMismatches.length === 1, "mismatch stays until versions match");
 }

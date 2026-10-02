@@ -4,6 +4,9 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import type { IncomingMessage, ServerResponse } from "node:http";
 import type { Connect, Plugin } from "vite";
+// cht-main scripts are JS; the compare is the same function the version.check.mjs runs.
+// @ts-expect-error -- no types for scripts/lib/version.mjs
+import { compareWorkspaceVersions } from "../../scripts/lib/version.mjs";
 
 const PLUGIN_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(PLUGIN_DIR, "..", "..");
@@ -272,13 +275,19 @@ function handleRepoUpdates(
         res.statusCode = 200;
         res.setHeader("Content-Type", "application/json; charset=utf-8");
         res.setHeader("Cache-Control", "no-store");
-        res.end(JSON.stringify({ updates }));
+        res.end(
+            JSON.stringify({
+                updates,
+                versionMismatches: compareWorkspaceVersions(WORKSPACE_ROOT)
+            })
+        );
     } catch (error) {
         res.statusCode = 500;
         res.setHeader("Content-Type", "application/json; charset=utf-8");
         res.end(
             JSON.stringify({
                 updates: [],
+                versionMismatches: [],
                 error: error instanceof Error ? error.message : String(error)
             })
         );
@@ -286,7 +295,8 @@ function handleRepoUpdates(
 }
 
 /**
- * Dev-only middleware: GET /__cht/repo-updates lists workspace repos ahead of remote.
+ * Dev-only middleware: GET /__cht/repo-updates lists remotes ahead of HEAD
+ * and core-repo version pins that differ from the local workspace.
  */
 export function repoUpdatesPlugin(clientName?: string): Plugin {
     return {

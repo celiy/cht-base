@@ -25,47 +25,88 @@
                         />
 
                         <span
-                            v-if="pending.length > 0"
+                            v-if="badgeCount > 0"
 
                             class="absolute -top-1.5 -right-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-destructive px-1 text-[10px] leading-none font-semibold text-destructive-foreground"
                         >
-                            {{ pending.length }}
+                            {{ badgeCount }}
                         </span>
                     </span>
                 </Button>
             </template>
 
-            <div class="flex max-h-60 min-w-[16rem] flex-col">
-                <small class="border-b px-3 py-2"> Repos com commits remotos novos</small>
+            <div class="flex max-h-80 min-w-[16rem] flex-col">
+                <div
+                    v-if="versionMismatches.length > 0"
 
-                <ul class="flex-1 overflow-y-auto py-1">
-                    <li
-                        v-for="repo in pending"
-                        :key="repo.id"
+                    class="border-b"
+                >
+                    <small class="flex items-center gap-1 px-3 py-2">
+                        Workspace com versões diferentes
 
-                        class="flex flex-col gap-0.5 px-3 py-2 text-sm"
-                    >
-                        <small>
-                            {{ repo.name }}
-                        </small>
+                        <button
+                            v-tooltip="workspaceVersionTooltip"
+                            type="button"
+                            class="inline-flex text-muted-foreground"
+                            aria-label="O que significa este aviso de versões"
 
-                        <span class="text-xs text-muted-foreground">
-                            {{ shortSha(repo.remoteSha) }}
-                            · {{ repo.ahead }} commit{{ repo.ahead === 1 ? "" : "s" }} à frente
-                        </span>
-                    </li>
-                </ul>
+                            @click.stop
+                        >
+                            <i class="fa-solid fa-circle-info text-xs" />
+                        </button>
+                    </small>
 
-                <div class="border-t p-2">
-                    <Button
-                        variant="primary"
-                        size="small"
-                        label="Confirmar"
-                        class="w-full"
+                    <ul class="py-1">
+                        <li
+                            v-for="repo in versionMismatches"
+                            :key="`ver-${repo.id}`"
 
-                        @click="confirmSeen"
-                    />
+                            class="flex flex-col gap-0.5 px-3 py-2 text-sm"
+                        >
+                            <small>
+                                {{ repo.name }}
+                            </small>
+
+                            <span class="text-xs text-muted-foreground">
+                                workspace {{ repo.expected }}
+                                · local {{ repo.actual ?? "sem version" }}
+                            </span>
+                        </li>
+                    </ul>
                 </div>
+
+                <template v-if="pending.length > 0">
+                    <small class="border-b px-3 py-2"> Repos com commits remotos novos</small>
+
+                    <ul class="flex-1 overflow-y-auto py-1">
+                        <li
+                            v-for="repo in pending"
+                            :key="repo.id"
+
+                            class="flex flex-col gap-0.5 px-3 py-2 text-sm"
+                        >
+                            <small>
+                                {{ repo.name }}
+                            </small>
+
+                            <span class="text-xs text-muted-foreground">
+                                {{ shortSha(repo.remoteSha) }}
+                                · {{ repo.ahead }} commit{{ repo.ahead === 1 ? "" : "s" }} à frente
+                            </span>
+                        </li>
+                    </ul>
+
+                    <div class="border-t p-2">
+                        <Button
+                            variant="primary"
+                            size="small"
+                            label="Confirmar"
+                            class="w-full"
+
+                            @click="confirmSeen"
+                        />
+                    </div>
+                </template>
             </div>
         </Popover>
     </div>
@@ -78,7 +119,8 @@ import {
     fetchRepoUpdates,
     filterPendingUpdates,
     readDismissals,
-    type RepoUpdate
+    type RepoUpdate,
+    type VersionMismatch
 } from "./repoUpdates";
 
 export default defineComponent({
@@ -87,7 +129,8 @@ export default defineComponent({
     data() {
         return {
             scanned: false,
-            pending: [] as RepoUpdate[]
+            pending: [] as RepoUpdate[],
+            versionMismatches: [] as VersionMismatch[]
         };
     },
 
@@ -100,9 +143,31 @@ export default defineComponent({
             );
         },
 
-        /** Hide until scan finishes; then only if there are pending updates. */
+        badgeCount(): number {
+            return this.pending.length + this.versionMismatches.length;
+        },
+
+        /** Hide until scan finishes; then only if there is something to show. */
         visible(): boolean {
-            return this.scanned && this.pending.length > 0;
+            return this.scanned && this.badgeCount > 0;
+        },
+
+        workspaceVersionTooltip() {
+            return {
+                content: [
+                    "<div><b>O que é este aviso</b></div>",
+                    "<div>A workspace (cht-main) declara no ficheiro version quais versões das repos principais precisa para funcionar: cht-shared, cht-base e cht-design-system.</div>",
+                    "<div style=\"margin-top:0.4rem\"><b>O que significa</b></div>",
+                    "<div>Uma dessas pastas no disco tem um número diferente do que o cht-main pede — ou ainda não tem ficheiro version. Não é um update do GitHub: é só o que está neste computador agora.</div>",
+                    "<div style=\"margin-top:0.4rem\"><b>Como funciona</b></div>",
+                    "<div>A comparação é local. Clientes e backends não entram. O aviso fica até os números coincidirem. Confirmar nos commits remotos não esconde isto.</div>",
+                    "<div style=\"margin-top:0.4rem\"><b>O que fazer</b></div>",
+                    "<div>Se a mudança foi de propósito, atualiza a linha dessa repo no version do cht-main. Se a workspace devia ficar na versão pedida, alinha o version (ou o checkout) da pasta local.</div>"
+                ].join(""),
+                html: true,
+                placement: "left" as const,
+                maxWidth: "22rem"
+            };
         }
     },
 
@@ -123,11 +188,13 @@ export default defineComponent({
 
         async scan() {
             try {
-                const remote = await fetchRepoUpdates();
+                const payload = await fetchRepoUpdates();
                 const dismissed = readDismissals();
-                this.pending = filterPendingUpdates(remote, dismissed);
+                this.pending = filterPendingUpdates(payload.updates, dismissed);
+                this.versionMismatches = payload.versionMismatches;
             } catch {
                 this.pending = [];
+                this.versionMismatches = [];
             } finally {
                 this.scanned = true;
             }

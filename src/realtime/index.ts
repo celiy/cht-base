@@ -65,13 +65,6 @@ function connectSocket(): void {
         return;
     }
 
-    const token = http.getAuthToken();
-
-    if (!token) {
-        disconnectSocket();
-        return;
-    }
-
     disconnectSocket();
 
     const url = httpBaseToWsUrl(http.getBaseURL());
@@ -79,7 +72,11 @@ function connectSocket(): void {
 
     socket.onopen = () => {
         reconnectDelayMs = 1000;
-        socket?.send(serializeWsMessage({ op: "auth", token }));
+        const token = http.getAuthToken();
+
+        if (token) {
+            socket?.send(serializeWsMessage({ op: "auth", token }));
+        }
     };
 
     socket.onmessage = (event) => {
@@ -93,7 +90,7 @@ function connectSocket(): void {
     socket.onclose = () => {
         socket = null;
 
-        if (shouldRun && http.getAuthToken()) {
+        if (shouldRun) {
             scheduleReconnect();
         }
     };
@@ -107,27 +104,28 @@ export function onRealtimeEvent(handler: RealtimeHandler): () => void {
     };
 }
 
+export function setRealtimeEnabled(enabled: boolean): void {
+    shouldRun = enabled;
+
+    if (enabled) {
+        connectSocket();
+        return;
+    }
+
+    disconnectSocket();
+}
+
 export function startRealtime(): void {
     if (started || import.meta.env.VITE_HAS_BACKEND !== "true") {
         return;
     }
 
     started = true;
-    shouldRun = true;
     unsubAuth = onAuthTokenChange((token) => {
         if (token) {
-            shouldRun = true;
-            connectSocket();
-            return;
+            setRealtimeEnabled(true);
         }
-
-        shouldRun = false;
-        disconnectSocket();
     });
-
-    if (http.getAuthToken()) {
-        connectSocket();
-    }
 }
 
 export function stopRealtime(): void {

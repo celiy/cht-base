@@ -16,10 +16,9 @@ export function httpPlugin(app: HttpApp): void {
 /** Exports the HTTP client */
 export {
     http,
-    hydrateHttpAuth,
-    persistAuthToken,
+    setAuthToken,
     clearAuthToken,
-    getStoredAuthToken,
+    onHttpUnauthorized,
     HttpError,
     discoverApiBaseUrl
 } from "./index";

@@ -1,25 +1,32 @@
 import { createHttpClient } from "./http";
-import { getStoredAuthToken, setStoredAuthToken } from "./token";
 import { resolveReachableApiBaseUrl } from "./resolveApiBaseUrl";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://127.0.0.1:3001";
+
+/** The authentication token listeners */
+const authTokenListeners = new Set<(token: string | null) => void>();
+const unauthorizedListeners = new Set<() => void>();
+
+/** Emits the authentication token change */
+function emitAuthTokenChange(token: string | null): void {
+    for (const listener of authTokenListeners) {
+        listener(token);
+    }
+}
 
 /** The HTTP client */
 export const http = createHttpClient({
     baseURL: API_BASE_URL,
     withCredentials: true,
-    getAuthToken: getStoredAuthToken,
     onUnauthorized: () => {
-        setStoredAuthToken(null);
         http.setAuthToken(null);
         emitAuthTokenChange(null);
+
+        for (const listener of unauthorizedListeners) {
+            listener();
+        }
     }
 });
-
-/** Hydrates the HTTP authentication token */
-export function hydrateHttpAuth(): void {
-    http.setAuthToken(getStoredAuthToken());
-}
 
 /** Discovers the API base URL */
 export async function discoverApiBaseUrl(): Promise<string> {
@@ -38,28 +45,15 @@ export async function discoverApiBaseUrl(): Promise<string> {
     return resolved;
 }
 
-/** Persists the authentication token */
-export function persistAuthToken(token: string): void {
-    setStoredAuthToken(token);
+/** Sets an in-memory Bearer token (optional tool; session cookies are httpOnly) */
+export function setAuthToken(token: string | null): void {
     http.setAuthToken(token);
     emitAuthTokenChange(token);
 }
 
-/** Clears the authentication token */
+/** Clears the in-memory Bearer token */
 export function clearAuthToken(): void {
-    setStoredAuthToken(null);
-    http.setAuthToken(null);
-    emitAuthTokenChange(null);
-}
-
-/** The authentication token listeners */
-const authTokenListeners = new Set<(token: string | null) => void>();
-
-/** Emits the authentication token change */
-function emitAuthTokenChange(token: string | null): void {
-    for (const listener of authTokenListeners) {
-        listener(token);
-    }
+    setAuthToken(null);
 }
 
 /** Adds an authentication token change listener */
@@ -71,7 +65,15 @@ export function onAuthTokenChange(listener: (token: string | null) => void): () 
     };
 }
 
+/** Adds a listener for HTTP 401 responses */
+export function onHttpUnauthorized(listener: () => void): () => void {
+    unauthorizedListeners.add(listener);
+
+    return () => {
+        unauthorizedListeners.delete(listener);
+    };
+}
+
 /** The HTTP error type */
 export { HttpError } from "./http";
 export type { HttpClient } from "./http";
-export { getStoredAuthToken } from "./token";

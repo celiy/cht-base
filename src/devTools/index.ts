@@ -6,4 +6,4 @@ export {
     mergeDismissals,
     selfCheckRepoUpdates
 } from "./repoUpdates";
-export type { RepoUpdate, DismissalsMap } from "./repoUpdates";
+export type { RepoUpdate, DismissalsMap, VersionMismatch, RepoUpdatesPayload } from "./repoUpdates";
