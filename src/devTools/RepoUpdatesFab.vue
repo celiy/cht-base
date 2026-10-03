@@ -135,6 +135,10 @@ export default defineComponent({
     },
 
     computed: {
+        /**
+         * Gets the enabled
+         * @returns {unknown} The enabled
+         */
         enabled(): boolean {
             return (
                 import.meta.env.DEV &&
@@ -143,6 +147,10 @@ export default defineComponent({
             );
         },
 
+        /**
+         * Gets the badge count
+         * @returns {unknown} The badge count
+         */
         badgeCount(): number {
             return this.pending.length + this.versionMismatches.length;
         },
@@ -152,6 +160,10 @@ export default defineComponent({
             return this.scanned && this.badgeCount > 0;
         },
 
+        /**
+         * Gets the workspace version tooltip
+         * @returns {unknown} The workspace version tooltip
+         */
         workspaceVersionTooltip() {
             return {
                 content: [
@@ -171,6 +183,10 @@ export default defineComponent({
         }
     },
 
+    /**
+     * Mounts the component
+     * @returns {void}
+     */
     mounted() {
         if (!this.enabled) {
             this.scanned = true;
@@ -182,10 +198,19 @@ export default defineComponent({
     },
 
     methods: {
+        /**
+         * Short sha
+         * @param {string} sha The sha
+         * @returns {void}
+         */
         shortSha(sha: string): string {
             return sha.slice(0, 7);
         },
 
+        /**
+         * Scan
+         * @returns {void}
+         */
         async scan() {
             try {
                 const payload = await fetchRepoUpdates();
@@ -200,6 +225,10 @@ export default defineComponent({
             }
         },
 
+        /**
+         * Confirm seen
+         * @returns {void}
+         */
         confirmSeen() {
             dismissRepoUpdates(this.pending);
             this.pending = [];

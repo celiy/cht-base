@@ -40,6 +40,9 @@ const READINESS_META: Record<ComponentReadinessStatus, ReadinessMeta> = {
 
 const SLUG_TO_STATUS = readinessMap as Record<string, ComponentReadinessStatus>;
 
+/**
+ * Gets the get component doc slug
+ */
 export function getComponentDocSlug(path: string): string | null {
     const componentMatch = path.match(/^\/docs\/components\/([^/]+)\/?$/);
 
@@ -56,6 +59,9 @@ export function getComponentDocSlug(path: string): string | null {
     return null;
 }
 
+/**
+ * Gets the get component readiness
+ */
 export function getComponentReadiness(slug: string): ReadinessMeta | null {
     const status = SLUG_TO_STATUS[slug];
 

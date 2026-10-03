@@ -107,11 +107,19 @@ export default defineComponent({
     },
 
     computed: {
+        /**
+         * Gets the component doc slug
+         * @returns {unknown} The component doc slug
+         */
         componentDocSlug(): string | null {
             return getComponentDocSlug(this.$route.path);
         }
     },
 
+    /**
+     * Mounts the component
+     * @returns {void}
+     */
     mounted() {
         this.$nextTick(() => {
             this.collectHeadings();
@@ -122,6 +130,10 @@ export default defineComponent({
         });
     },
 
+    /**
+     * Unmounts the component
+     * @returns {void}
+     */
     beforeUnmount() {
         this.unbindHeadingObserver();
         this.unbindScrollSpy();

@@ -22,6 +22,9 @@ export default defineComponent({
     name: "DocsComponentStatus",
 
     props: {
+        /**
+         * The slug of the docscomponentstatus
+         */
         slug: {
             type: String,
             required: true
@@ -29,6 +32,10 @@ export default defineComponent({
     },
 
     computed: {
+        /**
+         * Gets the readiness
+         * @returns {unknown} The readiness
+         */
         readiness() {
             return getComponentReadiness(this.slug);
         }

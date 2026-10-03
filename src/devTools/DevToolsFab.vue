@@ -67,6 +67,10 @@ export default defineComponent({
             return import.meta.env.DEV && import.meta.env.VITE_DEV_TOOLS === "true";
         },
 
+        /**
+         * Gets the repo updates enabled
+         * @returns {unknown} The repo updates enabled
+         */
         repoUpdatesEnabled(): boolean {
             return (
                 this.enabled
@@ -74,6 +78,10 @@ export default defineComponent({
             );
         },
 
+        /**
+         * Gets the show corner
+         * @returns {unknown} The show corner
+         */
         showCorner(): boolean {
             return this.enabled || this.repoUpdatesEnabled;
         },

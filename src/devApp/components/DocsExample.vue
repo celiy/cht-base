@@ -85,6 +85,10 @@ export default defineComponent({
         };
     },
 
+    /**
+     * Unmounts the component
+     * @returns {void}
+     */
     beforeUnmount() {
         if (this.copiedTimer) {
             clearTimeout(this.copiedTimer);

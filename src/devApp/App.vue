@@ -16,6 +16,10 @@ export default defineComponent({
         ElectronStartupGate
     },
 
+    /**
+     * Creates the component
+     * @returns {void}
+     */
     created() {
         const instance = getCurrentInstance();
         instance?.appContext.app.component("DocsExample", DocsExample);

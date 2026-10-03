@@ -57,10 +57,18 @@ export default defineComponent({
     emits: ["select"],
 
     computed: {
+        /**
+         * Gets the href
+         * @returns {unknown} The href
+         */
         href(): string {
             return `#${this.sectionId}`;
         },
 
+        /**
+         * Gets the indent class
+         * @returns {unknown} The indent class
+         */
         indentClass(): string {
             if (this.level >= 3) {
                 return "pl-6";

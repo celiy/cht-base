@@ -28,6 +28,10 @@ export default defineComponent({
     },
 
     computed: {
+        /**
+         * Gets the highlighted
+         * @returns {unknown} The highlighted
+         */
         highlighted(): string {
             return highlightDocsCode(this.code, this.language);
         }

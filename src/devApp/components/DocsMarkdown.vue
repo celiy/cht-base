@@ -45,6 +45,10 @@ export default defineComponent({
     },
 
     computed: {
+        /**
+         * Gets the html
+         * @returns {unknown} The html
+         */
         html(): string {
             return renderMarkdown(this.source);
         }

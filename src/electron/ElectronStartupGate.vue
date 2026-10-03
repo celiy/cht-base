@@ -153,12 +153,20 @@ export default defineComponent({
         }
     },
 
+    /**
+     * Mounts the component
+     * @returns {void}
+     */
     mounted() {
         if (this.showOverlay && !this.isError) {
             this.startHintTimer();
         }
     },
 
+    /**
+     * Unmounts the component
+     * @returns {void}
+     */
     unmounted() {
         this.stopHintTimer();
     },
