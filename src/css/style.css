@@ -78,26 +78,40 @@ h6 {
 p {
     @apply text-base font-normal;
 }
-
 li {
     @apply mb-1 ml-4 text-base font-normal;
 }
-
+ol {
+    @apply list-decimal;
+}
 label {
     @apply text-sm font-semibold select-none;
 }
-
 small {
     @apply block text-sm font-normal;
 }
-
 code {
     @apply rounded-md bg-secondary p-1 text-sm font-medium;
     color: var(--color-foreground);
 }
-
 a {
     @apply text-primary underline transition-all dark:hover:brightness-150 light:hover:brightness-0;
+}
+b {
+    @apply font-bold;
+}
+strong {
+    @apply font-extrabold;
+}
+mark {
+    @apply bg-yellow-300 text-black;
+}
+i {
+    @apply italic;
+}
+pre,
+pre code {
+    color: var(--color-foreground);
 }
 
 .text-contrast {
@@ -106,19 +120,6 @@ a {
 
 .text-contrast[data-contrast="background"] {
     color: var(--color-background) !important;
-}
-
-b {
-    @apply font-bold;
-}
-
-i {
-    @apply italic;
-}
-
-pre,
-pre code {
-    color: var(--color-foreground);
 }
 
 pre code {
@@ -150,13 +151,13 @@ pre code {
 }
 
 /*
- * Sombras do tema.
+ * Theme shadows.
  *
- * Declaradas no `@theme` para o Tailwind gerar `.shadow-*` dentro de
- * `@layer utilities`, com a propriedade `box-shadow` compondo o encadeamento
- * completo (`--tw-ring-shadow` incluso). Regras soltas, fora de layer, vencem
- * as utilities e — por declararem `box-shadow` direto — apagavam o anel de
- * foco de qualquer campo que também tivesse uma sombra.
+ * Declared in `@theme` to let Tailwind generate `.shadow-*` inside
+ * `@layer utilities`, with the `box-shadow` property composing the chain
+ * complete (`--tw-ring-shadow` included). Loose rules, outside of layer, win
+ * the utilities and — by declaring `box-shadow` directly — erase the focus ring
+ * of any field that also has a shadow.
  */
 @theme {
     --shadow-2xs: 0 1px var(--color-shadow);

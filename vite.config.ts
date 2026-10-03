@@ -14,6 +14,7 @@ import {
     pickApiBaseUrl,
     resolveApiTarget
 } from "../cht-shared/src/net/portScan";
+import { CUSTOM_ELEMENT_TAGS } from "./src/js/customElements/tags";
 
 const isDevAppServer = process.env.CHT_DEVAPP === "1";
 const clientName = isDevAppServer ? undefined : process.env.CLIENT;
@@ -99,7 +100,14 @@ export default defineConfig(({ command }) => {
             clientFaviconPlugin(),
             docsExampleSourcePlugin(),
             repoUpdatesPlugin(clientName),
-            vue(),
+            vue({
+                template: {
+                    compilerOptions: {
+                        isCustomElement: (tag) =>
+                            (CUSTOM_ELEMENT_TAGS as readonly string[]).includes(tag)
+                    }
+                }
+            }),
             tailwindcss(),
             clientOverridePlugin()
         ],
@@ -117,7 +125,9 @@ export default defineConfig(({ command }) => {
             "import.meta.env.VITE_API_PORT_SCAN_LIMIT": JSON.stringify(String(apiPortScanLimit)),
             "import.meta.env.VITE_HAS_BACKEND": JSON.stringify(hasBackend ? "true" : "false"),
             "import.meta.env.VITE_DEVAPP_URL": JSON.stringify(devappUrl),
-            "import.meta.env.VITE_DEV_TOOLS": JSON.stringify(isDevToolsEnabled() ? "true" : "false"),
+            "import.meta.env.VITE_DEV_TOOLS": JSON.stringify(
+                isDevToolsEnabled() ? "true" : "false"
+            ),
             "import.meta.env.VITE_REPO_UPDATE_NOTIFICATIONS": JSON.stringify(
                 isRepoUpdateNotificationsEnabled() ? "true" : "false"
             )

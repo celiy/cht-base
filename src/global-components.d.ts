@@ -1,3 +1,17 @@
+// Dynamically import customElementsArray and type the custom components
+
+// Assume customElementsArray is an array of objects like:
+// [{ name: 'MyCustomComponent', path: '@design/components/custom/MyCustomComponent.vue' }, ...]
+
+type CustomElementsArray = typeof import('./custom-elements-array').customElementsArray;
+
+type DynamicCustomComponents = {
+  [K in CustomElementsArray[number] as K['name']]: 
+    typeof import(
+      /* @vite-ignore */ K['path']
+    ) extends { default: infer T } ? T : never;
+}
+
 type DesignSystemComponents = {
     Accordion: typeof import("@design/components/Accordion.vue").default;
     Avatar: typeof import("@design/components/Avatar.vue").default;
@@ -43,7 +57,7 @@ type DesignSystemComponents = {
     Steps: typeof import("@design/components/custom/Steps.vue").default;
     TableCharts: typeof import("@design/components/custom/TableCharts.vue").default;
     Tooltip: typeof import("@design/components/custom/Tooltip.vue").default;
-};
+} & DynamicCustomComponents;
 
 declare module "vue" {
     export interface GlobalComponents extends DesignSystemComponents {}

@@ -331,9 +331,7 @@
                                         />
 
                                         <div class="mt-2 flex justify-between">
-                                            <small class="text-muted-foreground!">
-                                                35% completo
-                                            </small>
+                                            <small-muted> 35% completo </small-muted>
 
                                             <small> $ 50,000 </small>
                                         </div>
@@ -360,9 +358,7 @@
                                         />
 
                                         <div class="mt-2 flex justify-between">
-                                            <small class="text-muted-foreground!">
-                                                15% completo
-                                            </small>
+                                            <small-muted> 15% completo </small-muted>
 
                                             <small> $ 100,000 </small>
                                         </div>
@@ -378,7 +374,7 @@
                 <Card>
                     <template #header>
                         <h5>Vendas</h5>
-                        <small class="text-muted-foreground!"> Vendas nos ultimos 5 meses </small>
+                        <small-muted> Vendas nos ultimos 5 meses </small-muted>
                     </template>
 
                     <template #body>
@@ -430,7 +426,7 @@
                 <Card>
                     <template #header>
                         <div>
-                            <small class="text-muted-foreground!"> Saldo sacável </small>
+                            <small-muted> Saldo sacável </small-muted>
 
                             <h2 class="whitespace-nowrap">$ 2,200.00</h2>
 
@@ -450,31 +446,29 @@
                                 <template #body>
                                     <div class="flex flex-col gap-2">
                                         <div class="flex justify-between">
-                                            <small class="text-muted-foreground!">Recebido</small>
+                                            <small-muted>Recebido</small-muted>
                                             <small class="font-medium!">$ 2,300.00</small>
                                         </div>
 
                                         <div class="flex justify-between">
-                                            <small class="text-muted-foreground!">Impostos</small>
+                                            <small-muted>Impostos</small-muted>
                                             <small class="font-medium!">-$ 100.00</small>
                                         </div>
 
                                         <Marker separator />
 
                                         <div class="flex justify-between">
-                                            <small class="text-muted-foreground!"
-                                                >Total sacável</small
-                                            >
+                                            <small-muted>Total sacável</small-muted>
                                             <small class="font-medium!">$ 2,100.00</small>
                                         </div>
                                     </div>
                                 </template>
                             </Item>
 
-                            <small class="text-muted-foreground!">
+                            <small-muted>
                                 Assim que seu banco for conectado você irá poder sacar o seu saldo.
                                 O valor fica na sua conta indefinidamente até você peformar a ação.
-                            </small>
+                            </small-muted>
                         </div>
                     </template>
                 </Card>
@@ -482,9 +476,7 @@
                 <Card>
                     <template #header>
                         <h5>Últimas movimentações</h5>
-                        <small class="text-muted-foreground!">
-                            Créditos e saques recentes na sua conta.
-                        </small>
+                        <small-muted> Créditos e saques recentes na sua conta. </small-muted>
                     </template>
 
                     <template #body>
@@ -521,9 +513,9 @@
                 <Card>
                     <template #header>
                         <h5>Definir meta</h5>
-                        <small class="text-muted-foreground!">
+                        <small-muted>
                             Define uma meta financeira para ajudar com sua economias
-                        </small>
+                        </small-muted>
                     </template>
 
                     <template #body>
@@ -570,9 +562,9 @@
                 <Card>
                     <template #header>
                         <h5>Limite de saque</h5>
-                        <small class="text-muted-foreground!">
+                        <small-muted>
                             Defina a moeda e o valor mínimo para solicitar um saque.
-                        </small>
+                        </small-muted>
                     </template>
 
                     <template #body>
@@ -586,9 +578,7 @@
 
                             <div class="flex flex-col">
                                 <div class="flex items-end justify-between gap-2">
-                                    <small class="text-muted-foreground!">
-                                        Valor mínimo de saque
-                                    </small>
+                                    <small-muted> Valor mínimo de saque </small-muted>
 
                                     <span
                                         class="text-3xl font-semibold whitespace-nowrap text-foreground"
@@ -605,9 +595,9 @@
                                 />
 
                                 <div class="flex justify-between">
-                                    <small class="text-muted-foreground!"> $ 50 (MIN) </small>
+                                    <small-muted> $ 50 (MIN) </small-muted>
 
-                                    <small class="text-muted-foreground!"> $ 10,000 (MAX) </small>
+                                    <small-muted> $ 10,000 (MAX) </small-muted>
                                 </div>
                             </div>
 
@@ -631,9 +621,9 @@
                 <Card>
                     <template #header>
                         <h5>Acesso à conta</h5>
-                        <small class="text-muted-foreground!">
+                        <small-muted>
                             Atualize as credenciais ou autentique-se novamente.
-                        </small>
+                        </small-muted>
                     </template>
 
                     <template #body>
@@ -691,7 +681,7 @@
                 <Card>
                     <template #header>
                         <h5>Novo chat</h5>
-                        <small class="text-muted-foreground!">Como posso te ajudar hoje?</small>
+                        <small-muted>Como posso te ajudar hoje?</small-muted>
                     </template>
 
                     <template #card>
@@ -796,7 +786,7 @@
         </article>
 
         <section class="my-8 flex w-full items-center justify-center">
-            <small class="text-muted-foreground!">
+            <small-muted>
                 Feito por
                 <a
                     class="text-muted-foreground! hover:text-foreground!"
@@ -819,7 +809,7 @@
                     rel="noopener noreferrer"
                     >GitHub</a
                 >.
-            </small>
+            </small-muted>
         </section>
     </main>
 </template>

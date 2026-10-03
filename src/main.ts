@@ -18,9 +18,9 @@ import { checkAppVersion } from "./version/versionCheck";
 import { httpPlugin, discoverApiBaseUrl } from "./http/plugin";
 import { startRealtime } from "./realtime";
 import { installClientPlugins, setupAuthGuard } from "@client/bootstrap";
+import { defineCustomElements } from "./js/customElements";
 
-const useHashHistory =
-    typeof window !== "undefined" && window.location.protocol === "file:";
+const useHashHistory = typeof window !== "undefined" && window.location.protocol === "file:";
 
 const router = createRouter({
     history: useHashHistory ? createWebHashHistory() : createWebHistory(),
@@ -54,6 +54,7 @@ void (async () => {
     await discoverApiBaseUrl();
     await installClientPlugins(app, router);
     startRealtime();
+    defineCustomElements();
     app.mount("#app");
     void checkAppVersion();
 })();
