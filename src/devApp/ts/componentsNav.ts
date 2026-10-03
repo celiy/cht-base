@@ -5,7 +5,7 @@ export const componentsNav = [
     },
     {
         type: "group" as const,
-        label: "Introduction",
+        label: "Introdução",
         openByDefault: true,
         links: [
             {
@@ -36,23 +36,11 @@ export const componentsNav = [
         openByDefault: true,
         links: [
             {
-                label: "$project",
-                link: "/docs/project"
+                label: "Criar frontend",
+                link: "/docs/create-client"
             },
             {
-                label: "$http",
-                link: "/docs/http"
-            },
-            {
-                label: "Websocket",
-                link: "/docs/websocket"
-            },
-            {
-                label: "Temas",
-                link: "/docs/themes"
-            },
-            {
-                label: "cht.config",
+                label: "cht.config.json",
                 link: "/docs/cht-config"
             },
             {
@@ -60,8 +48,20 @@ export const componentsNav = [
                 link: "/docs/dev-mode"
             },
             {
-                label: "Criar frontend",
-                link: "/docs/create-client"
+                label: "Temas",
+                link: "/docs/themes"
+            },
+            {
+                label: "Websocket",
+                link: "/docs/websocket"
+            },
+            {
+                label: "$project",
+                link: "/docs/project"
+            },
+            {
+                label: "$http",
+                link: "/docs/http"
             }
         ]
     },
@@ -160,6 +160,11 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
+        label: "Keybind",
+        link: "/docs/components/keybind"
+    },
+    {
+        type: "link" as const,
         label: "Marker / Separator",
         link: "/docs/components/marker"
     },
@@ -177,6 +182,11 @@ export const componentsNav = [
         type: "link" as const,
         label: "Option",
         link: "/docs/components/option"
+    },
+    {
+        type: "link" as const,
+        label: "OptionsList",
+        link: "/docs/components/options-list"
     },
     {
         type: "link" as const,
@@ -227,6 +237,11 @@ export const componentsNav = [
         type: "link" as const,
         label: "Toggleable",
         link: "/docs/components/toggleable"
+    },
+    {
+        type: "link" as const,
+        label: "ViewportCenter",
+        link: "/docs/components/viewport-center"
     },
     {
         type: "section" as const,

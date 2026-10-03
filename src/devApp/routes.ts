@@ -138,6 +138,11 @@ const routes: RouteRecordRaw[] = [
                 component: () => import("./pages/docs/components/item.vue")
             },
             {
+                path: "docs/components/keybind",
+                name: "components-keybind",
+                component: () => import("./pages/docs/components/keybind.vue")
+            },
+            {
                 path: "docs/components/marker",
                 name: "components-marker",
                 component: () => import("./pages/docs/components/marker.vue")
@@ -151,6 +156,11 @@ const routes: RouteRecordRaw[] = [
                 path: "docs/components/option",
                 name: "components-option",
                 component: () => import("./pages/docs/components/option.vue")
+            },
+            {
+                path: "docs/components/options-list",
+                name: "components-options-list",
+                component: () => import("./pages/docs/components/options-list.vue")
             },
             {
                 path: "docs/components/confirmation-modal",
@@ -226,6 +236,11 @@ const routes: RouteRecordRaw[] = [
                 path: "docs/components/toggleable",
                 name: "components-toggleable",
                 component: () => import("./pages/docs/components/toggleable.vue")
+            },
+            {
+                path: "docs/components/viewport-center",
+                name: "components-viewport-center",
+                component: () => import("./pages/docs/components/viewport-center.vue")
             },
             {
                 path: "docs/components/charts",

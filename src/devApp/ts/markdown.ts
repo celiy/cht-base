@@ -28,7 +28,10 @@ function renderInline(text: string): string {
 
     const html = withCodePlaceholders
         .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary underline underline-offset-2">$1</a>');
+        .replace(
+            /\[([^\]]+)\]\(([^)]+)\)/g,
+            '<a href="$2" class="text-primary underline underline-offset-2">$1</a>'
+        );
 
     return html.replace(/%%CODE(\d+)%%/g, (_, index: string) => codes[Number(index)] ?? "");
 }
@@ -139,14 +142,17 @@ export function extractMarkdownFromHeading(
  */
 export function renderMarkdown(markdown: string): string {
     const fences: string[] = [];
-    const withFences = markdown.replace(/```([^\n]*)\n([\s\S]*?)```/g, (_, _lang: string, code: string) => {
-        const token = `%%FENCE${fences.length}%%`;
-        fences.push(
-            `<pre class="overflow-x-auto rounded border border-border bg-secondary/40 p-4 text-sm"><code>${escapeHtml(code.replace(/\n$/, ""))}</code></pre>`
-        );
+    const withFences = markdown.replace(
+        /```([^\n]*)\n([\s\S]*?)```/g,
+        (_, _lang: string, code: string) => {
+            const token = `%%FENCE${fences.length}%%`;
+            fences.push(
+                `<pre class="overflow-x-auto rounded border border-border bg-secondary/40 p-4 text-sm"><code>${escapeHtml(code.replace(/\n$/, ""))}</code></pre>`
+            );
 
-        return `\n${token}\n`;
-    });
+            return `\n${token}\n`;
+        }
+    );
 
     const lines = withFences.split("\n");
     const html: string[] = [];
@@ -181,16 +187,18 @@ export function renderMarkdown(markdown: string): string {
 
         const headingMatch = trimmed.match(/^(#{1,6})\s+(.*)$/);
 
+        // Headings
         if (headingMatch) {
             const marks = headingMatch[1] ?? "#";
             const level = marks.length;
             const tag = `h${level}`;
-            const margin = level === 1 ? "mb-2" : "mt-8 mb-2";
+            const margin = level === 1 ? "mb-2" : "mt-4";
             html.push(`<${tag} class="${margin}">${renderInline(headingMatch[2] ?? "")}</${tag}>`);
             index += 1;
             continue;
         }
 
+        // Lists
         if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
             const items: string[] = [];
 
@@ -201,11 +209,13 @@ export function renderMarkdown(markdown: string): string {
                     break;
                 }
 
-                items.push(`<li class="leading-6">${renderInline(item.slice(2))}</li>`);
+                items.push(`<li class="leading-4">${renderInline(item.slice(2))}</li>`);
                 index += 1;
             }
 
-            html.push(`<ul class="list-disc pl-6 flex flex-col gap-2 text-muted-foreground">${items.join("")}</ul>`);
+            html.push(
+                `<ul class="list-disc pl-6 flex flex-col gap-2 text-muted-foreground">${items.join("")}</ul>`
+            );
             continue;
         }
 
@@ -242,7 +252,9 @@ export function renderMarkdown(markdown: string): string {
                 index += 1;
             }
 
-            html.push(`<ol class="list-decimal pl-6 flex flex-col gap-4 text-muted-foreground">${items.join("")}</ol>`);
+            html.push(
+                `<ol class="list-decimal pl-6 flex flex-col gap-4 text-muted-foreground">${items.join("")}</ol>`
+            );
             continue;
         }
 
@@ -253,13 +265,13 @@ export function renderMarkdown(markdown: string): string {
             const next = (lines[index] ?? "").trim();
 
             if (
-                !next
-                || next.startsWith("#")
-                || next.startsWith("- ")
-                || next.startsWith("* ")
-                || /^\d+\.\s+/.test(next)
-                || next.startsWith("%%FENCE")
-                || isMarkdownTableRow(next)
+                !next ||
+                next.startsWith("#") ||
+                next.startsWith("- ") ||
+                next.startsWith("* ") ||
+                /^\d+\.\s+/.test(next) ||
+                next.startsWith("%%FENCE") ||
+                isMarkdownTableRow(next)
             ) {
                 break;
             }

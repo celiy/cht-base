@@ -4,11 +4,12 @@
             <h1>Carousel</h1>
 
             <p>
-                Faixa deslizante de slides. Cada slide é um slot <code>#item-0</code>,
-                <code>#item-1</code>, … — imagem, texto ou qualquer markup. Setas, pontos e swipe no
-                telemóvel mudam o slide. <code>showArrows</code>, <code>edgeClick</code> e
-                <code>stepsViewer</code> controlam a navegação. Clique no padding em volta do item
-                emite <code>click:outside</code>.
+                Faixa deslizante. Cada slide é um slot <code>#item-0</code>,
+                <code>#item-1</code>, … — o número de slides é a contagem desses slots (incluindo
+                <code>v-for</code>). Com um único item as setas e os passos escondem-se. Setas e
+                passos fazem loop; o swipe no telemóvel (cerca de 100&nbsp;px) não passa do primeiro
+                nem do último. Clique no padding à volta do item emite
+                <code>click:outside</code>.
             </p>
         </section>
 
@@ -123,6 +124,40 @@
                     <p class="mt-3 text-sm text-muted-foreground!">
                         Clique fora do item (padding do carousel):
                         <code>click:outside</code> disparou {{ outsideCount }} vez(es).
+                    </p>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>startIndex</h3>
+
+            <p>
+                Índice 0-based do slide inicial. Valores fora do intervalo são limitados ao
+                primeiro ou ao último. Se a prop mudar depois do mount, o carousel vai para esse
+                índice.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="startIndex">
+                <div class="p-4">
+                    <Carousel :start-index="1">
+                        <template
+                            v-for="(image, idx) in images"
+                            :key="idx"
+                            #[`item-${idx}`]
+                        >
+                            <Image
+                                image-class="max-h-[40vh] rounded"
+                                :src="image.src"
+                                :alt="image.alt"
+                            />
+                        </template>
+                    </Carousel>
+
+                    <p class="mt-3 text-sm text-muted-foreground!">
+                        Abre no segundo slide (<code>start-index="1"</code>).
                     </p>
                 </div>
             </DocsExample>

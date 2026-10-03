@@ -6,6 +6,7 @@
 import { defineComponent } from "vue";
 import DocsMarkdown from "../../components/DocsMarkdown.vue";
 import readme from "@repo/README.md?raw";
+import { extractMarkdownFromHeading } from "../../ts/markdown";
 
 export default defineComponent({
     name: "DocsAbout",
@@ -16,7 +17,9 @@ export default defineComponent({
 
     computed: {
         source(): string {
-            return readme;
+            const section = extractMarkdownFromHeading(readme, "# CHT Main", "## Como executar");
+
+            return section;
         }
     }
 });
