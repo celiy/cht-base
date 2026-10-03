@@ -1,5 +1,11 @@
 <template>
-    <main class="bg-background">
+    <main class="relative bg-linear-to-t to-transparent dark:from-muted/50 light:from-muted">
+        <div
+            class="absolute bottom-0 z-50 h-82 w-full -translate-y-9 bg-linear-to-t from-background to-transparent"
+        />
+
+        <div class="absolute bottom-0 z-51 h-12 w-full translate-y-3 bg-background" />
+
         <article class="container mx-auto">
             <section
                 class="mx-12 my-20 flex flex-col items-center justify-center text-center md:mx-4"
@@ -34,14 +40,7 @@
             </section>
         </article>
 
-        <article
-            class="relative mx-4 mb-8 grid gap-4 bg-linear-to-t to-transparent md:mx-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 dark:from-muted/50 light:from-muted"
-        >
-            <div
-                class="absolute bottom-0 z-50 h-82 w-full -translate-y-9 bg-linear-to-t from-background to-transparent"
-            />
-            <div class="absolute bottom-0 z-51 h-12 w-full translate-y-3 bg-background" />
-
+        <article class="mx-4 mb-8 grid gap-4 md:mx-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <section class="flex flex-col gap-4">
                 <Card>
                     <template #body>
@@ -784,34 +783,34 @@
                 </Card>
             </section>
         </article>
-
-        <section class="my-8 flex w-full items-center justify-center">
-            <small-muted>
-                Feito por
-                <a
-                    class="text-muted-foreground! hover:text-foreground!"
-                    href="https://github.com/celiy"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >Diogo</a
-                >. Baseado no design de
-                <a
-                    class="text-muted-foreground! hover:text-foreground!"
-                    href="https://ui.shadcn.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >shadcn</a
-                >. O código está disponível no
-                <a
-                    class="text-muted-foreground! hover:text-foreground!"
-                    href="https://github.com/celiy/cht-main"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >GitHub</a
-                >.
-            </small-muted>
-        </section>
     </main>
+
+    <footer class="mb-8 flex w-full items-center justify-center px-8">
+        <small-muted>
+            Feito por
+            <a
+                class="text-muted-foreground! hover:text-foreground!"
+                href="https://github.com/celiy"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Diogo</a
+            >. Baseado no design de
+            <a
+                class="text-muted-foreground! hover:text-foreground!"
+                href="https://ui.shadcn.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >shadcn</a
+            >. O código está disponível no
+            <a
+                class="text-muted-foreground! hover:text-foreground!"
+                href="https://github.com/celiy/cht-main"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub</a
+            >.
+        </small-muted>
+    </footer>
 </template>
 
 <script lang="ts">

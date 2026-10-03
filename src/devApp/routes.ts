@@ -68,6 +68,16 @@ const routes: RouteRecordRaw[] = [
                 component: () => import("./pages/docs/create-client.vue")
             },
             {
+                path: "docs/backend",
+                name: "docs-backend",
+                component: () => import("./pages/docs/backend.vue")
+            },
+            {
+                path: "docs/override-css",
+                name: "docs-override-css",
+                component: () => import("./pages/docs/override-css.vue")
+            },
+            {
                 path: "docs/components/accordion",
                 name: "components-accordion",
                 component: () => import("./pages/docs/components/accordion.vue")
@@ -201,6 +211,11 @@ const routes: RouteRecordRaw[] = [
                 path: "docs/components/select",
                 name: "components-select",
                 component: () => import("./pages/docs/components/select.vue")
+            },
+            {
+                path: "docs/components/scrollable",
+                name: "components-scrollable",
+                component: () => import("./pages/docs/components/scrollable.vue")
             },
             {
                 path: "docs/components/sidebar",

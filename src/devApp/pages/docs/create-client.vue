@@ -43,7 +43,7 @@ O comando preenche \`name\`, \`siteTitle\`, \`package.json\` e o nome do compone
 - \`src/App.vue\`: só \`RouterView\`
 - \`src/routes.ts\`: uma rota para \`src/pages/index.vue\`
 - \`src/bootstrap.ts\`: \`setupAuthGuard\` e \`installClientPlugins\` sem lógica (podes acrescentar auth, plugins, etc.)
-- \`src/override.css\`: CSS do cliente carregado por cima do estilo base; apaga ou preenche
+- \`src/override.css\`: CSS do cliente por cima do estilo base; ver [override.css](/docs/override-css)
 - \`cht.config.json\` e \`src/theme.config.json\`
 
 Para auth, layout ou mais rotas, copia o que precisares do Mecarvit ou segue [\$http](/docs/http) e as páginas de componentes.

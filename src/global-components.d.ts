@@ -34,6 +34,7 @@ type DesignSystemComponents = {
     ProgressBar: typeof import("@design/components/ProgressBar.vue").default;
     QrCode: typeof import("@design/components/QrCode.vue").default;
     Radio: typeof import("@design/components/Radio.vue").default;
+    Scrollable: typeof import("@design/components/Scrollable.vue").default;
     Select: typeof import("@design/components/Select.vue").default;
     Skeleton: typeof import("@design/components/Skeleton.vue").default;
     Table: typeof import("@design/components/Table.vue").default;

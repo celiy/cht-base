@@ -19,7 +19,7 @@ export default defineComponent({
 
 Cliente HTTP instalado pelo \`httpPlugin\` em \`cht-base/src/http\`. No template e no script (Options API) usas \`this.$http\`. Fora de um SFC, importa \`http\`, \`setAuthToken\` e \`clearAuthToken\` de \`@base/http\`.
 
-O \`baseURL\` vem de \`VITE_API_BASE_URL\` (derivado do \`cht.config.json\`). Com backend, \`discoverApiBaseUrl()\` no boot percorre portas vizinhas até a API responder.
+O \`baseURL\` vem de \`VITE_API_BASE_URL\` (derivado do \`cht.config.json\`). Com backend, \`discoverApiBaseUrl()\` no boot percorre portas vizinhas até \`GET /health\` responder. Contrato completo: [Criar backend](/docs/backend).
 
 Pedidos vão com \`credentials: include\`, para o browser enviar cookies httpOnly da API. O cliente HTTP **não** grava token em \`localStorage\` nem em outro storage.
 

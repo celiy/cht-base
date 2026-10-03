@@ -17,6 +17,7 @@
     "popover": "success",
     "qr-code": "success",
     "radio": "success",
+    "scrollable": "destructive",
     "select": "success",
     "skeleton": "success",
     "tabs": "success",

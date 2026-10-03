@@ -28,8 +28,8 @@ html[data-theme="dark"] {
 }
 
 * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-accent, #d1d5db) var(--color-background, #f5f5f5);
+    scrollbar-width: 8px;
+    scrollbar-color: var(--color-accent, #d1d5db) transparent;
 }
 
 body {

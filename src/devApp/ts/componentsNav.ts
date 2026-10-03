@@ -40,12 +40,20 @@ export const componentsNav = [
                 link: "/docs/create-client"
             },
             {
+                label: "Criar backend",
+                link: "/docs/backend"
+            },
+            {
                 label: "cht.config.json",
                 link: "/docs/cht-config"
             },
             {
                 label: "Modo dev",
                 link: "/docs/dev-mode"
+            },
+            {
+                label: "override.css",
+                link: "/docs/override-css"
             },
             {
                 label: "Temas",
@@ -207,6 +215,11 @@ export const componentsNav = [
         type: "link" as const,
         label: "Radio",
         link: "/docs/components/radio"
+    },
+    {
+        type: "link" as const,
+        label: "Scrollable",
+        link: "/docs/components/scrollable"
     },
     {
         type: "link" as const,
