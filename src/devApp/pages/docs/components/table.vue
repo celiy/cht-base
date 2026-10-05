@@ -1,14 +1,14 @@
 <template>
-    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
+    <article class="container-sm docs-article">
         <section>
             <h1>Table</h1>
 
             <p>
                 Tabela de dados com headers, alinhamento por coluna, seleção de linhas, escolha de
                 colunas visíveis, badges (incluindo paleta <code>chart-*</code>) e ações por linha.
-                Células com <code>value</code> + <code>altValue</code> e <code>buttonProps</code>
-                (os mesmos props de <code>Button</code>) mostram um valor e um botão que troca
-                para o outro.
+                Células com <code>value</code> + <code>altValue</code> e
+                <code>buttonProps</code> (os mesmos props de <code>Button</code>) mostram um valor e
+                um botão que troca para o outro.
             </p>
         </section>
 
@@ -45,14 +45,12 @@
         </section>
 
         <section>
-            <h3>
-                Valor oculto
-            </h3>
+            <h3>Valor oculto</h3>
 
             <p>
-                Passe <code>{ value, altValue, buttonProps }</code> na célula.
-                <code>value</code> é o texto inicial; o botão à direita (props de
-                <code>Button</code>) revela <code>altValue</code>.
+                Passe <code>{ value, altValue, buttonProps }</code> na célula. <code>value</code> é
+                o texto inicial; o botão à direita (props de <code>Button</code>) revela
+                <code>altValue</code>.
             </p>
         </section>
 

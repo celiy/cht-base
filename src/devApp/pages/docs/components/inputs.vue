@@ -1,5 +1,5 @@
 <template>
-    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
+    <article class="container-sm docs-article">
         <section>
             <h1>Input</h1>
 
@@ -210,17 +210,91 @@
         <section>
             <h3>OTP</h3>
 
-            <p></p>
+            <code>InputOTP</code> agrupa campos, e pode ser configurado com as opções
+            <code>inputsPattern</code> e <code>fields</code>.
+            <ul>
+                <li>
+                    <code>inputsPattern</code> define os tipos aceitos em cada campo (ex:
+                    <code>['text', 'number']</code>).
+                </li>
+                <li>
+                    <code>fields</code> recebe um array de objetos descrevendo cada célula, podendo
+                    ser:
+                    <ul>
+                        <li><code>{ type: 'input' }</code>: campo editável</li>
+                        <li>
+                            <code>{ type: 'colon' }</code>: adiciona um separador ":", que não
+                            recebe foco
+                        </li>
+                        <li>
+                            <code>{ type: 'dash' }</code>: adiciona um separador "-", que não recebe
+                            foco
+                        </li>
+                        <li>
+                            <code>{ type: 'input', pattern: '[0-9]' }</code>: campo editável com
+                            validação personalizada
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <p>
+                O foco avança automaticamente ao digitar; <kbd>Backspace</kbd> apaga e retorna ao
+                campo anterior; colar texto distribui entre os campos a partir do foco. As
+                propriedades <code>value</code> ou <code>v-model</code> permitem preencher e
+                controlar os valores.
+            </p>
         </section>
 
         <section class="mb-8">
-            <DocsExample label="Estados e extras">
+            <DocsExample label="OTP">
                 <div class="flex max-w-sm flex-col gap-4 p-4">
-                    <Input
-                        id="docs-input-required"
-                        type="text"
-                        label="Obrigatório"
-                        placeholder="Não pode ficar vazio"
+                    <Button @click="() => copyCode('AB12')">Copiar código (AB12)</Button>
+
+                    <InputOTP
+                        label="Código"
+                        helper-text="Digite ou cole o código"
+                        :inputs-pattern="['text', 'number']"
+                        :value="otpValue"
+                        :fields="[
+                            { type: 'input' },
+                            { type: 'input' },
+                            { type: 'input' },
+                            { type: 'input' }
+                        ]"
+
+                        @update:value="otpValue = $event"
+                    />
+
+                    <span class="text-sm text-muted-foreground">Value: {{ otpValue }}</span>
+
+                    <Button
+                        class="mt-4"
+
+                        @click="() => copyCode('1234')"
+                        >Copiar código (1234)</Button
+                    >
+
+                    <InputOTP
+                        label="Com separadores"
+                        helper-text="colon e dash não recebem foco"
+                        :inputs-pattern="['number']"
+                        :fields="[
+                            { type: 'input' },
+                            { type: 'input' },
+                            { type: 'colon' },
+                            { type: 'input' },
+                            { type: 'input' },
+                            { type: 'dash' },
+                            { type: 'input' }
+                        ]"
+                    />
+
+                    <InputOTP
+                        label="Com erro"
+                        helper-text="Este campo é inválido"
+                        error="Este campo é inválido"
+                        :inputs-pattern="['number']"
+                        :fields="[{ type: 'input' }, { type: 'input' }, { type: 'input' }]"
                     />
                 </div>
             </DocsExample>
@@ -249,12 +323,53 @@
         </section>
 
         <section>
+            <h3>Atalho kbd</h3>
+
+            <p>
+                <code>kbd</code> recebe teclas que focam o campo. Uma tecla foca na hora; várias
+                teclas têm de ser pressionadas nessa ordem (fora de outro input).
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="kbd">
+                <div class="flex flex-col gap-4 p-4">
+                    <Input
+                        id="docs-input-kbd-one"
+                        type="text"
+                        label="Uma tecla"
+                        placeholder="Pressione /"
+                        helper-text="Atalho: /"
+                        :kbd="[{ key: '/' }]"
+                        :value="kbdSlashValue"
+
+                        @update:value="kbdSlashValue = $event"
+                    />
+
+                    <Input
+                        id="docs-input-kbd-seq"
+                        type="text"
+                        label="Sequência"
+                        placeholder="Pressione Enter e depois Shift"
+                        helper-text="Atalho: Enter + Shift"
+                        :kbd="[{ key: 'enter' }, { key: 'shift' }]"
+                        :value="kbdSeqValue"
+
+                        @update:value="kbdSeqValue = $event"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
             <h3>Estados e extras</h3>
 
             <p>
                 <code>required</code>, <code>disabled</code>, <code>readonly</code>,
                 <code>error</code>, <code>copiable</code>, <code>useMemo</code>,
-                <code>minSize</code> / <code>maxSize</code>.
+                <code>minSize</code> / <code>maxSize</code>, <code>pattern</code>. Com
+                <code>maxSize</code>, caracteres a mais são cortados ao digitar. Com
+                <code>pattern</code>, só entra o que a regex aceita.
             </p>
         </section>
 
@@ -322,6 +437,18 @@
 
                         @update:value="limitedValue = $event"
                     />
+
+                    <Input
+                        id="docs-input-pattern"
+                        type="text"
+                        label="Só dígitos"
+                        helper-text="pattern ^[0-9]*$"
+                        pattern="^[0-9]*$"
+                        :max-size="6"
+                        :value="patternValue"
+
+                        @update:value="patternValue = $event"
+                    />
                 </div>
             </DocsExample>
         </section>
@@ -331,12 +458,14 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Input from "@design/components/Input.vue";
+import InputOTP from "@design/components/InputOTP.vue";
 
 export default defineComponent({
     name: "ComponentsInputs",
 
     components: {
-        Input
+        Input,
+        InputOTP
     },
 
     data() {
@@ -353,8 +482,18 @@ export default defineComponent({
             passwordValue: "",
             areaValue: "",
             copiableValue: "Texto para copiar",
-            limitedValue: "abc"
+            limitedValue: "abc",
+            patternValue: "",
+            kbdSlashValue: "",
+            kbdSeqValue: "",
+            otpValue: "AB12"
         };
+    },
+
+    methods: {
+        copyCode(code: string) {
+            navigator.clipboard.writeText(code);
+        }
     }
 });
 </script>

@@ -1,13 +1,9 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm docs-article">
         <section>
-            <h1>
-                Media uploader
-            </h1>
+            <h1>Media uploader</h1>
 
-            <p>
-                Área de drop para arquivos, com limite, múltiplos arquivos e tipos aceitos.
-            </p>
+            <p>Área de drop para arquivos, com limite, múltiplos arquivos e tipos aceitos.</p>
         </section>
 
         <section class="mb-8">

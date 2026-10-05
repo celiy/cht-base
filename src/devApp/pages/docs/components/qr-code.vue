@@ -1,9 +1,7 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm docs-article">
         <section>
-            <h1>
-                QR code
-            </h1>
+            <h1>QR code</h1>
 
             <p>
                 Gera um código QR a partir de um link (ou qualquer texto em
@@ -13,7 +11,7 @@
 
         <section class="mb-8">
             <DocsExample label="QR code">
-                <div class="p-4 flex flex-col gap-4">
+                <div class="flex flex-col gap-4 p-4">
                     <QrCode :value="link" />
 
                     <Input
@@ -28,18 +26,14 @@
         </section>
 
         <section>
-            <h3>
-                Tamanho
-            </h3>
+            <h3>Tamanho</h3>
 
-            <p>
-                <code>size</code> em pixels. O SVG escala com o valor.
-            </p>
+            <p><code>size</code> em pixels. O SVG escala com o valor.</p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Tamanho">
-                <div class="p-4 flex flex-wrap items-end gap-4">
+                <div class="flex flex-wrap items-end gap-4 p-4">
                     <QrCode
                         value="https://example.com"
                         :size="96"
@@ -59,19 +53,17 @@
         </section>
 
         <section>
-            <h3>
-                Correção de erros
-            </h3>
+            <h3>Correção de erros</h3>
 
             <p>
-                <code>level="L / M / Q / H"</code>. Níveis mais altos resistem melhor
-                a oclusão, com QR mais denso.
+                <code>level="L / M / Q / H"</code>. Níveis mais altos resistem melhor a oclusão, com
+                QR mais denso.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Correção de erros">
-                <div class="p-4 flex flex-wrap items-end gap-4">
+                <div class="flex flex-wrap items-end gap-4 p-4">
                     <QrCode
                         value="https://example.com"
                         level="L"

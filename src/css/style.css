@@ -94,7 +94,7 @@ small {
     @apply block text-sm font-normal;
 }
 code {
-    @apply rounded-md bg-secondary p-1 text-sm font-medium;
+    @apply rounded-md bg-secondary/80 px-1 pt-[0.15rem] pb-[0.03rem] text-sm font-medium;
     color: var(--color-foreground);
 }
 a {
@@ -113,7 +113,10 @@ i {
     @apply italic;
 }
 kbd {
-    @apply rounded border-x border-t border-b-3 border-border bg-secondary px-1 pt-1 pb-0.5 text-xs font-semibold text-secondary-foreground shadow-sm;
+    @apply rounded border-x border-t border-b-3 border-border bg-secondary px-1 pt-1 pb-0.5 text-xs font-semibold text-secondary-foreground uppercase shadow-sm;
+}
+.small-kbd {
+    @apply pt-[0.1rem]! pb-0! text-[0.6rem]!;
 }
 pre,
 pre code {

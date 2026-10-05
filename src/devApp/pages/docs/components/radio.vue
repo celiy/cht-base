@@ -1,34 +1,48 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm docs-article">
         <section>
-            <h1>
-                Radio
-            </h1>
+            <h1>Radio</h1>
 
             <p>
-                Escolha exclusiva dentro de um grupo com o mesmo <code>name</code>.
-                O valor selecionado é o <code>v-model</code>.
+                Escolha exclusiva dentro de um grupo com o mesmo <code>name</code>. O valor
+                selecionado é o <code>v-model</code>.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Radio">
-                <div class="p-4 flex flex-col gap-2">
-                    <Radio id="docs-ra-1" v-model="selected" label="Opção A" value="opt-a" name="docs-radio" description="Com descrição" />
-                    <Radio id="docs-ra-2" v-model="selected" label="Opção B em card" value="opt-b" name="docs-radio" variant="card" />
-                    <Radio id="docs-ra-3" v-model="selected" label="Opção C" value="opt-c" name="docs-radio" />
+                <div class="flex flex-col gap-2 p-4">
+                    <Radio
+                        id="docs-ra-1"
+                        v-model="selected"
+                        label="Opção A"
+                        value="opt-a"
+                        name="docs-radio"
+                        description="Com descrição"
+                    />
+                    <Radio
+                        id="docs-ra-2"
+                        v-model="selected"
+                        label="Opção B em card"
+                        value="opt-b"
+                        name="docs-radio"
+                        variant="card"
+                    />
+                    <Radio
+                        id="docs-ra-3"
+                        v-model="selected"
+                        label="Opção C"
+                        value="opt-c"
+                        name="docs-radio"
+                    />
 
-                    <p class="text-sm text-muted-foreground mt-2">
-                        Selecionado: {{ selected }}
-                    </p>
+                    <p class="mt-2 text-sm text-muted-foreground">Selecionado: {{ selected }}</p>
                 </div>
             </DocsExample>
         </section>
 
         <section>
-            <h3>
-                Variações
-            </h3>
+            <h3>Variações</h3>
 
             <p>
                 <code>variant="normal / card"</code>
@@ -37,21 +51,35 @@
 
         <section class="mb-8">
             <DocsExample label="Variações">
-                <div class="p-4 grid gap-6 sm:grid-cols-2">
+                <div class="grid gap-6 p-4 sm:grid-cols-2">
                     <div class="flex flex-col gap-2">
-                        <p class="text-sm font-medium">
-                            Normal
-                        </p>
+                        <p class="text-sm font-medium">Normal</p>
 
-                        <Radio id="docs-ra-n-1" v-model="variantNormal" label="Diário" value="daily" name="docs-radio-normal" />
-                        <Radio id="docs-ra-n-2" v-model="variantNormal" label="Semanal" value="weekly" name="docs-radio-normal" />
-                        <Radio id="docs-ra-n-3" v-model="variantNormal" label="Mensal" value="monthly" name="docs-radio-normal" />
+                        <Radio
+                            id="docs-ra-n-1"
+                            v-model="variantNormal"
+                            label="Diário"
+                            value="daily"
+                            name="docs-radio-normal"
+                        />
+                        <Radio
+                            id="docs-ra-n-2"
+                            v-model="variantNormal"
+                            label="Semanal"
+                            value="weekly"
+                            name="docs-radio-normal"
+                        />
+                        <Radio
+                            id="docs-ra-n-3"
+                            v-model="variantNormal"
+                            label="Mensal"
+                            value="monthly"
+                            name="docs-radio-normal"
+                        />
                     </div>
 
                     <div class="flex flex-col gap-2">
-                        <p class="text-sm font-medium">
-                            Card
-                        </p>
+                        <p class="text-sm font-medium">Card</p>
 
                         <Radio
                             id="docs-ra-c-1"
@@ -88,18 +116,14 @@
         </section>
 
         <section>
-            <h3>
-                Descrição
-            </h3>
+            <h3>Descrição</h3>
 
-            <p>
-                <code>description</code> aparece abaixo do label.
-            </p>
+            <p><code>description</code> aparece abaixo do label.</p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Descrição">
-                <div class="p-4 flex flex-col gap-2 max-w-md">
+                <div class="flex max-w-md flex-col gap-2 p-4">
                     <Radio
                         id="docs-ra-d-1"
                         v-model="withDescription"
@@ -131,20 +155,32 @@
         </section>
 
         <section>
-            <h3>
-                Desabilitado
-            </h3>
+            <h3>Desabilitado</h3>
 
             <p>
-                <code>disabled</code> bloqueia a seleção. O grupo continua com o mesmo <code>name</code>.
+                <code>disabled</code> bloqueia a seleção. O grupo continua com o mesmo
+                <code>name</code>.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Desabilitado">
-                <div class="p-4 flex flex-col gap-2">
-                    <Radio id="docs-ra-dis-1" v-model="disabledGroup" label="Disponível" value="open" name="docs-radio-dis" />
-                    <Radio id="docs-ra-dis-2" v-model="disabledGroup" label="Desabilitado" value="blocked" name="docs-radio-dis" :disabled="true" />
+                <div class="flex flex-col gap-2 p-4">
+                    <Radio
+                        id="docs-ra-dis-1"
+                        v-model="disabledGroup"
+                        label="Disponível"
+                        value="open"
+                        name="docs-radio-dis"
+                    />
+                    <Radio
+                        id="docs-ra-dis-2"
+                        v-model="disabledGroup"
+                        label="Desabilitado"
+                        value="blocked"
+                        name="docs-radio-dis"
+                        :disabled="true"
+                    />
                     <Radio
                         id="docs-ra-dis-3"
                         v-model="disabledGroup"
@@ -160,34 +196,50 @@
         </section>
 
         <section>
-            <h3>
-                Grupos independentes
-            </h3>
+            <h3>Grupos independentes</h3>
 
-            <p>
-                Cada grupo usa um <code>name</code> e um <code>v-model</code> próprios.
-            </p>
+            <p>Cada grupo usa um <code>name</code> e um <code>v-model</code> próprios.</p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Grupos independentes">
-                <div class="p-4 grid gap-6 sm:grid-cols-2">
+                <div class="grid gap-6 p-4 sm:grid-cols-2">
                     <div class="flex flex-col gap-2">
-                        <p class="text-sm font-medium">
-                            Tema
-                        </p>
+                        <p class="text-sm font-medium">Tema</p>
 
-                        <Radio id="docs-ra-t-1" v-model="theme" label="Claro" value="light" name="docs-radio-theme" />
-                        <Radio id="docs-ra-t-2" v-model="theme" label="Escuro" value="dark" name="docs-radio-theme" />
+                        <Radio
+                            id="docs-ra-t-1"
+                            v-model="theme"
+                            label="Claro"
+                            value="light"
+                            name="docs-radio-theme"
+                        />
+                        <Radio
+                            id="docs-ra-t-2"
+                            v-model="theme"
+                            label="Escuro"
+                            value="dark"
+                            name="docs-radio-theme"
+                        />
                     </div>
 
                     <div class="flex flex-col gap-2">
-                        <p class="text-sm font-medium">
-                            Idioma
-                        </p>
+                        <p class="text-sm font-medium">Idioma</p>
 
-                        <Radio id="docs-ra-l-1" v-model="locale" label="Português" value="pt" name="docs-radio-locale" />
-                        <Radio id="docs-ra-l-2" v-model="locale" label="Inglês" value="en" name="docs-radio-locale" />
+                        <Radio
+                            id="docs-ra-l-1"
+                            v-model="locale"
+                            label="Português"
+                            value="pt"
+                            name="docs-radio-locale"
+                        />
+                        <Radio
+                            id="docs-ra-l-2"
+                            v-model="locale"
+                            label="Inglês"
+                            value="en"
+                            name="docs-radio-locale"
+                        />
                     </div>
 
                     <p class="text-sm text-muted-foreground sm:col-span-2">

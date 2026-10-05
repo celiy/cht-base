@@ -1,5 +1,5 @@
 <template>
-    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
+    <article class="container-sm docs-article">
         <section>
             <h1>Tooltip</h1>
 

@@ -30,7 +30,6 @@ const router = createRouter({
 
 const app = createApp(App);
 
-app.use(router);
 app.use(designSystemPlugin);
 app.use(toastPlugin, {
     timeout: 4000
@@ -58,6 +57,8 @@ void (async () => {
 
     await discoverApiBaseUrl();
     await installClientPlugins(app, router);
+    // The initial navigation runs the auth guard, so the session must be loaded first.
+    app.use(router);
     startRealtime();
     defineCustomElements();
     app.mount("#app");

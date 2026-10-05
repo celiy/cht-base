@@ -1,30 +1,29 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm docs-article">
         <section>
-            <h1>
-                Charts
-            </h1>
+            <h1>Charts</h1>
 
             <p>
-                <code>TableCharts</code> envolve barras ou onda. Itens com <code>date</code> agrupam por mês; itens com <code>group</code> agregam na ordem da array (chave case-insensitive).
-                A prop <code>color</code> aceita token de tema/Tailwind (<code>chart-1</code> …
-                <code>chart-5</code>, <code>green-500</code>, <code>success</code>, …; padrão
+                <code>TableCharts</code> envolve barras ou onda. Itens com <code>date</code> agrupam
+                por mês; itens com <code>group</code> agregam na ordem da array (chave
+                case-insensitive). A prop <code>color</code> aceita token de tema/Tailwind (<code
+                    >chart-1</code
+                >
+                … <code>chart-5</code>, <code>green-500</code>, <code>success</code>, …; padrão
                 <code>chart-3</code>). Em barras, <code>negativeColor</code> pinta valores negativos
                 (padrão <code>chart-5</code>) e <code>direction</code> escolhe
-                <code>vertical</code> / <code>horizontal</code>. Com <code>colorEnd</code>
-                (e <code>negativeColorEnd</code>) cada barra é uma cor sólida no caminho
-                da primeira até a última: a primeira usa <code>color</code>, a última
-                usa <code>colorEnd</code>, as do meio misturam as duas. Um item pode ter
-                <code>value</code> e <code>valueNegative</code> para desenhar as duas
-                metades na mesma coluna. Cada barra e cada ponto da onda usam o
-                componente <code>Tooltip</code> (Custom): o balão segue o ponteiro.
+                <code>vertical</code> / <code>horizontal</code>. Com <code>colorEnd</code> (e
+                <code>negativeColorEnd</code>) cada barra é uma cor sólida no caminho da primeira
+                até a última: a primeira usa <code>color</code>, a última usa <code>colorEnd</code>,
+                as do meio misturam as duas. Um item pode ter <code>value</code> e
+                <code>valueNegative</code> para desenhar as duas metades na mesma coluna. Cada barra
+                e cada ponto da onda usam o componente <code>Tooltip</code> (Custom): o balão segue
+                o ponteiro.
             </p>
         </section>
 
         <section>
-            <h3>
-                Cores
-            </h3>
+            <h3>Cores</h3>
 
             <p>
                 Tokens em <code>style.css</code> (<code>--color-chart-*</code>) ou qualquer cor do
@@ -76,12 +75,11 @@
         </section>
 
         <section>
-            <h3>
-                Por data
-            </h3>
+            <h3>Por data</h3>
 
             <p>
-                Barras somam por mês e ordenam cronologicamente. Onda usa cada ponto e o filtro de período.
+                Barras somam por mês e ordenam cronologicamente. Onda usa cada ponto e o filtro de
+                período.
             </p>
         </section>
 
@@ -112,15 +110,13 @@
         </section>
 
         <section>
-            <h3>
-                Degradê
-            </h3>
+            <h3>Degradê</h3>
 
             <p>
-                <code>colorEnd</code> pinta a série da primeira barra até a última:
-                cada barra é uma cor sólida no caminho entre <code>color</code> e
-                <code>colorEnd</code> (vermelho → roxo → azul). Negativos usam
-                <code>negativeColor</code> → <code>negativeColorEnd</code>.
+                <code>colorEnd</code> pinta a série da primeira barra até a última: cada barra é uma
+                cor sólida no caminho entre <code>color</code> e <code>colorEnd</code> (vermelho →
+                roxo → azul). Negativos usam <code>negativeColor</code> →
+                <code>negativeColorEnd</code>.
             </p>
         </section>
 
@@ -142,13 +138,11 @@
         </section>
 
         <section>
-            <h3>
-                Conjunto
-            </h3>
+            <h3>Conjunto</h3>
 
             <p>
-                <code>valueNegative</code> desenha a barra de baixo na mesma coluna,
-                sem precisar de um <code>value</code> negativo.
+                <code>valueNegative</code> desenha a barra de baixo na mesma coluna, sem precisar de
+                um <code>value</code> negativo.
             </p>
         </section>
 
@@ -170,9 +164,7 @@
         </section>
 
         <section>
-            <h3>
-                Direção
-            </h3>
+            <h3>Direção</h3>
 
             <p>
                 <code>direction="vertical / horizontal"</code>. Horizontal cresce para a direita e
@@ -224,14 +216,13 @@
         </section>
 
         <section>
-            <h3>
-                Clicável
-            </h3>
+            <h3>Clicável</h3>
 
             <p>
                 <code>clickable</code> no <code>TableCharts</code> / <code>BarChart</code> aplica
-                <code>cursor-pointer</code> e <code>brightness</code> no hover de cada barra, e emite
-                <code>click:bar</code> com o ponto (incluindo <code>id</code> se o item tiver).
+                <code>cursor-pointer</code> e <code>brightness</code> no hover de cada barra, e
+                emite <code>click:bar</code> com o ponto (incluindo <code>id</code> se o item
+                tiver).
             </p>
         </section>
 
@@ -269,12 +260,11 @@
         </section>
 
         <section>
-            <h3>
-                Por grupo
-            </h3>
+            <h3>Por grupo</h3>
 
             <p>
-                <code>{ value, group }</code>. <code>jan</code> e <code>Jan</code> somam; a label é a primeira ocorrência; a ordem é a da array.
+                <code>{ value, group }</code>. <code>jan</code> e <code>Jan</code> somam; a label é
+                a primeira ocorrência; a ordem é a da array.
             </p>
         </section>
 
@@ -442,7 +432,7 @@ export default defineComponent({
                 label: "OS",
                 displayAs: "sum",
                 items: Array.from({ length: 24 }, (_, index) => ({
-                    value: (index * 7) % 11 + 1,
+                    value: ((index * 7) % 11) + 1,
                     group: `${["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"][index % 12]}/${25 + Math.floor(index / 12)}`
                 }))
             },

@@ -1,19 +1,17 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm docs-article">
         <section>
-            <h1>
-                Item
-            </h1>
+            <h1>Item</h1>
 
             <p>
-                Mini card com ícone, título e descrição opcional.
-                A cor do ícone e da superfície vem de <code>variant</code>.
+                Mini card com ícone, título e descrição opcional. A cor do ícone e da superfície vem
+                de <code>variant</code>.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Item">
-                <div class="p-4 flex flex-col gap-2 max-w-sm">
+                <div class="flex max-w-sm flex-col gap-2 p-4">
                     <Item
                         label="Perfil"
                         description="Dados da conta e preferências."
@@ -37,20 +35,17 @@
         </section>
 
         <section>
-            <h3>
-                Tipos
-            </h3>
+            <h3>Tipos</h3>
 
             <p>
-                <code>type="card / alert"</code>.
-                <code>card</code> (padrão) usa um recorte colorido atrás do ícone.
-                <code>alert</code> deixa o ícone solto, no estilo de aviso.
+                <code>type="card / alert"</code>. <code>card</code> (padrão) usa um recorte colorido
+                atrás do ícone. <code>alert</code> deixa o ícone solto, no estilo de aviso.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Tipos">
-                <div class="p-4 grid gap-4">
+                <div class="grid gap-4 p-4">
                     <Item
                         label="Card"
                         icon="fa-star"
@@ -85,7 +80,7 @@
                         type="alert"
                         description="Mensagem destrutiva — variante destructive para erros ou bloqueios."
                     />
-        
+
                     <Item
                         icon="fa-home"
                         variant="secondary"
@@ -97,9 +92,7 @@
         </section>
 
         <section>
-            <h3>
-                Cores
-            </h3>
+            <h3>Cores</h3>
 
             <p>
                 <code>variant="primary / secondary / success / warning / destructive / info"</code>
@@ -108,7 +101,7 @@
 
         <section class="mb-8">
             <DocsExample label="Cores">
-                <div class="p-4 grid gap-2 sm:grid-cols-2">
+                <div class="grid gap-2 p-4 sm:grid-cols-2">
                     <Item
                         label="Primary"
                         icon="fa-star"
@@ -155,46 +148,54 @@
         </section>
 
         <section>
-            <h3>
-                Ícone
-            </h3>
+            <h3>Ícone</h3>
 
             <p>
-                <code>icon</code> aceita o nome Font Awesome com ou sem prefixo
-                (<code>user</code> ou <code>fa-user</code>).
-                Classes extras como <code>fa-regular</code> podem ir na string inteira.
-                O padrão é <code>fa-circle</code>.
+                <code>icon</code> aceita o nome Font Awesome com ou sem prefixo (<code>user</code>
+                ou <code>fa-user</code>). Classes extras como <code>fa-regular</code> podem ir na
+                string inteira. O padrão é <code>fa-circle</code>.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Ícone">
-                <div class="p-4 flex flex-col gap-2 max-w-sm">
-                    <Item label="Só o nome" icon="user" description="user" />
-                    <Item label="Com prefixo" icon="fa-bell" description="fa-bell" />
-                    <Item label="Regular" icon="fa-regular fa-star" description="fa-regular fa-star" />
+                <div class="flex max-w-sm flex-col gap-2 p-4">
+                    <Item
+                        label="Só o nome"
+                        icon="user"
+                        description="user"
+                    />
+                    <Item
+                        label="Com prefixo"
+                        icon="fa-bell"
+                        description="fa-bell"
+                    />
+                    <Item
+                        label="Regular"
+                        icon="fa-regular fa-star"
+                        description="fa-regular fa-star"
+                    />
                 </div>
             </DocsExample>
         </section>
 
         <section>
-            <h3>
-                Estados
-            </h3>
+            <h3>Estados</h3>
 
             <p>
-                <code>disabled</code> bloqueia o clique e esmaece o card.
-                Clique emite <code>@click</code>.
+                <code>disabled</code> bloqueia o clique e esmaece o card. Clique emite
+                <code>@click</code>.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Estados">
-                <div class="p-4 flex flex-col gap-2 max-w-sm">
+                <div class="flex max-w-sm flex-col gap-2 p-4">
                     <Item
                         label="Clicável"
                         description="Emite @click."
                         icon="fa-hand-pointer"
+
                         @click="clicks += 1"
                     />
 
@@ -205,9 +206,7 @@
                         :disabled="true"
                     />
 
-                    <p class="text-sm text-muted-foreground">
-                        Cliques: {{ clicks }}
-                    </p>
+                    <p class="text-sm text-muted-foreground">Cliques: {{ clicks }}</p>
                 </div>
             </DocsExample>
         </section>
@@ -217,8 +216,7 @@
 
             <p>
                 Item pode ter a superfície customizada via
-                <code>backgroundStyle</code>, <code>borderStyle</code> e
-                <code>hoverStyle</code>.
+                <code>backgroundStyle</code>, <code>borderStyle</code> e <code>hoverStyle</code>.
             </p>
         </section>
 

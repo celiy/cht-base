@@ -1,14 +1,14 @@
 <template>
-    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
+    <article class="container-sm docs-article">
         <section>
             <h1>Modal</h1>
 
             <p>
-                Painel sobreposto. Fecha com clique no backdrop, no X ou com <code>Esc</code>.
-                Com <code>keep-open</code>, o backdrop e cliques fora do painel não fecham
-                (o X e <code>Esc</code> continuam a fechar).
-                <code>variant="blank"</code> é só um card com <code>p-4</code> e o
-                <code>#body</code>, sem header nem botão de fechar. Drawer tem página própria.
+                Painel sobreposto. Fecha com clique no backdrop, no X ou com <code>Esc</code>. Com
+                <code>keep-open</code>, o backdrop e cliques fora do painel não fecham (o X e
+                <code>Esc</code> continuam a fechar). <code>variant="blank"</code> é só um card com
+                <code>p-4</code> e o <code>#body</code>, sem header nem botão de fechar. Drawer tem
+                página própria.
             </p>
         </section>
 
@@ -51,8 +51,8 @@
 
                         <template #body>
                             <p>
-                                Abra e veja <code>?modal=</code> na URL. Recarregar a página
-                                remove a query e deixa o modal fechado.
+                                Abra e veja <code>?modal=</code> na URL. Recarregar a página remove
+                                a query e deixa o modal fechado.
                             </p>
                         </template>
                     </Modal>
@@ -482,8 +482,7 @@
 
             <p>
                 Modal pode ter cada parte principal customizada via
-                <code>backgroundStyle</code>, <code>borderStyle</code> e
-                <code>footerStyle</code>.
+                <code>backgroundStyle</code>, <code>borderStyle</code> e <code>footerStyle</code>.
             </p>
         </section>
 

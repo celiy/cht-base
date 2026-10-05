@@ -1,9 +1,7 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm docs-article">
         <section>
-            <h1>
-                Avatar
-            </h1>
+            <h1>Avatar</h1>
 
             <p>
                 Foto circular ou silhueta padrão. Opcionalmente mostra presença com
@@ -13,7 +11,7 @@
 
         <section class="mb-8">
             <DocsExample label="Avatar">
-                <div class="p-8 flex flex-wrap gap-4 items-end">
+                <div class="flex flex-wrap items-end gap-4 p-8">
                     <Avatar />
 
                     <Avatar :image="avatarImage" />
@@ -22,18 +20,14 @@
         </section>
 
         <section>
-            <h3>
-                Tamanho
-            </h3>
+            <h3>Tamanho</h3>
 
-            <p>
-                <code>size="small / medium / large"</code>. O padrão é <code>medium</code>.
-            </p>
+            <p><code>size="small / medium / large"</code>. O padrão é <code>medium</code>.</p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Tamanho">
-                <div class="p-8 flex flex-wrap gap-4 items-end">
+                <div class="flex flex-wrap items-end gap-4 p-8">
                     <Avatar
                         size="small"
                         :image="avatarImage"
@@ -53,19 +47,17 @@
         </section>
 
         <section>
-            <h3>
-                Status
-            </h3>
+            <h3>Status</h3>
 
             <p>
-                <code>status="online / away / do-not-disturb / offline"</code>.
-                Sem <code>status</code>, o ponto não aparece.
+                <code>status="online / away / do-not-disturb / offline"</code>. Sem
+                <code>status</code>, o ponto não aparece.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Status">
-                <div class="p-8 flex flex-wrap gap-4 items-end">
+                <div class="flex flex-wrap items-end gap-4 p-8">
                     <Avatar
                         status="online"
                         :image="avatarImage"
@@ -90,9 +82,7 @@
         </section>
 
         <section>
-            <h3>
-                Sem imagem
-            </h3>
+            <h3>Sem imagem</h3>
 
             <p>
                 Sem a prop <code>image</code>, o Avatar usa o SVG padrão com
@@ -102,7 +92,7 @@
 
         <section class="mb-8">
             <DocsExample label="Sem imagem">
-                <div class="p-8 flex flex-wrap gap-4 items-end">
+                <div class="flex flex-wrap items-end gap-4 p-8">
                     <Avatar size="small" />
 
                     <Avatar size="medium" />
@@ -116,9 +106,7 @@
         </section>
 
         <section>
-            <h3>
-                Loading
-            </h3>
+            <h3>Loading</h3>
 
             <p>
                 <code>loading</code> troca o Avatar por um <code>Skeleton</code> do tipo
@@ -128,7 +116,7 @@
 
         <section class="mb-8">
             <DocsExample label="Loading">
-                <div class="p-8 flex flex-wrap gap-4 items-center">
+                <div class="flex flex-wrap items-center gap-4 p-8">
                     <Avatar
                         :image="loadedImage"
                         :loading="isLoading"

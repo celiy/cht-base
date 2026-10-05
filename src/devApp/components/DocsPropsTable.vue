@@ -16,10 +16,60 @@
                 {{ table.name }}
             </h4>
 
-            <Table
-                :headers="headers"
-                :data="table.rows"
-            />
+            <div class="overflow-x-auto rounded border">
+                <table class="w-full text-left text-sm">
+                    <thead>
+                        <tr class="bg-accent/30">
+                            <th
+                                v-for="head in headers"
+                                :key="head.field"
+
+                                class="p-2 font-semibold"
+                                :class="{ 'text-center': head.position === 'center' }"
+                            >
+                                {{ head.label }}
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr
+                            v-for="row in table.rows"
+                            :key="row.name"
+
+                            class="border-t"
+                        >
+                            <td class="p-2 align-top">
+                                <div>{{ row.name }}</div>
+
+                                <div
+                                    v-if="row.comment"
+
+                                    class="text-xs text-muted-foreground"
+                                >
+                                    {{ row.comment }}
+                                </div>
+                            </td>
+
+                            <td class="p-2 align-top">
+                                {{ row.type }}
+                            </td>
+
+                            <td class="p-2 align-top">
+                                {{ row.values }}
+                            </td>
+
+                            <td class="p-2 align-top">
+                                {{ row.default }}
+                            </td>
+
+                            <td class="p-2 align-top text-center">
+                                {{ row.required }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 </template>

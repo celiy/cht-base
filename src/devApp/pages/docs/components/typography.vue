@@ -1,5 +1,5 @@
 <template>
-    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
+    <article class="container-sm docs-article">
         <section>
             <h1>Typography</h1>
 
@@ -69,7 +69,7 @@
                         <code>sup</code>: <sup>sobrescrito</sup> <br /><br />
                         <code>small-muted</code>: <small-muted>pequeno e muteado</small-muted>
                         <br /><br />
-                        <code>kbd</code>: <kbd>Esc</kbd>, <kbd>Shit</kbd>+<kbd>Enter</kbd>
+                        <code>kbd</code>: <kbd>Esc</kbd>, <kbd>Shift</kbd>+<kbd>Enter</kbd>
                     </span>
                 </div>
             </DocsExample>

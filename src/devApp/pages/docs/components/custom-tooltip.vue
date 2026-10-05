@@ -1,27 +1,23 @@
 <template>
-    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
+    <article class="container-sm docs-article">
         <section>
-            <h1>
-                Tooltip
-            </h1>
+            <h1>Tooltip</h1>
 
             <p>
-                Wrapper com slot padrão (o alvo) e <code>#tooltip</code> (conteúdo livre).
-                No hover ou toque, o balão aparece junto do ponteiro e o segue com um atraso
-                curto (<code>followMs</code>, padrão <code>60</code>) para não tremer.
-                Distinto da diretiva <code>v-tooltip</code> em Fundamentos: aqui o conteúdo é Vue,
-                não uma string.
+                Wrapper com slot padrão (o alvo) e <code>#tooltip</code> (conteúdo livre). No hover
+                ou toque, o balão aparece junto do ponteiro e o segue com um atraso curto
+                (<code>followMs</code>, padrão <code>60</code>) para não tremer. Distinto da
+                diretiva <code>v-tooltip</code> em Fundamentos: aqui o conteúdo é Vue, não uma
+                string.
             </p>
         </section>
 
         <section>
-            <h3>
-                Uso
-            </h3>
+            <h3>Uso</h3>
 
             <p>
-                Envolva qualquer elemento. O wrapper é um <code>div</code>; nos charts cada barra
-                ou ponto da onda já traz o seu.
+                Envolva qualquer elemento. O wrapper é um <code>div</code>; nos charts cada barra ou
+                ponto da onda já traz o seu.
             </p>
         </section>
 
@@ -31,9 +27,7 @@
                     <Tooltip class="inline-block">
                         <Button>Passe o mouse</Button>
 
-                        <template #tooltip>
-                            Segue o ponteiro
-                        </template>
+                        <template #tooltip> Segue o ponteiro </template>
                     </Tooltip>
 
                     <Tooltip class="inline-block">
@@ -53,23 +47,19 @@
                             variant="info"
                         />
 
-                        <template #tooltip>
-                            OS reaberta neste mês
-                        </template>
+                        <template #tooltip> OS reaberta neste mês </template>
                     </Tooltip>
                 </div>
             </DocsExample>
         </section>
 
         <section>
-            <h3>
-                Delay e follow
-            </h3>
+            <h3>Delay e follow</h3>
 
             <p>
                 <code>delay</code> é a espera até aparecer (padrão <code>40</code> ms;
-                <code>0</code> mostra na hora). <code>followMs</code> é o atraso da animação
-                que acompanha o mouse.
+                <code>0</code> mostra na hora). <code>followMs</code> é o atraso da animação que
+                acompanha o mouse.
             </p>
         </section>
 
@@ -82,9 +72,7 @@
                     >
                         <Button variant="outline"> delay 0 </Button>
 
-                        <template #tooltip>
-                            Aparece na hora
-                        </template>
+                        <template #tooltip> Aparece na hora </template>
                     </Tooltip>
 
                     <Tooltip
@@ -93,18 +81,14 @@
                     >
                         <Button variant="outline"> followMs 160 </Button>
 
-                        <template #tooltip>
-                            Segue mais lento
-                        </template>
+                        <template #tooltip> Segue mais lento </template>
                     </Tooltip>
                 </div>
             </DocsExample>
         </section>
 
         <section>
-            <h3>
-                Nos charts
-            </h3>
+            <h3>Nos charts</h3>
 
             <p>
                 <code>BarChart</code> envolve cada barra; <code>WaveChart</code> envolve cada ponto.

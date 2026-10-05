@@ -1,12 +1,12 @@
 <template>
-    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
+    <article class="container-sm docs-article">
         <section>
             <h1>ViewportCenter</h1>
 
             <p>
                 Teleporta o slot para o <code>body</code> e centra-o no viewport com
-                <code>$project.device.viewportWidth</code> / <code>viewportHeight</code>. O
-                wrapper tem <code>pointer-events-none</code>: filhos clicáveis precisam de
+                <code>$project.device.viewportWidth</code> / <code>viewportHeight</code>. O wrapper
+                tem <code>pointer-events-none</code>: filhos clicáveis precisam de
                 <code>pointer-events-auto</code>. Sem props.
             </p>
         </section>
@@ -21,9 +21,7 @@
                     />
 
                     <ViewportCenter v-if="showCenter">
-                        <div
-                            class="pointer-events-auto rounded border bg-card px-4 py-3 shadow-sm"
-                        >
+                        <div class="pointer-events-auto rounded border bg-card px-4 py-3 shadow-sm">
                             <p class="font-medium">No meio do ecrã</p>
 
                             <p class="mt-1 text-sm text-muted-foreground">

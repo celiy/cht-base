@@ -1,28 +1,25 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm docs-article">
         <section>
-            <h1>
-                Chat
-            </h1>
+            <h1>Chat</h1>
 
             <p>
                 Lista de mensagens em bolhas. A prop <code>messages</code> é um array de objetos.
-                Com <code>sent</code>, <code>read</code>, <code>pending</code> ou <code>failed</code>
-                a bolha vai para a direita; sem isso, para a esquerda.
-                Clique direito (ou long-press) abre o menu: copiar texto ou a imagem clicada.
-                Só um menu de contexto fica aberto de cada vez.
+                Com <code>sent</code>, <code>read</code>, <code>pending</code> ou
+                <code>failed</code>
+                a bolha vai para a direita; sem isso, para a esquerda. Clique direito (ou
+                long-press) abre o menu: copiar texto ou a imagem clicada. Só um menu de contexto
+                fica aberto de cada vez.
             </p>
         </section>
 
         <section>
-            <h3>
-                Texto, estado e agrupamento
-            </h3>
+            <h3>Texto, estado e agrupamento</h3>
 
             <p>
-                Bolhas consecutivas do mesmo lado partilham cantos
-                (<code>rounded-xl</code> / <code>rounded-md</code>).
-                <code>date</code> mostra a hora; <code>edited</code> e <code>editedAt</code>
+                Bolhas consecutivas do mesmo lado partilham cantos (<code>rounded-xl</code> /
+                <code>rounded-md</code>). <code>date</code> mostra a hora; <code>edited</code> e
+                <code>editedAt</code>
                 marcam a mensagem como editada.
             </p>
         </section>
@@ -36,9 +33,7 @@
         </section>
 
         <section>
-            <h3>
-                Links
-            </h3>
+            <h3>Links</h3>
 
             <p>
                 URLs <code>https://</code> ou <code>www.</code> no <code>text</code> viram links
@@ -56,14 +51,12 @@
         </section>
 
         <section>
-            <h3>
-                Imagens
-            </h3>
+            <h3>Imagens</h3>
 
             <p>
-                <code>images</code> é um array de URLs. Uma imagem fica no formato original;
-                várias ficam numa grelha 1:1. Clique em qualquer foto abre o carousel
-                da mensagem nesse índice. Mais de quatro mostra <code>+N</code> na 4.ª.
+                <code>images</code> é um array de URLs. Uma imagem fica no formato original; várias
+                ficam numa grelha 1:1. Clique em qualquer foto abre o carousel da mensagem nesse
+                índice. Mais de quatro mostra <code>+N</code> na 4.ª.
             </p>
         </section>
 
@@ -76,13 +69,11 @@
         </section>
 
         <section>
-            <h3>
-                Reações
-            </h3>
+            <h3>Reações</h3>
 
             <p>
-                <code>reactions: [{ reaction, amount }]</code>. Até três emojis visíveis;
-                o resto fica num tooltip <code>+N</code>.
+                <code>reactions: [{ reaction, amount }]</code>. Até três emojis visíveis; o resto
+                fica num tooltip <code>+N</code>.
             </p>
         </section>
 
@@ -95,14 +86,12 @@
         </section>
 
         <section>
-            <h3>
-                Menu de contexto
-            </h3>
+            <h3>Menu de contexto</h3>
 
             <p>
-                Clique direito no <strong>texto</strong> → Copiar texto.
-                Clique direito numa <strong>imagem</strong> → Copiar imagem (só essa).
-                Responder, Encaminhar e Excluir ainda são só visuais.
+                Clique direito no <strong>texto</strong> → Copiar texto. Clique direito numa
+                <strong>imagem</strong> → Copiar imagem (só essa). Responder, Encaminhar e Excluir
+                ainda são só visuais.
             </p>
         </section>
     </article>
@@ -134,7 +123,13 @@ export default defineComponent({
                 { text: "Último texto." },
                 { text: "Enviada.", sent: true, date: new Date() },
                 { text: "Agrupada com a anterior.", sent: true, date: new Date() },
-                { text: "Editada.", read: true, edited: true, editedAt: new Date(), date: new Date() },
+                {
+                    text: "Editada.",
+                    read: true,
+                    edited: true,
+                    editedAt: new Date(),
+                    date: new Date()
+                },
                 { text: "Ainda a enviar.", pending: true, date: new Date() },
                 { text: "Falhou o envio.", failed: true, date: new Date() },
                 { text: "Texto sozinho." }

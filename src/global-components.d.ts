@@ -25,6 +25,7 @@ type DesignSystemComponents = {
     Example: typeof import("@design/components/Example.vue").default;
     Image: typeof import("@design/components/Image.vue").default;
     Input: typeof import("@design/components/Input.vue").default;
+    InputOTP: typeof import("@design/components/InputOTP.vue").default;
     Item: typeof import("@design/components/Item.vue").default;
     Marker: typeof import("@design/components/Marker.vue").default;
     MediaUploader: typeof import("@design/components/MediaUploader.vue").default;

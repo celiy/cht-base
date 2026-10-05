@@ -1,5 +1,5 @@
 <template>
-    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
+    <article class="container-sm docs-article">
         <section>
             <h1>Image</h1>
 
@@ -38,6 +38,7 @@
                 <div class="flex flex-col gap-3 p-4">
                     <Image
                         :key="slowKey"
+
                         class="w-full"
                         image-class="h-full w-full rounded object-cover"
                         aspect-ratio="16/9"
@@ -59,9 +60,7 @@
         <section>
             <h3>Modal</h3>
 
-            <p>
-                <code>open-modal</code> abre a imagem em preview ao clicar.
-            </p>
+            <p><code>open-modal</code> abre a imagem em preview ao clicar.</p>
         </section>
 
         <section class="mb-8">
@@ -87,8 +86,7 @@ import Image from "@design/components/Image.vue";
 import Button from "@design/components/Button.vue";
 import landscapeImage from "@/assets/images/landscape.jpg";
 
-const SLOW_IMAGE_URL =
-    "https://upload.wikimedia.org/wikipedia/commons/3/3f/Fronalpstock_big.jpg";
+const SLOW_IMAGE_URL = "https://upload.wikimedia.org/wikipedia/commons/3/3f/Fronalpstock_big.jpg";
 
 export default defineComponent({
     name: "ComponentsImage",

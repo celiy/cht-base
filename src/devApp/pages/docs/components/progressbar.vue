@@ -1,18 +1,14 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm docs-article">
         <section>
-            <h1>
-                Progress bar
-            </h1>
+            <h1>Progress bar</h1>
 
-            <p>
-                Controle de valor numérico em barra, vertical ou circular.
-            </p>
+            <p>Controle de valor numérico em barra, vertical ou circular.</p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Progress bar">
-                <div class="p-4 flex flex-col gap-6">
+                <div class="flex flex-col gap-6 p-4">
                     <ProgressBar
                         v-model="value"
                         label="Barra padrão"
@@ -24,18 +20,14 @@
         </section>
 
         <section>
-            <h3>
-                Estados
-            </h3>
+            <h3>Estados</h3>
 
-            <p>
-                <code>disabled</code>, <code>readonly</code> e <code>loading</code>.
-            </p>
+            <p><code>disabled</code>, <code>readonly</code> e <code>loading</code>.</p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Estados">
-                <div class="p-4 flex flex-col gap-6">
+                <div class="flex flex-col gap-6 p-4">
                     <ProgressBar
                         v-model="value"
                         label="Desabilitada"
@@ -56,9 +48,7 @@
         </section>
 
         <section>
-            <h3>
-                Direção
-            </h3>
+            <h3>Direção</h3>
 
             <p>
                 <code>direction="horizontal / vertical"</code>
@@ -67,7 +57,7 @@
 
         <section class="mb-8">
             <DocsExample label="Direção">
-                <div class="p-4 w-fit">
+                <div class="w-fit p-4">
                     <ProgressBar
                         v-model="value"
                         label="Vertical"
@@ -79,9 +69,7 @@
         </section>
 
         <section>
-            <h3>
-                Circular
-            </h3>
+            <h3>Circular</h3>
 
             <p>
                 <code>variant="circular"</code> com <code>size="small / medium / large"</code>.
@@ -91,7 +79,7 @@
 
         <section class="mb-8">
             <DocsExample label="Circular">
-                <div class="p-4 flex flex-col gap-6">
+                <div class="flex flex-col gap-6 p-4">
                     <ProgressBar
                         v-model="value"
                         label="Circular small"

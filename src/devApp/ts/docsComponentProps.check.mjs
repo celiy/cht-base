@@ -7,6 +7,7 @@ import {
     formatAcceptedValues,
     parseNamedStringUnions,
     parseStringUnionMembers,
+    propCommentFromSource,
     propTypeArgFromSource,
     propsTableRows,
     resolveDocsComponentNames,
@@ -16,11 +17,11 @@ import {
 assert.equal(toKebabName("ProgressBar"), "progress-bar");
 assert.equal(toKebabName("QrCode"), "qr-code");
 
-const names = ["Button", "Badge", "Input", "Modal", "ProgressBar", "Tooltip", "Checkbox", "CheckboxSwitch", "BarChart", "WaveChart", "FormRenderer"];
+const names = ["Button", "Badge", "Input", "InputOTP", "Modal", "ProgressBar", "Tooltip", "Checkbox", "CheckboxSwitch", "BarChart", "WaveChart", "FormRenderer"];
 
 assert.deepEqual(resolveDocsComponentNames("buttons", names), ["Button"]);
 assert.deepEqual(resolveDocsComponentNames("badges", names), ["Badge"]);
-assert.deepEqual(resolveDocsComponentNames("inputs", names), ["Input"]);
+assert.deepEqual(resolveDocsComponentNames("inputs", names), ["Input", "InputOTP"]);
 assert.deepEqual(resolveDocsComponentNames("progressbar", names), ["ProgressBar"]);
 assert.deepEqual(resolveDocsComponentNames("qr-code", ["QrCode"]), ["QrCode"]);
 assert.deepEqual(resolveDocsComponentNames("drawer", names), ["Modal"]);
@@ -43,22 +44,22 @@ assert.deepEqual(
         }
     }),
     [
-        { name: "label", type: "String", values: "—", default: "—", required: "não" },
-        { name: "shape", type: "String", values: "—", default: "\"square\"", required: "não" },
-        { name: "headers", type: "Array", values: "—", default: "—", required: "sim" },
-        { name: "count", type: "String | Number", values: "—", default: "0", required: "não" },
-        { name: "items", type: "Array", values: "—", default: "[\"a\"]", required: "não" },
-        { name: "onClick", type: "Function", values: "—", default: "Function", required: "não" }
+        { name: "label", comment: "", type: "String", values: "—", default: "—", required: "não" },
+        { name: "shape", comment: "", type: "String", values: "—", default: "\"square\"", required: "não" },
+        { name: "headers", comment: "", type: "Array", values: "—", default: "—", required: "sim" },
+        { name: "count", comment: "", type: "String | Number", values: "—", default: "0", required: "não" },
+        { name: "items", comment: "", type: "Array", values: "—", default: "[\"a\"]", required: "não" },
+        { name: "onClick", comment: "", type: "Function", values: "—", default: "Function", required: "não" }
     ]
 );
 
 assert.deepEqual(propsTableRows({ props: ["open", "label"] }), [
-    { name: "open", type: "—", values: "—", default: "—", required: "não" },
-    { name: "label", type: "—", values: "—", default: "—", required: "não" }
+    { name: "open", comment: "", type: "—", values: "—", default: "—", required: "não" },
+    { name: "label", comment: "", type: "—", values: "—", default: "—", required: "não" }
 ]);
 
 assert.deepEqual(propsTableRows({ props: { title: String } }), [
-    { name: "title", type: "String", values: "—", default: "—", required: "não" }
+    { name: "title", comment: "", type: "String", values: "—", default: "—", required: "não" }
 ]);
 
 assert.deepEqual(propsTableRows({}), []);
@@ -133,5 +134,43 @@ assert.equal(
     '| "cpf" | "email" | "text"'
 );
 assert.deepEqual(parseStringUnionMembers('| "cpf" | "email" | "text"'), ["cpf", "email", "text"]);
+
+const commentedSource = `
+    /**
+     * The label of the button
+     * @param {string} unused
+     * @returns {void}
+     */
+    label: {
+        type: String
+    },
+
+    /**
+     * The shape of the button
+     */
+    shape: {
+        type: String
+    }
+`;
+
+assert.equal(
+    propCommentFromSource(commentedSource, "label"),
+    "The label of the button"
+);
+assert.equal(propCommentFromSource(commentedSource, "shape"), "The shape of the button");
+assert.equal(propCommentFromSource(commentedSource, "missing"), "");
+
+const commentedRows = propsTableRows(
+    {
+        props: {
+            label: { type: String },
+            shape: { type: String }
+        }
+    },
+    commentedSource
+);
+
+assert.equal(commentedRows.find((row) => row.name === "label")?.comment, "The label of the button");
+assert.equal(commentedRows.find((row) => row.name === "shape")?.comment, "The shape of the button");
 
 console.log("docsComponentProps.check.mjs: ok");

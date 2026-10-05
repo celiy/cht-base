@@ -1,13 +1,11 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm docs-article">
         <section>
-            <h1>
-                Context menu
-            </h1>
+            <h1>Context menu</h1>
 
             <p>
-                Wrapper: clique direito (ou pressione no telemóvel) abre o menu no cursor.
-                As opções são as mesmas do Dropdown. Emite <code>@click:value</code>.
+                Wrapper: clique direito (ou pressione no telemóvel) abre o menu no cursor. As opções
+                são as mesmas do Dropdown. Emite <code>@click:value</code>.
             </p>
         </section>
 
@@ -19,10 +17,10 @@
 
                         @click:value="lastClicked = $event"
                     >
-                        <div class="rounded border border-dashed border-border bg-muted/30 p-8 text-center select-none">
-                            <p class="font-medium">
-                                Clique direito aqui
-                            </p>
+                        <div
+                            class="rounded border border-dashed border-border bg-muted/30 p-8 text-center select-none"
+                        >
+                            <p class="font-medium">Clique direito aqui</p>
 
                             <p class="mt-1 text-sm text-muted-foreground">
                                 No telemóvel, pressione e segure.

@@ -1,20 +1,18 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm docs-article">
         <section>
-            <h1>
-                Toggle
-            </h1>
+            <h1>Toggle</h1>
 
             <p>
                 Botão com os mesmos props do <code>Button</code>. Desligado usa
-                <code>variant="transparent"</code>; ligado usa o
-                <code>variant</code> informado (padrão <code>default</code>).
+                <code>variant="transparent"</code>; ligado usa o <code>variant</code> informado
+                (padrão <code>default</code>).
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Toggle">
-                <div class="p-4 flex flex-wrap gap-2 items-center">
+                <div class="flex flex-wrap items-center gap-2 p-4">
                     <Toggle
                         v-model="basic"
                         label="Default"
@@ -54,19 +52,17 @@
         </section>
 
         <section>
-            <h3>
-                Ícones e tamanho
-            </h3>
+            <h3>Ícones e tamanho</h3>
 
             <p>
-                Aceita <code>leftIcon</code>, <code>rightIcon</code> e
-                <code>size</code> como o <code>Button</code>.
+                Aceita <code>leftIcon</code>, <code>rightIcon</code> e <code>size</code> como o
+                <code>Button</code>.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Ícones e tamanho">
-                <div class="p-4 flex flex-wrap gap-2 items-center">
+                <div class="flex flex-wrap items-center gap-2 p-4">
                     <Toggle
                         v-model="iconToggle"
                         label="Filtro"

@@ -92,7 +92,7 @@
                 <div
                     v-else
 
-                    class="appear-from-t-to-b flex flex-wrap justify-between gap-2 px-3 py-4 sm:px-6"
+                    class="appear-from-t-to-b flex flex-wrap justify-between gap-2 px-3 py-3 sm:px-6"
                 >
                     <!-- Left side -->
                     <div class="flex min-w-0 flex-row flex-wrap gap-1 sm:gap-2">
@@ -118,9 +118,12 @@
                             id="search-input"
                             type="text"
                             placeholder="Pesquisar..."
+                            :kbd="[{ key: 'shift' }, { key: 'f' }]"
                             readonly
 
+                            @mousedown.prevent
                             @click="openSearch"
+                            @focus="openSearch"
                         >
                             <template #prefix>
                                 <span class="fa-solid fa-search mr-2 text-foreground/50"></span>
@@ -279,7 +282,7 @@ export default defineComponent({
             return project.style.activeTheme === "dark";
         },
 
-        plainOptions(): { label: string; value: string }[] {
+        plainOptions(): { label: string; value: string; searchIcon?: string }[] {
             return this.componentsNav
                 .flatMap((section) => {
                     if (section.type === "group") {
@@ -294,13 +297,15 @@ export default defineComponent({
                 })
                 .map((link) => ({
                     label: link.label,
-                    value: link.link
+                    value: link.link,
+                    icon: link.searchIcon
                 }));
         }
     },
 
     methods: {
         openSearch() {
+            this.query = "";
             this.isSearchModalOpen = true;
         },
 

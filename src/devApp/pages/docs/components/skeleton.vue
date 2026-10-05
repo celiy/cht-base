@@ -1,19 +1,17 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm docs-article">
         <section>
-            <h1>
-                Skeleton
-            </h1>
+            <h1>Skeleton</h1>
 
             <p>
-                Placeholder com pulse para conteúdo que ainda está carregando.
-                Tipos <code>text</code>, <code>avatar</code> e <code>card</code>.
+                Placeholder com pulse para conteúdo que ainda está carregando. Tipos
+                <code>text</code>, <code>avatar</code> e <code>card</code>.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Skeleton">
-                <div class="p-8 flex flex-col gap-4">
+                <div class="flex flex-col gap-4 p-8">
                     <Skeleton type="avatar" />
 
                     <div class="flex flex-col gap-2">
@@ -43,9 +41,7 @@
         </section>
 
         <section>
-            <h3>
-                Tipo
-            </h3>
+            <h3>Tipo</h3>
 
             <p>
                 <code>type="text / avatar / card"</code>. Largura e posição vêm das classes no root
@@ -55,7 +51,7 @@
 
         <section class="mb-8">
             <DocsExample label="Tipo">
-                <div class="p-8 flex flex-col gap-6">
+                <div class="flex flex-col gap-6 p-8">
                     <div class="flex flex-col gap-2">
                         <Skeleton type="text" />
                         <Skeleton
@@ -76,31 +72,30 @@
         </section>
 
         <section>
-            <h3>
-                Card e aspect ratio
-            </h3>
+            <h3>Card e aspect ratio</h3>
 
             <p>
                 Em <code>type="card"</code>, <code>aspectRatio</code> aceita número ou string CSS
-                (<code>1</code>, <code>16/9</code>). Sem ratio, use <code>class</code> com largura e altura.
+                (<code>1</code>, <code>16/9</code>). Sem ratio, use <code>class</code> com largura e
+                altura.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Card">
-                <div class="p-8 flex flex-wrap gap-4 items-end">
+                <div class="flex flex-wrap items-end gap-4 p-8">
                     <Skeleton
-                        class="w-24 h-24"
+                        class="h-24 w-24"
                         type="card"
                     />
 
                     <Skeleton
-                        class="w-12 h-12"
+                        class="h-12 w-12"
                         type="card"
                     />
 
                     <Skeleton
-                        class="w-8 h-8"
+                        class="h-8 w-8"
                         type="card"
                     />
 
@@ -120,19 +115,15 @@
         </section>
 
         <section>
-            <h3>
-                Composição
-            </h3>
+            <h3>Composição</h3>
 
-            <p>
-                Combina avatar, linhas de texto e grid para um layout de carregamento.
-            </p>
+            <p>Combina avatar, linhas de texto e grid para um layout de carregamento.</p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Composição">
                 <div class="p-8">
-                    <div class="flex gap-2 items-center">
+                    <div class="flex items-center gap-2">
                         <Skeleton type="avatar" />
 
                         <div class="w-full">
@@ -142,17 +133,29 @@
                             />
 
                             <Skeleton
-                                class="w-1/6 mt-2"
+                                class="mt-2 w-1/6"
                                 type="text"
                             />
                         </div>
 
-                        <Skeleton type="card" aspect-ratio="1" class="w-12"/>
-                        <Skeleton type="card" aspect-ratio="1" class="w-12"/>
-                        <Skeleton type="card" aspect-ratio="1" class="w-12"/>
+                        <Skeleton
+                            type="card"
+                            aspect-ratio="1"
+                            class="w-12"
+                        />
+                        <Skeleton
+                            type="card"
+                            aspect-ratio="1"
+                            class="w-12"
+                        />
+                        <Skeleton
+                            type="card"
+                            aspect-ratio="1"
+                            class="w-12"
+                        />
                     </div>
 
-                    <div class="flex flex-col gap-2 mt-4">
+                    <div class="mt-4 flex flex-col gap-2">
                         <div class="grid grid-cols-3 gap-2">
                             <Skeleton type="text" />
 

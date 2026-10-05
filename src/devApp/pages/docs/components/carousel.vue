@@ -1,15 +1,14 @@
 <template>
-    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
+    <article class="container-sm docs-article">
         <section>
             <h1>Carousel</h1>
 
             <p>
-                Faixa deslizante. Cada slide é um slot <code>#item-0</code>,
-                <code>#item-1</code>, … — o número de slides é a contagem desses slots (incluindo
-                <code>v-for</code>). Com um único item as setas e os passos escondem-se. Setas e
-                passos fazem loop; o swipe no telemóvel (cerca de 100&nbsp;px) não passa do primeiro
-                nem do último. Clique no padding à volta do item emite
-                <code>click:outside</code>.
+                Faixa deslizante. Cada slide é um slot <code>#item-0</code>, <code>#item-1</code>, …
+                — o número de slides é a contagem desses slots (incluindo <code>v-for</code>). Com
+                um único item as setas e os passos escondem-se. Setas e passos fazem loop; o swipe
+                no telemóvel (cerca de 100&nbsp;px) não passa do primeiro nem do último. Clique no
+                padding à volta do item emite <code>click:outside</code>.
             </p>
         </section>
 
@@ -133,9 +132,8 @@
             <h3>startIndex</h3>
 
             <p>
-                Índice 0-based do slide inicial. Valores fora do intervalo são limitados ao
-                primeiro ou ao último. Se a prop mudar depois do mount, o carousel vai para esse
-                índice.
+                Índice 0-based do slide inicial. Valores fora do intervalo são limitados ao primeiro
+                ou ao último. Se a prop mudar depois do mount, o carousel vai para esse índice.
             </p>
         </section>
 

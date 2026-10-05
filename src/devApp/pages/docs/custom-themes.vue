@@ -20,15 +20,15 @@
                                     : 'Mudar para hodiernus'
                             "
 
-                            @click="toggleCustomTheme"
+                            @click="
+                                $project.style.setCustomTheme(
+                                    $project.style.customTheme === 'hodiernus'
+                                        ? 'simplicia'
+                                        : 'hodiernus'
+                                )
+                            "
                         />
                     </div>
-
-                    <Navigator>
-                        <div class="flex items-center gap-2 px-3 py-2">
-                            <small>Navigator</small>
-                        </div>
-                    </Navigator>
 
                     <div class="flex flex-wrap items-center gap-2">
                         <Dropdown
@@ -67,6 +67,11 @@
                             ]"
                         />
 
+                        <Button
+                            label="Button"
+                            variant="primary"
+                        />
+
                         <Popover :mobile-modal="false">
                             <template #button="{ toggle }">
                                 <Button
@@ -99,12 +104,21 @@
                         />
                     </div>
 
-                    <Item
-                        class="max-w-sm"
-                        label="Item"
-                        description="Dados da conta e preferências."
-                        icon="fa-layer-group"
-                    />
+                    <div class="relative mt-8">
+                        <p class="absolute right-0 -bottom-4 left-0 z-0 p-4">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
+                            consequatur facilis iste veniam porro. Dolore maiores nostrum ipsa
+                            inventore, mollitia amet minus perferendis repellat voluptatibus
+                            suscipit, nisi accusantium cupiditate voluptates!
+                        </p>
+
+                        <Item
+                            class="z-10 max-w-sm"
+                            label="Item"
+                            description="Dados da conta e preferências."
+                            icon="fa-layer-group"
+                        />
+                    </div>
                 </div>
             </DocsExample>
         </section>

@@ -1,13 +1,9 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm docs-article">
         <section>
-            <h1>
-                Pagination
-            </h1>
+            <h1>Pagination</h1>
 
-            <p>
-                Navegação por páginas com ellipsis e popover para páginas ocultas.
-            </p>
+            <p>Navegação por páginas com ellipsis e popover para páginas ocultas.</p>
         </section>
 
         <section class="mb-8">
@@ -23,9 +19,7 @@
         </section>
 
         <section>
-            <h3>
-                Props
-            </h3>
+            <h3>Props</h3>
 
             <p>
                 <code>amount</code> total de páginas, <code>showMax</code> quantas ficam visíveis,

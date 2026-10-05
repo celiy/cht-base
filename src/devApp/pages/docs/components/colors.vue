@@ -1,34 +1,41 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm docs-article">
         <section>
-            <h1>
-                Colors
-            </h1>
+            <h1>Colors</h1>
 
-            <p>
-                Tokens CSS do tema, usados como <code>var(--color-&lt;nome&gt;)</code>.
-            </p>
+            <p>Tokens CSS do tema, usados como <code>var(--color-&lt;nome&gt;)</code>.</p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Colors">
-                <div class="p-4 flex gap-6 flex-wrap">
-                    <template v-for="token in tokens" :key="token.label">
+                <div class="flex flex-wrap gap-6 p-4">
+                    <template
+                        v-for="token in tokens"
+                        :key="token.label"
+                    >
                         <div>
-                            <h3 class="text-sm font-semibold mb-2 text-muted-foreground">
+                            <h3 class="mb-2 text-sm font-semibold text-muted-foreground">
                                 {{ token.label }}
                             </h3>
 
-                            <div class="flex gap-2 flex-wrap">
-                                <div v-for="child in token.children" :key="child.color" class="w-24 h-24 flex flex-col items-center">
+                            <div class="flex flex-wrap gap-2">
+                                <div
+                                    v-for="child in token.children"
+                                    :key="child.color"
+
+                                    class="flex h-24 w-24 flex-col items-center"
+                                >
                                     <div
-                                        class="border border-border rounded h-14 w-full"
-                                        :style="{ backgroundColor: 'var(--color-' + child.color + ')' }"
+                                        class="h-14 w-full rounded border border-border"
+                                        :style="{
+                                            backgroundColor: 'var(--color-' + child.color + ')'
+                                        }"
                                     />
 
-                                    <code 
-                                        v-tooltip="'Clique para copiar'" 
-                                        class="text-xs text-center select-none"
+                                    <code
+                                        v-tooltip="'Clique para copiar'"
+                                        class="text-center text-xs select-none"
+
                                         @click="copy(child.color)"
                                     >
                                         {{ child.color }}
@@ -42,34 +49,29 @@
         </section>
 
         <section>
-            <h1>
-                System colors
-            </h1>
+            <h1>System colors</h1>
 
-            <p>
-                Cores do sistema
-            </p>
+            <p>Cores do sistema</p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Colors">
-                <div class="p-4 flex flex-col gap-6">
+                <div class="flex flex-col gap-6 p-4">
                     <div
                         v-for="color in colors"
                         :key="color.value"
                     >
-                        <h3 class="text-sm font-semibold mb-2 text-muted-foreground">
+                        <h3 class="mb-2 text-sm font-semibold text-muted-foreground">
                             {{ color.label }}
                         </h3>
 
-                        <div class="grid grid-cols-10 w-full overflow-hidden rounded">
+                        <div class="grid w-full grid-cols-10 overflow-hidden rounded">
                             <div
                                 v-for="value in colorValues"
                                 :key="`${color.value}-${value}`"
 
                                 v-tooltip="color.value + '-' + value"
-
-                                class="min-w-0 h-24 cursor-pointer"
+                                class="h-24 min-w-0 cursor-pointer"
                                 :style="shadeStyle(color.value, value)"
 
                                 @click="copy(color.value + '-' + value)"
@@ -91,83 +93,125 @@ export default defineComponent({
     data() {
         return {
             tokens: [
-                { label: "Background and foreground", children: [
-                    { color: "background", label: "Background" },
-                    { color: "foreground", label: "Foreground" },
-                ]},
+                {
+                    label: "Background and foreground",
+                    children: [
+                        { color: "background", label: "Background" },
+                        { color: "foreground", label: "Foreground" }
+                    ]
+                },
 
-                { label: "Card", children: [
-                    { color: "card", label: "Card" },
-                    { color: "card-foreground", label: "Card Foreground" },
-                ]},
+                {
+                    label: "Card",
+                    children: [
+                        { color: "card", label: "Card" },
+                        { color: "card-foreground", label: "Card Foreground" }
+                    ]
+                },
 
-                { label: "Popover", children: [
-                    { color: "popover", label: "Popover" },
-                    { color: "popover-foreground", label: "Popover Foreground" },
-                ]},
+                {
+                    label: "Popover",
+                    children: [
+                        { color: "popover", label: "Popover" },
+                        { color: "popover-foreground", label: "Popover Foreground" }
+                    ]
+                },
 
-                { label: "Primary", children: [
-                    { color: "primary", label: "Primary" },
-                    { color: "primary-foreground", label: "Primary Foreground" },
-                ]},
+                {
+                    label: "Primary",
+                    children: [
+                        { color: "primary", label: "Primary" },
+                        { color: "primary-foreground", label: "Primary Foreground" }
+                    ]
+                },
 
-                { label: "Secondary", children: [
-                    { color: "secondary", label: "Secondary" },
-                    { color: "secondary-foreground", label: "Secondary Foreground" },
-                ]},
+                {
+                    label: "Secondary",
+                    children: [
+                        { color: "secondary", label: "Secondary" },
+                        { color: "secondary-foreground", label: "Secondary Foreground" }
+                    ]
+                },
 
-                { label: "Muted", children: [
-                    { color: "muted", label: "Muted" },
-                    { color: "muted-foreground", label: "Muted Foreground" },
-                ]},
+                {
+                    label: "Muted",
+                    children: [
+                        { color: "muted", label: "Muted" },
+                        { color: "muted-foreground", label: "Muted Foreground" }
+                    ]
+                },
 
-                { label: "Accent", children: [
-                    { color: "accent", label: "Accent" },
-                    { color: "accent-foreground", label: "Accent Foreground" },
-                ]},
+                {
+                    label: "Accent",
+                    children: [
+                        { color: "accent", label: "Accent" },
+                        { color: "accent-foreground", label: "Accent Foreground" }
+                    ]
+                },
 
-                { label: "Destructive", children: [
-                    { color: "destructive", label: "Destructive" },
-                    { color: "destructive-foreground", label: "Destructive Foreground" },
-                ]},
+                {
+                    label: "Destructive",
+                    children: [
+                        { color: "destructive", label: "Destructive" },
+                        { color: "destructive-foreground", label: "Destructive Foreground" }
+                    ]
+                },
 
-                { label: "Success", children: [
-                    { color: "success", label: "Success" },
-                    { color: "success-foreground", label: "Success Foreground" },
-                ]},
+                {
+                    label: "Success",
+                    children: [
+                        { color: "success", label: "Success" },
+                        { color: "success-foreground", label: "Success Foreground" }
+                    ]
+                },
 
-                { label: "Warning", children: [
-                    { color: "warning", label: "Warning" },
-                    { color: "warning-foreground", label: "Warning Foreground" },
-                ]},
+                {
+                    label: "Warning",
+                    children: [
+                        { color: "warning", label: "Warning" },
+                        { color: "warning-foreground", label: "Warning Foreground" }
+                    ]
+                },
 
-                { label: "Info", children: [
-                    { color: "info", label: "Info" },
-                    { color: "info-foreground", label: "Info Foreground" },
-                ]},
+                {
+                    label: "Info",
+                    children: [
+                        { color: "info", label: "Info" },
+                        { color: "info-foreground", label: "Info Foreground" }
+                    ]
+                },
 
-                { label: "Border", children: [
-                    { color: "border", label: "Border" },
-                    { color: "input", label: "Input" },
-                    { color: "ring", label: "Ring" },
-                ]},
+                {
+                    label: "Border",
+                    children: [
+                        { color: "border", label: "Border" },
+                        { color: "input", label: "Input" },
+                        { color: "ring", label: "Ring" }
+                    ]
+                },
 
-                { label: "Chart", children: [
-                    { color: "chart-1", label: "Chart 1" },
-                    { color: "chart-2", label: "Chart 2" },
-                    { color: "chart-3", label: "Chart 3" },
-                    { color: "chart-4", label: "Chart 4" },
-                    { color: "chart-5", label: "Chart 5" },
-                ]},
+                {
+                    label: "Chart",
+                    children: [
+                        { color: "chart-1", label: "Chart 1" },
+                        { color: "chart-2", label: "Chart 2" },
+                        { color: "chart-3", label: "Chart 3" },
+                        { color: "chart-4", label: "Chart 4" },
+                        { color: "chart-5", label: "Chart 5" }
+                    ]
+                },
 
-                { label: "Sidebar", children: [
-                    { color: "sidebar", label: "Sidebar" },
-                    { color: "sidebar-foreground", label: "Sidebar Foreground" },
-                    { color: "sidebar-accent", label: "Sidebar Accent" },
-                    { color: "sidebar-accent-foreground", label: "Sidebar Accent Foreground" },
-                    { color: "sidebar-border", label: "Sidebar Border" },
-                    { color: "sidebar-ring", label: "Sidebar Ring" },
-                ]}
+                {
+                    label: "Sidebar",
+                    children: [
+                        { color: "sidebar", label: "Sidebar" },
+                        { color: "sidebar-foreground", label: "Sidebar Foreground" },
+                        { color: "sidebar-accent", label: "Sidebar Accent" },
+                        { color: "sidebar-accent-foreground", label: "Sidebar Accent Foreground" },
+                        { color: "sidebar-border", label: "Sidebar Border" },
+                        { color: "sidebar-ring", label: "Sidebar Ring" }
+                    ]
+                }
             ],
 
             colors: [
@@ -215,7 +259,7 @@ export default defineComponent({
                 500: 0.57,
                 600: 0.47,
                 700: 0.39,
-                800: 0.30,
+                800: 0.3,
                 900: 0.22
             } as Record<number, number>
         };

@@ -5,6 +5,7 @@
 
 export type DocsPropRow = {
     name: string;
+    comment: string;
     type: string;
     values: string;
     default: string;
@@ -22,7 +23,8 @@ const SLUG_COMPONENT_NAMES: Record<string, string[]> = {
     "custom-tooltip": ["Tooltip"],
     checkbox: ["Checkbox", "CheckboxSwitch"],
     charts: ["BarChart", "WaveChart"],
-    drawer: ["Modal"]
+    drawer: ["Modal"],
+    inputs: ["Input", "InputOTP"]
 };
 
 /**
@@ -182,6 +184,7 @@ export function propsTableRows(
 
         return {
             name,
+            comment: source ? propCommentFromSource(source, name) : "",
             type: formatPropType(spec.type),
             values,
             default: spec.hasDefault ? formatPropDefault(spec.default, spec.type) : "—",
@@ -199,6 +202,7 @@ export function propsTableRows(
 function emptyPropRow(name: string): DocsPropRow {
     return {
         name,
+        comment: "",
         type: "—",
         values: "—",
         default: "—",
@@ -377,6 +381,61 @@ export function formatAcceptedValues(
  */
 function formatLiteralUnion(members: string[]): string {
     return members.map((member) => JSON.stringify(member)).join(" | ");
+}
+
+/**
+ * Reads the JSDoc description immediately above a prop key (`name: {`).
+ * Drops `@param` / `@returns` / other tags.
+ *
+ * @param source SFC/TS text
+ * @param propName Prop key
+ * @returns Description, or empty
+ */
+export function propCommentFromSource(source: string, propName: string): string {
+    const escaped = propName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const marker = new RegExp(`\\b${escaped}\\s*:\\s*\\{`);
+    const hit = marker.exec(source);
+
+    if (!hit) {
+        return "";
+    }
+
+    const before = source.slice(0, hit.index).trimEnd();
+
+    if (!before.endsWith("*/")) {
+        return "";
+    }
+
+    const start = before.lastIndexOf("/**");
+
+    if (start < 0) {
+        return "";
+    }
+
+    return jsdocDescription(before.slice(start + 3, before.length - 2));
+}
+
+/**
+ * Keeps the free-text JSDoc body; stops at the first `@tag` line.
+ *
+ * @param body Inner JSDoc text
+ * @returns Description
+ */
+function jsdocDescription(body: string): string {
+    const lines: string[] = [];
+
+    for (const raw of body.split("\n")) {
+        const line = raw.replace(/^\s*\*\s?/, "").trimEnd();
+        const trimmed = line.trim();
+
+        if (trimmed.startsWith("@")) {
+            break;
+        }
+
+        lines.push(trimmed);
+    }
+
+    return lines.join(" ").replace(/\s+/g, " ").trim();
 }
 
 /**
