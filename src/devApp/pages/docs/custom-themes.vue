@@ -5,8 +5,7 @@
 
             <p>
                 Estilos de superfície (sólido vs vidro), independentes de light/dark. Troca com
-                <code>$project.style.setCustomTheme</code>. A navbar desta app já usa
-                <code>Navigator</code> — muda o estilo e vê o chrome, o overlay e os painéis abaixo.
+                <code>$project.style.setCustomTheme</code>.
             </p>
         </section>
 
@@ -38,7 +37,9 @@
                             :options="[
                                 { label: 'Perfil', value: 'user', icon: 'fa-user' },
                                 { separator: true },
-                                { label: 'Sair', value: 'exit', icon: 'fa-right-from-bracket' }
+                                { label: 'Sair', value: 'exit', icon: 'fa-right-from-bracket' },
+                                { label: 'Reabrir', value: 'reopen', icon: 'fa-rotate-right' },
+                                { label: 'Cancelar', value: 'cancel', icon: 'fa-xmark' }
                             ]"
                         />
 
@@ -47,7 +48,22 @@
                             :mobile-modal="false"
                             :options="[
                                 { label: 'Um', value: '1' },
-                                { label: 'Dois', value: '2' }
+                                { label: 'Dois', value: '2' },
+                                { label: 'Três', value: '3' },
+                                { label: 'Quatro', value: '4' },
+                                { label: 'Cinco', value: '5' },
+                                { label: 'Seis', value: '6' },
+                                { label: 'Sete', value: '7' },
+                                { label: 'Oito', value: '8' },
+                                { label: 'Nove', value: '9' },
+                                { label: 'Dez', value: '10' },
+                                { label: 'Onze', value: '11' },
+                                { label: 'Doze', value: '12' },
+                                { label: 'Treze', value: '13' },
+                                { label: 'Quatorze', value: '14' },
+                                { label: 'Quinze', value: '15' },
+                                { label: 'Dezesseis', value: '16' },
+                                { label: 'Dezessete', value: '17' }
                             ]"
                         />
 
@@ -60,7 +76,12 @@
                                 />
                             </template>
 
-                            <p class="px-1 py-0.5 text-sm">Painel flutuante.</p>
+                            <p class="px-1 py-0.5 text-sm">
+                                Painel flutuante. Lorem ipsum dolor sit amet consectetur adipisicing
+                                elit. Minima molestiae repellendus laudantium in facilis iste
+                                tenetur ad dolorem recusandae vero nam magni ipsam dolor nulla,
+                                eaque culpa quam sequi quibusdam?
+                            </p>
                         </Popover>
 
                         <Button v-tooltip="'Tooltip'">Tooltip</Button>
@@ -100,6 +121,17 @@
 
             <template #body>
                 <p>Fecha no X, Esc ou no fundo.</p>
+
+                <Button
+                    class="mt-4"
+                    :label="
+                        $project.style.customTheme === 'hodiernus'
+                            ? 'Mudar para simplicia'
+                            : 'Mudar para hodiernus'
+                    "
+
+                    @click="toggleCustomTheme"
+                />
             </template>
         </Modal>
     </article>
