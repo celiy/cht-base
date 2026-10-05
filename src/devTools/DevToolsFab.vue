@@ -19,7 +19,8 @@
             >
                 <template #button="{ toggle, isOpen }">
                     <Button
-                        variant="transparent"
+                        background-style="background-transparent"
+                        hover-style="hover:bg-accent!"
                         shape="rounded"
                         aria-label="Modo dev"
 
@@ -72,10 +73,7 @@ export default defineComponent({
          * @returns {unknown} The repo updates enabled
          */
         repoUpdatesEnabled(): boolean {
-            return (
-                this.enabled
-                && import.meta.env.VITE_REPO_UPDATE_NOTIFICATIONS === "true"
-            );
+            return this.enabled && import.meta.env.VITE_REPO_UPDATE_NOTIFICATIONS === "true";
         },
 
         /**

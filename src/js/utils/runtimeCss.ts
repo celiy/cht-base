@@ -96,9 +96,9 @@ export function unloadStylesheet(id: string, doc: Document = document): void {
 }
 
 export async function waitForDocumentStyles(doc: Document = document): Promise<void> {
-    const links = [...doc.querySelectorAll('link[rel="stylesheet"]')];
+    const links = [...doc.querySelectorAll("link[rel=\"stylesheet\"]")].filter(isHrefLink);
 
-    await Promise.all(links.map((link) => whenStylesheetReady(link as StylesheetLinkLike)));
+    await Promise.all(links.map((link) => whenStylesheetReady(link)));
 
     if (typeof requestAnimationFrame !== "function") {
         return;
