@@ -44,7 +44,7 @@ export const componentsNav = [
                 link: "/docs/backend"
             },
             {
-                label: "cht.config.json",
+                label: "cht.config",
                 link: "/docs/cht-config"
             },
             {
@@ -58,6 +58,10 @@ export const componentsNav = [
             {
                 label: "Temas",
                 link: "/docs/themes"
+            },
+            {
+                label: "Temas do sistema",
+                link: "/docs/custom-themes"
             },
             {
                 label: "Websocket",
@@ -193,7 +197,7 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
-        label: "OptionsList",
+        label: "Options List",
         link: "/docs/components/options-list"
     },
     {

@@ -14,6 +14,9 @@
 @source inline(
     "bg-{neutral,stone,zinc,slate,gray,red,orange,amber,yellow,lime,green,emerald,teal,cyan,sky,blue,indigo,violet,purple,fuchsia,pink,rose}-{50,{100..900..100}}"
 );
+@import "./style-simplicia.css";
+@import "./style-hodiernus.css";
+
 html {
     font-family: "Inter", sans-serif;
     background-color: var(--color-background);
@@ -108,6 +111,9 @@ mark {
 }
 i {
     @apply italic;
+}
+kbd {
+    @apply rounded border-x border-t border-b-3 border-border bg-secondary px-1 pt-1 pb-0.5 text-xs font-semibold text-secondary-foreground shadow-sm;
 }
 pre,
 pre code {
@@ -293,8 +299,38 @@ pre code {
     }
 }
 
+@keyframes appear-from-b-to-t {
+    from {
+        opacity: 0.5;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes appear-from-t-to-b {
+    from {
+        opacity: 0.5;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.appear-from-t-to-b {
+    animation: appear-from-t-to-b 0.3s ease-in-out both;
+}
+
+.appear-from-b-to-t {
+    animation: appear-from-b-to-t 0.3s ease-in-out both;
+}
+
 .docs-article {
-    @apply mt-4 mb-24 flex flex-col gap-4 md:mt-8;
+    @apply mt-4 mb-4 flex flex-col gap-4 md:mt-8;
 }
 
 /* Modern browsers */

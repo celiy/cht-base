@@ -8,6 +8,7 @@
 import { defineComponent, getCurrentInstance } from "vue";
 import DocsExample from "./components/DocsExample.vue";
 import ElectronStartupGate from "../electron/ElectronStartupGate.vue";
+import { projectActions } from "@base/project";
 
 export default defineComponent({
     name: "ChtBaseDevApp",
@@ -23,6 +24,7 @@ export default defineComponent({
     created() {
         const instance = getCurrentInstance();
         instance?.appContext.app.component("DocsExample", DocsExample);
+        projectActions.setCustomTheme("hodiernus");
     }
 });
 </script>

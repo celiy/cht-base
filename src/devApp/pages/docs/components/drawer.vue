@@ -1,21 +1,32 @@
 <template>
-    <article class="container-sm mt-4 md:mt-8 flex flex-col gap-4">
+    <article class="container-sm mt-4 flex flex-col gap-4 md:mt-8">
         <section>
-            <h1>
-                Drawer
-            </h1>
+            <h1>Drawer</h1>
 
             <p>
-                O drawer é o <code>Modal</code> com <code>variant="drawer"</code>. Encosta em um lado da tela e pode ser arrastado para fechar.
+                O drawer é o <code>Modal</code> com <code>variant="drawer"</code>. Encosta em um
+                lado da tela e pode ser arrastado para fechar.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Drawer">
-                <div class="p-4 flex flex-wrap gap-2">
-                    <Button label="Direita" @click="right = true" />
-                    <Button label="Esquerda" @click="left = true" />
-                    <Button label="Embaixo" @click="bottom = true" />
+                <div class="flex flex-wrap gap-2 p-4">
+                    <Button
+                        label="Direita"
+
+                        @click="right = true"
+                    />
+                    <Button
+                        label="Esquerda"
+
+                        @click="left = true"
+                    />
+                    <Button
+                        label="Embaixo"
+
+                        @click="bottom = true"
+                    />
 
                     <Modal
                         size="small"
@@ -25,9 +36,7 @@
 
                         @update:value="right = $event"
                     >
-                        <template #header>
-                            Drawer right
-                        </template>
+                        <template #header> Drawer right </template>
 
                         <template #description>
                             Arraste para direita ou use Esc / backdrop.
@@ -46,9 +55,7 @@
 
                         @update:value="left = $event"
                     >
-                        <template #header>
-                            Drawer left
-                        </template>
+                        <template #header> Drawer left </template>
 
                         <template #description>
                             Arraste para esquerda ou use Esc / backdrop.
@@ -67,9 +74,7 @@
 
                         @update:value="bottom = $event"
                     >
-                        <template #header>
-                            Drawer bottom
-                        </template>
+                        <template #header> Drawer bottom </template>
 
                         <template #description>
                             Arraste para baixo ou use Esc / backdrop.
@@ -81,17 +86,6 @@
                     </Modal>
                 </div>
             </DocsExample>
-        </section>
-
-        <section>
-            <h3>
-                Props
-            </h3>
-
-            <p>
-                <code>side="left / right / bottom"</code><br />
-                <code>size="small / medium / large"</code>
-            </p>
         </section>
     </article>
 </template>

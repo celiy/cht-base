@@ -22,8 +22,14 @@
 
             <p>
                 Atualizado no <code>resize</code> da janela. <code>isMobile</code> é
-                <code>true</code> quando <code>viewportWidth &lt;= mobileBreakpointPx</code> (768
-                por defeito). Usa para textos curtos, layouts ou abrir modais em mobile.
+                <code>true</code> quando <code>viewportWidth &lt;= mobileBreakpointPx</code> ({{
+                    $project.device.mobileBreakpointPx
+                }}
+                px). <code>isTablet</code> é a faixa a seguir,
+                <code>mobileBreakpointPx &lt; viewportWidth &lt;= tabletBreakpointPx</code> ({{
+                    $project.device.tabletBreakpointPx
+                }}
+                px). Acima disso, os dois são <code>false</code>.
             </p>
         </section>
 
@@ -45,7 +51,13 @@
                     <p>
                         <code>isMobile</code>:
                         <strong>{{ $project.device.isMobile ? "sim" : "não" }}</strong>
-                        (breakpoint {{ $project.device.mobileBreakpointPx }}px)
+                        (≤ {{ $project.device.mobileBreakpointPx }}px)
+                    </p>
+
+                    <p>
+                        <code>isTablet</code>:
+                        <strong>{{ $project.device.isTablet ? "sim" : "não" }}</strong>
+                        (depois do mobile, até {{ $project.device.tabletBreakpointPx }}px)
                     </p>
                 </div>
             </DocsExample>
@@ -57,8 +69,14 @@
             <p>
                 <code>activeTheme</code> e <code>availableThemes</code> vêm de
                 <code>VITE_DEFAULT_THEME</code> / <code>VITE_AVAILABLE_THEMES</code>.
-                <code>style.theme(name)</code> (ou <code>projectActions.setTheme</code>) aplica o
-                tema no <code>document</code> e persiste em <code>localStorage</code>.
+                <code>$project.style.theme(name)</code> (ou <code>projectActions.setTheme</code>) aplica o
+                tema no <code>document</code> e persiste em <code>localStorage</code>. Superfície do
+                painel flutuante:
+                <code>setCustomTheme("simplicia" | "hodiernus")</code>
+                — ver
+                <a href="/docs/custom-themes">simplicia e hodiernus</a>. CSS extra:
+                <code>loadCss</code> / <code>unloadCss</code> — ver
+                <a href="/docs/themes">Temas</a>.
             </p>
         </section>
 
@@ -262,6 +280,7 @@ No template (Options API):
 \`\`\`vue
 <p>{{ $project.labels.siteTitle }}</p>
 <p v-if="$project.device.isMobile">Layout compacto</p>
+<p v-else-if="$project.device.isTablet">Layout tablet</p>
 \`\`\`
 
 No script:

@@ -8,7 +8,7 @@ import type { ClientThemeConfig } from "./theme/types";
 /**
  * Config for a client (sister folder + build-time metadata).
  *
- * Loaded from `<folder>/cht.config.json`. The folder name is free; `name` in
+ * Loaded from `<folder>/cht.config.ts` or `cht.config.json`. The folder name is free; `name` in
  * the file is the client id used by `--client:<name>`.
  */
 export interface ClientConfig {
@@ -25,6 +25,11 @@ export interface ClientConfig {
         electron?: string;
         mobile?: string;
     };
+    /**
+     * When `false`, Vite (frontend + docs) binds only 127.0.0.1.
+     * Omitted or `true`: listen on LAN (`0.0.0.0`). Electron stays loopback.
+     */
+    lan?: boolean;
     apiPortScanLimit?: number;
     frontend?: {
         repo?: string;
@@ -61,10 +66,12 @@ export interface ClientConfig {
      * Set to `false` or `{ enabled: false }` to hide it.
      * `repoUpdateNotifications: false` hides only the repo-update bell (default on).
      */
-    devTools?: boolean | {
-        enabled?: boolean;
-        repoUpdateNotifications?: boolean;
-    };
+    devTools?:
+        | boolean
+        | {
+              enabled?: boolean;
+              repoUpdateNotifications?: boolean;
+          };
     publish?: {
         provider?: string;
         owner?: string;

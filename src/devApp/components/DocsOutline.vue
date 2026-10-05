@@ -12,6 +12,12 @@
             />
 
             <slot />
+
+            <DocsPropsTable
+                v-if="componentDocSlug"
+
+                :slug="componentDocSlug"
+            />
         </div>
 
         <nav
@@ -38,6 +44,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import DocsComponentStatus from "./DocsComponentStatus.vue";
+import DocsPropsTable from "./DocsPropsTable.vue";
 import DocsTocLink from "./DocsTocLink.vue";
 import { getComponentDocSlug } from "../ts/componentReadiness";
 
@@ -90,6 +97,7 @@ export default defineComponent({
 
     components: {
         DocsComponentStatus,
+        DocsPropsTable,
         DocsTocLink
     },
 

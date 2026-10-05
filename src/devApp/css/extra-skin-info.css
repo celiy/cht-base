@@ -1,0 +1,4 @@
+#cht-css-demo-target {
+    background-color: color-mix(in oklab, var(--color-info) 18%, var(--color-card));
+    outline: 2px solid var(--color-info);
+}

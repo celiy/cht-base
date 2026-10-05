@@ -30,22 +30,6 @@
 
         <section>
             <h3>Tags</h3>
-
-            <p>
-                <code>p</code> aplica <code>text-base font-normal</code>. <br />
-                <code>b</code> aplica <code>font-bold</code>. <br />
-                <code>i</code> aplica <code>italic</code>. <br />
-                <code>li</code> aplica <code>mb-1 ml-4 text-base font-normal</code>. <br />
-                <code>ol</code> aplica <code>list-decimal</code>. <br />
-                <code>strong</code> aplica <code>font-extrabold</code>. <br />
-                <code>mark</code> aplica <code>bg-primary text-primary-foreground</code>. <br />
-                <code>s</code> aplica <code>strike-through</code>. <br />
-                <code>sub</code> aplica <code>subscript</code>. <br />
-                <code>small</code> aplica <code>text-sm font-normal</code>. <br />
-                <code>sup</code> aplica <code>superscript</code>. <br />
-                <code>small-muted</code> aplica
-                <code>text-muted-foreground text-sm font-normal</code>.
-            </p>
         </section>
 
         <section class="mb-8">
@@ -55,11 +39,11 @@
                         <span class="flex items-center"
                             ><code>p</code>:
                             <p>&nbsp;parágrafo</p>
-                            <br
-                        /></span>
+                            <br /></span
+                        ><br />
 
-                        <code>b</code>: <b>negrito</b> <br />
-                        <code>i</code>: <i>itálico</i> <br />
+                        <code>b</code>: <b>negrito</b> <br /><br />
+                        <code>i</code>: <i>itálico</i> <br /><br />
                         <code>li</code>:
                         <li>item de lista</li>
                         <li>item de lista</li>
@@ -74,16 +58,18 @@
                             <li>item de lista</li>
                         </ol>
                         <br />
-                        <code>strong</code>: <strong>forte</strong> <br />
-                        <code>mark</code>: <mark>marcação</mark> <br />
-                        <code>s</code>: <s>riscado</s> <br />
-                        <code>sub</code>: <sub>subscrito</sub> <br />
+                        <code>strong</code>: <strong>forte</strong> <br /><br />
+                        <code>mark</code>: <mark>marcação</mark> <br /><br />
+                        <code>s</code>: <s>riscado</s> <br /><br />
+                        <code>sub</code>: <sub>subscrito</sub> <br /><br />
                         <span class="flex items-center"
                             ><code>small</code>: <small>&nbsp;pequeno</small></span
                         >
                         <br />
-                        <code>sup</code>: <sup>sobrescrito</sup> <br />
+                        <code>sup</code>: <sup>sobrescrito</sup> <br /><br />
                         <code>small-muted</code>: <small-muted>pequeno e muteado</small-muted>
+                        <br /><br />
+                        <code>kbd</code>: <kbd>Esc</kbd>, <kbd>Shit</kbd>+<kbd>Enter</kbd>
                     </span>
                 </div>
             </DocsExample>

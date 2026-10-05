@@ -53,6 +53,11 @@ const routes: RouteRecordRaw[] = [
                 component: () => import("./pages/docs/themes.vue")
             },
             {
+                path: "docs/custom-themes",
+                name: "docs-custom-themes",
+                component: () => import("./pages/docs/custom-themes.vue")
+            },
+            {
                 path: "docs/cht-config",
                 name: "docs-cht-config",
                 component: () => import("./pages/docs/cht-config.vue")

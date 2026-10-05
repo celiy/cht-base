@@ -1,10 +1,101 @@
 <template>
     <main class="relative flex h-dvh flex-col overflow-hidden">
-        <div class="relative z-60 shrink-0">
+        <div
+            class="z-60"
+            :class="{
+                'absolute inset-x-0 top-0': !$route.path.startsWith('/docs'),
+                'relative shrink-0': $route.path.startsWith('/docs')
+            }"
+        >
             <Navigator>
-                <div class="flex justify-between px-6 py-4">
+                <div
+                    v-if="$project.device.isMobile"
+
+                    class="appear-from-t-to-b flex items-center justify-between gap-2 px-2 py-3"
+                >
+                    <Button
+                        variant="transparent"
+
+                        @click="toggleTheme"
+                    >
+                        <span
+                            class="fa-solid"
+                            :class="isDarkTheme ? 'fa-sun' : 'fa-moon'"
+                        />
+                    </Button>
+
+                    <div class="flex w-full justify-end">
+                        <Input
+                            id="search-input-mobile"
+                            type="text"
+                            placeholder="Pesquisar..."
+                            readonly
+
+                            @click="openSearch"
+                        >
+                            <template #prefix>
+                                <span class="fa-solid fa-search mr-2 text-foreground/50"></span>
+                            </template>
+                        </Input>
+                    </div>
+
+                    <Popover
+                        close-on-content-click
+                        :min-width-px="200"
+                        :lock-to-anchor="false"
+                    >
+                        <template #button="{ toggle }">
+                            <Button
+                                variant="transparent"
+
+                                @click="toggle"
+                            >
+                                <span class="fa-bars fa-solid"></span>
+                            </Button>
+                        </template>
+
+                        <div class="flex flex-col gap-2">
+                            <div
+                                class="flex min-w-0 flex-col flex-wrap items-end justify-end gap-1 sm:gap-2"
+                            >
+                                <RouterLink
+                                    v-for="link in navLinks"
+                                    :key="link.path"
+                                    v-slot="{ navigate }"
+
+                                    custom
+                                    :to="link.path"
+                                >
+                                    <Button
+                                        variant="transparent"
+                                        class="w-full"
+                                        :label="link.label"
+
+                                        @click="navigate"
+                                    />
+                                </RouterLink>
+                            </div>
+
+                            <div class="flex items-end justify-end gap-2">
+                                <Button
+                                    label="GitHub"
+                                    class="w-full"
+                                    left-icon="fa-brands fa-github"
+
+                                    @click="openGitHub"
+                                />
+                            </div>
+                        </div>
+                    </Popover>
+                </div>
+
+                <div
+                    v-else
+
+                    class="appear-from-t-to-b flex flex-wrap justify-between gap-2 px-3 py-4 sm:px-6"
+                >
                     <!-- Left side -->
-                    <div class="flex flex-row gap-2">
+                    <div class="flex min-w-0 flex-row flex-wrap gap-1 sm:gap-2">
                         <RouterLink
                             v-for="link in navLinks"
                             :key="link.path"
@@ -23,6 +114,19 @@
                     </div>
 
                     <div class="flex gap-2">
+                        <Input
+                            id="search-input"
+                            type="text"
+                            placeholder="Pesquisar..."
+                            readonly
+
+                            @click="openSearch"
+                        >
+                            <template #prefix>
+                                <span class="fa-solid fa-search mr-2 text-foreground/50"></span>
+                            </template>
+                        </Input>
+
                         <Button
                             label="GitHub"
                             left-icon="fa-brands fa-github"
@@ -70,6 +174,7 @@
                 title="CHT Docs"
                 description="The CHT documentation."
                 variant="minimalist"
+                :start-open="!$project.device.isMobile"
                 :nav-items="componentsNav"
             >
                 <template #header>
@@ -96,7 +201,7 @@
         <div
             v-else
 
-            class="relative min-h-0 flex-1 overflow-y-auto"
+            class="appear-from-b-to-t relative min-h-0 flex-1 overflow-y-auto"
         >
             <RouterView />
         </div>
@@ -118,26 +223,110 @@
             </div>
         </Transition>
 
+        <Modal
+            variant="preview"
+            url-sync
+            :is-open="isSearchModalOpen"
+
+            @update:value="isSearchModalOpen = $event"
+        >
+            <template #body>
+                <div class="rounded border bg-popover shadow-lg">
+                    <OptionsList
+                        class="max-h-[50vh] min-w-[90vw] sm:min-w-[60vw] md:min-w-[40vw]"
+                        :options="plainOptions"
+                        :search="{ external: false }"
+                        :search-query="query"
+
+                        @update:search-query="query = $event"
+                        @select="onSelect"
+                    />
+                </div>
+            </template>
+        </Modal>
+
         <Toast position="bottom" />
     </main>
 </template>
 
-<script setup lang="ts">
-import { computed } from "vue";
+<script lang="ts">
+import { defineComponent } from "vue";
+import OptionsList from "@design/components/internal/OptionsList.vue";
 import { componentsNav } from "./ts/componentsNav.ts";
 import { navLinks } from "../js/navLinks.ts";
 import DocsOutline from "./components/DocsOutline.vue";
 import { project } from "../project";
 
-const isDarkTheme = computed(() => project.style.activeTheme === "dark");
+export default defineComponent({
+    name: "DevAppLayout",
 
-function toggleTheme() {
-    project.style.theme(isDarkTheme.value ? "light" : "dark");
-}
+    components: {
+        DocsOutline,
+        OptionsList
+    },
 
-function openGitHub() {
-    window.open("https://github.com/celiy/cht-main", "_blank");
-}
+    data() {
+        return {
+            isSearchModalOpen: false,
+            componentsNav,
+            navLinks,
+            query: ""
+        };
+    },
+
+    computed: {
+        isDarkTheme() {
+            return project.style.activeTheme === "dark";
+        },
+
+        plainOptions(): { label: string; value: string }[] {
+            return this.componentsNav
+                .flatMap((section) => {
+                    if (section.type === "group") {
+                        // Collect all links within groups
+                        return section.links;
+                    } else if (section.type === "link") {
+                        // Single link at the top level
+                        return [section];
+                    } else {
+                        return [];
+                    }
+                })
+                .map((link) => ({
+                    label: link.label,
+                    value: link.link
+                }));
+        }
+    },
+
+    methods: {
+        openSearch() {
+            this.isSearchModalOpen = true;
+        },
+
+        onSelect(value: string | undefined) {
+            if (!value) {
+                return;
+            }
+
+            void this.$router.push(value).finally(() => {
+                this.closeSearch();
+            });
+        },
+
+        closeSearch() {
+            this.isSearchModalOpen = false;
+        },
+
+        openGitHub() {
+            window.open("https://github.com/celiy/cht-main", "_blank");
+        },
+
+        toggleTheme() {
+            project.style.theme(this.isDarkTheme ? "light" : "dark");
+        }
+    }
+});
 </script>
 
 <style>

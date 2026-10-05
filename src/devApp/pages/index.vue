@@ -8,7 +8,7 @@
 
         <article class="container mx-auto">
             <section
-                class="mx-12 my-20 flex flex-col items-center justify-center text-center md:mx-4"
+                class="mx-4 mt-28 mb-20 flex flex-col items-center justify-center text-center sm:mt-32 md:mx-12"
             >
                 <h1 class="text-balance">A Fundação para o seu Projeto</h1>
 
@@ -40,12 +40,14 @@
             </section>
         </article>
 
-        <article class="mx-4 mb-8 grid gap-4 md:mx-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <section class="flex flex-col gap-4">
+        <article
+            class="mx-4 mb-8 grid min-w-0 gap-4 md:mx-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        >
+            <section class="flex min-w-0 flex-col gap-4">
                 <Card>
                     <template #body>
                         <div class="flex flex-col gap-4">
-                            <div class="flex gap-2">
+                            <div class="flex flex-wrap gap-2">
                                 <Button
                                     label="Button"
                                     right-icon="fa-arrow-right"
@@ -74,7 +76,7 @@
                                 />
                             </div>
 
-                            <div class="flex justify-between gap-2">
+                            <div class="flex flex-wrap justify-between gap-2">
                                 <div class="flex gap-2">
                                     <Badge
                                         label="Badge"
@@ -116,7 +118,7 @@
                                 </div>
                             </div>
 
-                            <div class="flex justify-between gap-2">
+                            <div class="flex flex-wrap justify-between gap-2">
                                 <Button
                                     label="Warning modal"
                                     variant="outline"
@@ -158,7 +160,7 @@
                     </template>
                 </Card>
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <Card>
                         <template #card>
                             <div class="flex flex-col gap-1 px-1 py-2 pb-3">
@@ -369,7 +371,7 @@
                 </Card>
             </section>
 
-            <section class="flex flex-col gap-4">
+            <section class="flex min-w-0 flex-col gap-4">
                 <Card>
                     <template #header>
                         <h5>Vendas</h5>
@@ -394,7 +396,7 @@
                                 :hide-label="true"
                             />
 
-                            <div class="flex gap-2">
+                            <div class="flex flex-col gap-2 sm:flex-row">
                                 <Item
                                     head="EM BREVE"
                                     label="Previsão"
@@ -430,6 +432,7 @@
                             <h2 class="whitespace-nowrap">$ 2,200.00</h2>
 
                             <Badge
+                                class="w-fit"
                                 label="Pendente"
                                 variant="warning"
                             />
@@ -508,7 +511,7 @@
                 </Card>
             </section>
 
-            <section class="flex flex-col gap-4">
+            <section class="flex min-w-0 flex-col gap-4">
                 <Card>
                     <template #header>
                         <h5>Definir meta</h5>
@@ -526,7 +529,7 @@
                                 placeholder="ex. Novo carro, Casa nova"
                             />
 
-                            <div class="grid grid-cols-2 gap-2">
+                            <div class="grid min-w-0 grid-cols-1 gap-2 sm:grid-cols-2">
                                 <Input
                                     id="alvo"
                                     type="text"
@@ -576,7 +579,9 @@
                             />
 
                             <div class="flex flex-col">
-                                <div class="flex items-end justify-between gap-2">
+                                <div
+                                    class="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between sm:gap-2"
+                                >
                                     <small-muted> Valor mínimo de saque </small-muted>
 
                                     <span
@@ -660,13 +665,13 @@
                 </Card>
             </section>
 
-            <section class="flex flex-col gap-4 lg:hidden xl:flex">
+            <section class="flex min-w-0 flex-col gap-4 lg:hidden xl:flex">
                 <Card>
                     <template #body>
                         <div class="flex w-full flex-col items-center justify-center gap-4">
                             <QrCode value="https://example.com" />
 
-                            <div class="px-8">
+                            <div class="px-2 sm:px-8">
                                 <h5 class="text-center">Escaneie para conectar</h5>
                                 <p class="text-center text-muted-foreground!">
                                     Abra a camera do celu celular e escaneie o QR code para se
@@ -785,7 +790,7 @@
         </article>
     </main>
 
-    <footer class="mb-8 flex w-full items-center justify-center px-8">
+    <footer class="mb-8 flex w-full items-center justify-center px-4 text-center">
         <small-muted>
             Feito por
             <a

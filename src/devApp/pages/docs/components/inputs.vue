@@ -227,6 +227,28 @@
         </section>
 
         <section>
+            <h3>Slots</h3>
+
+            <p><code>#prefix</code> para adicionar um prefixo ao input.</p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Slots">
+                <div class="flex max-w-sm flex-col gap-4 p-4">
+                    <Input
+                        id="docs-input-prefix"
+                        type="text"
+                        placeholder="Pesquisar..."
+                    >
+                        <template #prefix>
+                            <span class="fa-solid fa-search mr-2 text-foreground/50"></span>
+                        </template>
+                    </Input>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
             <h3>Estados e extras</h3>
 
             <p>

@@ -1,0 +1,27 @@
+html:not([data-custom-theme="hodiernus"]) .popover-background {
+    @apply bg-popover;
+}
+
+html:not([data-custom-theme="hodiernus"]) .tooltip-background {
+    @apply bg-secondary;
+}
+
+html:not([data-custom-theme="hodiernus"]) .item-background {
+    @apply bg-muted/40;
+}
+
+html:not([data-custom-theme="hodiernus"]) .modal-overlay {
+    @apply bg-black/50;
+}
+
+html:not([data-custom-theme="hodiernus"]) .navigator-background {
+    @apply bg-background;
+}
+
+html:not([data-custom-theme="hodiernus"]) .background-transparent {
+    @apply bg-transparent;
+}
+
+html:not([data-custom-theme="hodiernus"]) .background-accent {
+    @apply bg-accent;
+}

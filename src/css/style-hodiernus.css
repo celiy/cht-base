@@ -1,0 +1,27 @@
+html[data-custom-theme="hodiernus"] .popover-background {
+    @apply bg-popover/80 backdrop-blur-md;
+}
+
+html[data-custom-theme="hodiernus"] .tooltip-background {
+    @apply bg-secondary/80 backdrop-blur-md;
+}
+
+html[data-custom-theme="hodiernus"] .item-background {
+    @apply bg-muted/40 backdrop-blur-md;
+}
+
+html[data-custom-theme="hodiernus"] .modal-overlay {
+    @apply bg-black/50 backdrop-blur-[1px];
+}
+
+html[data-custom-theme="hodiernus"] .navigator-background {
+    @apply bg-background/80 backdrop-blur-md;
+}
+
+html[data-custom-theme="hodiernus"] .background-transparent {
+    @apply bg-transparent backdrop-blur-md;
+}
+
+html[data-custom-theme="hodiernus"] .background-accent {
+    @apply bg-accent/80 backdrop-blur-md;
+}

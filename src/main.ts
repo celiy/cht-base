@@ -4,6 +4,7 @@ import { toastPlugin } from "@design/toast/plugin";
 import { designSystemPlugin } from "@design/plugin";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./css/style.css";
+import { waitForDocumentStyles } from "./js/utils/runtimeCss";
 
 /*
  * @client Dynamically imports the App.vue and routes from the client directory
@@ -51,6 +52,10 @@ if (typeof document !== "undefined") {
 }
 
 void (async () => {
+    if (typeof document !== "undefined") {
+        await waitForDocumentStyles();
+    }
+
     await discoverApiBaseUrl();
     await installClientPlugins(app, router);
     startRealtime();

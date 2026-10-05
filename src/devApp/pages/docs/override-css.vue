@@ -48,6 +48,8 @@ Um save no ficheiro faz **full reload** da página (não é HMR de um módulo CS
 
 Usa tokens do tema (\`var(--color-primary)\`, etc.), não hex avulso, para light/dark continuarem coerentes. Ver [Temas](/docs/themes) e [Estilização](/docs/styling).
 
+CSS extra **em runtime** (ligar/desligar ficheiros a pedido) não é o override: usa \`$project.style.loadCss\` — documentado em [Temas](/docs/themes).
+
 ## O que não fazer
 
 - Não copies componentes do \`cht-design-system\` para mudar 2px de hover — isso é o override.

@@ -8,13 +8,19 @@ import type { Router } from "vue-router";
 import { reactive } from "vue";
 import { applyTextContrast } from "@design/textContrast";
 import type { ThemeName } from "../configs/theme/types";
-import type { BackendStatus, BackendStatusState, UpdateStatus, UpdateStatusState } from "../electron/types";
+import type {
+    BackendStatus,
+    BackendStatusState,
+    UpdateStatus,
+    UpdateStatusState
+} from "../electron/types";
+import { syncReactiveQuerySnapshot, syncReactiveParamsSnapshot } from "./js/utils/routeUtils";
+import { loadStylesheet, unloadStylesheet } from "./js/utils/runtimeCss";
 import {
-    syncReactiveQuerySnapshot,
-    syncReactiveParamsSnapshot
-} from "./js/utils/routeUtils";
-
-const MOBILE_BREAKPOINT_PX = 768;
+    MOBILE_BREAKPOINT_PX,
+    TABLET_BREAKPOINT_PX,
+    viewportDeviceFlags
+} from "./js/utils/viewportDevice";
 
 /**
  * Parse the available themes from the environment variables.
@@ -49,7 +55,7 @@ function parseDefaultTheme(availableThemes: ThemeName[]): ThemeName {
     const configured = import.meta.env.VITE_DEFAULT_THEME;
 
     if (configured === "light" || configured === "dark") {
-        return availableThemes.includes(configured) ? configured : availableThemes[0] ?? "dark";
+        return availableThemes.includes(configured) ? configured : (availableThemes[0] ?? "dark");
     }
 
     return availableThemes[0] ?? "dark";
@@ -58,6 +64,11 @@ function parseDefaultTheme(availableThemes: ThemeName[]): ThemeName {
 const AVAILABLE_THEMES = parseAvailableThemes();
 const DEFAULT_THEME = parseDefaultTheme(AVAILABLE_THEMES);
 const THEME_STORAGE_KEY = import.meta.env.VITE_THEME_STORAGE_KEY || "cht-theme:dev";
+const CUSTOM_THEME_STORAGE_KEY = `${THEME_STORAGE_KEY}:custom`;
+
+export type CustomThemeName = "simplicia" | "hodiernus";
+
+const CUSTOM_THEMES: CustomThemeName[] = ["simplicia", "hodiernus"];
 
 /**
  * URL helpers bound to vue-router (requires initProjectRouter).
@@ -73,6 +84,12 @@ export interface ProjectStyleState {
     activeTheme: ThemeName;
     availableThemes: ThemeName[];
     theme: (name: ThemeName) => void;
+    customTheme: CustomThemeName;
+    availableCustomThemes: CustomThemeName[];
+    setCustomTheme: (name: CustomThemeName) => void;
+    loadedCss: string[];
+    loadCss: (id: string, href: string) => void;
+    unloadCss: (id: string) => void;
 }
 
 export interface ProjectElectronState {
@@ -99,9 +116,11 @@ export interface ProjectUpdateState {
 export interface ProjectState {
     device: {
         isMobile: boolean;
+        isTablet: boolean;
         viewportWidth: number;
         viewportHeight: number;
         mobileBreakpointPx: number;
+        tabletBreakpointPx: number;
     };
     labels: {
         siteTitle: string;
@@ -194,15 +213,98 @@ function setTheme(theme: ThemeName) {
     persistTheme(theme);
 }
 
+function isCustomThemeName(value: string): value is CustomThemeName {
+    return CUSTOM_THEMES.includes(value as CustomThemeName);
+}
+
+function readStoredCustomTheme(): CustomThemeName | null {
+    if (typeof window === "undefined") {
+        return null;
+    }
+
+    try {
+        const stored = window.localStorage.getItem(CUSTOM_THEME_STORAGE_KEY);
+
+        if (stored === "secondary") {
+            return "simplicia";
+        }
+
+        if (stored === "tertiary") {
+            return "hodiernus";
+        }
+
+        if (stored && isCustomThemeName(stored)) {
+            return stored;
+        }
+    } catch {
+        return null;
+    }
+
+    return null;
+}
+
+function persistCustomTheme(name: CustomThemeName) {
+    if (typeof window === "undefined") {
+        return;
+    }
+
+    try {
+        window.localStorage.setItem(CUSTOM_THEME_STORAGE_KEY, name);
+    } catch {
+        // Ignore storage failures (private mode, quota, etc.).
+    }
+}
+
+function applyCustomThemeToDocument(name: CustomThemeName) {
+    if (typeof document === "undefined") {
+        return;
+    }
+
+    document.documentElement.dataset.customTheme = name;
+}
+
+function setCustomTheme(name: CustomThemeName) {
+    if (!isCustomThemeName(name)) {
+        return;
+    }
+
+    project.style.customTheme = name;
+    applyCustomThemeToDocument(name);
+    persistCustomTheme(name);
+}
+
+function loadCss(id: string, href: string) {
+    if (typeof document === "undefined") {
+        return;
+    }
+
+    loadStylesheet(id, href);
+
+    if (!project.style.loadedCss.includes(id)) {
+        project.style.loadedCss.push(id);
+    }
+}
+
+function unloadCss(id: string) {
+    if (typeof document === "undefined") {
+        return;
+    }
+
+    unloadStylesheet(id);
+    project.style.loadedCss = project.style.loadedCss.filter((item) => item !== id);
+}
+
 /**
  * The initial project state.
  */
 export const project = reactive<ProjectState>({
     device: {
         isMobile: false,
+        isTablet: false,
         viewportWidth: 0,
         viewportHeight: 0,
-        mobileBreakpointPx: MOBILE_BREAKPOINT_PX
+        mobileBreakpointPx: MOBILE_BREAKPOINT_PX,
+        tabletBreakpointPx: TABLET_BREAKPOINT_PX
     },
     labels: {
         siteTitle: ""
@@ -214,7 +316,13 @@ export const project = reactive<ProjectState>({
     style: {
         activeTheme: DEFAULT_THEME,
         availableThemes: AVAILABLE_THEMES,
-        theme: setTheme
+        theme: setTheme,
+        customTheme: "hodiernus",
+        availableCustomThemes: CUSTOM_THEMES,
+        setCustomTheme,
+        loadedCss: [],
+        loadCss,
+        unloadCss
     },
     user: {
         name: null
@@ -278,8 +386,7 @@ export function initProjectRouter(router: Router) {
 
         beginRouteLoading();
 
-        const forceSlow = import.meta.env.DEV
-            && (to.query.slow === "1" || from.query.slow === "1");
+        const forceSlow = import.meta.env.DEV && (to.query.slow === "1" || from.query.slow === "1");
 
         if (forceSlow) {
             await new Promise<void>((resolve) => {
@@ -312,7 +419,10 @@ function updateDeviceFromViewport() {
 
     project.device.viewportWidth = width;
     project.device.viewportHeight = height;
-    project.device.isMobile = width <= MOBILE_BREAKPOINT_PX;
+
+    const flags = viewportDeviceFlags(width);
+    project.device.isMobile = flags.isMobile;
+    project.device.isTablet = flags.isTablet;
 }
 
 let deviceWatcherStarted = false;
@@ -390,6 +500,7 @@ function initTheme() {
     const initialTheme = storedTheme ?? DEFAULT_THEME;
 
     setTheme(initialTheme);
+    setCustomTheme(readStoredCustomTheme() ?? "hodiernus");
 }
 
 /**
@@ -459,6 +570,18 @@ export const projectActions = {
 
     setTheme(theme: ThemeName) {
         setTheme(theme);
+    },
+
+    setCustomTheme(name: CustomThemeName) {
+        setCustomTheme(name);
+    },
+
+    loadCss(id: string, href: string) {
+        loadCss(id, href);
+    },
+
+    unloadCss(id: string) {
+        unloadCss(id);
     },
 
     checkForUpdates() {

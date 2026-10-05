@@ -136,6 +136,8 @@ export default defineConfig(({ command }) => {
             ? path.resolve(__dirname, "node_modules/.vite-devapp")
             : path.resolve(__dirname, "node_modules/.vite"),
         server: {
+            host: clientConfig?.lan === false ? "127.0.0.1" : true,
+            ...(clientConfig?.lan === false ? {} : { allowedHosts: true as const }),
             fs: {
                 allow: [path.resolve(__dirname, "..")]
             }

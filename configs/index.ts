@@ -6,11 +6,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { findClientConfigPath, loadClientConfigFromDir } from "./loadClientConfig.ts";
 import type { ClientConfig } from "./types";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(HERE, "..", "..");
-const CLIENT_CONFIG_FILE = "cht.config.json";
 
 /**
  * The directories to skip during discovery
@@ -27,7 +27,7 @@ const SKIP_DISCOVERY_DIRS = new Set([
 ]);
 
 /**
- * Folder that contained `cht.config.json`. `clientDir` is filled by `loadConfig`.
+ * Folder that contained the client config file. `clientDir` is filled by `loadConfig`.
  */
 export function resolveClientDir(cfg: ClientConfig): string {
     if (cfg.clientDir) {
@@ -151,10 +151,10 @@ export function loadDevAppVersion(): { version?: string; versionCheckUrl?: strin
 
 /**
  * Lists the discovered clients
- * @returns {Map<string, { dir: string; configPath: string }>} The discovered clients
+ * @returns {Map<string, { dir: string; configPath: string; config: ClientConfig }>} The discovered clients
  */
-function listDiscoveredClients(): Map<string, { dir: string; configPath: string }> {
-    const found = new Map<string, { dir: string; configPath: string }>();
+function listDiscoveredClients(): Map<string, { dir: string; configPath: string; config: ClientConfig }> {
+    const found = new Map<string, { dir: string; configPath: string; config: ClientConfig }>();
 
     if (!fs.existsSync(WORKSPACE_ROOT)) {
         return found;
@@ -169,27 +169,24 @@ function listDiscoveredClients(): Map<string, { dir: string; configPath: string 
             continue;
         }
 
-        const configPath = path.join(WORKSPACE_ROOT, entry.name, CLIENT_CONFIG_FILE);
+        const dirPath = path.join(WORKSPACE_ROOT, entry.name);
 
-        if (!fs.existsSync(configPath)) {
+        if (!findClientConfigPath(dirPath)) {
             continue;
         }
 
-        let parsed: { name?: unknown };
-
-        try {
-            parsed = JSON.parse(fs.readFileSync(configPath, "utf8")) as { name?: unknown };
-        } catch {
-            continue;
-        }
-
-        const name = typeof parsed.name === "string" ? parsed.name.trim() : "";
+        const loaded = loadClientConfigFromDir(dirPath);
+        const name = typeof loaded.config.name === "string" ? loaded.config.name.trim() : "";
 
         if (!name || found.has(name)) {
             continue;
         }
 
-        found.set(name, { dir: entry.name, configPath });
+        found.set(name, {
+            dir: entry.name,
+            configPath: loaded.configPath,
+            config: loaded.config as unknown as ClientConfig
+        });
     }
 
     return found;
@@ -204,8 +201,8 @@ function listDiscoveredClientNames(): string[] {
 }
 
 /**
- * Load a client config by `name` from any sibling folder that has `cht.config.json`.
- * Returns null when no client is active (base dev mode).
+ * Load a client config by `name` from any sibling folder that has `cht.config.ts`
+ * or `cht.config.json`. Returns null when no client is active (base dev mode).
  * @param {string | undefined | null} name The name of the client to load
  * @returns {ClientConfig | null} The client config
  */
@@ -220,25 +217,13 @@ export function loadConfig(name: string | undefined | null): ClientConfig | null
         const known = listDiscoveredClientNames().join(", ") || "(none)";
 
         throw new Error(
-            `[configs] Client config not found: "${name}". Add cht.config.json to a sibling folder. Known clients: ${known}`
+            `[configs] Client config not found: "${name}". Add cht.config.ts or cht.config.json to a sibling folder. Known clients: ${known}`
         );
     }
 
     const clientDir = found.dir;
     const clientDirPath = path.join(WORKSPACE_ROOT, clientDir);
-    const configPath = found.configPath;
-
-    const raw = fs.readFileSync(configPath, "utf8");
-    let parsed: ClientConfig;
-
-    try {
-        parsed = JSON.parse(raw) as ClientConfig;
-    } catch (err) {
-        const message = err instanceof Error ? err.message : String(err);
-
-        throw new Error(`[configs] Invalid JSON in ${configPath}: ${message}`);
-    }
-
+    const parsed = found.config;
     const fileVersion = loadVersionFromFile(clientDirPath);
     const workspaceVersion = loadWorkspaceVersion();
 

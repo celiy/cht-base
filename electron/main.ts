@@ -195,7 +195,7 @@ function createWindow(): BrowserWindow {
         minHeight: 600,
         title: runtimeConfig.siteTitle,
         backgroundColor: "#171717",
-        show: true,
+        show: false,
         autoHideMenuBar: true,
         webPreferences: {
             preload: preloadPath(),
@@ -213,6 +213,12 @@ function createWindow(): BrowserWindow {
     });
 
     attachContextMenu(window);
+
+    window.once("ready-to-show", () => {
+        if (!window.isDestroyed()) {
+            window.show();
+        }
+    });
 
     return window;
 }
