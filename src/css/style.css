@@ -20,14 +20,20 @@
 html {
     font-family: "Inter", sans-serif;
     background-color: var(--color-background);
+    --cht-reveal-x: -9999px;
+    --cht-reveal-y: -9999px;
+    --cht-reveal-size: 12rem;
+    --cht-reveal-color: rgb(255 255 255 / 0.1);
 }
 
 html[data-theme="light"] {
     color-scheme: light;
+    --cht-reveal-color: rgb(0 0 0 / 0.15);
 }
 
 html[data-theme="dark"] {
     color-scheme: dark;
+    --cht-reveal-color: rgb(255 255 255 / 0.1);
 }
 
 * {
@@ -334,6 +340,75 @@ pre code {
 
 .docs-article {
     @apply mt-4 mb-4 flex flex-col gap-4 md:mt-8;
+}
+
+@layer components {
+    .reveal-highlight {
+        position: relative;
+    }
+}
+
+.cht-reveal-layer {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: inherit;
+    box-sizing: border-box;
+    inset: calc(-1 * var(--cht-reveal-bt, 0px)) calc(-1 * var(--cht-reveal-br, 0px))
+        calc(-1 * var(--cht-reveal-bb, 0px)) calc(-1 * var(--cht-reveal-bl, 0px));
+    background: radial-gradient(
+        circle var(--cht-reveal-size) at var(--cht-reveal-x) var(--cht-reveal-y),
+        var(--cht-reveal-color),
+        transparent 70%
+    );
+    background-attachment: fixed;
+}
+
+.cht-reveal-layer[data-reveal-local] {
+    background-attachment: scroll;
+}
+
+.cht-reveal-layer[data-reveal-mask="ring"] {
+    padding: var(--cht-reveal-bt, 1px);
+    -webkit-mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    -webkit-mask-clip: content-box, border-box;
+    -webkit-mask-composite: xor;
+    mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    mask-clip: content-box, border-box;
+    mask-composite: exclude;
+    mask-mode: alpha, alpha;
+}
+
+.cht-reveal-layer[data-reveal-mask="sides"] {
+    -webkit-mask-image:
+        linear-gradient(#fff, #fff), linear-gradient(#fff, #fff), linear-gradient(#fff, #fff),
+        linear-gradient(#fff, #fff);
+    -webkit-mask-size:
+        100% var(--cht-reveal-bt, 0px), var(--cht-reveal-br, 0px) 100%,
+        100% var(--cht-reveal-bb, 0px), var(--cht-reveal-bl, 0px) 100%;
+    -webkit-mask-position:
+        top,
+        right,
+        bottom,
+        left;
+    -webkit-mask-repeat: no-repeat;
+    mask-image:
+        linear-gradient(#fff, #fff), linear-gradient(#fff, #fff), linear-gradient(#fff, #fff),
+        linear-gradient(#fff, #fff);
+    mask-mode: alpha, alpha, alpha, alpha;
+    mask-size:
+        100% var(--cht-reveal-bt, 0px), var(--cht-reveal-br, 0px) 100%,
+        100% var(--cht-reveal-bb, 0px), var(--cht-reveal-bl, 0px) 100%;
+    mask-position:
+        top,
+        right,
+        bottom,
+        left;
+    mask-repeat: no-repeat;
+}
+
+html[data-reveal-highlight="off"] .cht-reveal-layer {
+    display: none;
 }
 
 /* Modern browsers */

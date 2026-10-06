@@ -77,6 +77,10 @@
                 <a href="/docs/custom-themes">simplicia e hodiernus</a>. CSS extra:
                 <code>loadCss</code> / <code>unloadCss</code> — ver
                 <a href="/docs/themes">Temas</a>.
+                <code>revealHighlight</code> (default <code>true</code>) liga o glow de borda da
+                classe
+                <a href="/docs/styling">reveal-highlight</a>; não persiste. O motor só pinta com
+                <code>customTheme === "hodiernus"</code>.
             </p>
         </section>
 
@@ -100,6 +104,24 @@
                                 $project.style.activeTheme === 'dark' ? 'light' : 'dark'
                             )
                         "
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Reveal highlight">
+                <div class="flex flex-wrap items-center gap-3 p-4">
+                    <p class="text-sm">
+                        <code>style.revealHighlight</code>:
+                        <strong>{{ $project.style.revealHighlight ? "ligado" : "desligado" }}</strong>
+                    </p>
+
+                    <Button
+                        variant="secondary"
+                        :label="$project.style.revealHighlight ? 'Desligar' : 'Ligar'"
+
+                        @click="$project.style.revealHighlight = !$project.style.revealHighlight"
                     />
                 </div>
             </DocsExample>

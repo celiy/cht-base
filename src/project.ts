@@ -5,7 +5,7 @@
 
 import type { App } from "vue";
 import type { Router } from "vue-router";
-import { reactive } from "vue";
+import { reactive, watch } from "vue";
 import { applyTextContrast } from "@design/textContrast";
 import type { ThemeName } from "../configs/theme/types";
 import type {
@@ -21,6 +21,11 @@ import {
     TABLET_BREAKPOINT_PX,
     viewportDeviceFlags
 } from "./js/utils/viewportDevice";
+import {
+    initRevealHighlightEngine,
+    isRevealHighlightRuntimeEnabled,
+    syncRevealHighlightEngine
+} from "./js/utils/revealHighlight";
 
 /**
  * Parse the available themes from the environment variables.
@@ -90,6 +95,7 @@ export interface ProjectStyleState {
     loadedCss: string[];
     loadCss: (id: string, href: string) => void;
     unloadCss: (id: string) => void;
+    revealHighlight: boolean;
 }
 
 export interface ProjectElectronState {
@@ -322,7 +328,8 @@ export const project = reactive<ProjectState>({
         setCustomTheme,
         loadedCss: [],
         loadCss,
-        unloadCss
+        unloadCss,
+        revealHighlight: true
     },
     user: {
         name: null
@@ -440,6 +447,29 @@ function startDeviceWatcher() {
     deviceWatcherStarted = true;
 }
 
+let revealHighlightStarted = false;
+
+/**
+ * Starts the page-wide border glow and watches the flag plus hodiernus.
+ */
+function initRevealHighlight() {
+    if (revealHighlightStarted || typeof window === "undefined") {
+        return;
+    }
+
+    revealHighlightStarted = true;
+    initRevealHighlightEngine(() =>
+        isRevealHighlightRuntimeEnabled(project.style.revealHighlight, project.style.customTheme)
+    );
+    watch(
+        () => [project.style.revealHighlight, project.style.customTheme] as const,
+        () => {
+            syncRevealHighlightEngine();
+        },
+        { flush: "sync" }
+    );
+}
+
 /**
  * Applies the backend status to the project state
  * @param {BackendStatus} status The backend status
@@ -552,6 +582,7 @@ export const projectActions = {
     init() {
         initTheme();
         startDeviceWatcher();
+        initRevealHighlight();
         initElectron();
         initElectronUpdates();
     },
