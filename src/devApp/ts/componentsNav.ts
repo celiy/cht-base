@@ -65,6 +65,11 @@ export const componentsNav = [
                 searchIcon: "fa-palette"
             },
             {
+                label: "Plugin Tailwind do cliente",
+                link: "/docs/client-tailwind-plugin",
+                searchIcon: "fa-palette"
+            },
+            {
                 label: "Temas",
                 link: "/docs/themes",
                 searchIcon: "fa-palette"

@@ -21,7 +21,9 @@ import {
     TABLET_BREAKPOINT_PX,
     viewportDeviceFlags
 } from "./js/utils/viewportDevice";
+import { getDevicePerformanceScore } from "./js/utils/devicePerformanceScore";
 import {
+    applyRevealHighlightPerformanceGate,
     initRevealHighlightEngine,
     isRevealHighlightRuntimeEnabled,
     syncRevealHighlightEngine
@@ -127,6 +129,8 @@ export interface ProjectState {
         viewportHeight: number;
         mobileBreakpointPx: number;
         tabletBreakpointPx: number;
+        /** `null` until the startup benchmark finishes. */
+        performanceScore: number | null;
     };
     labels: {
         siteTitle: string;
@@ -310,7 +314,8 @@ export const project = reactive<ProjectState>({
         viewportWidth: 0,
         viewportHeight: 0,
         mobileBreakpointPx: MOBILE_BREAKPOINT_PX,
-        tabletBreakpointPx: TABLET_BREAKPOINT_PX
+        tabletBreakpointPx: TABLET_BREAKPOINT_PX,
+        performanceScore: null
     },
     labels: {
         siteTitle: ""
@@ -445,6 +450,31 @@ function startDeviceWatcher() {
     updateDeviceFromViewport();
     window.addEventListener("resize", updateDeviceFromViewport);
     deviceWatcherStarted = true;
+}
+
+let devicePerformanceStarted = false;
+
+/**
+ * Runs the device benchmark once and stores `device.performanceScore`.
+ */
+function startDevicePerformanceScore() {
+    if (devicePerformanceStarted || typeof window === "undefined") {
+        return;
+    }
+
+    devicePerformanceStarted = true;
+
+    void getDevicePerformanceScore()
+        .then((score) => {
+            project.device.performanceScore = score;
+            applyRevealHighlightPerformanceGate(project.style, score);
+            syncRevealHighlightEngine();
+
+            console.debug("User device performance score is:", score);
+        })
+        .catch(() => {
+            project.device.performanceScore = null;
+        });
 }
 
 let revealHighlightStarted = false;
@@ -582,6 +612,7 @@ export const projectActions = {
     init() {
         initTheme();
         startDeviceWatcher();
+        startDevicePerformanceScore();
         initRevealHighlight();
         initElectron();
         initElectronUpdates();

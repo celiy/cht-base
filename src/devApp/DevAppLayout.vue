@@ -7,7 +7,7 @@
                 'relative shrink-0': $route.path.startsWith('/docs')
             }"
         >
-            <Navigator>
+            <NavBar variant="simplified">
                 <div
                     v-if="$project.device.isMobile"
 
@@ -154,7 +154,7 @@
                         </Button>
                     </div>
                 </div>
-            </Navigator>
+            </NavBar>
 
             <Transition name="fade-loading">
                 <div

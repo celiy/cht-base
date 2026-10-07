@@ -30,6 +30,17 @@
                     $project.device.tabletBreakpointPx
                 }}
                 px). Acima disso, os dois são <code>false</code>.
+                <code>performanceScore</code> começa em <code>null</code> e passa a um inteiro
+                depois de um benchmark leve no arranque (~100–150 ms no total, em fatias para não
+                travar a UI). Escala aproximada:
+                <code>0–300</code> fraco, <code>300–700</code> intermediário, <code>700–1200</code>
+                bom, <code>1200+</code> muito rápido. O valor fica em cache na sessão; a lógica está
+                em <code>getDevicePerformanceScore</code>
+                (<code>cht-base/src/js/utils/devicePerformanceScore.ts</code>). No boot, o score pode
+                desligar o
+                <a href="/docs/styling">reveal highlight</a> em máquinas fracas — ver
+                <code>applyRevealHighlightPerformanceGate</code> em
+                <code>revealHighlight.ts</code> (limiar comentado para calibrares).
             </p>
         </section>
 
@@ -58,6 +69,11 @@
                         <code>isTablet</code>:
                         <strong>{{ $project.device.isTablet ? "sim" : "não" }}</strong>
                         (depois do mobile, até {{ $project.device.tabletBreakpointPx }}px)
+                    </p>
+
+                    <p>
+                        <code>performanceScore</code>:
+                        <strong>{{ performanceScoreLabel }}</strong>
                     </p>
                 </div>
             </DocsExample>
@@ -303,6 +319,9 @@ No template (Options API):
 <p>{{ $project.labels.siteTitle }}</p>
 <p v-if="$project.device.isMobile">Layout compacto</p>
 <p v-else-if="$project.device.isTablet">Layout tablet</p>
+<p v-if="$project.device.performanceScore != null">
+  Score: {{ $project.device.performanceScore }}
+</p>
 \`\`\`
 
 No script:
@@ -360,6 +379,16 @@ export default defineComponent({
             }
 
             return JSON.stringify(this.$project.url.params);
+        },
+
+        performanceScoreLabel(): string {
+            const score = this.$project.device.performanceScore;
+
+            if (score === null) {
+                return "a medir…";
+            }
+
+            return String(score);
         }
     }
 });

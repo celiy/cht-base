@@ -8,6 +8,7 @@ import { clientThemePlugin } from "./vite-plugins/clientTheme";
 import { clientSourcePlugin } from "./vite-plugins/clientSource";
 import { clientFaviconPlugin } from "./vite-plugins/clientFavicon";
 import { clientOverridePlugin } from "./vite-plugins/clientOverride";
+import { clientTailwindPlugin } from "./vite-plugins/clientTailwindPlugin";
 import { repoUpdatesPlugin } from "./vite-plugins/repoUpdates";
 import {
     DEFAULT_API_PORT_SCAN_LIMIT,
@@ -96,6 +97,7 @@ export default defineConfig(({ command }) => {
     return {
         plugins: [
             clientSourcePlugin(),
+            clientTailwindPlugin(),
             clientThemePlugin(),
             clientFaviconPlugin(),
             docsExampleSourcePlugin(),

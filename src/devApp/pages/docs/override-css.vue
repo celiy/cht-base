@@ -50,6 +50,8 @@ Usa tokens do tema (\`var(--color-primary)\`, etc.), não hex avulso, para light
 
 CSS extra **em runtime** (ligar/desligar ficheiros a pedido) não é o override: usa \`$project.style.loadCss\` — documentado em [Temas](/docs/themes).
 
+Utilities Tailwind **novas** (não retocar classes existentes) usam [Plugin Tailwind do cliente](/docs/client-tailwind-plugin).
+
 ## O que não fazer
 
 - Não copies componentes do \`cht-design-system\` para mudar 2px de hover — isso é o override.

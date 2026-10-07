@@ -3,6 +3,7 @@
 @import "./resetCSS.css" layer(reset);
 @import "tailwindcss";
 @plugin "./borderUtilitiesPlugin.js";
+@plugin "virtual:client-tailwind-plugin";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @custom-variant light (&:where([data-theme=light], [data-theme=light] *));

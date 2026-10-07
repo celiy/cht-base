@@ -18,6 +18,27 @@ export function isRevealHighlightRuntimeEnabled(
     return revealHighlight && customTheme === REVEAL_CUSTOM_THEME;
 }
 
+/**
+ * Disables reveal at startup when the benchmark score is below the threshold.
+ * Uncomment `MIN_REVEAL_HIGHLIGHT_PERFORMANCE_SCORE` and set your cutoff.
+ *
+ * @param style Project style slice (`revealHighlight` is mutated when gated)
+ * @param performanceScore Result from `getDevicePerformanceScore`
+ */
+export function applyRevealHighlightPerformanceGate(
+    style: { revealHighlight: boolean },
+    performanceScore: number
+): void {
+    const MIN_REVEAL_HIGHLIGHT_PERFORMANCE_SCORE = 4000;
+
+    if (performanceScore < MIN_REVEAL_HIGHLIGHT_PERFORMANCE_SCORE) {
+        style.revealHighlight = false;
+    }
+
+    void style;
+    void performanceScore;
+}
+
 const SKIP_TAGS = new Set([
     "AREA",
     "BASE",
@@ -82,10 +103,10 @@ let reducedMotionMq: MediaQueryList | null = null;
  * @returns True if the browser supports the reveal mask, false otherwise.
  */
 export function supportsRevealMask(
-    supportsFn: ((property: string, value: string) => boolean) | undefined =
-        typeof CSS !== "undefined" && typeof CSS.supports === "function"
-            ? CSS.supports.bind(CSS)
-            : undefined
+    supportsFn: ((property: string, value: string) => boolean) | undefined = typeof CSS !==
+        "undefined" && typeof CSS.supports === "function"
+        ? CSS.supports.bind(CSS)
+        : undefined
 ): boolean {
     if (!supportsFn) {
         return false;
@@ -147,9 +168,17 @@ export function isOutsideRevealRadius(
     radiusPx: number
 ): boolean {
     const dx =
-        pointerX < rect.left ? rect.left - pointerX : pointerX > rect.right ? pointerX - rect.right : 0;
+        pointerX < rect.left
+            ? rect.left - pointerX
+            : pointerX > rect.right
+              ? pointerX - rect.right
+              : 0;
     const dy =
-        pointerY < rect.top ? rect.top - pointerY : pointerY > rect.bottom ? pointerY - rect.bottom : 0;
+        pointerY < rect.top
+            ? rect.top - pointerY
+            : pointerY > rect.bottom
+              ? pointerY - rect.bottom
+              : 0;
 
     return dx * dx + dy * dy > radiusPx * radiusPx;
 }

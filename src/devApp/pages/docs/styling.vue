@@ -57,6 +57,8 @@
                 <code>border-x-2/primary</code>. Largura arbitrária usa barra:
                 <code>border-[1rem]/muted</code>, <code>border-b-[4px]/primary</code> (o Tailwind
                 não aceita token depois de <code>]</code>).
+                Novas utilities **só deste cliente** (não o padrão global de bordas) usam
+                <a href="/docs/client-tailwind-plugin">Plugin Tailwind do cliente</a>.
             </p>
         </section>
 
@@ -185,14 +187,29 @@
                 Chromium, Firefox e Safari 15.4+; noutros browsers a classe não faz nada. O halo
                 segue o <code>border-radius</code>, tem 1px e 50% de opacidade. Com
                 <code>prefers-reduced-motion</code>, ponteiro grosso ou
-                <code>$project.style.revealHighlight = false</code> o efeito desliga-se. No DevApp
-                só corre com o tema de superfície <code>hodiernus</code>.
+                <code>$project.style.revealHighlight = false</code> o efeito desliga-se. No arranque,
+                o score em <a href="/docs/project">$project.device.performanceScore</a> pode desligar
+                o reveal automaticamente (limiar em
+                <code>applyRevealHighlightPerformanceGate</code>). No DevApp só corre com o tema de
+                superfície <code>hodiernus</code>.
             </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Reveal highlight">
-                <div class="grid grid-cols-2 gap-4 p-4">
+                <div class="p-4">
+                    <Button
+                        :label="
+                            $project.style.revealHighlight
+                                ? 'Reveal highlight ativado'
+                                : 'Reveal highlight desativado'
+                        "
+
+                        @click="$project.style.revealHighlight = !$project.style.revealHighlight"
+                    />
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 px-4 pb-4">
                     <Card class="reveal-highlight">
                         <template #body>
                             <p>Card 1</p>
@@ -223,7 +240,9 @@
         <section class="mb-8">
             <DocsExample label="Borda parcial">
                 <div class="flex flex-wrap gap-4 p-4">
-                    <div class="reveal-highlight h-20 w-36 rounded-md border-b-2-border bg-card p-3">
+                    <div
+                        class="reveal-highlight border-b-2-border h-20 w-36 rounded-md bg-card p-3"
+                    >
                         <p class="text-sm">border-b</p>
                     </div>
 
@@ -247,6 +266,9 @@
                 <code>cht-base/src/css/style.css</code>, então as regras locais vencem as globais.
                 Sem o ficheiro, nada é injetado. Como usar:
                 <a href="/docs/override-css">override.css</a>.
+                Utilities novas (não retocar classes existentes):
+                <a href="/docs/client-tailwind-plugin">Plugin Tailwind do cliente</a>
+                (<code>src/tailwind.plugin.js</code>).
             </p>
         </section>
     </article>

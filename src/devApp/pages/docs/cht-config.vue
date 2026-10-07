@@ -119,7 +119,7 @@ Para empacotar um backend que não é Node, mantém \`packageWithElectron: true\
 | \`publish\` | Dados do GitHub para updates Electron |
 | \`theme\` | Opcional; senão usa-se \`src/theme.config.json\` |
 
-CSS extra do cliente: ficheiro \`src/override.css\` (não é campo do JSON). Ver [override.css](/docs/override-css). Contrato da API: [Criar backend](/docs/backend).
+CSS extra do cliente: ficheiro \`src/override.css\` (não é campo do JSON). Ver [override.css](/docs/override-css). Plugin Tailwind opcional: \`src/tailwind.plugin.js\` — [Plugin Tailwind do cliente](/docs/client-tailwind-plugin). Contrato da API: [Criar backend](/docs/backend).
 
 O \`install\` clona as URLs do cht.config e do catálogo em \`clients.json\` (para o primeiro clone, antes da pasta existir). Não inventa repositórios a partir do nome da pasta.
 
