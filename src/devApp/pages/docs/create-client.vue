@@ -17,7 +17,7 @@ export default defineComponent({
         source(): string {
             return `# Criar um frontend
 
-O comando copia o template em \`cht-base/template/client-template\`: uma rota \`/\`, uma página \`index.vue\`, \`bootstrap.ts\` vazio, \`cht.config.ts\`, \`.env.example\`, \`theme.config.json\`, \`src/override.css\` (opcional, vazio) e paths \`@base\` / \`@design\`.
+O comando copia o template em \`cht-base/template/client-template\`: uma rota \`/\`, uma página \`index.vue\`, \`bootstrap.ts\` vazio, \`cht.config.ts\`, \`.env.example\`, \`theme.config.json\`, \`src/override.css\` (opcional, vazio), \`src/tailwind.plugin.js\` (opcional, vazio) e paths \`@base\` / \`@design\`.
 
 \`\`\`bash
 npx chtmain create meu-app cht-client-meu-app
@@ -45,6 +45,7 @@ O comando preenche \`name\`, \`siteTitle\`, \`package.json\` e o nome do compone
 - \`src/routes.ts\`: uma rota para \`src/pages/index.vue\`
 - \`src/bootstrap.ts\`: \`setupAuthGuard\` e \`installClientPlugins\` sem lógica (podes acrescentar auth, plugins, etc.)
 - \`src/override.css\`: CSS do cliente por cima do estilo base; ver [override.css](/docs/override-css)
+- \`src/tailwind.plugin.js\`: utilities Tailwind só deste cliente (opcional); ver [Plugin Tailwind do cliente](/docs/client-tailwind-plugin)
 - \`cht.config.ts\`, \`.env.example\` e \`src/theme.config.json\`
 
 Podes usar só \`cht.config.json\` em vez do \`.ts\`. Contrato dos campos: [cht.config](/docs/cht-config).

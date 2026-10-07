@@ -5,7 +5,7 @@
 
 import type { App } from "vue";
 import type { Router } from "vue-router";
-import { reactive } from "vue";
+import { reactive, watch } from "vue";
 import { applyTextContrast } from "@design/textContrast";
 import type { ThemeName } from "../configs/theme/types";
 import type {
@@ -21,6 +21,13 @@ import {
     TABLET_BREAKPOINT_PX,
     viewportDeviceFlags
 } from "./js/utils/viewportDevice";
+import { getDevicePerformanceScore } from "./js/utils/devicePerformanceScore";
+import {
+    applyRevealHighlightPerformanceGate,
+    initRevealHighlightEngine,
+    isRevealHighlightRuntimeEnabled,
+    syncRevealHighlightEngine
+} from "./js/utils/revealHighlight";
 
 /**
  * Parse the available themes from the environment variables.
@@ -90,6 +97,7 @@ export interface ProjectStyleState {
     loadedCss: string[];
     loadCss: (id: string, href: string) => void;
     unloadCss: (id: string) => void;
+    revealHighlight: boolean;
 }
 
 export interface ProjectElectronState {
@@ -121,6 +129,8 @@ export interface ProjectState {
         viewportHeight: number;
         mobileBreakpointPx: number;
         tabletBreakpointPx: number;
+        /** `null` until the startup benchmark finishes. */
+        performanceScore: number | null;
     };
     labels: {
         siteTitle: string;
@@ -304,7 +314,8 @@ export const project = reactive<ProjectState>({
         viewportWidth: 0,
         viewportHeight: 0,
         mobileBreakpointPx: MOBILE_BREAKPOINT_PX,
-        tabletBreakpointPx: TABLET_BREAKPOINT_PX
+        tabletBreakpointPx: TABLET_BREAKPOINT_PX,
+        performanceScore: null
     },
     labels: {
         siteTitle: ""
@@ -322,7 +333,8 @@ export const project = reactive<ProjectState>({
         setCustomTheme,
         loadedCss: [],
         loadCss,
-        unloadCss
+        unloadCss,
+        revealHighlight: true
     },
     user: {
         name: null
@@ -440,6 +452,54 @@ function startDeviceWatcher() {
     deviceWatcherStarted = true;
 }
 
+let devicePerformanceStarted = false;
+
+/**
+ * Runs the device benchmark once and stores `device.performanceScore`.
+ */
+function startDevicePerformanceScore() {
+    if (devicePerformanceStarted || typeof window === "undefined") {
+        return;
+    }
+
+    devicePerformanceStarted = true;
+
+    void getDevicePerformanceScore()
+        .then((score) => {
+            project.device.performanceScore = score;
+            applyRevealHighlightPerformanceGate(project.style, score);
+            syncRevealHighlightEngine();
+
+            console.debug("User device performance score is:", score);
+        })
+        .catch(() => {
+            project.device.performanceScore = null;
+        });
+}
+
+let revealHighlightStarted = false;
+
+/**
+ * Starts the page-wide border glow and watches the flag plus hodiernus.
+ */
+function initRevealHighlight() {
+    if (revealHighlightStarted || typeof window === "undefined") {
+        return;
+    }
+
+    revealHighlightStarted = true;
+    initRevealHighlightEngine(() =>
+        isRevealHighlightRuntimeEnabled(project.style.revealHighlight, project.style.customTheme)
+    );
+    watch(
+        () => [project.style.revealHighlight, project.style.customTheme] as const,
+        () => {
+            syncRevealHighlightEngine();
+        },
+        { flush: "sync" }
+    );
+}
+
 /**
  * Applies the backend status to the project state
  * @param {BackendStatus} status The backend status
@@ -552,6 +612,8 @@ export const projectActions = {
     init() {
         initTheme();
         startDeviceWatcher();
+        startDevicePerformanceScore();
+        initRevealHighlight();
         initElectron();
         initElectronUpdates();
     },

@@ -3,24 +3,11 @@
  * This module is responsible for the client source plugin of the project.
  */
 
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import type { Plugin } from "vite";
-import { loadConfig, resolveClientDir } from "../configs";
+import { resolveActiveClientSrcDir, STYLE_CSS, toPosix } from "./clientStylePaths";
+import path from "node:path";
 
-const PLUGIN_DIR = path.dirname(fileURLToPath(import.meta.url));
-const BASE_DIR = path.resolve(PLUGIN_DIR, "..");
-const STYLE_CSS = path.join(BASE_DIR, "src", "css", "style.css");
 const SOURCE_DIRECTIVE = '@source "virtual:client-source";';
-
-/**
- * Converts a path to a POSIX path
- * @param {string} value The value
- * @returns {string} The POSIX path
- */
-function toPosix(value: string): string {
-    return value.split(path.sep).join("/");
-}
 
 /**
  * Registers the directory of the client being built as a Tailwind source.
@@ -43,14 +30,12 @@ export function clientSourcePlugin(): Plugin {
                 return undefined;
             }
 
-            const clientName = process.env.CLIENT;
-            const clientConfig = clientName ? loadConfig(clientName) : null;
+            const sourceDir = resolveActiveClientSrcDir();
 
-            if (!clientConfig) {
+            if (!sourceDir) {
                 return { code: code.replace(SOURCE_DIRECTIVE, ""), map: null };
             }
 
-            const sourceDir = path.resolve(BASE_DIR, "..", resolveClientDir(clientConfig), "src");
             const relative = toPosix(path.relative(path.dirname(STYLE_CSS), sourceDir));
 
             return {

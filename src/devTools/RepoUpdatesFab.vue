@@ -12,9 +12,10 @@
         >
             <template #button="{ toggle, isOpen }">
                 <Button
-                    variant="transparent"
                     shape="rounded"
                     aria-label="Repositórios atualizados"
+                    background-style="background-transparent"
+                    hover-style="hover:bg-accent!"
 
                     @click.stop="toggle"
                 >
@@ -68,8 +69,8 @@
                             </small>
 
                             <span class="text-xs text-muted-foreground">
-                                workspace {{ repo.expected }}
-                                · local {{ repo.actual ?? "sem version" }}
+                                workspace {{ repo.expected }} · local
+                                {{ repo.actual ?? "sem version" }}
                             </span>
                         </li>
                     </ul>
@@ -96,7 +97,7 @@
                         </li>
                     </ul>
 
-                    <div class="border-t p-2">
+                    <div class="flex flex-col gap-2 border-t p-2">
                         <Button
                             variant="primary"
                             size="small"
@@ -105,6 +106,24 @@
 
                             @click="confirmSeen"
                         />
+
+                        <Tooltip class="inline-block">
+                            <Button
+                                variant="outline"
+                                label="Atualizar"
+                                class="w-full"
+                                size="small"
+
+                                @click="copyCommand"
+                            />
+
+                            <template #tooltip>
+                                <div class="flex flex-col items-center gap-1">
+                                    <span>Copiar comando de atualização</span>
+                                    <small-muted class="text-xs"> npx chtmain install </small-muted>
+                                </div>
+                            </template>
+                        </Tooltip>
                     </div>
                 </template>
             </div>
@@ -136,8 +155,8 @@ export default defineComponent({
 
     computed: {
         /**
-         * Gets the enabled
-         * @returns {unknown} The enabled
+         * Gets the enabled status
+         * @returns {unknown} The enabled status
          */
         enabled(): boolean {
             return (
@@ -169,11 +188,11 @@ export default defineComponent({
                 content: [
                     "<div><b>O que é este aviso</b></div>",
                     "<div>A workspace (cht-main) declara no ficheiro version quais versões das repos principais precisa para funcionar: cht-shared, cht-base e cht-design-system.</div>",
-                    "<div style=\"margin-top:0.4rem\"><b>O que significa</b></div>",
+                    '<div style="margin-top:0.4rem"><b>O que significa</b></div>',
                     "<div>Uma dessas pastas no disco tem um número diferente do que o cht-main pede — ou ainda não tem ficheiro version. Não é um update do GitHub: é só o que está neste computador agora.</div>",
-                    "<div style=\"margin-top:0.4rem\"><b>Como funciona</b></div>",
+                    '<div style="margin-top:0.4rem"><b>Como funciona</b></div>',
                     "<div>A comparação é local. Clientes e backends não entram. O aviso fica até os números coincidirem. Confirmar nos commits remotos não esconde isto.</div>",
-                    "<div style=\"margin-top:0.4rem\"><b>O que fazer</b></div>",
+                    '<div style="margin-top:0.4rem"><b>O que fazer</b></div>',
                     "<div>Se a mudança foi de propósito, atualiza a linha dessa repo no version do cht-main. Se a workspace devia ficar na versão pedida, alinha o version (ou o checkout) da pasta local.</div>"
                 ].join(""),
                 html: true,
@@ -199,16 +218,33 @@ export default defineComponent({
 
     methods: {
         /**
+         * Copy install command
+         * @returns {void}
+         */
+        copyCommand() {
+            const command = "npx chtmain install";
+
+            navigator.clipboard.writeText(command).then(
+                () => {
+                    this.$toast.success("Comando copiado para a área de transferência");
+                },
+                () => {
+                    this.$toast.error("Falha ao copiar o comando");
+                }
+            );
+        },
+
+        /**
          * Short sha
          * @param {string} sha The sha
-         * @returns {void}
+         * @returns {string} The short sha
          */
         shortSha(sha: string): string {
             return sha.slice(0, 7);
         },
 
         /**
-         * Scan
+         * Scan for updates
          * @returns {void}
          */
         async scan() {

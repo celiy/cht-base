@@ -73,6 +73,7 @@
                                     id="name"
                                     type="textarea"
                                     placeholder="Message"
+                                    input-class="max-h-32"
                                 />
                             </div>
 
@@ -610,6 +611,7 @@
                                 v-model="payoutNotes"
                                 type="textarea"
                                 label="Notas"
+                                input-class="max-h-32"
                                 placeholder="Adicione notas para esta configuração de saque..."
                             />
 
@@ -721,7 +723,7 @@
                                     :max-size="2000"
                                 >
                                     <template #input>
-                                        <div class="flex w-full justify-between p-2">
+                                        <div class="flex w-full flex-1 justify-between p-2">
                                             <Button
                                                 label="Limpar"
 

@@ -104,7 +104,7 @@
                         />
                     </div>
 
-                    <div class="relative mt-8">
+                    <div class="relative mt-8 flex gap-4">
                         <p class="absolute right-0 -bottom-4 left-0 z-0 p-4">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
                             consequatur facilis iste veniam porro. Dolore maiores nostrum ipsa
@@ -117,6 +117,12 @@
                             label="Item"
                             description="Dados da conta e preferências."
                             icon="fa-layer-group"
+                        />
+
+                        <Button
+                            variant="bordered"
+                            label="Button bordered"
+                            class="h-fit"
                         />
                     </div>
                 </div>
