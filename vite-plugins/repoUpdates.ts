@@ -241,14 +241,12 @@ function resolveRemoteTip(dir: string): string | null {
 }
 
 /**
- * Scans a repository
- * @param {RepoSpec} spec The specification
+ * Scans a git checkout for remote commits it does not have yet
+ * @param {string} name The repository name
+ * @param {string} dir The checkout directory
  * @returns {RepoUpdateInfo | null} The repository update information
  */
-function scanRepo(spec: RepoSpec): RepoUpdateInfo | null {
-    const name = repoNameFromUrl(spec.url);
-    const dir = path.join(WORKSPACE_ROOT, name);
-
+function scanDir(name: string, dir: string): RepoUpdateInfo | null {
     if (!fs.existsSync(path.join(dir, ".git"))) {
         return null;
     }
@@ -294,6 +292,17 @@ function scanRepo(spec: RepoSpec): RepoUpdateInfo | null {
 }
 
 /**
+ * Scans a repository
+ * @param {RepoSpec} spec The specification
+ * @returns {RepoUpdateInfo | null} The repository update information
+ */
+function scanRepo(spec: RepoSpec): RepoUpdateInfo | null {
+    const name = repoNameFromUrl(spec.url);
+
+    return scanDir(name, path.join(WORKSPACE_ROOT, name));
+}
+
+/**
  * Handles the repository updates
  * @param {IncomingMessage} req The request
  * @param {ServerResponse} res The response
@@ -317,9 +326,12 @@ function handleRepoUpdates(
         const specs = collectScanRepos(clientName);
         const updates: RepoUpdateInfo[] = [];
 
-        for (const spec of specs) {
-            const info = scanRepo(spec);
+        const scanned = [
+            scanDir("cht-main", WORKSPACE_ROOT),
+            ...specs.map((spec) => scanRepo(spec))
+        ];
 
+        for (const info of scanned) {
             if (info) {
                 updates.push(info);
             }
