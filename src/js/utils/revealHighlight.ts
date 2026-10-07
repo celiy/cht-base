@@ -70,6 +70,7 @@ type RevealEntry = {
     local: boolean;
     rect: DOMRect | null;
     radiusPx: number;
+    active: boolean;
 };
 
 type GetEnabled = () => boolean;
@@ -82,7 +83,6 @@ type ContainingBlockStyle = {
 };
 
 const registry = new Map<HTMLElement, RevealEntry>();
-const localHosts = new Set<HTMLElement>();
 
 let getEnabled: GetEnabled = () => true;
 let started = false;
@@ -387,61 +387,51 @@ function flushPointer(): void {
 
     lastX = pendingX;
     lastY = pendingY;
-    document.documentElement.style.setProperty("--cht-reveal-x", `${lastX}px`);
-    document.documentElement.style.setProperty("--cht-reveal-y", `${lastY}px`);
-    updateLocalTargets(lastX, lastY);
+    updateTargets(lastX, lastY);
 }
 
 /**
  * Handles the scroll or resize event.
  */
 function onScrollOrResize(): void {
-    for (const host of localHosts) {
-        const entry = registry.get(host);
-
-        if (entry) {
-            entry.rect = null;
-        }
+    for (const entry of registry.values()) {
+        entry.rect = null;
     }
 
     if (Number.isNaN(lastX) || Number.isNaN(lastY)) {
         return;
     }
 
-    updateLocalTargets(lastX, lastY);
+    updateTargets(lastX, lastY);
 }
 
 /**
- * Updates the local targets.
+ * Writes the pointer coordinates on the layers of hosts within reach.
+ * Coordinates live on the childless layer so a write restyles only that span,
+ * and hosts out of reach are reset once and then left untouched.
  * @param pointerX - The x coordinate of the pointer.
  * @param pointerY - The y coordinate of the pointer.
  */
-function updateLocalTargets(pointerX: number, pointerY: number): void {
-    if (localHosts.size === 0) {
-        return;
-    }
-
-    for (const host of localHosts) {
-        const entry = registry.get(host);
-
-        if (!entry) {
-            continue;
-        }
-
+function updateTargets(pointerX: number, pointerY: number): void {
+    for (const [host, entry] of registry) {
         if (!entry.rect) {
             entry.rect = host.getBoundingClientRect();
         }
 
         const rect = entry.rect;
+        const near = !isOutsideRevealRadius(pointerX, pointerY, rect, entry.radiusPx);
 
-        if (isOutsideRevealRadius(pointerX, pointerY, rect, entry.radiusPx)) {
-            host.style.setProperty("--cht-reveal-x", "-9999px");
-            host.style.setProperty("--cht-reveal-y", "-9999px");
+        if (!near && !entry.active) {
             continue;
         }
 
-        host.style.setProperty("--cht-reveal-x", `${pointerX - rect.left}px`);
-        host.style.setProperty("--cht-reveal-y", `${pointerY - rect.top}px`);
+        const style = entry.layer.style;
+        const x = entry.local ? pointerX - rect.left : pointerX;
+        const y = entry.local ? pointerY - rect.top : pointerY;
+
+        entry.active = near;
+        style.setProperty("--cht-reveal-x", near ? `${x}px` : "-9999px");
+        style.setProperty("--cht-reveal-y", near ? `${y}px` : "-9999px");
     }
 }
 
@@ -456,6 +446,10 @@ function onMutations(): void {
     mutationRaf = requestAnimationFrame(() => {
         mutationRaf = 0;
         reconcile();
+
+        for (const entry of registry.values()) {
+            entry.rect = null;
+        }
     });
 }
 
@@ -510,7 +504,6 @@ function register(host: HTMLElement): void {
 
     if (local) {
         layer.dataset.revealLocal = "";
-        localHosts.add(host);
     }
 
     const resizeObserver = new ResizeObserver(() => {
@@ -527,7 +520,8 @@ function register(host: HTMLElement): void {
         resizeObserver,
         local,
         rect: null,
-        radiusPx: readRadiusPx()
+        radiusPx: readRadiusPx(),
+        active: false
     };
 
     registry.set(host, entry);
@@ -550,13 +544,10 @@ function unregister(host: HTMLElement): void {
     entry.resizeObserver.disconnect();
     entry.layer.remove();
 
-    host.style.removeProperty("--cht-reveal-x");
-    host.style.removeProperty("--cht-reveal-y");
     host.style.removeProperty("--cht-reveal-bt");
     host.style.removeProperty("--cht-reveal-br");
     host.style.removeProperty("--cht-reveal-bb");
     host.style.removeProperty("--cht-reveal-bl");
-    localHosts.delete(host);
     registry.delete(host);
 }
 
