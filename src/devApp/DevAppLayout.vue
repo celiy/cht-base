@@ -282,24 +282,33 @@ export default defineComponent({
             return project.style.activeTheme === "dark";
         },
 
-        plainOptions(): { label: string; value: string; searchIcon?: string }[] {
-            return this.componentsNav
-                .flatMap((section) => {
-                    if (section.type === "group") {
-                        // Collect all links within groups
-                        return section.links;
-                    } else if (section.type === "link") {
-                        // Single link at the top level
-                        return [section];
-                    } else {
-                        return [];
+        plainOptions(): { label?: string; value?: string; icon?: string; separator?: boolean }[] {
+            const options: { label?: string; value?: string; icon?: string; separator?: boolean }[] = [];
+
+            for (const [idx, section] of this.componentsNav.entries()) {
+                if (section.type === "section") {
+                    if (options.length > 0) {
+                        options.push({ separator: true });
                     }
-                })
-                .map((link) => ({
-                    label: link.label,
-                    value: link.link,
-                    icon: link.searchIcon
-                }));
+
+                    // A section that only wraps a group is already labeled by the group
+                    if (this.componentsNav[idx + 1]?.type !== "group") {
+                        // Section label without value, so it is shown but not selectable
+                        options.push({ label: section.label });
+                    }
+                } else if (section.type === "group") {
+                    // Group label without value, so it is shown but not selectable
+                    options.push({ label: section.label });
+
+                    for (const link of section.links) {
+                        options.push({ label: link.label, value: link.link, icon: link.searchIcon });
+                    }
+                } else if (section.type === "link") {
+                    options.push({ label: section.label, value: section.link, icon: section.searchIcon });
+                }
+            }
+
+            return options;
         }
     },
 

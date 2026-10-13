@@ -188,7 +188,7 @@ export function propsTableRows(
             type: formatPropType(spec.type),
             values,
             default: spec.hasDefault ? formatPropDefault(spec.default, spec.type) : "—",
-            required: spec.required ? "sim" : "não"
+            required: spec.required ? "Yes" : "No"
         };
     });
 }
@@ -258,9 +258,7 @@ function formatPropType(type: unknown): string {
     }
 
     if (Array.isArray(type)) {
-        const parts = type
-            .map((item) => constructorName(item))
-            .filter((name) => name !== "—");
+        const parts = type.map((item) => constructorName(item)).filter((name) => name !== "—");
 
         return parts.length > 0 ? parts.join(" | ") : "—";
     }

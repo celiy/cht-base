@@ -17,7 +17,11 @@ export default defineComponent({
 
     computed: {
         source(): string {
-            const section = extractMarkdownFromHeading(readme, "# CHT Main", "## Como executar");
+            const section = extractMarkdownFromHeading(
+                readme,
+                "## O que o projeto faz",
+                "## Como executar"
+            );
 
             return section;
         }

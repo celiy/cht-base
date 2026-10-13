@@ -60,7 +60,7 @@ const clientRoot = clientConfig
     ? path.resolve(__dirname, "..", resolveClientDir(clientConfig), "src")
     : path.resolve(__dirname, "src/devApp");
 
-const siteTitle = clientConfig?.siteTitle ?? "CHT-Base";
+const siteTitle = clientConfig?.siteTitle ?? "CHT-Dev App";
 const appVersion = clientConfig?.version ?? devVersionInfo.version ?? "1.0.0";
 const versionCheckUrl = clientConfig?.versionCheckUrl ?? devVersionInfo.versionCheckUrl ?? "";
 const hasBackend = Boolean(clientConfig?.backend);
