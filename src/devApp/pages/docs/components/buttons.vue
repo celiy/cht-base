@@ -3,7 +3,13 @@
         <section>
             <h1>Button</h1>
 
-            <p>Botão de ação com variantes de cor, tamanho e forma.</p>
+            <p>
+                Botão de ação com variantes de cor, tamanho e forma. <br />
+                <code
+                    >variant="primary / default / secondary / success / warning / destructive /
+                    outline / transparent / bordered / transparent-destructive"</code
+                >
+            </p>
         </section>
 
         <section class="mb-8">
@@ -52,17 +58,6 @@
                     />
                 </div>
             </DocsExample>
-        </section>
-
-        <section>
-            <h3>Variações</h3>
-
-            <p>
-                <code
-                    >variant="primary / default / secondary / success / warning / destructive /
-                    outline / transparent / bordered / transparent-destructive"</code
-                >
-            </p>
         </section>
 
         <section>

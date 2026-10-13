@@ -6,6 +6,7 @@
     >
         <Item
             type="alert"
+            position="start"
             :variant="readiness.variant"
             :icon="readiness.icon"
             :label="readiness.label"
