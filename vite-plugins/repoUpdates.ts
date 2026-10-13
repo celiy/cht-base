@@ -5,7 +5,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { spawnSync } from "node:child_process";
+import { execFile } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import type { IncomingMessage, ServerResponse } from "node:http";
 import type { Connect, Plugin } from "vite";
@@ -191,38 +191,39 @@ function collectScanRepos(clientName: string | undefined): RepoSpec[] {
  * Runs a Git command
  * @param {string} cwd The current working directory
  * @param {string[]} args The arguments
- * @returns { { ok: boolean; stdout: string }} The result
+ * @returns {Promise<{ ok: boolean; stdout: string }>} The result
  */
-function git(cwd: string, args: string[]): { ok: boolean; stdout: string } {
-    const result = spawnSync("git", args, {
-        cwd,
-        encoding: "utf8",
-        timeout: 60_000
+function git(cwd: string, args: string[]): Promise<{ ok: boolean; stdout: string }> {
+    // Async on purpose: a sync `git fetch` blocks the Vite server until the network answers.
+    return new Promise((resolve) => {
+        execFile("git", args, { cwd, encoding: "utf8", timeout: 60_000 }, (error, stdout) => {
+            if (error) {
+                resolve({ ok: false, stdout: "" });
+
+                return;
+            }
+
+            resolve({ ok: true, stdout: (stdout || "").trim() });
+        });
     });
-
-    if (result.status !== 0) {
-        return { ok: false, stdout: "" };
-    }
-
-    return { ok: true, stdout: (result.stdout || "").trim() };
 }
 
 /**
  * Resolves the remote tip
  * @param {string} dir The directory
- * @returns {string | null} The remote tip
+ * @returns {Promise<string | null>} The remote tip
  */
-function resolveRemoteTip(dir: string): string | null {
-    const upstream = git(dir, ["rev-parse", "@{upstream}"]);
+async function resolveRemoteTip(dir: string): Promise<string | null> {
+    const upstream = await git(dir, ["rev-parse", "@{upstream}"]);
 
     if (upstream.ok && upstream.stdout) {
         return upstream.stdout;
     }
 
-    const originHead = git(dir, ["symbolic-ref", "--quiet", "refs/remotes/origin/HEAD"]);
+    const originHead = await git(dir, ["symbolic-ref", "--quiet", "refs/remotes/origin/HEAD"]);
 
     if (originHead.ok && originHead.stdout) {
-        const tip = git(dir, ["rev-parse", originHead.stdout]);
+        const tip = await git(dir, ["rev-parse", originHead.stdout]);
 
         if (tip.ok && tip.stdout) {
             return tip.stdout;
@@ -230,7 +231,7 @@ function resolveRemoteTip(dir: string): string | null {
     }
 
     for (const branch of ["origin/main", "origin/master"]) {
-        const tip = git(dir, ["rev-parse", branch]);
+        const tip = await git(dir, ["rev-parse", branch]);
 
         if (tip.ok && tip.stdout) {
             return tip.stdout;
@@ -244,32 +245,32 @@ function resolveRemoteTip(dir: string): string | null {
  * Scans a git checkout for remote commits it does not have yet
  * @param {string} name The repository name
  * @param {string} dir The checkout directory
- * @returns {RepoUpdateInfo | null} The repository update information
+ * @returns {Promise<RepoUpdateInfo | null>} The repository update information
  */
-function scanDir(name: string, dir: string): RepoUpdateInfo | null {
+async function scanDir(name: string, dir: string): Promise<RepoUpdateInfo | null> {
     if (!fs.existsSync(path.join(dir, ".git"))) {
         return null;
     }
 
-    const fetch = git(dir, ["fetch", "--quiet", "--prune"]);
+    const fetch = await git(dir, ["fetch", "--quiet", "--prune"]);
 
     if (!fetch.ok) {
         return null;
     }
 
-    const local = git(dir, ["rev-parse", "HEAD"]);
+    const local = await git(dir, ["rev-parse", "HEAD"]);
 
     if (!local.ok || !local.stdout) {
         return null;
     }
 
-    const remoteSha = resolveRemoteTip(dir);
+    const remoteSha = await resolveRemoteTip(dir);
 
     if (!remoteSha) {
         return null;
     }
 
-    const aheadResult = git(dir, ["rev-list", "--count", `${local.stdout}..${remoteSha}`]);
+    const aheadResult = await git(dir, ["rev-list", "--count", `${local.stdout}..${remoteSha}`]);
 
     if (!aheadResult.ok) {
         return null;
@@ -294,9 +295,9 @@ function scanDir(name: string, dir: string): RepoUpdateInfo | null {
 /**
  * Scans a repository
  * @param {RepoSpec} spec The specification
- * @returns {RepoUpdateInfo | null} The repository update information
+ * @returns {Promise<RepoUpdateInfo | null>} The repository update information
  */
-function scanRepo(spec: RepoSpec): RepoUpdateInfo | null {
+function scanRepo(spec: RepoSpec): Promise<RepoUpdateInfo | null> {
     const name = repoNameFromUrl(spec.url);
 
     return scanDir(name, path.join(WORKSPACE_ROOT, name));
@@ -308,14 +309,14 @@ function scanRepo(spec: RepoSpec): RepoUpdateInfo | null {
  * @param {ServerResponse} res The response
  * @param {Connect.NextFunction} next The next function
  * @param {string | undefined} clientName The client name
- * @returns {void}
+ * @returns {Promise<void>}
  */
-function handleRepoUpdates(
+async function handleRepoUpdates(
     req: IncomingMessage,
     res: ServerResponse,
     next: Connect.NextFunction,
     clientName: string | undefined
-): void {
+): Promise<void> {
     if (req.method !== "GET" || req.url?.split("?")[0] !== ENDPOINT) {
         next();
 
@@ -326,10 +327,10 @@ function handleRepoUpdates(
         const specs = collectScanRepos(clientName);
         const updates: RepoUpdateInfo[] = [];
 
-        const scanned = [
+        const scanned = await Promise.all([
             scanDir("cht-main", WORKSPACE_ROOT),
             ...specs.map((spec) => scanRepo(spec))
-        ];
+        ]);
 
         for (const info of scanned) {
             if (info) {
@@ -370,7 +371,7 @@ export function repoUpdatesPlugin(clientName?: string): Plugin {
         name: "cht-repo-updates",
         configureServer(server) {
             server.middlewares.use((req, res, next) => {
-                handleRepoUpdates(req, res, next, clientName);
+                void handleRepoUpdates(req, res, next, clientName);
             });
         }
     };

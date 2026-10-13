@@ -38,7 +38,7 @@ Ele define estrutura global, layouts, roteamento e integração com os demais pa
 
 Um repositório torna-se cliente quando tem `cht.config.ts` (ou `.json`) na raiz e está ao lado do `cht-base`. O campo `name` é o identificador usado em `--client:`. Campos principais: `siteTitle`, `api` (URL por alvo: `dev`, `web`, `electron`, `mobile`), `backend`, `frontend`, `devTools`, `lan` e `theme`. A referência completa está na página `/docs/cht-config` do modo dev.
 
-O cliente fornece, no mínimo: `src/routes.ts`, `src/App.vue`, `src/bootstrap.ts` e `src/theme.config.json`. Opcionalmente `src/override.css` e `src/tailwind.plugin.js`.
+O cliente fornece, no mínimo: `src/routes.ts`, `src/App.vue`, `src/bootstrap.ts` e `src/theme.config.json`. Opcionalmente `src/css/style.css`, `src/override.css` e `src/tailwind.plugin.js`.
 
 ## Scripts
 

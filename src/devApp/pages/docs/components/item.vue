@@ -180,6 +180,69 @@
         </section>
 
         <section>
+            <h3>Tamanho e posição</h3>
+
+            <p>
+                <code>itemIconSize="sm / md / lg"</code> ajusta o tamanho do ícone (padrão
+                <code>md</code>). <code>position="start / center / end"</code> alinha o ícone e o
+                conteúdo no eixo transversal (padrão <code>center</code>).
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Tamanho">
+                <div class="flex max-w-sm flex-col gap-2 p-4">
+                    <Item
+                        label="Pequeno"
+                        description="itemIconSize sm"
+                        icon="fa-user"
+                        item-icon-size="sm"
+                    />
+
+                    <Item
+                        label="Médio"
+                        description="itemIconSize md (padrão)"
+                        icon="fa-user"
+                    />
+
+                    <Item
+                        label="Grande"
+                        description="itemIconSize lg"
+                        icon="fa-user"
+                        item-icon-size="lg"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Posição">
+                <div class="flex max-w-sm flex-col gap-2 p-4">
+                    <Item
+                        label="Start"
+                        description="Descrição longa para mostrar o alinhamento do ícone com o texto em múltiplas linhas."
+                        icon="fa-align-left"
+                        position="start"
+                    />
+
+                    <Item
+                        label="Center"
+                        description="Descrição longa para mostrar o alinhamento do ícone com o texto em múltiplas linhas."
+                        icon="fa-align-center"
+                        position="center"
+                    />
+
+                    <Item
+                        label="End"
+                        description="Descrição longa para mostrar o alinhamento do ícone com o texto em múltiplas linhas."
+                        icon="fa-align-right"
+                        position="end"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
             <h3>Estados</h3>
 
             <p>
@@ -217,6 +280,8 @@
             <p>
                 Item pode ter a superfície customizada via
                 <code>backgroundStyle</code>, <code>borderStyle</code> e <code>hoverStyle</code>.
+                O ícone pode ser customizado via <code>itemBackgroundStyle</code> (fundo do recorte)
+                e <code>itemIconStyle</code> (classes do próprio ícone).
             </p>
         </section>
 
@@ -251,6 +316,14 @@
                         background-style="bg-blue-700 text-white"
                         border-style="border-2-green-500"
                         hover-style="hover:opacity-50"
+                    />
+
+                    <Item
+                        label="Ícone"
+                        description='item-background-style="bg-green-600" item-icon-style="text-white"'
+                        icon="fa-check"
+                        item-background-style="bg-green-600"
+                        item-icon-style="text-white"
                     />
                 </div>
             </DocsExample>

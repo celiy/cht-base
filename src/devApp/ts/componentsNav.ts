@@ -60,7 +60,7 @@ export const componentsNav = [
                 searchIcon: "fa-book"
             },
             {
-                label: "override.css",
+                label: "CSS do cliente",
                 link: "/docs/override-css",
                 searchIcon: "fa-palette"
             },

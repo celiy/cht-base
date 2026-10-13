@@ -63,7 +63,7 @@
                                 {{ row.default }}
                             </td>
 
-                            <td class="p-2 align-top text-center">
+                            <td class="p-2 text-center align-top">
                                 {{ row.required }}
                             </td>
                         </tr>
@@ -80,8 +80,8 @@ import { docsPropsTablesForSlug } from "../ts/docsComponentCatalog";
 
 const PROP_HEADERS = [
     { label: "Prop", field: "name", position: "start" as const },
-    { label: "Tipo", field: "type", position: "start" as const },
-    { label: "Valores", field: "values", position: "start" as const },
+    { label: "Type", field: "type", position: "start" as const },
+    { label: "Values", field: "values", position: "start" as const },
     { label: "Default", field: "default", position: "start" as const },
     { label: "Required", field: "required", position: "center" as const }
 ];

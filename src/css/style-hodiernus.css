@@ -18,6 +18,14 @@ html[data-custom-theme="hodiernus"] .navigator-background {
     @apply bg-background/80 backdrop-blur-md;
 }
 
+html[data-custom-theme="hodiernus"] .input-background {
+    @apply bg-input/30 backdrop-blur-md;
+}
+
+html[data-custom-theme="hodiernus"] .input-display-background {
+    @apply bg-input/15 backdrop-blur-md;
+}
+
 html[data-custom-theme="hodiernus"] .background-transparent {
     @apply bg-transparent backdrop-blur-md;
 }

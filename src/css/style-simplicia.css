@@ -18,6 +18,14 @@ html:not([data-custom-theme="hodiernus"]) .navigator-background {
     @apply bg-background;
 }
 
+html:not([data-custom-theme="hodiernus"]) .input-background {
+    @apply bg-input/30;
+}
+
+html:not([data-custom-theme="hodiernus"]) .input-display-background {
+    @apply bg-input/15;
+}
+
 html:not([data-custom-theme="hodiernus"]) .background-transparent {
     @apply bg-transparent;
 }

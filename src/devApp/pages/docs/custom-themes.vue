@@ -109,7 +109,10 @@
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
                             consequatur facilis iste veniam porro. Dolore maiores nostrum ipsa
                             inventore, mollitia amet minus perferendis repellat voluptatibus
-                            suscipit, nisi accusantium cupiditate voluptates!
+                            suscipit, nisi accusantium cupiditate voluptates! Lorem ipsum dolor sit
+                            amet consectetur adipisicing elit. Quam ducimus quas quo incidunt animi
+                            hic expedita doloribus voluptas minus rem porro architecto commodi odit
+                            odio ullam, ab corporis facere qui.
                         </p>
 
                         <Item
@@ -123,6 +126,18 @@
                             variant="bordered"
                             label="Button bordered"
                             class="h-fit"
+                        />
+
+                        <Input
+                            type="text"
+                            variant="secondary"
+                            placeholder="Input secondary"
+                        />
+
+                        <Input
+                            type="text"
+                            variant="display"
+                            placeholder="Input display"
                         />
                     </div>
                 </div>

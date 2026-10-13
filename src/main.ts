@@ -4,6 +4,7 @@ import { toastPlugin } from "@design/toast/plugin";
 import { designSystemPlugin } from "@design/plugin";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./css/style.css";
+import "./css/clientStyle";
 import { waitForDocumentStyles } from "./js/utils/runtimeCss";
 
 /*
