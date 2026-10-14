@@ -104,7 +104,6 @@
                         description="Passe o mouse em cada barra"
                         variant="bars"
                         :data="chartData"
-                        :hide-label="true"
                     />
                 </div>
             </DocsExample>

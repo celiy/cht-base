@@ -1,5 +1,7 @@
 <template>
-    <pre class="docs-code p-4 pr-12 overflow-x-auto text-sm leading-6 font-mono text-foreground bg-secondary/10 rounded light:brightness-80"><code v-html="highlighted" /></pre>
+    <pre
+        class="docs-code overflow-x-auto rounded bg-secondary/10 p-4 pr-12 font-mono text-sm leading-6 text-foreground light:brightness-80"
+    ><code v-html="highlighted" /></pre>
 </template>
 
 <script lang="ts">
@@ -49,7 +51,7 @@ export default defineComponent({
 .docs-code :deep(.hljs-selector-tag),
 .docs-code :deep(.hljs-built_in),
 .docs-code :deep(.hljs-meta .hljs-keyword) {
-    color: var(--color-primary);
+    color: var(--color-red-500);
 }
 
 .docs-code :deep(.hljs-string),
@@ -81,7 +83,7 @@ export default defineComponent({
 .docs-code :deep(.hljs-title),
 .docs-code :deep(.hljs-section),
 .docs-code :deep(.hljs-function) {
-    color: var(--color-chart-3);
+    color: var(--color-yellow-400);
 }
 
 .docs-code :deep(.hljs-punctuation),
