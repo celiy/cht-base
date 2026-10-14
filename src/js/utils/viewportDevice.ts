@@ -6,11 +6,17 @@
 export const MOBILE_BREAKPOINT_PX = 425;
 export const TABLET_BREAKPOINT_PX = 768;
 
-export function viewportDeviceFlags(width: number): { isMobile: boolean; isTablet: boolean } {
-    const isMobile = width <= MOBILE_BREAKPOINT_PX;
+export function viewportDeviceFlags(width: number): {
+    isPhone: boolean;
+    isTablet: boolean;
+    isMobile: boolean;
+} {
+    const isPhone = width <= MOBILE_BREAKPOINT_PX;
+    const isTablet = !isPhone && width <= TABLET_BREAKPOINT_PX;
 
     return {
-        isMobile,
-        isTablet: !isMobile && width <= TABLET_BREAKPOINT_PX
+        isPhone,
+        isTablet,
+        isMobile: isPhone || isTablet
     };
 }

@@ -18,6 +18,12 @@
 @import "./style-simplicia.css";
 @import "./style-hodiernus.css";
 
+html,
+body {
+    /* Scrolling happens inside the app shell; do not chain it to the page or rubber-band. */
+    overscroll-behavior: none;
+}
+
 html {
     font-family: "Inter", sans-serif;
     background-color: var(--color-background);

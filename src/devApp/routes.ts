@@ -198,6 +198,11 @@ const routes: RouteRecordRaw[] = [
                 component: () => import("./pages/docs/components/resizable.vue")
             },
             {
+                path: "docs/components/floating-panel",
+                name: "components-floating-panel",
+                component: () => import("./pages/docs/components/floating-panel.vue")
+            },
+            {
                 path: "docs/components/popover",
                 name: "components-popover",
                 component: () => import("./pages/docs/components/popover.vue")

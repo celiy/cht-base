@@ -181,7 +181,7 @@
 
         <section class="mb-8">
             <DocsExample label="Muitas barras / uma barra">
-                <div class="grid gap-4 p-4 md:grid-cols-2">
+                <div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2">
                     <TableCharts
                         header="24 meses"
                         description="Scroll horizontal"

@@ -21,7 +21,7 @@
             <h3>device</h3>
 
             <p>
-                Atualizado no <code>resize</code> da janela. <code>isMobile</code> é
+                Atualizado no <code>resize</code> da janela. <code>isPhone</code> é
                 <code>true</code> quando <code>viewportWidth &lt;= mobileBreakpointPx</code> ({{
                     $project.device.mobileBreakpointPx
                 }}
@@ -29,7 +29,8 @@
                 <code>mobileBreakpointPx &lt; viewportWidth &lt;= tabletBreakpointPx</code> ({{
                     $project.device.tabletBreakpointPx
                 }}
-                px). Acima disso, os dois são <code>false</code>.
+                px). <code>isMobile</code> é <code>true</code> quando é phone ou tablet
+                (<code>isPhone || isTablet</code>). Acima disso, os três são <code>false</code>.
                 <code>performanceScore</code> começa em <code>null</code> e passa a um inteiro
                 depois de um benchmark leve no arranque (~100–150 ms no total, em fatias para não
                 travar a UI). Escala aproximada:
@@ -60,15 +61,21 @@
                     </p>
 
                     <p>
-                        <code>isMobile</code>:
-                        <strong>{{ $project.device.isMobile ? "sim" : "não" }}</strong>
+                        <code>isPhone</code>:
+                        <strong>{{ $project.device.isPhone ? "sim" : "não" }}</strong>
                         (≤ {{ $project.device.mobileBreakpointPx }}px)
                     </p>
 
                     <p>
                         <code>isTablet</code>:
                         <strong>{{ $project.device.isTablet ? "sim" : "não" }}</strong>
-                        (depois do mobile, até {{ $project.device.tabletBreakpointPx }}px)
+                        (depois do phone, até {{ $project.device.tabletBreakpointPx }}px)
+                    </p>
+
+                    <p>
+                        <code>isMobile</code>:
+                        <strong>{{ $project.device.isMobile ? "sim" : "não" }}</strong>
+                        (phone ou tablet)
                     </p>
 
                     <p>
@@ -317,7 +324,7 @@ No template (Options API):
 
 \`\`\`vue
 <p>{{ $project.labels.siteTitle }}</p>
-<p v-if="$project.device.isMobile">Layout compacto</p>
+<p v-if="$project.device.isPhone">Layout compacto</p>
 <p v-else-if="$project.device.isTablet">Layout tablet</p>
 <p v-if="$project.device.performanceScore != null">
   Score: {{ $project.device.performanceScore }}

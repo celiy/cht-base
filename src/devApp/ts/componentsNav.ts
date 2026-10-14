@@ -190,6 +190,12 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
+        label: "Floating Panel",
+        link: "/docs/components/floating-panel",
+        searchIcon: "fa-cube"
+    },
+    {
+        type: "link" as const,
         label: "Inputs",
         link: "/docs/components/inputs",
         searchIcon: "fa-cube"

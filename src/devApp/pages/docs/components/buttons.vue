@@ -17,6 +17,10 @@
                 <div class="flex flex-wrap items-center gap-2 p-4">
                     <Button label="Default" />
                     <Button
+                        label="Disabled Default"
+                        disabled
+                    />
+                    <Button
                         label="Primary"
                         variant="primary"
                     />
@@ -91,12 +95,56 @@
         </section>
 
         <section>
-            <h3>Forma e grupo</h3>
+            <h3>Forma</h3>
 
-            <p>
-                <code>shape="rounded"</code> para botão circular. Classe <code>btn-group</code> une
-                bordas.
-            </p>
+            <p>Prop <code>shape="rounded / square"</code> criam botões com formas diferentes.</p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Forma e grupo">
+                <div class="flex flex-col gap-6 p-4">
+                    <div class="flex gap-2">
+                        <Button shape="rounded">
+                            <span class="fa-solid fa-arrow-left" />
+                        </Button>
+
+                        <Button shape="square">
+                            <span class="fa-solid fa-arrow-up" />
+                        </Button>
+                    </div>
+
+                    <div class="flex flex-col gap-4">
+                        <p>
+                            O Button usa classes como <code>text-base, text-sm, text-xs</code>.
+                            Então o mesmo usa padding com tamanhos não uniformes. Para ter
+                            uniformidade:
+                        </p>
+
+                        <div class="flex flex-col gap-2">
+                            <label>Com ícone sem classe</label>
+                            <Button size="small">
+                                <span class="fa-solid fa-arrow-up" />
+                            </Button>
+                        </div>
+
+                        <div class="flex flex-col gap-2">
+                            <label>Com class="p-2"</label>
+                            <Button
+                                size="small"
+                                class="p-2"
+                            >
+                                <span class="fa-solid fa-arrow-up" />
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>Grupo</h3>
+
+            <p>Classe <code>btn-group</code> une bordas.</p>
         </section>
 
         <section class="mb-8">
@@ -119,15 +167,6 @@
                             :hover-effect="false"
                         />
                     </div>
-
-                    <Button
-                        variant="secondary"
-                        class="rounded-full!"
-                        shape="rounded"
-                        size="medium"
-                    >
-                        <span class="fa-solid fa-search text-sm" />
-                    </Button>
                 </div>
             </DocsExample>
         </section>
