@@ -51,7 +51,7 @@
 
         <section class="mb-8">
             <DocsExample label="Tipos">
-                <div class="grid grid-cols-1 gap-4 p-4 lg:grid-cols-3">
+                <div class="flex flex-col gap-4 p-4">
                     <TableCharts
                         v-for="curve in curves"
                         :key="curve"
@@ -79,7 +79,7 @@
 
         <section class="mb-8">
             <DocsExample label="Estilo">
-                <div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2">
+                <div class="flex flex-col gap-4 p-4">
                     <TableCharts
                         variant="wave"
                         bucket="month"
@@ -115,7 +115,7 @@
 
         <section class="mb-8">
             <DocsExample label="Empilhadas">
-                <div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2">
+                <div class="flex flex-col gap-4 p-4">
                     <TableCharts
                         variant="wave"
                         bucket="month"
@@ -151,7 +151,7 @@
 
         <section class="mb-8">
             <DocsExample label="Pontos e labels">
-                <div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2">
+                <div class="flex flex-col gap-4 p-4">
                     <TableCharts
                         variant="wave"
                         bucket="month"

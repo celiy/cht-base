@@ -87,7 +87,7 @@
             </DocsExample>
 
             <DocsExample label="Empilhadas">
-                <div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2">
+                <div class="flex flex-col gap-4 p-4">
                     <TableCharts
                         variant="bars"
                         header="Bar Chart - Stacked"
@@ -125,7 +125,7 @@
 
         <section class="mb-8">
             <DocsExample label="Labels">
-                <div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2">
+                <div class="flex flex-col gap-4 p-4">
                     <TableCharts
                         variant="bars"
                         header="Bar Chart - Label"
