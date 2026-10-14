@@ -22,7 +22,8 @@ const SKIP_SLUGS = new Set(["tooltip", "colors", "typography"]);
 const SLUG_COMPONENT_NAMES: Record<string, string[]> = {
     "custom-tooltip": ["Tooltip"],
     checkbox: ["Checkbox", "CheckboxSwitch"],
-    charts: ["BarChart", "WaveChart"],
+    "bar-chart": ["BarChart", "TableCharts"],
+    "wave-chart": ["WaveChart", "TableCharts"],
     drawer: ["Modal"],
     inputs: ["Input", "InputOTP"]
 };

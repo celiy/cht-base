@@ -17,7 +17,7 @@ import {
 assert.equal(toKebabName("ProgressBar"), "progress-bar");
 assert.equal(toKebabName("QrCode"), "qr-code");
 
-const names = ["Button", "Badge", "Input", "InputOTP", "Modal", "ProgressBar", "Tooltip", "Checkbox", "CheckboxSwitch", "BarChart", "WaveChart", "FormRenderer"];
+const names = ["Button", "Badge", "Input", "InputOTP", "Modal", "ProgressBar", "Tooltip", "Checkbox", "CheckboxSwitch", "BarChart", "WaveChart", "TableCharts", "FormRenderer"];
 
 assert.deepEqual(resolveDocsComponentNames("buttons", names), ["Button"]);
 assert.deepEqual(resolveDocsComponentNames("badges", names), ["Badge"]);
@@ -28,7 +28,8 @@ assert.deepEqual(resolveDocsComponentNames("drawer", names), ["Modal"]);
 assert.deepEqual(resolveDocsComponentNames("custom-tooltip", names), ["Tooltip"]);
 assert.deepEqual(resolveDocsComponentNames("tooltip", names), []);
 assert.deepEqual(resolveDocsComponentNames("checkbox", names), ["Checkbox", "CheckboxSwitch"]);
-assert.deepEqual(resolveDocsComponentNames("charts", names), ["BarChart", "WaveChart"]);
+assert.deepEqual(resolveDocsComponentNames("bar-chart", names), ["BarChart", "TableCharts"]);
+assert.deepEqual(resolveDocsComponentNames("wave-chart", names), ["WaveChart", "TableCharts"]);
 assert.deepEqual(resolveDocsComponentNames("form-renderer", names), ["FormRenderer"]);
 assert.deepEqual(resolveDocsComponentNames("colors", names), []);
 

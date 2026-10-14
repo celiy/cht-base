@@ -326,12 +326,6 @@ export const componentsNav = [
     },
     {
         type: "link" as const,
-        label: "Charts",
-        link: "/docs/components/charts",
-        searchIcon: "fa-cube"
-    },
-    {
-        type: "link" as const,
         label: "Custom Tooltip",
         link: "/docs/components/custom-tooltip",
         searchIcon: "fa-cube"
@@ -377,6 +371,22 @@ export const componentsNav = [
         label: "Steps",
         link: "/docs/components/steps",
         searchIcon: "fa-cube"
+    },
+    {
+        type: "section" as const,
+        label: "Charts"
+    },
+    {
+        type: "link" as const,
+        label: "Bar chart",
+        link: "/docs/components/bar-chart",
+        searchIcon: "fa-chart-column"
+    },
+    {
+        type: "link" as const,
+        label: "Wave chart",
+        link: "/docs/components/wave-chart",
+        searchIcon: "fa-chart-area"
     },
     {
         type: "section" as const,

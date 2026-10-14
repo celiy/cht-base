@@ -394,7 +394,6 @@
                                     ]
                                 }"
                                 color="chart-3"
-                                :hide-label="true"
                             />
 
                             <div class="flex flex-col gap-2 sm:flex-row">

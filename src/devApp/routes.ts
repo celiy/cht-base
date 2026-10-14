@@ -274,8 +274,17 @@ const routes: RouteRecordRaw[] = [
             },
             {
                 path: "docs/components/charts",
-                name: "components-charts",
-                component: () => import("./pages/docs/components/charts.vue")
+                redirect: "/docs/components/bar-chart"
+            },
+            {
+                path: "docs/components/bar-chart",
+                name: "components-bar-chart",
+                component: () => import("./pages/docs/components/bar-chart.vue")
+            },
+            {
+                path: "docs/components/wave-chart",
+                name: "components-wave-chart",
+                component: () => import("./pages/docs/components/wave-chart.vue")
             },
             {
                 path: "docs/components/custom-tooltip",
