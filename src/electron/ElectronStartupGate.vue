@@ -1,5 +1,5 @@
 <template>
-    <div class="relative flex h-screen flex-col">
+    <div class="relative flex h-dvh flex-col">
         <slot />
 
         <DevToolsFab />
