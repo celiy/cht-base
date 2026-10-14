@@ -123,8 +123,10 @@ export interface ProjectUpdateState {
  */
 export interface ProjectState {
     device: {
-        isMobile: boolean;
+        isPhone: boolean;
         isTablet: boolean;
+        /** `true` for phones and tablets. */
+        isMobile: boolean;
         viewportWidth: number;
         viewportHeight: number;
         mobileBreakpointPx: number;
@@ -309,8 +311,9 @@ function unloadCss(id: string) {
  */
 export const project = reactive<ProjectState>({
     device: {
-        isMobile: false,
+        isPhone: false,
         isTablet: false,
+        isMobile: false,
         viewportWidth: 0,
         viewportHeight: 0,
         mobileBreakpointPx: MOBILE_BREAKPOINT_PX,
@@ -433,8 +436,9 @@ function updateDeviceFromViewport() {
     project.device.viewportHeight = height;
 
     const flags = viewportDeviceFlags(width);
-    project.device.isMobile = flags.isMobile;
+    project.device.isPhone = flags.isPhone;
     project.device.isTablet = flags.isTablet;
+    project.device.isMobile = flags.isMobile;
 }
 
 let deviceWatcherStarted = false;

@@ -10,20 +10,24 @@ import {
 } from "./viewportDevice.ts";
 
 assert.deepEqual(viewportDeviceFlags(MOBILE_BREAKPOINT_PX), {
-    isMobile: true,
-    isTablet: false
+    isPhone: true,
+    isTablet: false,
+    isMobile: true
 });
 assert.deepEqual(viewportDeviceFlags(MOBILE_BREAKPOINT_PX + 1), {
-    isMobile: false,
-    isTablet: true
+    isPhone: false,
+    isTablet: true,
+    isMobile: true
 });
 assert.deepEqual(viewportDeviceFlags(TABLET_BREAKPOINT_PX), {
-    isMobile: false,
-    isTablet: true
+    isPhone: false,
+    isTablet: true,
+    isMobile: true
 });
 assert.deepEqual(viewportDeviceFlags(TABLET_BREAKPOINT_PX + 1), {
-    isMobile: false,
-    isTablet: false
+    isPhone: false,
+    isTablet: false,
+    isMobile: false
 });
 
 console.log("viewportDevice.check.mjs: ok");

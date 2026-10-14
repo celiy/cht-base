@@ -162,7 +162,7 @@
                 </Card>
 
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <Card>
+                    <Card v-if="!$project.device.isPhone">
                         <template #card>
                             <div class="flex flex-col gap-1 px-1 py-2 pb-3">
                                 <Option label="Planejamento" />
@@ -196,7 +196,7 @@
                         </template>
                     </Card>
 
-                    <Card>
+                    <Card v-if="!$project.device.isPhone">
                         <template #card>
                             <div class="flex flex-col gap-1 px-1 py-2 pb-3">
                                 <Option label="Suporte" />
@@ -230,7 +230,7 @@
                         </template>
                     </Card>
 
-                    <Card>
+                    <Card v-if="!$project.device.isPhone">
                         <template #card>
                             <div class="flex flex-col gap-1 px-1 py-2 pb-3">
                                 <Option label="Visão geral" />
@@ -723,19 +723,15 @@
                                     :max-size="2000"
                                 >
                                     <template #input>
-                                        <div class="flex w-full flex-1 justify-between p-2">
+                                        <div class="flex w-full justify-end p-2">
                                             <Button
-                                                label="Limpar"
-
-                                                @click="resetChat"
-                                            />
-
-                                            <Button
-                                                variant="primary"
                                                 type="submit"
-                                                label="Enviar"
+                                                size="small"
+                                                class="p-2"
                                                 :disabled="!canSendChat"
-                                            />
+                                            >
+                                                <span class="fa-solid fa-arrow-up" />
+                                            </Button>
                                         </div>
                                     </template>
                                 </Input>
