@@ -6,7 +6,7 @@
             <p>
                 Painel sobreposto. Fecha com clique no backdrop, no X ou com <code>Esc</code>. Com
                 <code>keep-open</code>, o backdrop e cliques fora do painel não fecham (o X e
-                <code>Esc</code> continuam a fechar). <code>variant="blank"</code> é só um card com
+                <code>Esc</code> continuam a fechar). <code>type="blank"</code> é só um card com
                 <code>p-4</code> e o <code>#body</code>, sem header nem botão de fechar. Drawer tem
                 página própria.
             </p>
@@ -164,8 +164,12 @@
             <h3>Variantes</h3>
 
             <p>
-                <code>variant="modal / blank / preview"</code>. <code>blank</code> não tem X nem
-                título: só o conteúdo no card.
+                <code>variant="modal / drawer"</code> define a forma do painel.
+                <code>type</code> define o conteúdo: <code>type="blank"</code> não tem X nem título,
+                só o conteúdo no card; <code>type="preview"</code> renderiza só o
+                <code>#body</code>, sem card. Os valores antigos <code>variant="blank"</code> e
+                <code>variant="preview"</code> ainda funcionam, mas mostram aviso no console. Use
+                <code>type</code>.
             </p>
         </section>
 
@@ -205,7 +209,7 @@
                     </Modal>
 
                     <Modal
-                        variant="blank"
+                        type="blank"
                         size="small"
                         :is-open="blank"
 
@@ -220,7 +224,7 @@
                     </Modal>
 
                     <Modal
-                        variant="preview"
+                        type="preview"
                         size="large"
                         :is-open="preview"
 

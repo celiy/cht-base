@@ -188,6 +188,91 @@
         </section>
 
         <section>
+            <h3>Conteúdo dinâmico nos slots</h3>
+
+            <p>
+                Os slots são renderizados pelo próprio componente, então aceitam qualquer conteúdo
+                reativo: <code>v-for</code>, <code>v-if</code> e valores vindos do estado da página.
+                Quando o estado muda, o slot atualiza sem precisar reabrir a Sidebar. Isso vale para
+                <code>#header</code>, <code>#sidebar-body</code> e <code>#footer</code>.
+            </p>
+
+            <p>
+                <code>#sidebar-body</code> não rola sozinho: fica depois da lista de links, que é o
+                único trecho com scroll. Se a lista puder ficar longa, envolva o conteúdo num
+                <code>div</code> com <code>max-h-*</code> e <code>overflow-y-auto</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Slot dinâmico">
+                <div class="relative isolate h-[28rem] overflow-hidden rounded border">
+                    <Sidebar
+                        variant="minimalist"
+                        :toggle-keybind="false"
+                        :sidebar-width="300"
+                        :min-sidebar-width="250"
+                        :max-sidebar-width="300"
+                        :nav-items="[
+                            { type: 'section', label: 'Navegação' },
+                            {
+                                type: 'link',
+                                label: 'Esta página',
+                                link: '/docs/components/sidebar',
+                                leftIcon: 'fa-bars'
+                            }
+                        ]"
+                    >
+                        <template #header>
+                            <div class="px-4 pt-3 pb-2">
+                                <h4>Recentes ({{ recentItems.length }})</h4>
+                            </div>
+                        </template>
+
+                        <template #sidebar-body>
+                            <div class="flex flex-col gap-1 px-2 pt-2">
+                                <p
+                                    v-if="recentItems.length === 0"
+
+                                    class="px-2 text-sm text-muted-foreground"
+                                >
+                                    Nenhum item ainda.
+                                </p>
+
+                                <span
+                                    v-for="item in recentItems"
+                                    :key="item"
+
+                                    class="truncate rounded px-2 py-1 text-sm"
+                                >
+                                    {{ item }}
+                                </span>
+                            </div>
+                        </template>
+
+                        <template #footer>
+                            <div class="px-4 pb-3">
+                                <Button
+                                    label="Adicionar item"
+                                    variant="secondary"
+                                    size="small"
+
+                                    @click="addRecentItem"
+                                />
+                            </div>
+                        </template>
+
+                        <div class="p-4">
+                            <p class="text-sm">
+                                Os itens do slot mudam ao clicar no botão do rodapé.
+                            </p>
+                        </div>
+                    </Sidebar>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
             <h3>Desktop, resize e mobile</h3>
 
             <p>
@@ -223,6 +308,24 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-    name: "ComponentsSidebar"
+    name: "ComponentsSidebar",
+
+    data() {
+        return {
+            recentItems: ["Relatório Q1", "Cliente Acme"],
+            nextItemNumber: 1
+        };
+    },
+
+    methods: {
+        /**
+         * Appends a new item to the dynamic sidebar body.
+         * @returns {void}
+         */
+        addRecentItem() {
+            this.nextItemNumber += 1;
+            this.recentItems.push(`Item ${this.nextItemNumber}`);
+        }
+    }
 });
 </script>

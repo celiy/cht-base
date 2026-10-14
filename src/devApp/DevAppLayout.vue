@@ -39,54 +39,13 @@
                         </Input>
                     </div>
 
-                    <Popover
-                        close-on-content-click
-                        :min-width-px="200"
-                        :lock-to-anchor="false"
+                    <Button
+                        variant="transparent"
+
+                        @click="isMobileMenuOpen = true"
                     >
-                        <template #button="{ toggle }">
-                            <Button
-                                variant="transparent"
-
-                                @click="toggle"
-                            >
-                                <span class="fa-bars fa-solid"></span>
-                            </Button>
-                        </template>
-
-                        <div class="flex flex-col gap-2">
-                            <div
-                                class="flex min-w-0 flex-col flex-wrap items-end justify-end gap-1 sm:gap-2"
-                            >
-                                <RouterLink
-                                    v-for="link in navLinks"
-                                    :key="link.path"
-                                    v-slot="{ navigate }"
-
-                                    custom
-                                    :to="link.path"
-                                >
-                                    <Button
-                                        variant="transparent"
-                                        class="w-full"
-                                        :label="link.label"
-
-                                        @click="navigate"
-                                    />
-                                </RouterLink>
-                            </div>
-
-                            <div class="flex items-end justify-end gap-2">
-                                <Button
-                                    label="GitHub"
-                                    class="w-full"
-                                    left-icon="fa-brands fa-github"
-
-                                    @click="openGitHub"
-                                />
-                            </div>
-                        </div>
-                    </Popover>
+                        <span class="fa-bars fa-solid"></span>
+                    </Button>
                 </div>
 
                 <div
@@ -227,7 +186,7 @@
         </Transition>
 
         <Modal
-            variant="preview"
+            type="preview"
             url-sync
             :is-open="isSearchModalOpen"
 
@@ -244,6 +203,52 @@
                         @update:search-query="query = $event"
                         @select="onSelect"
                     />
+                </div>
+            </template>
+        </Modal>
+
+        <Modal
+            variant="drawer"
+            type="blank"
+            side="right"
+            :is-open="isMobileMenuOpen"
+
+            @update:value="isMobileMenuOpen = $event"
+        >
+            <template #body>
+                <div class="flex h-full flex-col justify-center">
+                    <div class="flex flex-col gap-2 rounded p-4">
+                        <div
+                            class="flex min-w-0 flex-col flex-wrap items-end justify-end gap-1 sm:gap-2"
+                        >
+                            <RouterLink
+                                v-for="link in navLinks"
+                                :key="link.path"
+                                v-slot="{ navigate }"
+
+                                custom
+                                :to="link.path"
+                            >
+                                <Button
+                                    variant="outline"
+                                    class="w-full"
+                                    :label="link.label"
+
+                                    @click="navigateAndCloseMobileMenu(navigate)"
+                                />
+                            </RouterLink>
+                        </div>
+
+                        <div class="flex items-end justify-end gap-2">
+                            <Button
+                                label="GitHub"
+                                class="w-full"
+                                left-icon="fa-brands fa-github"
+
+                                @click="openGitHub"
+                            />
+                        </div>
+                    </div>
                 </div>
             </template>
         </Modal>
@@ -271,6 +276,7 @@ export default defineComponent({
     data() {
         return {
             isSearchModalOpen: false,
+            isMobileMenuOpen: false,
             componentsNav,
             navLinks,
             query: ""
@@ -283,7 +289,12 @@ export default defineComponent({
         },
 
         plainOptions(): { label?: string; value?: string; icon?: string; separator?: boolean }[] {
-            const options: { label?: string; value?: string; icon?: string; separator?: boolean }[] = [];
+            const options: {
+                label?: string;
+                value?: string;
+                icon?: string;
+                separator?: boolean;
+            }[] = [];
 
             for (const [idx, section] of this.componentsNav.entries()) {
                 if (section.type === "section") {
@@ -301,10 +312,18 @@ export default defineComponent({
                     options.push({ label: section.label });
 
                     for (const link of section.links) {
-                        options.push({ label: link.label, value: link.link, icon: link.searchIcon });
+                        options.push({
+                            label: link.label,
+                            value: link.link,
+                            icon: link.searchIcon
+                        });
                     }
                 } else if (section.type === "link") {
-                    options.push({ label: section.label, value: section.link, icon: section.searchIcon });
+                    options.push({
+                        label: section.label,
+                        value: section.link,
+                        icon: section.searchIcon
+                    });
                 }
             }
 
@@ -330,6 +349,25 @@ export default defineComponent({
 
         closeSearch() {
             this.isSearchModalOpen = false;
+        },
+
+        /**
+         * Closes the mobile menu drawer after a navigation click.
+         * @returns {void}
+         */
+        /**
+         * Closes the menu only after the route change: closing first makes the modal URL
+         * sync replace the current route and cancel the pending navigation.
+         * @param {() => Promise<unknown>} navigate The RouterLink navigate function
+         * @returns {Promise<void>}
+         */
+        async navigateAndCloseMobileMenu(navigate: () => Promise<unknown>) {
+            await navigate();
+            this.closeMobileMenu();
+        },
+
+        closeMobileMenu() {
+            this.isMobileMenuOpen = false;
         },
 
         openGitHub() {
