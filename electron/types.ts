@@ -70,6 +70,23 @@ export interface ElectronRuntimeConfig {
     };
 }
 
+/**
+ * Optional exports of `<client>/electron/main.ts`. Its top-level code runs before `app` is
+ * ready, so `app.commandLine.appendSwitch` and protocol registration go there.
+ */
+export interface ClientElectronMain {
+    /** Runs once after `app` is ready, before the window is created. */
+    onReady?: (context: ClientElectronContext) => void | Promise<void>;
+    /** Runs for every window the base creates, before the frontend loads. */
+    onWindow?: (window: import("electron").BrowserWindow, context: ClientElectronContext) => void;
+}
+
+export interface ClientElectronContext {
+    isDev: boolean;
+    client: string;
+    getMainWindow: () => import("electron").BrowserWindow | null;
+}
+
 export interface ElectronAPI {
     isElectron: true;
     platform: string;

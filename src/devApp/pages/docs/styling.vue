@@ -4,11 +4,7 @@
             <h1>Estilização</h1>
 
             <p>
-                Classes globais do CHT, definidas em
-                <code>cht-base/src/css/style.css</code>, para layout e chrome comuns. Tokens de cor
-                ficam em <a href="/docs/components/colors">Colors</a>. Utilitários Tailwind (como
-                <code>rounded</code>, <code>flex</code>, <code>gap-2</code>) também estão
-                disponíveis.
+                Classes globais do CHT para layout e partes comuns da interface. Elas vêm de <code>cht-base/src/css/style.css</code>. Os tokens de cor ficam em <a href="/docs/components/colors">Colors</a>, e as utilities Tailwind, como <code>flex</code> e <code>gap-2</code>, também funcionam.
             </p>
         </section>
 
@@ -16,11 +12,7 @@
             <h3>Containers</h3>
 
             <p>
-                <code>container-sm</code> e <code>container-lg</code> centralizam o bloco e aplicam
-                padding horizontal; a largura máxima cresce com o breakpoint.
-                <code>container-center</code> só alinha o conteúdo no eixo vertical (<code
-                    >flex-col justify-center</code
-                >) e no eixo horizontal (<code>mx-auto</code>).
+                <code>container-sm</code> e <code>container-lg</code> centralizam o bloco e dão padding horizontal. A largura máxima cresce com o breakpoint. <code>container-center</code> centraliza o conteúdo nos dois eixos.
             </p>
         </section>
 
@@ -48,17 +40,7 @@
             <h3>Bordas coloridas</h3>
 
             <p>
-                <code>border-primary</code>, <code>border-muted</code>, <code>border-red-500</code>
-                (e qualquer cor do tema/paleta) já aplicam largura 1px + cor — não precisa de
-                <code>border</code> à parte. Com tamanho: <code>border-1-primary</code>,
-                <code>border-2-red-200</code>. Direções
-                (<code>t</code>/<code>r</code>/<code>b</code>/<code>l</code>/<code>x</code>/<code>y</code>):
-                <code>border-b-primary</code>, <code>border-b-2-red-500</code>,
-                <code>border-x-2/primary</code>. Largura arbitrária usa barra:
-                <code>border-[1rem]/muted</code>, <code>border-b-[4px]/primary</code> (o Tailwind
-                não aceita token depois de <code>]</code>).
-                Novas utilities **só deste cliente** (não o padrão global de bordas) usam
-                <a href="/docs/client-tailwind-plugin">Plugin Tailwind do cliente</a>.
+                Classes de cor, como <code>border-primary</code> ou <code>border-red-500</code>, já trazem a borda de 1px. Para mudar a espessura, use <code>border-2-red-200</code>. Para um lado só, use <code>border-b-primary</code> ou <code>border-x-2/primary</code>. Largura arbitrária usa barra: <code>border-[1rem]/muted</code>, porque o Tailwind não aceita token depois de <code>]</code>. Para utilities que só este cliente usa, veja o <a href="/docs/client-tailwind-plugin">Plugin Tailwind do cliente</a>.
             </p>
         </section>
 
@@ -77,9 +59,7 @@
             <h3>Bordas arredondadas</h3>
 
             <p>
-                <code>rounded</code> vem do Tailwind (raio padrão do tema). Combine com tamanhos
-                (<code>rounded-md</code>, <code>rounded-xl</code>, <code>rounded-full</code>) quando
-                precisar de outro raio.
+                <code>rounded</code> usa o raio padrão do tema. Para outro raio, use <code>rounded-md</code>, <code>rounded-xl</code> ou <code>rounded-full</code>.
             </p>
         </section>
 
@@ -98,8 +78,7 @@
             <h3>Grupo de botões</h3>
 
             <p>
-                <code>btn-group</code> cola botões lado a lado: remove o raio interno, compartilha a
-                borda e alinha a altura.
+                <code>btn-group</code> junta botões lado a lado. Ele tira o raio interno, compartilha a borda e iguala a altura.
             </p>
         </section>
 
@@ -119,8 +98,7 @@
             <h3>Separator e sombras</h3>
 
             <p>
-                <code>separator</code> é uma linha de 1px com <code>bg-border</code>. Sombras usam
-                <code>--color-shadow</code>: <code>shadow-2xs</code> até <code>shadow-2xl</code>.
+                <code>separator</code> é uma linha de 1px com <code>bg-border</code>. As sombras vão de <code>shadow-2xs</code> a <code>shadow-2xl</code> e usam <code>--color-shadow</code>.
             </p>
         </section>
 
@@ -150,8 +128,7 @@
             <h3>Contraste de texto</h3>
 
             <p>
-                <code>text-contrast</code> força <code>var(--color-foreground)</code>. Com
-                <code>data-contrast="background"</code> usa <code>var(--color-background)</code>.
+                <code>text-contrast</code> força <code>var(--color-foreground)</code>. Com <code>data-contrast="background"</code>, usa <code>var(--color-background)</code>.
             </p>
         </section>
 
@@ -180,18 +157,7 @@
             <h3>Reveal highlight</h3>
 
             <p>
-                <code>reveal-highlight</code> ilumina só a borda com um halo que segue o rato em
-                toda a página — não é preciso pairar o cursor no elemento. Serve em qualquer nó com
-                borda (Card, um <code>div</code> com <code>border</code>, etc.). Não uses em
-                elementos void (<code>img</code>, <code>input</code>): põe a classe no wrapper.
-                Chromium, Firefox e Safari 15.4+; noutros browsers a classe não faz nada. O halo
-                segue o <code>border-radius</code>, tem 1px e 50% de opacidade. Com
-                <code>prefers-reduced-motion</code>, ponteiro grosso ou
-                <code>$project.style.revealHighlight = false</code> o efeito desliga-se. No arranque,
-                o score em <a href="/docs/project">$project.device.performanceScore</a> pode desligar
-                o reveal automaticamente (limiar em
-                <code>applyRevealHighlightPerformanceGate</code>). No DevApp só corre com o tema de
-                superfície <code>hodiernus</code>.
+                <code>reveal-highlight</code> ilumina a borda com um halo que segue o mouse por toda a página. Não é preciso passar o cursor sobre o elemento. Funciona em qualquer nó com borda, como um Card ou um <code>div</code> com <code>border</code>. Em elementos vazios, como <code>img</code> e <code>input</code>, coloque a classe num wrapper. Funciona no Chromium, no Firefox e no Safari 15.4 ou superior. Em outros browsers a classe não faz nada. O efeito desliga com <code>prefers-reduced-motion</code>, com ponteiro grosso ou com <code>$project.style.revealHighlight = false</code>. Um score baixo em <a href="/docs/project">$project.device.performanceScore</a> também pode desligá-lo no arranque. O limiar fica em <code>applyRevealHighlightPerformanceGate</code>. No devApp ele só roda com o tema <code>hodiernus</code>.
             </p>
         </section>
 
@@ -257,18 +223,7 @@
             <h3>CSS override do cliente</h3>
 
             <p>
-                Cada cliente pode ter
-                <code>src/override.css</code>
-                na raiz de
-                <code>src</code>. O Vite injeta esse ficheiro
-                <strong>depois</strong>
-                de
-                <code>cht-base/src/css/style.css</code>, então as regras locais vencem as globais.
-                Sem o ficheiro, nada é injetado. Como usar:
-                <a href="/docs/override-css">override.css</a>.
-                Utilities novas (não retocar classes existentes):
-                <a href="/docs/client-tailwind-plugin">Plugin Tailwind do cliente</a>
-                (<code>src/tailwind.plugin.js</code>).
+                Cada cliente pode ter um <code>src/override.css</code>. O Vite injeta esse arquivo depois de <code>cht-base/src/css/style.css</code>, então as regras locais ganham das globais. Sem o arquivo, nada é injetado. Veja <a href="/docs/override-css">override.css</a>. Para utilities novas, use o <a href="/docs/client-tailwind-plugin">Plugin Tailwind do cliente</a>.
             </p>
         </section>
     </article>

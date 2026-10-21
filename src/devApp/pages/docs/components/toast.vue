@@ -3,11 +3,7 @@
         <section>
             <h1>Toast</h1>
 
-            <p>
-                Notificações globais com <code>$toast</code>. O host é um único
-                <code>&lt;Toast /&gt;</code> no layout (nos docs: <code>DevAppLayout</code>). Os
-                métodos devolvem um <code>id</code> numérico.
-            </p>
+            <p>Notificações globais com <code>$toast</code>. O host é um único <code>&lt;Toast /&gt;</code> no layout. Na documentação, ele fica no <code>DevAppLayout</code>. Os métodos devolvem um <code>id</code> numérico.</p>
         </section>
 
         <section>
@@ -91,11 +87,7 @@
         <section>
             <h3>Timeout</h3>
 
-            <p>
-                <code>timeout</code> em milissegundos. <code>0</code> deixa o toast permanente (sem
-                barra de progresso). Hover na pilha pausa todos os timeouts; swipe para o lado
-                (touch) dispensa sem emitir <code>event</code>.
-            </p>
+            <p><code>timeout</code> é o tempo em milissegundos. Com <code>0</code>, o toast fica na tela até ser fechado, sem barra de progresso. O hover na pilha pausa todos os timeouts. No touch, o swipe para o lado dispensa o toast sem emitir <code>event</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -123,11 +115,7 @@
         <section>
             <h3>id, dismiss e close</h3>
 
-            <p>
-                <code>dismiss(id)</code> remove sem evento. <code>close(id)</code> comporta-se como
-                o botão Fechar (emite <code>event</code> se existir). <code>clear()</code> esvazia a
-                pilha. No ecrã cabem 4 toasts; os mais antigos ficam por baixo.
-            </p>
+            <p><code>dismiss(id)</code> remove sem emitir evento. <code>close(id)</code> age como o botão Fechar, e emite <code>event</code> se ele existir. <code>clear()</code> esvazia a pilha. A tela comporta 4 toasts, e os mais antigos ficam por baixo.</p>
         </section>
 
         <section class="mb-8">
@@ -210,11 +198,7 @@
         <section>
             <h3>Evento no Fechar</h3>
 
-            <p>
-                <code>event</code> (string ou objeto) só corre no clique do botão ou em
-                <code>$toast.close</code> — não no timeout nem no swipe. Escuta com
-                <code>$toast.on</code> e cancela no unmount (o retorno é o unsubscribe).
-            </p>
+            <p>O <code>event</code>, que pode ser string ou objeto, só dispara no clique do botão ou em <code>$toast.close</code>. Não dispara no timeout nem no swipe. Escute com <code>$toast.on</code> e cancele a escuta no unmount, usando a função que <code>on</code> devolve.</p>
         </section>
 
         <section class="mb-8">
@@ -261,14 +245,7 @@
         <section>
             <h3>Host: position e width</h3>
 
-            <p>
-                Props do <code>&lt;Toast /&gt;</code>, não de <code>$toast.*</code>. Um host por
-                app. <code>position</code>: <code>top</code>, <code>bottom</code> (default),
-                <code>left</code>, <code>right</code>, <code>top-left</code>,
-                <code>top-right</code>, <code>bottom-left</code>, <code>bottom-right</code>.
-                <code>width</code> default <code>20rem</code>. Timeout global:
-                <code>app.use(toastPlugin, { timeout: 4000 })</code>.
-            </p>
+            <p>Essas são props do <code>&lt;Toast /&gt;</code>, não de <code>$toast.*</code>. Use um host por app. <code>position</code> aceita <code>top</code>, <code>bottom</code> (padrão), <code>left</code>, <code>right</code>, <code>top-left</code>, <code>top-right</code>, <code>bottom-left</code> e <code>bottom-right</code>. <code>width</code> tem padrão <code>20rem</code>. O timeout global vai em <code>app.use(toastPlugin, { timeout: 4000 })</code>.</p>
         </section>
     </article>
 </template>

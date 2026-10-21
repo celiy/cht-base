@@ -9,8 +9,17 @@ import fs from "node:fs";
 import path from "node:path";
 import { BackendManager } from "./backendManager";
 import { UpdateManager } from "./updater";
-import type { ElectronBackendConfig, ElectronRuntimeConfig, UpdateStatus } from "./types";
+import type {
+    ClientElectronContext,
+    ClientElectronMain,
+    ElectronBackendConfig,
+    ElectronRuntimeConfig,
+    UpdateStatus
+} from "./types";
 import { IPC_CHANNELS } from "./types";
+import * as clientMainModule from "@client-electron/main";
+
+const clientMain = clientMainModule as ClientElectronMain;
 
 const DEFAULT_WIDTH = 1280;
 const DEFAULT_HEIGHT = 800;
@@ -579,7 +588,36 @@ async function startBackend(): Promise<void> {
  */
 async function createAppWindow(): Promise<void> {
     mainWindow = createWindow();
+    const window = mainWindow;
+
+    await runClientHook("onWindow", () => clientMain.onWindow?.(window, clientContext()));
     await loadFrontend(mainWindow);
+}
+
+/**
+ * Builds the context handed to the client Electron hooks
+ * @returns {ClientElectronContext} The context
+ */
+function clientContext(): ClientElectronContext {
+    return {
+        isDev: runtimeConfig.isDev,
+        client: runtimeConfig.client,
+        getMainWindow: () => mainWindow
+    };
+}
+
+/**
+ * Runs a client hook so a throw is logged instead of leaving the app without a window
+ * @param {string} name The hook name, for the log
+ * @param {() => unknown} hook The hook call
+ * @returns {Promise<void>} A promise that resolves when the hook settles
+ */
+async function runClientHook(name: string, hook: () => unknown): Promise<void> {
+    try {
+        await hook();
+    } catch (error) {
+        console.error(`[electron] Client hook "${name}" failed:`, error);
+    }
 }
 
 /**
@@ -628,6 +666,7 @@ function main(): void {
 
     app.whenReady().then(async () => {
         registerIpc();
+        await runClientHook("onReady", () => clientMain.onReady?.(clientContext()));
         startUpdates();
         await Promise.all([startBackend(), createAppWindow()]);
         createTray();

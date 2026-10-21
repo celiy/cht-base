@@ -3,24 +3,13 @@
         <section>
             <h1>OptionsList</h1>
 
-            <p>
-                Lista de opções usada por Select, Dropdown e Context menu. Importa de
-                <code>@design/components/internal/OptionsList.vue</code>. Cada item segue
-                <code>OptionItem</code>: <code>label</code>, <code>value</code>, <code>icon</code>,
-                <code>separator</code>, <code>disabled</code>, <code>variant</code>,
-                <code>tooltip</code>, <code>indicator</code>, <code>options</code> (filhos) e
-                <code>openOn</code> (<code>hover</code> ou <code>click</code>).
-            </p>
+            <p>Lista de opções usada por Select, Dropdown e Context menu. Importe de <code>@design/components/internal/OptionsList.vue</code>. Cada item segue o <code>OptionItem</code>: <code>label</code>, <code>value</code>, <code>icon</code>, <code>separator</code>, <code>disabled</code>, <code>variant</code>, <code>tooltip</code>, <code>indicator</code>, <code>options</code>, que são os filhos, e <code>openOn</code>, com <code>hover</code> ou <code>click</code>.</p>
         </section>
 
         <section>
             <h3>Lista e select</h3>
 
-            <p>
-                <code>select</code> emite o item clicado. Separadores não são clicáveis.
-                <code>showCheckmark</code> reserva a coluna do visto;
-                <code>isOptionSelected</code> decide quais estão marcados.
-            </p>
+            <p><code>select</code> emite o item clicado. Separadores não são clicáveis. <code>showCheckmark</code> reserva a coluna do visto. <code>isOptionSelected</code> decide quais itens aparecem marcados.</p>
         </section>
 
         <section class="mb-8">
@@ -46,10 +35,7 @@
         <section>
             <h3>Pesquisa local</h3>
 
-            <p>
-                <code>search="{ external: false }"</code> filtra por label (e por value se a label
-                não bater). <code>searchQuery</code> sincroniza com <code>update:searchQuery</code>.
-            </p>
+            <p><code>search="{ external: false }"</code> filtra por label. Se a label não bater, filtra também por value. <code>searchQuery</code> sincroniza com <code>update:searchQuery</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -70,11 +56,7 @@
         <section>
             <h3>Pesquisa externa</h3>
 
-            <p>
-                <code>search.external</code> não filtra a lista: emite
-                <code>search:external</code> (<code>{ field, value }</code>, debounce 100&nbsp;ms).
-                <code>externalSearchLoading</code> troca o ícone por um spinner.
-            </p>
+            <p><code>search.external</code> não filtra a lista. Em vez disso, emite <code>search:external</code> com <code>{ field, value }</code>, com debounce de 100&nbsp;ms. <code>externalSearchLoading</code> troca o ícone por um spinner.</p>
         </section>
 
         <section class="mb-8">

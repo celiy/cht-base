@@ -3,14 +3,7 @@
         <section>
             <h1>Keybind</h1>
 
-            <p>
-                Listener de teclado sem markup (<code>render</code> devolve <code>null</code>).
-                Importa de <code>@design/components/internal/Keybind.vue</code> não está no glob do
-                plugin. <code>keyName</code> é o <code>event.key</code> (<code>s</code>,
-                <code>Escape</code>, …). Letras ignoram maiúsculas e não disparam com Ctrl, Alt ou
-                Meta. <code>trigger</code> recebe o <code>KeyboardEvent</code> e chama
-                <code>preventDefault</code>.
-            </p>
+            <p>Listener de teclado sem markup, pois <code>render</code> devolve <code>null</code>. Importe de <code>@design/components/internal/Keybind.vue</code>, porque ele não entra no glob do plugin. <code>keyName</code> é o <code>event.key</code>, como <code>s</code> ou <code>Escape</code>. Letras ignoram maiúsculas e não disparam com Ctrl, Alt ou Meta. <code>trigger</code> recebe o <code>KeyboardEvent</code> e chama <code>preventDefault</code>.</p>
         </section>
 
         <section>

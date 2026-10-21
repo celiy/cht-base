@@ -78,15 +78,7 @@
         <section>
             <h3>Tipos</h3>
 
-            <p>
-                Os dois últimos dígitos de <code>type="money"</code> são cêntimos:
-                <code>1500000</code> → <code>$ 15,000.00</code>.
-                <code
-                    >type="text / number / money / email / phone / cpf / cnpj / cep / date /
-                    password / textarea"</code
-                >. Em textarea, <code>expandOnTyping</code> cresce com o texto;
-                <code>minHeightPx</code> e <code>maxHeightPx</code> limitam a altura.
-            </p>
+            <p>Os dois últimos dígitos de <code>type="money"</code> são centavos, então <code>1500000</code> vira <code>$ 15,000.00</code>. Tipos: <code>text</code>, <code>number</code>, <code>money</code>, <code>email</code>, <code>phone</code>, <code>cpf</code>, <code>cnpj</code>, <code>cep</code>, <code>date</code>, <code>password</code> e <code>textarea</code>. Em textarea, <code>expandOnTyping</code> faz o campo crescer, dentro dos limites de <code>minHeightPx</code> e <code>maxHeightPx</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -237,12 +229,7 @@
                     </ul>
                 </li>
             </ul>
-            <p>
-                O foco avança automaticamente ao digitar; <kbd>Backspace</kbd> apaga e retorna ao
-                campo anterior; colar texto distribui entre os campos a partir do foco. As
-                propriedades <code>value</code> ou <code>v-model</code> permitem preencher e
-                controlar os valores.
-            </p>
+            <p>O foco avança sozinho ao digitar. <kbd>Backspace</kbd> apaga e volta para o campo anterior. Colar um texto distribui os valores entre os campos, a partir do foco. As props <code>value</code> e <code>v-model</code> permitem preencher e controlar os valores.</p>
         </section>
 
         <section class="mb-8">
@@ -364,13 +351,7 @@
         <section>
             <h3>Estados e extras</h3>
 
-            <p>
-                <code>required</code>, <code>disabled</code>, <code>readonly</code>,
-                <code>error</code>, <code>copiable</code>, <code>useMemo</code>,
-                <code>minSize</code> / <code>maxSize</code>, <code>pattern</code>. Com
-                <code>maxSize</code>, caracteres a mais são cortados ao digitar. Com
-                <code>pattern</code>, só entra o que a regex aceita.
-            </p>
+            <p>Props disponíveis: <code>required</code>, <code>disabled</code>, <code>readonly</code>, <code>error</code>, <code>copiable</code>, <code>useMemo</code>, <code>minSize</code>, <code>maxSize</code> e <code>pattern</code>. Com <code>maxSize</code>, os caracteres extras são cortados ao digitar. Com <code>pattern</code>, só entra o que a regex aceita.</p>
         </section>
 
         <section class="mb-8">

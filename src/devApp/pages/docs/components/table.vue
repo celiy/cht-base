@@ -3,22 +3,13 @@
         <section>
             <h1>Table</h1>
 
-            <p>
-                Tabela de dados com headers, alinhamento por coluna, seleção de linhas, escolha de
-                colunas visíveis, badges (incluindo paleta <code>chart-*</code>) e ações por linha.
-                Células com <code>value</code> + <code>altValue</code> e
-                <code>buttonProps</code> (os mesmos props de <code>Button</code>) mostram um valor e
-                um botão que troca para o outro.
-            </p>
+            <p>Tabela de dados com headers, alinhamento por coluna, seleção de linhas, escolha de colunas visíveis, badges e ações por linha. Uma célula pode ter <code>value</code> e <code>altValue</code>, com <code>buttonProps</code>, que são as mesmas props do <code>Button</code>. Assim, um botão troca entre os dois valores.</p>
         </section>
 
         <section>
             <h3>Alinhamento</h3>
 
-            <p>
-                Cada header tem <code>label</code>, <code>field</code> (chave do objeto na linha) e
-                <code>position</code>: <code>start</code>, <code>center</code> ou <code>end</code>.
-            </p>
+            <p>Cada header tem <code>label</code>, <code>field</code>, que é a chave do objeto na linha, e <code>position</code>. As posições são <code>start</code>, <code>center</code> e <code>end</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -47,11 +38,7 @@
         <section>
             <h3>Valor oculto</h3>
 
-            <p>
-                Passe <code>{ value, altValue, buttonProps }</code> na célula. <code>value</code> é
-                o texto inicial; o botão à direita (props de <code>Button</code>) revela
-                <code>altValue</code>.
-            </p>
+            <p>Passe <code>{ value, altValue, buttonProps }</code> na célula. <code>value</code> é o texto inicial. O botão à direita, com as props de <code>Button</code>, mostra o <code>altValue</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -80,11 +67,7 @@
         <section>
             <h3>Badges</h3>
 
-            <p>
-                Um campo pode ser <code>{ label, variant }</code> e renderiza um <code>Badge</code>.
-                <code>variant</code> aceita as cores semânticas e <code>chart-1</code> …
-                <code>chart-5</code>.
-            </p>
+            <p>Um campo pode ser <code>{ label, variant }</code>, e aí vira um <code>Badge</code>. <code>variant</code> aceita as cores semânticas e <code>chart-1</code> a <code>chart-5</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -108,13 +91,7 @@
         <section>
             <h3>Seleção de linhas</h3>
 
-            <p>
-                <code>selectable</code> adiciona um checkbox por linha e um “selecionar todos” no
-                header. Com linhas marcadas, aparece um rodapé com a contagem.
-                <code>selectableActions</code> é a lista do Dropdown do rodapé; o clique emite
-                <code>click:selectableAction</code> com o <code>value</code> e as linhas
-                selecionadas.
-            </p>
+            <p>Com <code>selectable</code>, cada linha ganha um checkbox, e o header ganha um “selecionar todos”. Com linhas marcadas, aparece um rodapé com a contagem. <code>selectableActions</code> é a lista do Dropdown desse rodapé. O clique emite <code>click:selectableAction</code> com o <code>value</code> e as linhas selecionadas.</p>
         </section>
 
         <section class="mb-8">
@@ -146,11 +123,7 @@
         <section>
             <h3>Colunas visíveis</h3>
 
-            <p>
-                <code>selectCols</code> mostra um Select no canto do título para ligar e desligar
-                colunas. Exige <code>title</code>. A escolha usa memo interno
-                (<code>id="table-select-cols"</code>).
-            </p>
+            <p><code>selectCols</code> mostra um Select no canto do título, para ligar e desligar colunas. Ele exige <code>title</code>. A escolha fica num memo interno, com o <code>id="table-select-cols"</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -176,12 +149,7 @@
         <section>
             <h3>Ações</h3>
 
-            <p>
-                <code>actions</code> é a mesma lista de opções do Dropdown (<code>label</code>,
-                <code>value</code>, <code>icon</code>, <code>tooltip</code>, <code>separator</code>,
-                <code>variant: "destructive"</code> para exclusão). Abre um menu por linha e emite
-                <code>click:action</code> com o <code>value</code> e o objeto da linha.
-            </p>
+            <p><code>actions</code> é a mesma lista de opções do Dropdown: <code>label</code>, <code>value</code>, <code>icon</code>, <code>tooltip</code>, <code>separator</code> e <code>variant: "destructive"</code> para exclusão. Cada linha abre o próprio menu. O clique emite <code>click:action</code> com o <code>value</code> e o objeto da linha.</p>
         </section>
 
         <section class="mb-8">
@@ -219,11 +187,7 @@
         <section>
             <h3>Sort de colunas</h3>
 
-            <p>
-                <code>canSort</code> adiciona um ícone de seta para ordenar a coluna. Clica no
-                header para ordenar. Emite <code>sort:field</code> com o <code>field</code> e a
-                direção (<code>asc</code> ou <code>desc</code>).
-            </p>
+            <p>Com <code>canSort</code>, a coluna ganha um ícone de seta. Clique no header para ordenar. O evento <code>sort:field</code> traz o <code>field</code> e a direção, <code>asc</code> ou <code>desc</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -271,11 +235,7 @@
         <section>
             <h3>Estado vazio</h3>
 
-            <p>
-                O slot <code>empty</code> renderiza quando a tabela não possui registros. Isso
-                permite mostrar um estado customizado, como botão de ação, chamada vazia ou texto
-                explicativo.
-            </p>
+            <p>O slot <code>empty</code> aparece quando a tabela não tem registros. Use-o para mostrar um estado próprio, como um botão de ação, uma chamada ou um texto explicativo.</p>
         </section>
 
         <section class="mb-8">

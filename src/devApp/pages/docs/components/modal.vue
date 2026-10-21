@@ -3,27 +3,13 @@
         <section>
             <h1>Modal</h1>
 
-            <p>
-                Painel sobreposto. Fecha com clique no backdrop, no X ou com <code>Esc</code>. Com
-                <code>keep-open</code>, o backdrop e cliques fora do painel não fecham (o X e
-                <code>Esc</code> continuam a fechar). <code>type="blank"</code> é só um card com
-                <code>p-4</code> e o <code>#body</code>, sem header nem botão de fechar. Drawer tem
-                página própria.
-            </p>
+            <p>Painel sobreposto. Ele fecha com clique no backdrop, no X ou com <code>Esc</code>. Com <code>keep-open</code>, o backdrop e os cliques fora do painel não fecham, mas o X e o <code>Esc</code> continuam valendo. <code>type="blank"</code> é só um card com <code>p-4</code> e o <code>#body</code>, sem header nem botão de fechar. O Drawer tem página própria.</p>
         </section>
 
         <section>
             <h3>URL (<code>?modal</code>)</h3>
 
-            <p>
-                Com <code>url-sync</code> (padrão <code>true</code>), ao abrir a URL ganha
-                <code>?modal=[id,...]</code> — cada instância recebe um id numérico automático;
-                vários abertos ficam como <code>[1,2]</code>, com entrada no histórico. No mobile,
-                <strong>Voltar</strong> remove o id e fecha o modal; remover o id da URL também
-                fecha. Um <strong>reload</strong> da página limpa <code>?modal</code> e
-                <strong>não</strong> reabre modais (os ids são remapeados no boot). Use
-                <code>:url-sync="false"</code> quando o modal não deve tocar na query.
-            </p>
+            <p>Com <code>url-sync</code>, que vem <code>true</code>, a URL ganha <code>?modal=[id,...]</code> ao abrir. Cada instância recebe um id numérico, e vários abertos ficam como <code>[1,2]</code>, com entrada no histórico. No mobile, <strong>Voltar</strong> remove o id e fecha o modal. Um <strong>reload</strong> limpa <code>?modal</code> e <strong>não</strong> reabre modais, porque os ids são remapeados no boot. Use <code>:url-sync="false"</code> para o modal não mexer na query.</p>
         </section>
 
         <section class="mb-8">
@@ -163,14 +149,7 @@
         <section>
             <h3>Variantes</h3>
 
-            <p>
-                <code>variant="modal / drawer"</code> define a forma do painel.
-                <code>type</code> define o conteúdo: <code>type="blank"</code> não tem X nem título,
-                só o conteúdo no card; <code>type="preview"</code> renderiza só o
-                <code>#body</code>, sem card. Os valores antigos <code>variant="blank"</code> e
-                <code>variant="preview"</code> ainda funcionam, mas mostram aviso no console. Use
-                <code>type</code>.
-            </p>
+            <p><code>variant="modal / drawer"</code> define a forma do painel, e <code>type</code> define o conteúdo. <code>type="blank"</code> tem só o conteúdo, sem X nem título. <code>type="preview"</code> renderiza só o <code>#body</code>, sem card. Os valores antigos de <code>variant</code>, <code>"blank"</code> e <code>"preview"</code>, ainda funcionam, mas geram aviso no console. Use <code>type</code>.</p>
         </section>
 
         <section class="mb-8">

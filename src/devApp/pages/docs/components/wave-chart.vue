@@ -3,36 +3,17 @@
         <section>
             <h1>Wave chart</h1>
 
-            <p>
-                <code>WaveChart</code> desenha linhas ou áreas. <code>TableCharts</code> com
-                <code>variant="wave"</code> envolve o gráfico num card e, com dados por data, mostra
-                o filtro de período (3 meses, 1 mês, 2 semanas, 7 dias).
-            </p>
+            <p><code>WaveChart</code> desenha linhas ou áreas. Com <code>variant="wave"</code>, o <code>TableCharts</code> envolve o gráfico num card. Se os dados tiverem datas, ele também mostra o filtro de período: 3 meses, 1 mês, 2 semanas e 7 dias.</p>
 
-            <p>
-                <code>data</code> recebe uma série ou várias, no mesmo formato do
-                <a href="/docs/components/bar-chart">Bar chart</a>. Itens com
-                <code>date</code> viram um ponto por dia (<code>bucket="month"</code> agrupa por
-                mês); itens com <code>group</code>, um ponto por grupo. Passar o ponteiro mostra uma
-                bolinha em cada série e o tooltip com todos os valores daquele ponto.
-            </p>
+            <p><code>data</code> recebe uma série ou várias, no mesmo formato do <a href="/docs/components/bar-chart">Bar chart</a>. Itens com <code>date</code> viram um ponto por dia. Com <code>bucket="month"</code>, os pontos ficam agrupados por mês. Itens com <code>group</code> viram um ponto por grupo. Ao passar o ponteiro, aparece uma bolinha em cada série e um tooltip com todos os valores daquele ponto.</p>
 
-            <p>
-                Na primeira vez que aparece na tela, cada linha é desenhada do início ao fim e o
-                fundo surge depois. Quando os valores mudam, as linhas se movem até o novo estado;
-                quando as séries ou as datas mudam, o gráfico é redesenhado.
-            </p>
+            <p>Na primeira vez que o gráfico aparece, cada linha é desenhada do início ao fim, e o fundo surge depois. Quando os valores mudam, as linhas se movem até o novo estado. Quando as séries ou as datas mudam, o gráfico é redesenhado.</p>
         </section>
 
         <section>
             <h3>Formato do data</h3>
 
-            <p>
-                Mesmo formato do Bar chart: um <code>ChartSeries</code> ou uma lista. Cada item tem
-                <code>value</code> e <code>date</code> (um ponto por dia) ou <code>group</code> (um
-                ponto por grupo). Itens sem <code>date</code> nem <code>group</code> são ignorados.
-                Séries com várias datas se alinham pelas mesmas categorias.
-            </p>
+            <p>É o mesmo formato do Bar chart: um <code>ChartSeries</code> ou uma lista. Cada item tem <code>value</code> e <code>date</code>, para um ponto por dia, ou <code>group</code>, para um ponto por grupo. Itens sem os dois são ignorados. Séries com várias datas se alinham pelas mesmas categorias.</p>
 
             <DocsCode
                 language="ts"
@@ -70,11 +51,7 @@
         <section>
             <h3>Estilo</h3>
 
-            <p>
-                <code>waveStyle="solid"</code> (padrão) preenche abaixo da linha: cor sólida no tema
-                simplicia e degradê no tema hodiernus. <code>waveStyle="line"</code> desenha só a
-                linha.
-            </p>
+            <p><code>waveStyle="solid"</code>, o padrão, preenche a área abaixo da linha. Ela fica com cor sólida no tema simplicia e com degradê no hodiernus. <code>waveStyle="line"</code> desenha só a linha.</p>
         </section>
 
         <section class="mb-8">
@@ -105,12 +82,7 @@
         <section>
             <h3>Várias séries</h3>
 
-            <p>
-                Com <code>stack="none"</code> (padrão) as áreas se sobrepõem a partir do zero.
-                <code>stack="stacked"</code> empilha as séries e <code>stack="expanded"</code>
-                mostra a fatia de cada uma em 100%. Cada série pode ter seu
-                <code>displayAs</code>.
-            </p>
+            <p>Com <code>stack="none"</code>, o padrão, as áreas se sobrepõem a partir do zero. <code>stack="stacked"</code> empilha as séries. <code>stack="expanded"</code> mostra a fatia de cada uma em 100%. Cada série pode ter o próprio <code>displayAs</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -142,11 +114,7 @@
         <section>
             <h3>Pontos e labels</h3>
 
-            <p>
-                <code>dots</code> mostra uma bolinha em cada ponto, na cor do item ou da série.
-                <code>showLabels</code> escreve o valor acima de cada ponto; o slot
-                <code>#label</code> e <code>labelClass</code> funcionam como no Bar chart.
-            </p>
+            <p><code>dots</code> mostra uma bolinha em cada ponto, na cor do item ou da série. <code>showLabels</code> escreve o valor acima de cada ponto. O slot <code>#label</code> e a prop <code>labelClass</code> funcionam como no Bar chart.</p>
         </section>
 
         <section class="mb-8">
@@ -185,12 +153,7 @@
         <section>
             <h3>Por data e ao vivo</h3>
 
-            <p>
-                Dados diários usam o filtro de período do card (<code>filter</code> no
-                <code>WaveChart</code>: <code>all</code>, <code>3m</code>, <code>1m</code>,
-                <code>2s</code>, <code>7d</code>). Se houver mais pontos do que cabem na largura,
-                eles são espaçados por igual.
-            </p>
+            <p>Dados diários usam o filtro de período do card, que é o <code>filter</code> do <code>WaveChart</code>: <code>all</code>, <code>3m</code>, <code>1m</code>, <code>2s</code> ou <code>7d</code>. Se houver mais pontos do que cabem na largura, eles são espaçados igualmente.</p>
         </section>
 
         <section class="mb-8 grid grid-cols-1 gap-4">

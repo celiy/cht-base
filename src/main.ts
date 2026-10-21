@@ -19,14 +19,17 @@ import { projectPlugin, projectActions } from "./project";
 import { checkAppVersion } from "./version/versionCheck";
 import { httpPlugin, discoverApiBaseUrl } from "./http/plugin";
 import { startRealtime } from "./realtime";
-import { installClientPlugins, setupAuthGuard } from "@client/bootstrap";
+import * as clientBootstrapModule from "@client/bootstrap";
+import type { ClientBootstrap } from "./clientBootstrap";
 import { defineCustomElements } from "./js/customElements";
 
+const clientBootstrap: ClientBootstrap = clientBootstrapModule;
 const useHashHistory = typeof window !== "undefined" && window.location.protocol === "file:";
 
 const router = createRouter({
     history: useHashHistory ? createWebHashHistory() : createWebHistory(),
-    routes
+    routes,
+    ...clientBootstrap.routerOptions
 });
 
 const app = createApp(App);
@@ -41,7 +44,7 @@ app.directive("tooltip", tooltip);
 app.use(projectPlugin, { router });
 
 app.use(httpPlugin);
-setupAuthGuard(router);
+clientBootstrap.setupAuthGuard(router);
 
 const title = import.meta.env.VITE_SITE_TITLE;
 
@@ -57,7 +60,7 @@ void (async () => {
     }
 
     await discoverApiBaseUrl();
-    await installClientPlugins(app, router);
+    await clientBootstrap.installClientPlugins(app, router);
     // The initial navigation runs the auth guard, so the session must be loaded first.
     app.use(router);
     startRealtime();

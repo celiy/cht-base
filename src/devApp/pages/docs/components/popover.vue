@@ -3,11 +3,7 @@
         <section>
             <h1>Popover</h1>
 
-            <p>
-                Painel flutuante com conteúdo livre. Pode abrir no clique ou no hover. Ao contrário
-                do Dropdown, <b>não</b> abre o modal do <code>FloatingPanel</code> no mobile. Use
-                <code>mobileModal</code> ou <code>forceModal</code> se quiser esse comportamento.
-            </p>
+            <p>Painel flutuante com conteúdo livre. Ele pode abrir no clique ou no hover. Ao contrário do Dropdown, ele <b>não</b> abre o modal do <code>FloatingPanel</code> no mobile. Use <code>mobileModal</code> ou <code>forceModal</code> se quiser esse comportamento.</p>
         </section>
 
         <section class="mb-8">
@@ -123,12 +119,7 @@
         <section>
             <h3>Seta e largura</h3>
 
-            <p>
-                <code>hideDropdownArrow</code> (padrão <code>true</code>) esconde o chevron.
-                <code>minWidthPx</code> define a largura mínima do painel.
-                <code>maxWidthPx</code> limita a largura; se o painel ficar mais estreito que o
-                gatilho, alinha à direita.
-            </p>
+            <p><code>hideDropdownArrow</code>, com padrão <code>true</code>, esconde o chevron. <code>minWidthPx</code> define a largura mínima do painel. <code>maxWidthPx</code> limita a largura. Se o painel ficar mais estreito que o gatilho, ele alinha à direita.</p>
         </section>
 
         <section class="mb-8">

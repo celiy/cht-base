@@ -3,12 +3,7 @@
         <section>
             <h1>ViewportCenter</h1>
 
-            <p>
-                Teleporta o slot para o <code>body</code> e centra-o no viewport com
-                <code>$project.device.viewportWidth</code> / <code>viewportHeight</code>. O wrapper
-                tem <code>pointer-events-none</code>: filhos clicáveis precisam de
-                <code>pointer-events-auto</code>. Sem props.
-            </p>
+            <p>Teleporta o slot para o <code>body</code> e o centraliza na área de visualização, usando <code>$project.device.viewportWidth</code> e <code>viewportHeight</code>. O wrapper tem <code>pointer-events-none</code>, então os filhos clicáveis precisam de <code>pointer-events-auto</code>. Não tem props.</p>
         </section>
 
         <section class="mb-8">

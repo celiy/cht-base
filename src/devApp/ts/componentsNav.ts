@@ -70,6 +70,11 @@ export const componentsNav = [
                 searchIcon: "fa-palette"
             },
             {
+                label: "Extensões do cliente",
+                link: "/docs/client-extensions",
+                searchIcon: "fa-puzzle-piece"
+            },
+            {
                 label: "Temas",
                 link: "/docs/themes",
                 searchIcon: "fa-palette"

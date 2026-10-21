@@ -3,12 +3,7 @@
         <section>
             <h1>Toggleable</h1>
 
-            <p>
-                Grupo de <code>Toggle</code> a partir de <code>options</code> (<code>label</code> +
-                <code>value</code>). Fundo <code>bg-input/30</code>; a borda segue o
-                <code>variant</code> (padrão <code>default</code>). A opção ativa usa o mesmo
-                variant no botão; as demais ficam transparentes.
-            </p>
+            <p>Grupo de <code>Toggle</code> criado a partir de <code>options</code>, com <code>label</code> e <code>value</code>. O fundo é <code>bg-input/30</code>. A borda segue o <code>variant</code>, que tem padrão <code>default</code>. A opção ativa usa o mesmo variant no botão, e as demais ficam transparentes.</p>
         </section>
 
         <section class="mb-8">
@@ -106,11 +101,7 @@
         <section>
             <h3>Customização</h3>
 
-            <p>
-                <code>background-style</code> para mudar a cor de fundo.
-                <code>border-style</code> para mudar a cor da borda. <code>radius-style</code> para
-                mudar o raio da borda.
-            </p>
+            <p><code>background-style</code> muda a cor de fundo. <code>border-style</code> muda a cor da borda. <code>radius-style</code> muda o raio da borda.</p>
         </section>
 
         <section class="mb-8">

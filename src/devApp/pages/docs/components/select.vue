@@ -3,18 +3,7 @@
         <section>
             <h1>Select</h1>
 
-            <p>
-                Campo de escolha com lista flutuante. Aceita pesquisa local, tooltips nas opções,
-                seleção múltipla, persistência em <code>localStorage</code> e textos de ajuda dentro
-                e fora do painel. <code>combobox</code> usa um input no gatilho para texto livre com
-                sugestões. Uma opção com <code>options</code> abre um submenu ao lado (hover ou
-                clique). O slot <code>#inside-empty-panel</code> aparece dentro do painel, abaixo de
-                “Nenhum resultado encontrado.”, quando a lista visível está vazia (sem opções ou
-                pesquisa sem resultado). O slot <code>#panel-footer</code> fica fixo no rodapé do
-                painel (com borda superior) enquanto houver opções visíveis — útil para ações como
-                “Cadastrar…”. Em mobile abre um modal blank (<code>mobileModal</code> /
-                <code>forceModal</code>).
-            </p>
+            <p>Campo de escolha com lista flutuante. Tem pesquisa local, tooltip nas opções, seleção múltipla, persistência em <code>localStorage</code> e textos de ajuda. <code>combobox</code> troca o gatilho por um input de texto livre com sugestões. Uma opção com <code>options</code> abre submenu. <code>#inside-empty-panel</code> aparece com a lista vazia, e <code>#panel-footer</code> fica fixo no rodapé enquanto houver opções. No mobile, o painel vira modal, controlado por <code>mobileModal</code> e <code>forceModal</code>.</p>
         </section>
 
         <section>
@@ -47,12 +36,7 @@
         <section>
             <h3>Pesquisa e tooltips</h3>
 
-            <p>
-                <code>:search="{ external: false }"</code> filtra a lista localmente. Ao abrir, o
-                campo recebe foco e o primeiro item fica pré-selecionado; as setas sobem e descem na
-                lista. Enter confirma. Esc fecha o painel. Uma opção pode ter <code>tooltip</code> —
-                o texto aparece ao lado no hover.
-            </p>
+            <p><code>:search="{ external: false }"</code> filtra a lista localmente. Ao abrir, o campo ganha foco e o primeiro item fica pré-selecionado. As setas navegam pela lista, Enter confirma e Esc fecha. Uma opção pode ter <code>tooltip</code>, que aparece ao lado no hover.</p>
         </section>
 
         <section class="mb-8">
@@ -74,13 +58,7 @@
         <section>
             <h3>Pesquisa externa</h3>
 
-            <p>
-                <code>:search="{ external: true, field: 'modelo' }"</code> não filtra a lista: a
-                cada digitação (com debounce) emite <code>search:external</code> com
-                <code>{ field, value }</code>. O pai usa <code>field</code> e <code>value</code>
-                para procurar a entidade no backend, por exemplo
-                <code>GET /api/veiculo?modelo=gol</code>.
-            </p>
+            <p><code>:search="{ external: true, field: 'modelo' }"</code> não filtra a lista. A cada digitação, com debounce, o componente emite <code>search:external</code> com <code>{ field, value }</code>. O pai usa esses dados para buscar no backend, por exemplo em <code>GET /api/veiculo?modelo=gol</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -104,18 +82,7 @@
         <section>
             <h3>Combobox</h3>
 
-            <p>
-                <code>combobox</code> troca o botão do gatilho por um <code>Input</code>. O texto
-                livre fica em <code>v-model:query</code>; escolher uma opção preenche o input com o
-                label e emite o <code>value</code> da opção. Com
-                <code>:search="{ external: true }"</code> a digitação emite
-                <code>search:external</code> (com debounce), sem campo de busca dentro da lista.
-                <code>variant</code> é repassado ao <code>Input</code> do gatilho (<code
-                    >secondary</code
-                >
-                por padrão); <code>transparent</code> encaixa o combobox em layouts densos, como
-                células de tabela.
-            </p>
+            <p><code>combobox</code> troca o gatilho por um <code>Input</code>. O texto livre fica em <code>v-model:query</code>, e escolher uma opção preenche o input com o label e emite o <code>value</code>. Com <code>:search="{ external: true }"</code>, a digitação emite <code>search:external</code>, sem busca dentro da lista. <code>variant</code> vai para o <code>Input</code>, com padrão <code>secondary</code>. Use <code>transparent</code> em layouts densos, como células de tabela.</p>
         </section>
 
         <section class="mb-8">
@@ -139,11 +106,7 @@
         <section>
             <h3>Combobox com opção fixa</h3>
 
-            <p>
-                <code>combobox-option</code> junto com <code>combobox</code>: ao escolher na lista,
-                o valor fica travado (como um select) e um X no input limpa a seleção. Texto livre
-                só enquanto nenhuma opção está selecionada.
-            </p>
+            <p>Com <code>combobox-option</code>, a escolha na lista trava o valor, como num select. Um X no input limpa a seleção. Enquanto nada estiver selecionado, o texto livre continua valendo.</p>
         </section>
 
         <section class="mb-8">
@@ -167,14 +130,7 @@
         <section>
             <h3>Múltipla seleção</h3>
 
-            <p>
-                <code>selectMultiple="{ min, max, allSelected }"</code>. <code>min</code> e
-                <code>max</code> limitam quantos itens cabem; <code>allSelected: true</code> começa
-                com tudo marcado. O valor emitido é um array de strings.
-                <code>showSelectedLabels</code> (padrão <code>true</code>) mostra os labels
-                selecionados no gatilho, com reticências se não couberem. Com <code>false</code>, o
-                gatilho usa o <code>header</code> (placeholder) quando nada está pré-selecionado.
-            </p>
+            <p>Use <code>selectMultiple="{ min, max, allSelected }"</code>. <code>min</code> e <code>max</code> limitam a quantidade marcada, e <code>allSelected: true</code> começa com tudo marcado. O valor é um array de strings. <code>showSelectedLabels</code>, que vem <code>true</code>, mostra os labels no gatilho, com reticências se não couberem. Com <code>false</code>, o gatilho mostra o <code>header</code> quando nada está pré-selecionado.</p>
         </section>
 
         <section class="mb-8">
@@ -211,15 +167,7 @@
         <section>
             <h3>Seleção separada</h3>
 
-            <p>
-                <code>separateSelected</code> (padrão <code>false</code>) só vale com
-                <code>selectMultiple</code>. As opções marcadas saem da lista e do gatilho: ficam
-                abaixo, em um <code>flex-wrap</code> de grupos de botões
-                (<code>variant="outline"</code>, <code>size="small"</code>). O painel flutuante abre
-                preferencialmente para cima (e vira para baixo se não couber). O botão do label
-                emite <code>click:selected</code> com o valor da opção; o X devolve a opção à lista
-                e emite <code>remove:selected</code>.
-            </p>
+            <p><code>separateSelected</code>, padrão <code>false</code>, só vale com <code>selectMultiple</code>. As opções marcadas saem da lista e aparecem abaixo, em grupos de botões (<code>variant="outline"</code>, <code>size="small"</code>). O clique no label emite <code>click:selected</code>. O X devolve a opção à lista e emite <code>remove:selected</code>. O painel abre para cima sempre que couber.</p>
         </section>
 
         <section class="mb-8">
@@ -270,11 +218,7 @@
         <section>
             <h3>Panel footer</h3>
 
-            <p>
-                O slot <code>#panel-footer</code> aparece no fim do painel, sticky, só quando a
-                lista tem opções visíveis. Combine com <code>#inside-empty-panel</code> se a mesma
-                ação também fizer sentido com a lista vazia.
-            </p>
+            <p>O slot <code>#panel-footer</code> fica no fim do painel e só aparece quando a lista tem opções visíveis. Se a mesma ação também fizer sentido com a lista vazia, combine com <code>#inside-empty-panel</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -310,13 +254,7 @@
         <section>
             <h3>Painel vazio</h3>
 
-            <p>
-                Use o slot <code>#inside-empty-panel</code> para ações quando não há itens na lista
-                (catálogo vazio ou filtro/pesquisa sem correspondência). O conteúdo fica
-                centralizado logo abaixo do texto “Nenhum resultado encontrado.”. No Mecarvit, o
-                cadastro de cliente usa esse slot nos selects de endereços e veículos com botões
-                “Cadastrar endereço” / “Cadastrar veículo”.
-            </p>
+            <p>Use <code>#inside-empty-panel</code> para ações quando não há itens, seja porque o catálogo está vazio, seja porque a pesquisa não achou nada. O conteúdo fica centralizado logo abaixo de “Nenhum resultado encontrado.”. No Mecarvit, o cadastro de cliente usa esse slot nos selects de endereço e veículo, com os botões “Cadastrar endereço” e “Cadastrar veículo”.</p>
         </section>
 
         <section class="mb-24">

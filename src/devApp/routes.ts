@@ -88,6 +88,11 @@ const routes: RouteRecordRaw[] = [
                 component: () => import("./pages/docs/client-tailwind-plugin.vue")
             },
             {
+                path: "docs/client-extensions",
+                name: "docs-client-extensions",
+                component: () => import("./pages/docs/client-extensions.vue")
+            },
+            {
                 path: "docs/components/accordion",
                 name: "components-accordion",
                 component: () => import("./pages/docs/components/accordion.vue")

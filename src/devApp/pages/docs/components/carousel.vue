@@ -3,23 +3,13 @@
         <section>
             <h1>Carousel</h1>
 
-            <p>
-                Faixa deslizante. Cada slide é um slot <code>#item-0</code>, <code>#item-1</code>, …
-                — o número de slides é a contagem desses slots (incluindo <code>v-for</code>). Com
-                um único item as setas e os passos escondem-se. Setas e passos fazem loop; o swipe
-                no telemóvel (cerca de 100&nbsp;px) não passa do primeiro nem do último. Clique no
-                padding à volta do item emite <code>click:outside</code>.
-            </p>
+            <p>Faixa deslizante. Cada slide é um slot <code>#item-0</code>, <code>#item-1</code> e assim por diante. O total de slides é a contagem desses slots, incluindo os de <code>v-for</code>. Com um item só, setas e passos somem. Setas e passos fazem loop. No celular, o swipe, de uns 100&nbsp;px, não passa do primeiro nem do último slide. Clicar fora do item emite <code>click:outside</code>.</p>
         </section>
 
         <section>
             <h3>Imagens</h3>
 
-            <p>
-                Com <code>v-for</code>, o nome do slot é <code>item-</code> seguido do índice
-                (<code>#item-0</code>, <code>#item-1</code>, …). <code>startIndex</code> (0-based)
-                define o slide inicial.
-            </p>
+            <p>Com <code>v-for</code>, o nome do slot é <code>item-</code> seguido do índice, como <code>#item-0</code> e <code>#item-1</code>. <code>startIndex</code>, que começa em 0, define o slide inicial.</p>
         </section>
 
         <section class="mb-8">
@@ -47,11 +37,7 @@
         <section>
             <h3>Setas e clique nas extremidades</h3>
 
-            <p>
-                <code>showArrows</code> (default <code>true</code>) mostra as setas laterais. Com
-                <code>edgeClick</code>, cerca de 18% de cada lado do viewport avança ou recua o
-                slide — útil quando as setas estão escondidas.
-            </p>
+            <p><code>showArrows</code>, com padrão <code>true</code>, mostra as setas laterais. Com <code>edgeClick</code>, cerca de 18% de cada lado da área de visualização avança ou volta o slide. É útil quando as setas estão escondidas.</p>
         </section>
 
         <section class="mb-8">
@@ -80,11 +66,7 @@
         <section>
             <h3>Indicador de passos</h3>
 
-            <p>
-                <code>stepsViewer="simplified"</code> (default) são as bolinhas sobre o slide.
-                <code>advanced</code> fica <b>abaixo</b> dos itens: chevrons e <code>n / n</code>,
-                no estilo do input.
-            </p>
+            <p><code>stepsViewer="simplified"</code>, o padrão, mostra as bolinhas sobre o slide. <code>advanced</code> fica <b>abaixo</b> dos itens, com chevrons e <code>n / n</code>, no estilo do input.</p>
         </section>
 
         <section class="mb-8">
@@ -131,10 +113,7 @@
         <section>
             <h3>startIndex</h3>
 
-            <p>
-                Índice 0-based do slide inicial. Valores fora do intervalo são limitados ao primeiro
-                ou ao último. Se a prop mudar depois do mount, o carousel vai para esse índice.
-            </p>
+            <p>Índice do slide inicial, começando em 0. Valores fora do intervalo são limitados ao primeiro ou ao último. Se a prop mudar depois do mount, o carousel vai para esse índice.</p>
         </section>
 
         <section class="mb-8">
@@ -166,7 +145,7 @@
 
             <p>
                 Cada slot recebe o que quiser: um bloco, um card, um formulário. Não há prop
-                <code>images</code> — o conteúdo vem só dos slots.
+                <code>images</code> não é usado. O conteúdo vem só dos slots.
             </p>
         </section>
 

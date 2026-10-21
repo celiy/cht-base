@@ -3,20 +3,7 @@
         <section>
             <h1>Form renderer</h1>
 
-            <p>
-                Monta um formulário a partir de seções e campos tipados: inputs, checkbox, radio,
-                select, toggle e toggleable. Campos podem ter <code>condition</code>,
-                <code>required</code>, <code>disabled</code> e helper. Checkbox aceita
-                <code>checkboxStyle: "switch"</code> — o interruptor e o texto compartilham o mesmo
-                estado. <code>type: "toggle"</code> usa o componente <code>Toggle</code> (booleano).
-                <code>type: "toggleable"</code> usa <code>Toggleable</code> com
-                <code>options</code> (<code>label</code> + <code>value</code>). Em campos
-                <code>type: "select"</code>, o slot
-                <code>#select-inside-empty-panel="{ field }"</code> repassa o conteúdo para o
-                <code>#inside-empty-panel</code> do <code>Select</code> daquele campo. O renderer
-                expõe <code>closeSelect(fieldId)</code> para fechar o painel após uma ação no slot
-                (o <code>ItemViewEdit</code> do Mecarvit repassa o mesmo método).
-            </p>
+            <p>Monta um formulário a partir de seções e campos tipados: inputs, checkbox, radio, select, toggle e toggleable. Campos aceitam <code>condition</code>, <code>required</code>, <code>disabled</code> e helper. Com <code>checkboxStyle: "switch"</code>, o interruptor e o texto compartilham o estado. <code>type: "toggle"</code> usa <code>Toggle</code>, que é booleano, e <code>type: "toggleable"</code> usa <code>Toggleable</code> com <code>options</code>. Em <code>type: "select"</code>, o slot <code>#select-inside-empty-panel="{ field }"</code> vai para o <code>#inside-empty-panel</code> do <code>Select</code> do campo. Para fechar o painel depois de uma ação, use <code>closeSelect(fieldId)</code>, como faz o <code>ItemViewEdit</code> do Mecarvit.</p>
         </section>
 
         <section class="mb-8">

@@ -3,13 +3,7 @@
         <section>
             <h1>Option</h1>
 
-            <p>
-                Linha de lista com <code>label</code>, <code>icon</code>, <code>separator</code> e
-                checkmark opcional. Com <code>value</code> é clicável (tamanho de opção); sem
-                <code>value</code>, cabeçalho. <code>variant="destructive"</code> pinta a ação.
-                <code>showCheckmark</code> e <code>selected</code>
-                mostram o visto.
-            </p>
+            <p>Linha de lista com <code>label</code>, <code>icon</code>, <code>separator</code> e checkmark opcional. Com <code>value</code>, a linha é clicável, no tamanho de opção. Sem <code>value</code>, ela vira cabeçalho. <code>variant="destructive"</code> pinta a ação de vermelho. <code>showCheckmark</code> e <code>selected</code> mostram o visto.</p>
         </section>
 
         <section class="mb-8">
@@ -103,11 +97,7 @@
         <section>
             <h3>Label Helper</h3>
 
-            <p>
-                <code>labelHelper</code> adiciona um texto de ajuda ao label.
-                <code>labelHelperPosition</code> define a posição do texto de ajuda.
-                <code>optionHelperText</code> adiciona um texto de ajuda ao option.
-            </p>
+            <p><code>labelHelper</code> adiciona um texto de ajuda ao label. <code>labelHelperPosition</code> define a posição desse texto. <code>optionHelperText</code> adiciona um texto de ajuda à opção.</p>
         </section>
 
         <section class="mb-8">

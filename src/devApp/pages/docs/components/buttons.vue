@@ -3,13 +3,7 @@
         <section>
             <h1>Button</h1>
 
-            <p>
-                Botão de ação com variantes de cor, tamanho e forma. <br />
-                <code
-                    >variant="primary / default / secondary / success / warning / destructive /
-                    outline / transparent / bordered / transparent-destructive"</code
-                >
-            </p>
+            <p>Botão de ação com variantes de cor, tamanho e forma. <br /> As variantes são <code>primary</code>, <code>default</code>, <code>secondary</code>, <code>success</code>, <code>warning</code>, <code>destructive</code>, <code>outline</code>, <code>transparent</code>, <code>bordered</code> e <code>transparent-destructive</code>, usadas em <code>variant</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -174,11 +168,7 @@
         <section>
             <h3>Customização</h3>
 
-            <p>
-                <code>background-style</code> para mudar a cor de fundo.
-                <code>border-style</code> para mudar a cor da borda. <code>hover-style</code> para
-                mudar o estilo do hover.
-            </p>
+            <p><code>background-style</code> muda a cor de fundo. <code>border-style</code> muda a cor da borda. <code>hover-style</code> muda o estilo do hover.</p>
         </section>
 
         <section class="mb-8">
