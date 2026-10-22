@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "electron": ["../cht-base/node_modules/electron"]
+    },
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "noUncheckedIndexedAccess": true,
+    "verbatimModuleSyntax": true
+  },
+  "include": ["electron/**/*.ts"]
+}

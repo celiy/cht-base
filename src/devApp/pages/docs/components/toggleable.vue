@@ -23,6 +23,33 @@
         </section>
 
         <section>
+            <h3>Permitir nenhuma seleção</h3>
+
+            <p>
+                Por padrão, clicar na opção ativa não a desmarca, então sempre fica uma selecionada.
+                Com <code>allow-empty</code>, clicar de novo limpa a seleção e emite <code>null</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="allow-empty">
+                <div class="flex flex-col gap-4 p-4">
+                    <Toggleable
+                        v-model="optionalStatus"
+                        label="Status"
+                        allow-empty
+
+                        :options="statusOptions"
+                    />
+
+                    <p class="text-sm text-muted-foreground">
+                        Selecionado: {{ optionalStatus ?? "(nenhum)" }}
+                    </p>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
             <h3>Variantes</h3>
 
             <p>
@@ -174,6 +201,7 @@ export default defineComponent({
     data() {
         return {
             status: "open" as string | null,
+            optionalStatus: "open" as string | null,
             priority: "medium" as string | null,
             channel: "email" as string | null,
             health: "ok" as string | null,

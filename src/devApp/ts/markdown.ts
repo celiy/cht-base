@@ -1,4 +1,9 @@
 /**
+ * The docs markdown module
+ * This module is responsible for rendering the docs markdown to HTML of the project.
+ */
+
+/**
  * Escapes text for HTML text nodes and code blocks.
  *
  * @param text Raw text
@@ -13,7 +18,7 @@ function escapeHtml(text: string): string {
 }
 
 /**
- * Renders inline markdown: code, bold, links.
+ * Renders inline markdown: code, bold, images, links.
  *
  * @param text Heading or paragraph text
  * @returns HTML
@@ -28,6 +33,10 @@ function renderInline(text: string): string {
 
     const html = withCodePlaceholders
         .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+        .replace(
+            /!\[([^\]]*)\]\(([^)]+)\)/g,
+            '<img src="$2" alt="$1" loading="lazy" class="w-full rounded border">'
+        )
         .replace(
             /\[([^\]]+)\]\(([^)]+)\)/g,
             '<a href="$2" class="text-primary underline underline-offset-2">$1</a>'

@@ -1,0 +1,315 @@
+/*
+ * Loaded after cht-base/src/css/style.css for CLIENT=override-demo.
+ * Restyles shared global classes so design-system components inherit the look.
+ */
+
+/* --- Ambient page shell (see App.vue) --- */
+
+.override-demo-shell {
+    position: relative;
+    min-height: 100dvh;
+    isolation: isolate;
+    background: linear-gradient(
+        165deg,
+        color-mix(in srgb, var(--color-chart-1) 14%, var(--color-background)) 0%,
+        var(--color-background) 38%,
+        color-mix(in srgb, var(--color-chart-3) 12%, var(--color-background)) 100%
+    );
+}
+
+.override-demo-ambient {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.override-demo-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(88px);
+    opacity: 0.5;
+    animation: override-demo-drift 22s ease-in-out infinite alternate;
+}
+
+.override-demo-blob--a {
+    top: 6%;
+    left: -6%;
+    width: 44vmin;
+    height: 44vmin;
+    background: color-mix(in srgb, var(--color-chart-1) 75%, transparent);
+}
+
+.override-demo-blob--b {
+    top: 42%;
+    right: -10%;
+    width: 38vmin;
+    height: 38vmin;
+    animation-delay: -6s;
+    background: color-mix(in srgb, var(--color-chart-2) 70%, transparent);
+}
+
+.override-demo-blob--c {
+    bottom: 8%;
+    left: 18%;
+    width: 36vmin;
+    height: 36vmin;
+    animation-delay: -12s;
+    background: color-mix(in srgb, var(--color-primary) 55%, transparent);
+}
+
+.override-demo-blob--d {
+    top: 18%;
+    left: 42%;
+    width: 28vmin;
+    height: 28vmin;
+    animation-delay: -3s;
+    background: color-mix(in srgb, var(--color-chart-4) 65%, transparent);
+}
+
+@keyframes override-demo-drift {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(4vw, -3vh) scale(1.08);
+    }
+}
+
+.override-demo-page {
+    position: relative;
+    z-index: 1;
+}
+
+.override-demo-carousel-slide {
+    display: flex;
+    min-height: 6rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    border: 1px solid color-mix(in srgb, var(--color-chart-2) 40%, var(--color-border));
+    background: color-mix(in srgb, var(--color-chart-1) 18%, transparent);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* --- Hover ring → color glow --- */
+
+.hover-ring {
+    --ring-glow-color: var(--color-ring);
+}
+
+.hover-ring-primary {
+    --ring-glow-color: var(--color-primary);
+}
+
+.hover-ring-destructive {
+    --ring-glow-color: var(--color-destructive);
+}
+
+.hover-ring-success {
+    --ring-glow-color: var(--color-success);
+}
+
+.hover-ring-warning {
+    --ring-glow-color: var(--color-warning);
+}
+
+.hover-ring-info {
+    --ring-glow-color: var(--color-info);
+}
+
+.hover-ring,
+.hover-ring-primary,
+.hover-ring-destructive,
+.hover-ring-success,
+.hover-ring-warning,
+.hover-ring-info,
+button.hover-ring:hover,
+button.hover-ring-primary:hover,
+button.hover-ring-destructive:hover,
+button.hover-ring-success:hover,
+button.hover-ring-warning:hover,
+button.hover-ring-info:hover {
+    --tw-ring-offset-width: 0px;
+    --tw-ring-shadow: 0 0 #0000;
+    box-shadow:
+        var(--tw-inset-shadow, 0 0 #0000),
+        var(--tw-inset-ring-shadow, 0 0 #0000),
+        var(--tw-ring-offset-shadow, 0 0 #0000),
+        0 0 0 1px color-mix(in srgb, var(--ring-glow-color) 35%, transparent),
+        0 0 12px 3px color-mix(in srgb, var(--ring-glow-color) 50%, transparent),
+        0 0 28px 8px color-mix(in srgb, var(--ring-glow-color) 28%, transparent),
+        var(--tw-shadow, 0 0 #0000) !important;
+}
+
+/* --- Glass cards & surfaces --- */
+
+.override-demo-shell [class*="bg-card"].border,
+.override-demo-shell .relative.h-fit.w-full.rounded.border.border-border {
+    border-width: 1px !important;
+    border-color: color-mix(in srgb, var(--color-chart-1) 38%, var(--color-border)) !important;
+    background: color-mix(in srgb, var(--color-card) 32%, transparent) !important;
+    backdrop-filter: blur(18px) saturate(1.35);
+    -webkit-backdrop-filter: blur(18px) saturate(1.35);
+    box-shadow:
+        0 4px 24px color-mix(in srgb, var(--color-chart-2) 12%, transparent),
+        inset 0 1px 0 color-mix(in srgb, var(--color-foreground) 8%, transparent);
+}
+
+.override-demo-shell .pointer-events-auto.relative.box-border.bg-card {
+    border-radius: 1.25rem !important;
+    border: 1px solid color-mix(in srgb, var(--color-chart-1) 42%, var(--color-border)) !important;
+    background: color-mix(in srgb, var(--color-card) 40%, transparent) !important;
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+}
+
+/* --- Buttons --- */
+
+.btn-group button {
+    border-radius: 9999px !important;
+}
+
+.btn-group > button:first-child,
+.btn-group > *:first-child button {
+    border-top-left-radius: 9999px !important;
+    border-bottom-left-radius: 9999px !important;
+}
+
+.btn-group > button:last-child,
+.btn-group > *:last-child button {
+    border-top-right-radius: 9999px !important;
+    border-bottom-right-radius: 9999px !important;
+}
+
+button.bg-primary\/95,
+button.bg-primary {
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.override-demo-shell button.border.bg-input\/30 {
+    border-radius: 9999px;
+}
+
+/* --- Badges --- */
+
+.flex.items-center.rounded.px-2.py-0\.5 {
+    border-radius: 9999px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* --- Layout chrome --- */
+
+.container-sm,
+.container-lg {
+    max-width: 56rem;
+}
+
+.separator {
+    height: 3px !important;
+    border-radius: 9999px;
+    background: linear-gradient(
+        90deg,
+        var(--color-chart-1),
+        var(--color-chart-2),
+        var(--color-chart-3)
+    ) !important;
+}
+
+/* --- Tabs --- */
+
+.override-demo-shell .flex.w-fit.overflow-x-auto.rounded.mb-2.p-1.bg-secondary {
+    border-radius: 9999px !important;
+    background: color-mix(in srgb, var(--color-secondary) 55%, transparent) !important;
+    backdrop-filter: blur(8px);
+}
+
+.override-demo-shell .rounded.shadow-sm:has(> p) {
+    border-radius: 1rem !important;
+    border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+    background: color-mix(in srgb, var(--color-muted) 25%, transparent);
+}
+
+/* --- Accordion --- */
+
+.override-demo-shell .rounded.bg-card.border.shadow-md.overflow-hidden {
+    border-radius: 1rem !important;
+    background: color-mix(in srgb, var(--color-card) 28%, transparent) !important;
+    backdrop-filter: blur(14px);
+}
+
+/* --- Table --- */
+
+.override-demo-shell table thead tr {
+    background: linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--color-chart-1) 22%, transparent),
+        color-mix(in srgb, var(--color-chart-2) 18%, transparent)
+    ) !important;
+}
+
+.override-demo-shell table tbody tr:hover {
+    background: color-mix(in srgb, var(--color-chart-3) 12%, transparent) !important;
+}
+
+/* --- Progress --- */
+
+.override-demo-shell .progress-range {
+    accent-color: var(--color-chart-1);
+    border-radius: 9999px;
+}
+
+.override-demo-shell .progress-circular__indeterminate-arc {
+    stroke: var(--color-chart-2) !important;
+}
+
+/* --- Skeleton --- */
+
+.override-demo-shell .animate-pulse .bg-muted {
+    background: linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--color-muted) 80%, transparent),
+        color-mix(in srgb, var(--color-chart-1) 35%, var(--color-muted)),
+        color-mix(in srgb, var(--color-muted) 80%, transparent)
+    ) !important;
+    background-size: 200% 100% !important;
+    animation: override-demo-shimmer 2s ease-in-out infinite;
+}
+
+@keyframes override-demo-shimmer {
+    0% {
+        background-position: 100% 0;
+    }
+
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+/* --- QR --- */
+
+.override-demo-shell .inline-flex.w-fit.rounded-lg.bg-white.p-2 {
+    border-radius: 1rem !important;
+    border: 2px solid color-mix(in srgb, var(--color-chart-1) 50%, var(--color-border));
+    box-shadow: 0 0 20px color-mix(in srgb, var(--color-chart-2) 25%, transparent);
+}
+
+/* --- Options list --- */
+
+.override-demo-shell [class*="hover:bg-accent"] {
+    border-radius: 0.75rem;
+}
+
+/* --- Toast stack (subtle glass) --- */
+
+[data-cht-toast] .toast-item-panel > div {
+    border-radius: 1rem !important;
+    backdrop-filter: blur(12px);
+}

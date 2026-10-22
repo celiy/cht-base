@@ -1,0 +1,6 @@
+{
+    "name": "__CLIENT_NAME__",
+    "siteTitle": "__SITE_TITLE__",
+    "apiPortScanLimit": 20,
+    "devTools": true
+}

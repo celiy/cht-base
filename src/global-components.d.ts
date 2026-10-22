@@ -21,6 +21,7 @@ type DesignSystemComponents = {
     Carousel: typeof import("@design/components/Carousel.vue").default;
     Checkbox: typeof import("@design/components/Checkbox.vue").default;
     CheckboxSwitch: typeof import("@design/components/CheckboxSwitch.vue").default;
+    Chip: typeof import("@design/components/Chip.vue").default;
     Dropdown: typeof import("@design/components/Dropdown.vue").default;
     Example: typeof import("@design/components/Example.vue").default;
     Image: typeof import("@design/components/Image.vue").default;
