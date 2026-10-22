@@ -150,7 +150,7 @@ export default defineConfig(async ({ command, mode }) => {
             host: clientConfig?.lan === false ? "127.0.0.1" : true,
             ...(clientConfig?.lan === false ? {} : { allowedHosts: true as const }),
             fs: {
-                allow: [path.resolve(__dirname, "..")]
+                allow: [path.resolve(__dirname, ".."), ...(clientDirPath ? [clientDirPath] : [])]
             }
         }
     };

@@ -31,7 +31,7 @@ function resolveOverridePath(clientName: string | undefined): string | null {
         return null;
     }
 
-    const overridePath = path.join(
+    const overridePath = path.resolve(
         WORKSPACE_ROOT,
         resolveClientDir(clientConfig),
         "src",

@@ -13,6 +13,7 @@ import type { ClientThemeConfig } from "./theme/types";
  */
 export interface ClientConfig {
     name: string;
+    /** Folder name under the workspace root, or an absolute path for external clients. */
     clientDir?: string;
     siteTitle: string;
     version?: string;

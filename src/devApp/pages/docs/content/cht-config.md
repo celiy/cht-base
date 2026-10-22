@@ -80,7 +80,7 @@ Para empacotar um backend que não é Node, mantenha `packageWithElectron: true`
 | `apiPortScanLimit` | Quantas portas, a partir da configurada, o cliente tenta. |
 | `frontend.repo` / `frontend.ref` | Repositório e branch, tag ou commit do frontend no `install`. |
 | `backend` | Se existir, o runner sobe o processo e `VITE_HAS_BACKEND` fica `true`. |
-| `backend.dir` | Pasta do backend, relativa à raiz do workspace. Obrigatório quando há `backend`. |
+| `backend.dir` | Pasta do backend, relativa à raiz do workspace. Em cliente externo (caminho passado no comando), relativa à pasta do cliente. Obrigatório quando há `backend`. |
 | `backend.cmd` | Comando de dev, rodado em `backend.dir`. Padrão: `npm run dev`. |
 | `backend.startCmd` | Comando usado pelo Electron em modo janela. Padrão: o mesmo de `cmd`. |
 | `backend.packagedCmd` | Comando dentro do app instalado. |
