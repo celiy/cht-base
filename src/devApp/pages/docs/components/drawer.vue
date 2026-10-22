@@ -12,20 +12,9 @@
         <section>
             <h3>Arrastar para fechar</h3>
 
-            <p>
-                No toque, o drawer segue o dedo quando o gesto vai na direção de fechar (para a
-                esquerda, a direita ou para baixo, conforme o <code>side</code>). Soltar depois de
-                cerca de 12% da tela, ou com um movimento rápido, fecha; antes disso ele volta ao
-                lugar. Ao fechar, ele continua deslizando a partir de onde foi solto.
-            </p>
+            <p>No toque, o drawer segue o dedo quando o gesto vai na direção de fechar. Essa direção é para a esquerda, para a direita ou para baixo, conforme o <code>side</code>. Soltar depois de cerca de 12% da tela, ou com um movimento rápido, fecha o drawer. Antes disso, ele volta ao lugar. Ao fechar, ele continua deslizando a partir do ponto em que foi solto.</p>
 
-            <p>
-                O gesto fica com o conteúdo quando faz sentido: no drawer de baixo, arrastar para
-                baixo com o corpo rolado rola de volta ao topo; nos laterais, áreas com arrasto
-                horizontal próprio (carrossel, slider, rolagem lateral) não fecham o drawer.
-                Botões, links e campos nunca iniciam o arrasto. No mouse, arrasta-se pelo
-                cabeçalho ou pela alça, para o texto do corpo continuar selecionável.
-            </p>
+            <p>O gesto fica com o conteúdo quando faz sentido. No drawer de baixo, arrastar com o corpo já rolado faz a rolagem voltar ao topo. Nos laterais, áreas com arrasto horizontal próprio, como carrossel, slider ou rolagem lateral, não fecham o drawer. Botões, links e campos nunca iniciam o arrasto. No mouse, o arrasto começa pelo cabeçalho ou pela alça, para o texto do corpo continuar selecionável.</p>
         </section>
 
         <section class="mb-8">

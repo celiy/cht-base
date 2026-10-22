@@ -3,12 +3,7 @@
         <section>
             <h1>Dropdown</h1>
 
-            <p>
-                Menu de ações a partir de um botão. Opções podem ter ícone, valor, tooltip e
-                separadores. Emite <code>@click:value</code> com o <code>value</code> da opção. Em
-                ecrãs estreitos abre um <code>Modal</code> <code>blank</code> por omissão
-                (<code>mobileModal</code>; <code>forceModal</code> força no desktop).
-            </p>
+            <p>Menu de ações a partir de um botão. As opções podem ter ícone, valor, tooltip e separadores. Ao escolher uma opção, o componente emite <code>@click:value</code> com o <code>value</code> dela. Em telas estreitas, abre um <code>Modal</code> do tipo <code>blank</code> por padrão, controlado por <code>mobileModal</code>. Use <code>forceModal</code> para forçar o modal no desktop.</p>
         </section>
 
         <section class="mb-8">
@@ -47,14 +42,7 @@
         <section>
             <h3>Pesquisa</h3>
 
-            <p>
-                <code>:search="{ external: false }"</code> mostra um campo no topo da lista e filtra
-                por <code>label</code> (e por <code>value</code> se nada bater no label). Ao abrir,
-                o campo recebe foco e o primeiro item fica pré-selecionado; setas navegam, Enter
-                confirma, Esc fecha.
-                <code>:search="{ external: true, field: 'modelo' }"</code> deixa a filtragem a cargo
-                do pai e emite <code>search:external</code> com <code>{ field, value }</code>.
-            </p>
+            <p><code>:search="{ external: false }"</code> mostra um campo no topo e filtra por <code>label</code>, ou por <code>value</code> se o label não bater. Ao abrir, o campo ganha foco e o primeiro item fica pré-selecionado. Setas navegam, Enter confirma e Esc fecha. Com <code>:search="{ external: true, field: 'modelo' }"</code>, o pai faz a filtragem e recebe <code>search:external</code> com <code>{ field, value }</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -78,10 +66,7 @@
         <section>
             <h3>Fechar ao selecionar</h3>
 
-            <p>
-                <code>closeOnSelect</code> (padrão <code>true</code>) fecha o painel depois do
-                clique. Passe <code>false</code> para menus que precisam de vários cliques seguidos.
-            </p>
+            <p><code>closeOnSelect</code>, com padrão <code>true</code>, fecha o painel depois do clique. Passe <code>false</code> para menus que pedem vários cliques seguidos.</p>
         </section>
 
         <section class="mb-8">
@@ -118,11 +103,7 @@
         <section>
             <h3>Modal</h3>
 
-            <p>
-                <code>mobileModal</code> (padrão <code>true</code>) usa um modal blank abaixo de
-                <code>768px</code>. <code>:mobileModal="false"</code> mantém o painel flutuante.
-                <code>forceModal</code> abre o modal também no desktop.
-            </p>
+            <p><code>mobileModal</code>, com padrão <code>true</code>, usa um modal do tipo <code>blank</code> abaixo de <code>768px</code>. Com <code>:mobileModal="false"</code>, o painel continua flutuante. <code>forceModal</code> abre o modal também no desktop.</p>
         </section>
 
         <section class="mb-8">
@@ -153,14 +134,7 @@
         <section>
             <h3>Botão customizado</h3>
 
-            <p>
-                O slot <code>#button</code> recebe <code>isOpen</code>, <code>toggle</code>,
-                <code>open</code> e <code>close</code>. <code>buttonVariant</code> e
-                <code>buttonAtributes</code> valem só para o botão padrão.
-                <code>hideDropdownArrow</code> esconde a seta desse botão. O painel tem largura
-                mínima de <code>192px</code> (<code>minWidthPx</code>); o valor final é o maior
-                entre o trigger e esse mínimo.
-            </p>
+            <p>O slot <code>#button</code> recebe <code>isOpen</code>, <code>toggle</code>, <code>open</code> e <code>close</code>. <code>buttonVariant</code> e <code>buttonAtributes</code> valem só para o botão padrão, e <code>hideDropdownArrow</code> esconde a seta dele. O painel tem largura mínima de <code>192px</code>, em <code>minWidthPx</code>, e usa a maior entre a do gatilho e esse mínimo.</p>
         </section>
 
         <section class="mb-8">
@@ -241,11 +215,7 @@
         <section>
             <h3>Submenu</h3>
 
-            <p>
-                Uma opção com <code>options</code> abre um painel ao lado no hover ou no clique.
-                <code>openOn="click"</code> restringe a abertura ao clique. O submenu pode ter mais
-                <code>options</code> (aninhamento).
-            </p>
+            <p>Uma opção com <code>options</code> abre um painel ao lado, no hover ou no clique. <code>openOn="click"</code> limita a abertura ao clique. O submenu também pode ter <code>options</code>, então há aninhamento.</p>
         </section>
 
         <section class="mb-8">
@@ -276,15 +246,7 @@
         <section>
             <h3>Opções</h3>
 
-            <p>
-                Cada item: <code>label</code>, <code>value</code> (obrigatório para ser clicável),
-                <code>icon</code> (classe Font Awesome, ex. <code>fa-user</code>),
-                <code>tooltip</code>, <code>separator: true</code> para uma linha divisória e
-                <code>variant: "destructive"</code> para ações de exclusão (texto vermelho). Itens
-                só com <code>label</code> (sem <code>value</code>) viram cabeçalhos de grupo.
-                <code>options</code> no item abre um submenu ao lado; <code>disabled</code> impede o
-                clique.
-            </p>
+            <p>Cada item tem <code>label</code>, <code>value</code>, obrigatório para ser clicável, <code>icon</code>, que é a classe Font Awesome, como <code>fa-user</code>, <code>tooltip</code>, <code>separator: true</code> para uma linha divisória, e <code>variant: "destructive"</code>, que deixa o texto vermelho. Item só com <code>label</code> vira cabeçalho de grupo. <code>options</code> abre submenu ao lado, e <code>disabled</code> impede o clique.</p>
         </section>
     </article>
 </template>

@@ -4,8 +4,7 @@
             <h1>simplicia e hodiernus</h1>
 
             <p>
-                Estilos de superfície (sólido vs vidro), independentes de light/dark. Troca com
-                <code>$project.style.setCustomTheme</code>.
+                Dois estilos de superfície: <code>simplicia</code> usa cor sólida e <code>hodiernus</code> usa vidro. Eles não dependem do modo light ou dark. Para trocar, use <code>$project.style.setCustomTheme</code>.
             </p>
         </section>
 

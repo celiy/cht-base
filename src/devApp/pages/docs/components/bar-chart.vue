@@ -3,28 +3,11 @@
         <section>
             <h1>Bar chart</h1>
 
-            <p>
-                <code>BarChart</code> desenha barras verticais ou horizontais.
-                <code>TableCharts</code> com <code>variant="bars"</code> envolve o gráfico num card
-                com título e descrição e repassa todas as outras props, eventos e o slot
-                <code>#label</code>.
-            </p>
+            <p><code>BarChart</code> desenha barras verticais ou horizontais. Com <code>variant="bars"</code>, o <code>TableCharts</code> envolve o gráfico num card com título e descrição. Ele repassa as outras props, os eventos e o slot <code>#label</code>.</p>
 
-            <p>
-                <code>data</code> recebe uma série (<code>ChartSeries</code>) ou várias
-                (<code>ChartSeries[]</code>). Cada série tem <code>label</code>,
-                <code>items</code> e, opcionalmente, <code>color</code>,
-                <code>displayAs</code> (<code>"currency"</code> ou <code>"sum"</code>) e
-                <code>key</code>. Itens com <code>date</code> somam por mês; itens com
-                <code>group</code> somam por grupo, na ordem em que aparecem. As séries são
-                alinhadas pelas mesmas categorias.
-            </p>
+            <p><code>data</code> recebe uma série (<code>ChartSeries</code>) ou várias (<code>ChartSeries[]</code>). Cada série tem <code>label</code>, <code>items</code> e, opcionalmente, <code>color</code>, <code>displayAs</code> (<code>"currency"</code> ou <code>"sum"</code>) e <code>key</code>. Itens com <code>date</code> somam por mês, e itens com <code>group</code> somam por grupo, na ordem em que aparecem.</p>
 
-            <p>
-                Na primeira vez que aparece na tela, as barras sobem uma a uma. Quando os dados
-                mudam, elas animam até o novo tamanho. <code>animated</code> desliga as duas
-                animações, que também não rodam com "reduzir movimento" do sistema.
-            </p>
+            <p>Na primeira vez que o gráfico aparece, as barras sobem uma a uma. Quando os dados mudam, elas animam até o novo tamanho. <code>animated</code> desliga as duas animações. Elas também não rodam quando o sistema pede para reduzir movimento.</p>
         </section>
 
         <section class="mb-8">
@@ -43,18 +26,7 @@
         <section>
             <h3>Formato do data</h3>
 
-            <p>
-                <code>data</code> é um objeto <code>ChartSeries</code> ou uma lista deles. Cada
-                série tem <code>label</code> (nome na legenda e no tooltip), <code>items</code> (os
-                valores) e, opcionalmente, <code>color</code>, <code>displayAs</code> (<code
-                    >"currency"</code
-                >
-                ou <code>"sum"</code>) e <code>key</code>. Cada item tem <code>value</code> e uma
-                posição: <code>date</code> (soma por mês) ou <code>group</code> (soma por grupo, na
-                ordem em que aparece). Os campos opcionais de item são <code>valueNegative</code>,
-                <code>color</code>, <code>id</code> (enviado no <code>click:bar</code>) e
-                <code>highlight</code>.
-            </p>
+            <p><code>data</code> é um <code>ChartSeries</code> ou uma lista deles. Cada série tem <code>label</code>, que aparece na legenda e no tooltip, e <code>items</code>, com os valores. Cada item tem <code>value</code> e uma posição, <code>date</code> ou <code>group</code>. Campos opcionais do item: <code>valueNegative</code>, <code>color</code>, <code>id</code>, enviado no <code>click:bar</code>, e <code>highlight</code>.</p>
 
             <DocsCode
                 language="ts"
@@ -65,12 +37,7 @@
         <section>
             <h3>Várias séries</h3>
 
-            <p>
-                Com várias séries, cada categoria mostra uma barra por série, lado a lado. O tooltip
-                lista todas, com a cor de cada uma. <code>legend</code> mostra a legenda.
-                <code>stack="stacked"</code> empilha as séries e <code>stack="expanded"</code>
-                mostra a fatia de cada uma em 100%.
-            </p>
+            <p>Com várias séries, cada categoria mostra uma barra por série, lado a lado. O tooltip lista todas, com a cor de cada uma. <code>legend</code> mostra a legenda. <code>stack="stacked"</code> empilha as séries. <code>stack="expanded"</code> mostra a fatia de cada uma em 100%.</p>
         </section>
 
         <section class="mb-8 grid grid-cols-1 gap-4">
@@ -112,15 +79,7 @@
         <section>
             <h3>Labels</h3>
 
-            <p>
-                <code>showLabels</code> escreve o valor na ponta de cada barra (o total, quando
-                empilhadas). <code>labelClass</code> substitui o estilo padrão do label (<code
-                    >text-xs font-medium text-foreground</code
-                >); a cor da barra fica em <code>--chart-color</code>, então
-                <code>text-(--chart-color)</code> pinta o label com ela. O slot
-                <code>#label</code> troca o conteúdo e recebe
-                <code>{ value, formatted, category, series, color }</code>.
-            </p>
+            <p><code>showLabels</code> escreve o valor na ponta de cada barra, ou o total quando as barras estão empilhadas. <code>labelClass</code> troca o estilo padrão do label. A cor da barra fica em <code>--chart-color</code>, então <code>text-(--chart-color)</code> pinta o label com ela. O slot <code>#label</code> troca o conteúdo e recebe <code>{ value, formatted, category, series, color }</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -156,13 +115,7 @@
         <section>
             <h3>Cores e negativos</h3>
 
-            <p>
-                <code>color</code> é o token da primeira série; as demais sem cor seguem a paleta
-                <code>chart-1</code> … <code>chart-5</code>. Um item com <code>color</code> pinta só
-                a sua barra. Com uma série só: <code>negativeColor</code> pinta os valores negativos
-                e <code>colorEnd</code> / <code>negativeColorEnd</code> misturam as cores da
-                primeira até a última barra.
-            </p>
+            <p><code>color</code> é o token da primeira série. As séries seguintes sem cor usam a paleta de <code>chart-1</code> a <code>chart-5</code>. Um item com <code>color</code> pinta só a própria barra. Com uma série só, <code>negativeColor</code> pinta os valores negativos. <code>colorEnd</code> e <code>negativeColorEnd</code> criam um degradê entre a primeira barra e a última.</p>
         </section>
 
         <section class="mb-8">
@@ -205,14 +158,7 @@
         <section>
             <h3>Tamanhos</h3>
 
-            <p>
-                <code>barSize</code> fixa a espessura de cada barra em px; sem ele, as barras
-                dividem a largura (até 80px). <code>barGap</code> é o espaço entre as barras de uma
-                categoria e <code>groupGap</code>, entre categorias. Com <code>barSize</code>,
-                <code>align</code> (<code>left</code> / <code>center</code> / <code>right</code>)
-                posiciona as barras quando sobra espaço; se não couberem, o gráfico rola na
-                horizontal.
-            </p>
+            <p><code>barSize</code> fixa a espessura de cada barra, em px. Sem ele, as barras dividem a largura, até 80px. <code>barGap</code> é o espaço entre barras da mesma categoria, e <code>groupGap</code>, o espaço entre categorias. Com <code>barSize</code>, <code>align</code> (<code>left</code>, <code>center</code> ou <code>right</code>) posiciona as barras quando sobra espaço. Se não couberem, o gráfico rola na horizontal.</p>
         </section>
 
         <section class="mb-8">
@@ -234,11 +180,7 @@
         <section>
             <h3>Horizontal</h3>
 
-            <p>
-                <code>direction="horizontal"</code> cresce para a direita, com as mesmas opções
-                (séries, empilhamento, negativos e labels). <code>barSize</code> é a altura da barra
-                (padrão 32px).
-            </p>
+            <p>Com <code>direction="horizontal"</code>, as barras crescem para a direita, com as mesmas opções de séries, empilhamento, negativos e labels. Nesse caso, <code>barSize</code> é a altura da barra, com padrão de 32px.</p>
         </section>
 
         <section class="mb-8">
@@ -259,11 +201,7 @@
         <section>
             <h3>Clique e dados ao vivo</h3>
 
-            <p>
-                <code>clickable</code> emite <code>click:bar</code> com
-                <code>{ id, value, category, series }</code>. Trocar <code>data</code> anima as
-                barras até os novos valores.
-            </p>
+            <p>Com <code>clickable</code>, o clique emite <code>click:bar</code> com <code>{ id, value, category, series }</code>. Quando <code>data</code> muda, as barras animam até os novos valores.</p>
         </section>
 
         <section class="mb-8">

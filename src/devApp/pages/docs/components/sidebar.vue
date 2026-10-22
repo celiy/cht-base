@@ -3,12 +3,7 @@
         <section>
             <h1>Sidebar</h1>
 
-            <p>
-                Shell de navegação: painel à esquerda e conteúdo à direita. Esta wiki já usa uma
-                instância <code>variant="minimalist"</code> no layout. Os quadros abaixo são o
-                componente de verdade, isolado — o atalho <code>s</code> continua a controlar só a
-                sidebar da wiki.
-            </p>
+            <p>Shell de navegação, com painel à esquerda e conteúdo à direita. A documentação já usa uma instância com <code>variant="minimalist"</code> no layout. Os quadros abaixo mostram o componente isolado. O atalho <code>s</code> continua controlando só a sidebar da documentação.</p>
         </section>
 
         <section>
@@ -156,30 +151,20 @@
                 não <code>children</code>.
             </p>
 
-            <p><code>type: "section"</code> — rótulo, sem clique. Só <code>label</code>.</p>
+            <p><code>type: "section"</code> é um rótulo, sem clique. Usa só <code>label</code>.</p>
 
             <p>
-                <code>type: "link"</code> — <code>label</code>, <code>link</code> (rota) e
+                <code>type: "link"</code> usa <code>label</code>, <code>link</code>, que é a rota, e
                 <code>leftIcon</code> opcional (classe Font Awesome, ex. <code>fa-user</code>).
             </p>
 
-            <p>
-                <code>type: "group"</code> — accordion. <code>label</code>,
-                <code>leftIcon</code> opcional, <code>links: [{ label, link, leftIcon }]</code>.
-                Aberto/fechado é estado local; um sublink ativo ou <code>openByDefault</code> /
-                <code>open</code> começam abertos. A animação é <code>grid-template-rows</code>.
-            </p>
+            <p><code>type: "group"</code> vira um accordion. Ele usa <code>label</code>, <code>leftIcon</code>, que é opcional, e <code>links: [{ label, link, leftIcon }]</code>. Aberto ou fechado é estado local. Um grupo começa aberto se tiver um sublink ativo, ou se usar <code>openByDefault</code> ou <code>open</code>. A animação usa <code>grid-template-rows</code>.</p>
         </section>
 
         <section>
             <h3>Slots</h3>
 
-            <p>
-                <code>#header</code> e <code>#footer</code> ficam fora da lista que rola.
-                <code>#sidebar-body</code> entra no <code>&lt;nav&gt;</code> depois dos links. O
-                slot default é o conteúdo da página. <code>#top-bar</code> só existe na variante
-                default (ao lado do hamburger).
-            </p>
+            <p><code>#header</code> e <code>#footer</code> ficam fora da lista que rola. <code>#sidebar-body</code> entra no <code>&lt;nav&gt;</code>, depois dos links. O slot padrão é o conteúdo da página. <code>#top-bar</code> só existe na variante padrão, ao lado do hambúrguer.</p>
 
             <p>
                 As props <code>title</code> e <code>description</code> existem na API mas o
@@ -190,18 +175,9 @@
         <section>
             <h3>Conteúdo dinâmico nos slots</h3>
 
-            <p>
-                Os slots são renderizados pelo próprio componente, então aceitam qualquer conteúdo
-                reativo: <code>v-for</code>, <code>v-if</code> e valores vindos do estado da página.
-                Quando o estado muda, o slot atualiza sem precisar reabrir a Sidebar. Isso vale para
-                <code>#header</code>, <code>#sidebar-body</code> e <code>#footer</code>.
-            </p>
+            <p>Os slots são renderizados pelo próprio componente, então aceitam qualquer conteúdo reativo, com <code>v-for</code>, <code>v-if</code> ou valores do estado da página. Quando o estado muda, o slot atualiza sem precisar reabrir a Sidebar. Isso vale para <code>#header</code>, <code>#sidebar-body</code> e <code>#footer</code>.</p>
 
-            <p>
-                <code>#sidebar-body</code> não rola sozinho: fica depois da lista de links, que é o
-                único trecho com scroll. Se a lista puder ficar longa, envolva o conteúdo num
-                <code>div</code> com <code>max-h-*</code> e <code>overflow-y-auto</code>.
-            </p>
+            <p><code>#sidebar-body</code> não rola sozinho. Ele fica depois da lista de links, que é o único trecho com scroll. Se a lista puder ficar longa, envolva o conteúdo numa <code>div</code> com <code>max-h-*</code> e <code>overflow-y-auto</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -275,31 +251,15 @@
         <section>
             <h3>Desktop, resize e mobile</h3>
 
-            <p>
-                Em desktop o painel empurra o conteúdo (<code>margin-left</code> = largura).
-                <code>sidebarWidth</code> (padrão <code>300</code>) é o valor inicial; arraste a
-                borda direita entre <code>minSidebarWidth</code> (250) e
-                <code>maxSidebarWidth</code> (350).
-            </p>
+            <p>No desktop, o painel empurra o conteúdo, com <code>margin-left</code> igual à largura. <code>sidebarWidth</code>, com padrão <code>300</code>, é o valor inicial. Arraste a borda direita entre <code>minSidebarWidth</code>, de 250, e <code>maxSidebarWidth</code>, de 350.</p>
 
-            <p>
-                Em mobile o painel é overlay (<code>min-w-[80%]</code>,
-                <code>sm:min-w-[60%]</code>), fecha no backdrop, no swipe para a esquerda e ao
-                clicar num link. Com o painel fechado, swipe para a direita reabre.
-                <code>startOpen</code> (padrão <code>true</code>) — nesta wiki começa fechado no
-                telemóvel.
-            </p>
+            <p>No mobile, o painel vira overlay, com <code>min-w-[80%]</code> e <code>sm:min-w-[60%]</code>. Ele fecha ao clicar no fundo, com swipe para a esquerda e ao clicar num link. Com o painel fechado, swipe para a direita reabre. <code>startOpen</code>, com padrão <code>true</code>, define o estado inicial. Na documentação, ele começa fechado no celular.</p>
         </section>
 
         <section>
             <h3>Atalho</h3>
 
-            <p>
-                Com <code>toggleKeybind</code> (padrão <code>true</code>), um <code>Keybind</code>
-                <code>s</code> chama <code>toggleOpenClose</code>. Não dispara enquanto o foco está
-                num input, textarea ou select. O hamburger faz o mesmo no clique. Passe
-                <code>:toggle-keybind="false"</code> se outra Sidebar já usar o <code>s</code>.
-            </p>
+            <p>Com <code>toggleKeybind</code>, que vem <code>true</code>, o <code>Keybind</code> <code>s</code> chama <code>toggleOpenClose</code>. O atalho não dispara com o foco num input, textarea ou select. O hambúrguer faz o mesmo no clique. Passe <code>:toggle-keybind="false"</code> se outra Sidebar já usar o <code>s</code>.</p>
         </section>
     </article>
 </template>

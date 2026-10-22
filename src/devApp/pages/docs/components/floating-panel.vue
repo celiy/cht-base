@@ -3,23 +3,13 @@
         <section>
             <h1>FloatingPanel</h1>
 
-            <p>
-                Painel flutuante posicionado em relação a um <code>anchor</code>. É a base de
-                <code>Popover</code>, <code>Select</code>, <code>Dropdown</code> e do modal de tela
-                cheia no mobile. Importa de
-                <code>@design/components/internal/FloatingPanel.vue</code> e não está no glob do
-                plugin, então não é registrado globalmente.
-            </p>
+            <p>Painel flutuante posicionado em relação a um <code>anchor</code>. Ele é a base de <code>Popover</code>, <code>Select</code>, <code>Dropdown</code> e do modal de tela cheia no mobile. Importe de <code>@design/components/internal/FloatingPanel.vue</code>. Ele não entra no glob do plugin, então não é registrado globalmente.</p>
         </section>
 
         <section>
             <h3>Uso básico</h3>
 
-            <p>
-                Passe o elemento gatilho em <code>anchor</code> e controle a abertura com
-                <code>v-model:open</code>. Sem <code>open</code>, o painel mantém o estado interno e
-                abre/fecha sozinho pelo gatilho que você controla.
-            </p>
+            <p>Passe o elemento gatilho em <code>anchor</code> e controle a abertura com <code>v-model:open</code>. Sem <code>open</code>, o painel guarda o estado interno e abre e fecha pelo gatilho que você controla.</p>
         </section>
 
         <section class="mb-8">
@@ -49,14 +39,7 @@
         <section>
             <h3>Posicionamento</h3>
 
-            <p>
-                Por padrão o painel abre abaixo do anchor e alinha com a borda esquerda dele.
-                <code>preferAbove</code> tenta abrir acima e só inverte se não couber.
-                <code>lockToAnchor</code> (default <code>true</code>) iguala a largura ao gatilho;
-                use <code>false</code> com <code>minWidthPx</code> e <code>maxWidthPx</code> para
-                conteúdo que pode ser mais largo. Em <code>maxHeightPx</code> (default
-                <code>280</code>) o painel rola internamente.
-            </p>
+            <p>Por padrão, o painel abre abaixo do anchor, alinhado à borda esquerda dele. <code>preferAbove</code> tenta abrir acima e só inverte se não couber. <code>lockToAnchor</code>, com padrão <code>true</code>, iguala a largura ao gatilho. Use <code>false</code> com <code>minWidthPx</code> e <code>maxWidthPx</code> para conteúdo mais largo. <code>maxHeightPx</code>, com padrão <code>280</code>, faz o painel rolar por dentro.</p>
         </section>
 
         <section class="mb-8">
@@ -89,12 +72,7 @@
         <section>
             <h3>Mobile e modal</h3>
 
-            <p>
-                Em viewports estreitos (até 767px), o painel vira um <code>Modal</code> em branco
-                quando <code>mobileModal</code> é <code>true</code> (default). Com
-                <code>forceModal</code> ele abre como modal também no desktop. O slot padrão é
-                renderizado dentro do modal, então o conteúdo não muda.
-            </p>
+            <p>Em telas estreitas, até 767px, o painel vira um <code>Modal</code> em branco quando <code>mobileModal</code> é <code>true</code>, que é o padrão. Com <code>forceModal</code>, ele abre como modal também no desktop. O slot padrão fica dentro do modal, então o conteúdo não muda.</p>
         </section>
 
         <section class="mb-8">
@@ -125,12 +103,7 @@
         <section>
             <h3>Hover e fechamento</h3>
 
-            <p>
-                <code>openOnHover</code> mantém o painel aberto enquanto o ponteiro está sobre ele e
-                fecha após um pequeno atraso ao sair. <code>closeOnContentClick</code>
-                fecha o painel quando qualquer ponto dele é clicado. Por padrão, clique fora,
-                <code>Escape</code> e troca de painel também fecham.
-            </p>
+            <p><code>openOnHover</code> mantém o painel aberto enquanto o ponteiro está sobre ele, e fecha depois de um pequeno atraso ao sair. <code>closeOnContentClick</code> fecha o painel quando qualquer ponto dele é clicado. Por padrão, clique fora, <code>Escape</code> e troca de painel também fecham.</p>
         </section>
 
         <section>

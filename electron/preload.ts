@@ -6,6 +6,8 @@
 import { contextBridge, ipcRenderer } from "electron";
 import type { BackendStatus, ElectronAPI, UpdateStatus } from "./types";
 import { IPC_CHANNELS } from "./types";
+// Bundled in: the client exposes its own bridge with `contextBridge.exposeInMainWorld`.
+import "@client-electron/preload";
 
 const APP_VERSION_ARGUMENT = "--cht-app-version=";
 

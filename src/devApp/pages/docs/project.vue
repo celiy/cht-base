@@ -4,11 +4,7 @@
             <h1>$project</h1>
 
             <p>
-                Estado global reativo instalado pelo <code>projectPlugin</code> em
-                <code>cht-base/src/project.ts</code>. Em qualquer SFC, usa
-                <code>this.$project</code> (Options API) ou importa <code>project</code> /
-                <code>projectActions</code> no script. Os tipos estão em
-                <code>ProjectState</code> no mesmo ficheiro.
+                Estado global reativo, instalado pelo <code>projectPlugin</code> em <code>cht-base/src/project.ts</code>. Nos componentes, use <code>this.$project</code>. Fora deles, importe <code>project</code> ou <code>projectActions</code>. Os tipos ficam em <code>ProjectState</code>.
             </p>
         </section>
 
@@ -21,27 +17,7 @@
             <h3>device</h3>
 
             <p>
-                Atualizado no <code>resize</code> da janela. <code>isPhone</code> é
-                <code>true</code> quando <code>viewportWidth &lt;= mobileBreakpointPx</code> ({{
-                    $project.device.mobileBreakpointPx
-                }}
-                px). <code>isTablet</code> é a faixa a seguir,
-                <code>mobileBreakpointPx &lt; viewportWidth &lt;= tabletBreakpointPx</code> ({{
-                    $project.device.tabletBreakpointPx
-                }}
-                px). <code>isMobile</code> é <code>true</code> quando é phone ou tablet
-                (<code>isPhone || isTablet</code>). Acima disso, os três são <code>false</code>.
-                <code>performanceScore</code> começa em <code>null</code> e passa a um inteiro
-                depois de um benchmark leve no arranque (~100–150 ms no total, em fatias para não
-                travar a UI). Escala aproximada:
-                <code>0–300</code> fraco, <code>300–700</code> intermediário, <code>700–1200</code>
-                bom, <code>1200+</code> muito rápido. O valor fica em cache na sessão; a lógica está
-                em <code>getDevicePerformanceScore</code>
-                (<code>cht-base/src/js/utils/devicePerformanceScore.ts</code>). No boot, o score pode
-                desligar o
-                <a href="/docs/styling">reveal highlight</a> em máquinas fracas — ver
-                <code>applyRevealHighlightPerformanceGate</code> em
-                <code>revealHighlight.ts</code> (limiar comentado para calibrares).
+                Atualizado no <code>resize</code> da janela. <code>isPhone</code> vale até <code>mobileBreakpointPx</code>. <code>isTablet</code> vale na faixa seguinte, até <code>tabletBreakpointPx</code>. <code>isMobile</code> é phone ou tablet. Acima disso, os três são <code>false</code>. <code>performanceScore</code> começa em <code>null</code> e recebe um número depois de um teste curto no arranque, de uns 100 a 150 ms, feito em fatias para não travar a interface. A escala aproximada é: abaixo de 300 fraco, de 300 a 700 intermediário, de 700 a 1200 bom e acima de 1200 muito rápido. O valor fica em cache na sessão. A lógica está em <code>getDevicePerformanceScore</code>, em <code>cht-base/src/js/utils/devicePerformanceScore.ts</code>.
             </p>
         </section>
 
@@ -90,20 +66,7 @@
             <h3>style</h3>
 
             <p>
-                <code>activeTheme</code> e <code>availableThemes</code> vêm de
-                <code>VITE_DEFAULT_THEME</code> / <code>VITE_AVAILABLE_THEMES</code>.
-                <code>$project.style.theme(name)</code> (ou <code>projectActions.setTheme</code>) aplica o
-                tema no <code>document</code> e persiste em <code>localStorage</code>. Superfície do
-                painel flutuante:
-                <code>setCustomTheme("simplicia" | "hodiernus")</code>
-                — ver
-                <a href="/docs/custom-themes">simplicia e hodiernus</a>. CSS extra:
-                <code>loadCss</code> / <code>unloadCss</code> — ver
-                <a href="/docs/themes">Temas</a>.
-                <code>revealHighlight</code> (default <code>true</code>) liga o glow de borda da
-                classe
-                <a href="/docs/styling">reveal-highlight</a>; não persiste. O motor só pinta com
-                <code>customTheme === "hodiernus"</code>.
+                <code>activeTheme</code> e <code>availableThemes</code> vêm de <code>VITE_DEFAULT_THEME</code> e <code>VITE_AVAILABLE_THEMES</code>. <code>$project.style.theme(name)</code>, ou <code>projectActions.setTheme</code>, aplica o tema e grava no <code>localStorage</code>. <code>setCustomTheme</code> troca entre <code>simplicia</code> e <code>hodiernus</code>, veja <a href="/docs/custom-themes">simplicia e hodiernus</a>. <code>loadCss</code> e <code>unloadCss</code> cuidam do CSS extra, veja <a href="/docs/themes">Temas</a>. <code>revealHighlight</code> liga o efeito de borda da classe <a href="/docs/styling">reveal-highlight</a>. Ele não é salvo, e só pinta quando <code>customTheme</code> é <code>hodiernus</code>.
             </p>
         </section>
 
@@ -154,10 +117,7 @@
             <h3>url.query e url.params</h3>
 
             <p>
-                Snapshots reativos ligados ao <code>vue-router</code> em
-                <code>initProjectRouter</code>. <code>query</code> espelha a querystring
-                (<code>?a=b</code>); <code>params</code> espelha os parâmetros da rota (ex.:
-                <code>/item/:id</code> → <code>params.id</code>). Não confundir query com params.
+                <code>query</code> espelha a querystring, então <code>?a=b</code> vira <code>query.a</code>. <code>params</code> espelha os parâmetros da rota, então <code>/item/:id</code> vira <code>params.id</code>. Os dois são reativos e vêm do <code>vue-router</code>.
             </p>
         </section>
 
@@ -197,10 +157,7 @@
             <h3>route.isLoading</h3>
 
             <p>
-                <code>true</code> entre <code>beforeEach</code> e <code>afterEach</code> quando o
-                path da rota muda e o chunk lazy ainda não carregou. O layout de docs usa isto para
-                a barra e o overlay de carregamento. Em desenvolvimento, <code>?slow=1</code> na
-                rota de destino atrasa 2s para testar o estado.
+                Fica <code>true</code> entre o <code>beforeEach</code> e o <code>afterEach</code> quando a rota muda e o chunk lazy ainda não carregou. O layout de docs usa isso na barra de carregamento. Em desenvolvimento, <code>?slow=1</code> na rota de destino atrasa dois segundos, para testar o estado.
             </p>
         </section>
 
@@ -221,11 +178,7 @@
             <h3>labels, user e version</h3>
 
             <p>
-                <code>labels.siteTitle</code> é definido no boot a partir de
-                <code>VITE_SITE_TITLE</code>. <code>user.name</code> é preenchido pela app após
-                login (<code>projectActions.setUserName</code>). <code>version.current</code> e
-                <code>version.checkUrl</code> vêm do build; no Electron o updater pode atualizar
-                <code>version.current</code>.
+                <code>labels.siteTitle</code> vem de <code>VITE_SITE_TITLE</code> no boot. <code>user.name</code> é preenchido pela app depois do login, com <code>projectActions.setUserName</code>. <code>version.current</code> e <code>version.checkUrl</code> vêm do build. No Electron, o atualizador pode trocar <code>version.current</code>.
             </p>
         </section>
 
@@ -258,11 +211,7 @@
             <h3>electron e update</h3>
 
             <p>
-                Fora do Electron, <code>electron.isElectron</code> é <code>false</code> e
-                <code>backendReady</code> costuma ser <code>true</code> quando não há backend
-                embutido. No desktop, <code>hasBackend</code>, <code>backendStatus</code> e
-                <code>backendMessage</code> acompanham o processo local; <code>update</code> espelha
-                o auto-update (<code>projectActions.checkForUpdates</code>, etc.).
+                Fora do Electron, <code>electron.isElectron</code> é <code>false</code>. No desktop, <code>hasBackend</code>, <code>backendStatus</code> e <code>backendMessage</code> acompanham o processo local. <code>update</code> espelha o atualizador automático, controlado por <code>projectActions.checkForUpdates</code>.
             </p>
         </section>
 

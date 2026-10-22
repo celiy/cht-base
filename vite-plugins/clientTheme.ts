@@ -67,7 +67,7 @@ function getClientConfigPath(baseDir: string, clientName: string | undefined): s
         return null;
     }
 
-    return path.join(baseDir, "..", clientConfig.clientDir ?? `cht-client-${clientName}`, "cht.config.json");
+    return path.join(path.resolve(baseDir, "..", clientConfig.clientDir ?? `cht-client-${clientName}`), "cht.config.json");
 }
 
 /**

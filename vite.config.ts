@@ -1,8 +1,10 @@
-import { defineConfig } from "vite";
+import { defineConfig, mergeConfig } from "vite";
+import type { UserConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
 import tailwindcss from "@tailwindcss/vite";
 import { loadConfig, resolveClientDir, loadDevAppVersion } from "./configs";
+import { loadClientViteConfig } from "./configs/clientVite";
 import { docsExampleSourcePlugin } from "./vite-plugins/docsExampleSource";
 import { clientThemePlugin } from "./vite-plugins/clientTheme";
 import { clientSourcePlugin } from "./vite-plugins/clientSource";
@@ -56,8 +58,11 @@ function isRepoUpdateNotificationsEnabled(): boolean {
     return true;
 }
 
-const clientRoot = clientConfig
-    ? path.resolve(__dirname, "..", resolveClientDir(clientConfig), "src")
+const clientDirPath = clientConfig
+    ? path.resolve(__dirname, "..", resolveClientDir(clientConfig))
+    : null;
+const clientRoot = clientDirPath
+    ? path.join(clientDirPath, "src")
     : path.resolve(__dirname, "src/devApp");
 
 const siteTitle = clientConfig?.siteTitle ?? "CHT-Dev App";
@@ -85,7 +90,7 @@ const alias: Record<string, string> = {
 const dedupe = ["vue", "vue-router"];
 
 // https://vite.dev/config/
-export default defineConfig(({ command }) => {
+export default defineConfig(async ({ command, mode }) => {
     const apiTarget = resolveApiTarget({
         electronBuild,
         command,
@@ -94,7 +99,7 @@ export default defineConfig(({ command }) => {
     const apiBaseUrl = pickApiBaseUrl(clientConfig, apiTarget);
     const apiPortScanLimit = clientConfig?.apiPortScanLimit ?? DEFAULT_API_PORT_SCAN_LIMIT;
 
-    return {
+    const baseConfig: UserConfig = {
         plugins: [
             clientSourcePlugin(),
             clientTailwindPlugin(),
@@ -114,6 +119,10 @@ export default defineConfig(({ command }) => {
             clientOverridePlugin()
         ],
         base: electronBuild ? "./" : "/",
+        // The client owns `public/` and `.env*`; only `VITE_*` keys reach the browser.
+        ...(clientDirPath
+            ? { publicDir: path.join(clientDirPath, "public"), envDir: clientDirPath }
+            : {}),
         resolve: {
             alias,
             dedupe
@@ -141,8 +150,14 @@ export default defineConfig(({ command }) => {
             host: clientConfig?.lan === false ? "127.0.0.1" : true,
             ...(clientConfig?.lan === false ? {} : { allowedHosts: true as const }),
             fs: {
-                allow: [path.resolve(__dirname, "..")]
+                allow: [path.resolve(__dirname, ".."), ...(clientDirPath ? [clientDirPath] : [])]
             }
         }
     };
+
+    const clientViteConfig = clientDirPath
+        ? await loadClientViteConfig(clientDirPath, { command, mode })
+        : null;
+
+    return clientViteConfig ? mergeConfig(baseConfig, clientViteConfig) : baseConfig;
 });

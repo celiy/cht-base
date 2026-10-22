@@ -3,11 +3,7 @@
         <section>
             <h1>Steps</h1>
 
-            <p>
-                Sequência numerada com <code>Marker</code>. Cada passo é um par de slots
-                <code>#step-title-0</code> / <code>#step-0</code>, <code>#step-title-1</code> /
-                <code>#step-1</code>, …
-            </p>
+            <p>Sequência numerada com <code>Marker</code>. Cada passo tem um par de slots: <code>#step-title-0</code> e <code>#step-0</code>, depois <code>#step-title-1</code> e <code>#step-1</code>, e assim por diante.</p>
         </section>
 
         <section class="mb-8">

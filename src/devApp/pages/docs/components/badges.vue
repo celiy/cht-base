@@ -37,12 +37,7 @@
         <section>
             <h3>Variações</h3>
 
-            <p>
-                Cores via <code>variant</code>. Semânticas:
-                <code>primary / secondary / destructive / warning / info / success</code>. Paleta de
-                gráficos (tokens <code>--color-chart-*</code> em <code>style.css</code>):
-                <code>chart-1</code> … <code>chart-5</code>.
-            </p>
+            <p>As cores vêm de <code>variant</code>. As semânticas são <code>primary</code>, <code>secondary</code>, <code>destructive</code>, <code>warning</code>, <code>info</code> e <code>success</code>. A paleta de gráficos usa os tokens <code>--color-chart-*</code>, definidos em <code>style.css</code>, de <code>chart-1</code> a <code>chart-5</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -75,11 +70,7 @@
         <section>
             <h3>Custom color</h3>
 
-            <p>
-                Para usar uma cor customizada, use a prop <code>color</code> com um token Tailwind:
-                <code>Badge</code> aceita qualquer cor de <code>bg-*</code> do Tailwind (ex:
-                <code>sky-500</code>, <code>emerald-700</code>, <code>red-200</code>, etc).
-            </p>
+            <p>Para uma cor customizada, use a prop <code>color</code> com um token Tailwind. O Badge aceita qualquer cor de <code>bg-*</code> do Tailwind, como <code>sky-500</code>, <code>emerald-700</code> ou <code>red-200</code>.</p>
         </section>
 
         <section class="mb-8">

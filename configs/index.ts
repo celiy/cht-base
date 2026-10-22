@@ -150,26 +150,42 @@ export function loadDevAppVersion(): { version?: string; versionCheckUrl?: strin
 }
 
 /**
- * Lists the discovered clients
+ * Client folders outside the workspace root, from the `CHT_CLIENT_DIRS` path list set by cht-main.
+ * @returns {string[]} Absolute folders
+ */
+function listExternalClientDirs(): string[] {
+    const dirs = (process.env.CHT_CLIENT_DIRS || "").split(path.delimiter).filter(Boolean);
+
+    return [...new Set(dirs.map((dir) => path.resolve(WORKSPACE_ROOT, dir.trim())))];
+}
+
+/**
+ * Lists the discovered clients. `dir` is the folder name for siblings and an absolute path
+ * for external clients.
  * @returns {Map<string, { dir: string; configPath: string; config: ClientConfig }>} The discovered clients
  */
 function listDiscoveredClients(): Map<string, { dir: string; configPath: string; config: ClientConfig }> {
     const found = new Map<string, { dir: string; configPath: string; config: ClientConfig }>();
+    const candidates: string[] = [];
 
-    if (!fs.existsSync(WORKSPACE_ROOT)) {
-        return found;
+    if (fs.existsSync(WORKSPACE_ROOT)) {
+        for (const entry of fs.readdirSync(WORKSPACE_ROOT, { withFileTypes: true })) {
+            if (
+                !entry.isDirectory() ||
+                SKIP_DISCOVERY_DIRS.has(entry.name) ||
+                entry.name.startsWith(".")
+            ) {
+                continue;
+            }
+
+            candidates.push(entry.name);
+        }
     }
 
-    for (const entry of fs.readdirSync(WORKSPACE_ROOT, { withFileTypes: true })) {
-        if (
-            !entry.isDirectory() ||
-            SKIP_DISCOVERY_DIRS.has(entry.name) ||
-            entry.name.startsWith(".")
-        ) {
-            continue;
-        }
+    candidates.push(...listExternalClientDirs());
 
-        const dirPath = path.join(WORKSPACE_ROOT, entry.name);
+    for (const dir of candidates) {
+        const dirPath = path.resolve(WORKSPACE_ROOT, dir);
 
         if (!findClientConfigPath(dirPath)) {
             continue;
@@ -183,7 +199,7 @@ function listDiscoveredClients(): Map<string, { dir: string; configPath: string;
         }
 
         found.set(name, {
-            dir: entry.name,
+            dir,
             configPath: loaded.configPath,
             config: loaded.config as unknown as ClientConfig
         });
@@ -222,7 +238,7 @@ export function loadConfig(name: string | undefined | null): ClientConfig | null
     }
 
     const clientDir = found.dir;
-    const clientDirPath = path.join(WORKSPACE_ROOT, clientDir);
+    const clientDirPath = path.resolve(WORKSPACE_ROOT, clientDir);
     const parsed = found.config;
     const fileVersion = loadVersionFromFile(clientDirPath);
     const workspaceVersion = loadWorkspaceVersion();

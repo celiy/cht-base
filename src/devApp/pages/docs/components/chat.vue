@@ -3,25 +3,13 @@
         <section>
             <h1>Chat</h1>
 
-            <p>
-                Lista de mensagens em bolhas. A prop <code>messages</code> é um array de objetos.
-                Com <code>sent</code>, <code>read</code>, <code>pending</code> ou
-                <code>failed</code>
-                a bolha vai para a direita; sem isso, para a esquerda. Clique direito (ou
-                long-press) abre o menu: copiar texto ou a imagem clicada. Só um menu de contexto
-                fica aberto de cada vez.
-            </p>
+            <p>Lista de mensagens em bolhas. A prop <code>messages</code> é um array de objetos. Com <code>sent</code>, <code>read</code>, <code>pending</code> ou <code>failed</code>, a bolha vai para a direita. Sem isso, vai para a esquerda. O clique direito, ou o long-press, abre um menu para copiar o texto ou a imagem clicada. Só um menu de contexto fica aberto por vez.</p>
         </section>
 
         <section>
             <h3>Texto, estado e agrupamento</h3>
 
-            <p>
-                Bolhas consecutivas do mesmo lado partilham cantos (<code>rounded-xl</code> /
-                <code>rounded-md</code>). <code>date</code> mostra a hora; <code>edited</code> e
-                <code>editedAt</code>
-                marcam a mensagem como editada.
-            </p>
+            <p>Bolhas consecutivas do mesmo lado dividem os cantos, com <code>rounded-xl</code> e <code>rounded-md</code>. <code>date</code> mostra a hora. <code>edited</code> e <code>editedAt</code> marcam a mensagem como editada.</p>
         </section>
 
         <section class="mb-8">
@@ -35,11 +23,7 @@
         <section>
             <h3>Links</h3>
 
-            <p>
-                URLs <code>https://</code> ou <code>www.</code> no <code>text</code> viram links
-                (sublinhados, abrem noutro separador). A cor vem de <code>text-contrast</code>
-                para ficar legível no fundo da bolha.
-            </p>
+            <p>URLs que começam com <code>https://</code> ou <code>www.</code>, dentro de <code>text</code>, viram links sublinhados, que abrem em outra aba. A cor vem de <code>text-contrast</code>, para ficar legível sobre o fundo da bolha.</p>
         </section>
 
         <section class="mb-8">
@@ -53,11 +37,7 @@
         <section>
             <h3>Imagens</h3>
 
-            <p>
-                <code>images</code> é um array de URLs. Uma imagem fica no formato original; várias
-                ficam numa grelha 1:1. Clique em qualquer foto abre o carousel da mensagem nesse
-                índice. Mais de quatro mostra <code>+N</code> na 4.ª.
-            </p>
+            <p><code>images</code> é um array de URLs. Uma imagem aparece no formato original. Várias imagens ficam numa grade 1:1. Clicar numa foto abre o carousel da mensagem, no índice dessa foto. Com mais de quatro, a quarta mostra <code>+N</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -88,11 +68,7 @@
         <section>
             <h3>Menu de contexto</h3>
 
-            <p>
-                Clique direito no <strong>texto</strong> → Copiar texto. Clique direito numa
-                <strong>imagem</strong> → Copiar imagem (só essa). Responder, Encaminhar e Excluir
-                ainda são só visuais.
-            </p>
+            <p>Clique direito no <strong>texto</strong> para copiar o texto. Clique direito numa <strong>imagem</strong> para copiar só aquela imagem. Responder, Encaminhar e Excluir ainda são só visuais.</p>
         </section>
     </article>
 </template>

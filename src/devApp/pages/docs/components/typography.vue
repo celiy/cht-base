@@ -78,11 +78,7 @@
         <section>
             <h3>Contraste</h3>
 
-            <p>
-                <code>text-contrast</code> escolhe <code>--color-foreground</code> ou
-                <code>--color-background</code> (com <code>!important</code>) consoante o fundo for
-                escuro ou claro.
-            </p>
+            <p><code>text-contrast</code> escolhe <code>--color-foreground</code> ou <code>--color-background</code>, com <code>!important</code>, conforme o fundo seja escuro ou claro.</p>
         </section>
 
         <section class="mb-8">

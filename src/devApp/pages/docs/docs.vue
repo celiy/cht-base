@@ -34,7 +34,7 @@
 
             <Item
                 label="Fundamentos"
-                description="Cores, tipografia, toast e tooltip — a base visual do sistema."
+                description="Cores, tipografia, toast e tooltip. É a base visual do sistema."
                 icon="fa-palette"
                 variant="secondary"
 

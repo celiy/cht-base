@@ -37,10 +37,7 @@
         <section>
             <h3>Tipos</h3>
 
-            <p>
-                <code>type="card / alert"</code>. <code>card</code> (padrão) usa um recorte colorido
-                atrás do ícone. <code>alert</code> deixa o ícone solto, no estilo de aviso.
-            </p>
+            <p><code>type="card"</code> ou <code>type="alert"</code>. <code>card</code>, o padrão, usa um recorte colorido atrás do ícone. <code>alert</code> deixa o ícone solto, no estilo de aviso.</p>
         </section>
 
         <section class="mb-8">
@@ -150,11 +147,7 @@
         <section>
             <h3>Ícone</h3>
 
-            <p>
-                <code>icon</code> aceita o nome Font Awesome com ou sem prefixo (<code>user</code>
-                ou <code>fa-user</code>). Classes extras como <code>fa-regular</code> podem ir na
-                string inteira. O padrão é <code>fa-circle</code>.
-            </p>
+            <p><code>icon</code> aceita o nome do Font Awesome com ou sem prefixo, como <code>user</code> ou <code>fa-user</code>. Classes extras, como <code>fa-regular</code>, podem ir na própria string. O padrão é <code>fa-circle</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -182,11 +175,7 @@
         <section>
             <h3>Tamanho e posição</h3>
 
-            <p>
-                <code>itemIconSize="sm / md / lg"</code> ajusta o tamanho do ícone (padrão
-                <code>md</code>). <code>position="start / center / end"</code> alinha o ícone e o
-                conteúdo no eixo transversal (padrão <code>center</code>).
-            </p>
+            <p><code>itemIconSize="sm"</code>, <code>"md"</code> ou <code>"lg"</code> ajusta o tamanho do ícone. O padrão é <code>md</code>. <code>position="start"</code>, <code>"center"</code> ou <code>"end"</code> alinha o ícone e o conteúdo no eixo transversal. O padrão é <code>center</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -277,12 +266,7 @@
         <section>
             <h3>Customizações</h3>
 
-            <p>
-                Item pode ter a superfície customizada via
-                <code>backgroundStyle</code>, <code>borderStyle</code> e <code>hoverStyle</code>.
-                O ícone pode ser customizado via <code>itemBackgroundStyle</code> (fundo do recorte)
-                e <code>itemIconStyle</code> (classes do próprio ícone).
-            </p>
+            <p>A superfície do item aceita <code>backgroundStyle</code>, <code>borderStyle</code> e <code>hoverStyle</code>. Para o ícone, use <code>itemBackgroundStyle</code>, que pinta o fundo do recorte, e <code>itemIconStyle</code>, que recebe classes do próprio ícone.</p>
         </section>
 
         <section class="mb-8">

@@ -3,12 +3,7 @@
         <section>
             <h1>Tooltip</h1>
 
-            <p>
-                Diretiva <code>v-tooltip</code>. Aceita string ou objeto com <code>content</code>,
-                <code>placement</code>, <code>html</code>, <code>offset</code>,
-                <code>maxWidth</code> e <code>delay</code>. Para conteúdo Vue que segue o ponteiro,
-                use o componente <code>Tooltip</code> em Custom.
-            </p>
+            <p>Diretiva <code>v-tooltip</code>. Ela aceita uma string ou um objeto com <code>content</code>, <code>placement</code>, <code>html</code>, <code>offset</code>, <code>maxWidth</code> e <code>delay</code>. Para conteúdo Vue que segue o ponteiro, use o componente <code>Tooltip</code> em Custom.</p>
         </section>
 
         <section>
@@ -94,11 +89,7 @@
         <section>
             <h3>Delay</h3>
 
-            <p>
-                <code>delay</code> é o tempo em milissegundos antes do tooltip aparecer após o
-                hover. Padrão: <code>100</code>. Use <code>0</code> para aparecer imediatamente. O
-                timer é cancelado se o mouse sair antes.
-            </p>
+            <p><code>delay</code> é o tempo, em milissegundos, antes de o tooltip aparecer depois do hover. O padrão é <code>100</code>. Use <code>0</code> para aparecer na hora. O timer é cancelado se o mouse sair antes.</p>
         </section>
 
         <section class="mb-8">

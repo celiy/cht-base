@@ -1,63 +1,55 @@
 # cht-base
 
-Repositório base do frontend multi-cliente.
+Shell do frontend multi-cliente, feito com Vue e Vite. Ele cuida do boot, das rotas, dos layouts e da ligação com o `cht-design-system` e o `cht-shared`. Cada cliente entra por cima, numa pasta irmã.
 
-## O que é
+## O que ele faz
 
-O `cht-base` é o shell principal da aplicação em Vue + Vite.  
-Ele define estrutura global, layouts, roteamento e integração com os demais pacotes do workspace.
-
-## O que faz
-
-- Inicializa a aplicação frontend.
-- Carrega configuração do cliente ativo via variável `CLIENT` (lê o `cht.config.ts` ou `cht.config.json` da pasta do cliente, ao lado do `cht-base`; se existirem os dois, o `.ts` ganha).
-- Monta rotas de páginas do cliente (`@client/routes.ts`).
-- Consome componentes do `cht-design-system` e utilitários do `cht-shared`.
-- Mantém modo `dev` interno para desenvolvimento de telas/labs do base.
-- Pode ser executado como app desktop Electron (`electron/`), iniciando o backend do cliente em paralelo com o frontend.
+- Inicia a aplicação e carrega a config do cliente ativo, definido pela variável `CLIENT`.
+- Monta as rotas do cliente a partir de `src/routes.ts`.
+- Oferece `$project`, `$http` e o realtime, prontos para uso.
+- Roda como app desktop com o Electron, subindo o backend do cliente junto.
+- Mantém um modo `dev` com a documentação em `/docs`.
 
 ## Estrutura
 
 | Pasta | Conteúdo |
 | --- | --- |
-| `src/main.ts` | Boot da aplicação: plugins do design system, toast, `$project` e `$http`, auth guard do cliente, router e realtime. |
-| `src/project.ts` | Objeto global `$project`: tema ativo, rótulos, viewport (mobile/tablet), estado de backend e de update no Electron. |
-| `src/http/` | Cliente HTTP (`$http`). Resolve a URL da API e, com backend, procura a porta que responde `GET /health`. Não grava token em storage. |
-| `src/realtime/` | Cliente WebSocket na mesma origem da API (`/ws`). Só liga se o cliente tem backend. |
-| `src/devTools/` | Botão de debug e sino de repos atualizados (só em desenvolvimento). |
-| `src/directives/` | Diretiva `v-tooltip`. |
-| `src/electron/` | Tela de arranque do app desktop. |
-| `src/css/` | Estilo global, reset e temas (`style.css`, `style-hodiernus.css`, `style-simplicia.css`). |
-| `src/devApp/` | App de documentação (`/docs`): páginas de cada componente, guias e catálogo de prontidão. |
-| `configs/` | Leitura e validação do `cht.config` e dos temas. |
-| `vite-plugins/` | Plugins Vite: fonte do cliente, tema, favicon, plugin Tailwind do cliente, override de CSS e `repo-updates`. |
-| `electron/` | Processo principal do app desktop, gestor do backend, atualizador e configuração do `electron-builder`. |
-| `template/client-template/` | Modelo copiado por `npx chtmain create`. |
+| `src/main.ts` | Boot da aplicação. |
+| `src/project.ts` | `$project`: tema, rótulos, viewport e estado do Electron. |
+| `src/http/` | Cliente HTTP, `$http`. Não grava token no storage. |
+| `src/realtime/` | WebSocket em `/ws`. Só liga quando o cliente tem backend. |
+| `src/devApp/` | Documentação em `/docs`. |
+| `configs/` | Leitura do `cht.config` e dos temas. |
+| `vite-plugins/` | Plugins do Vite, como fonte do cliente, tema e favicon. |
+| `electron/` | Processo principal do Electron, backend, atualizador e build. |
+| `template/client-template/` | Modelo usado por `npx chtmain create`. |
 
 ## Cliente ativo
 
-Um repositório torna-se cliente quando tem `cht.config.ts` (ou `.json`) na raiz e está ao lado do `cht-base`. O campo `name` é o identificador usado em `--client:`. Campos principais: `siteTitle`, `api` (URL por alvo: `dev`, `web`, `electron`, `mobile`), `backend`, `frontend`, `devTools`, `lan` e `theme`. A referência completa está na página `/docs/cht-config` do modo dev.
+Uma pasta vira cliente quando tem `cht.config.ts` ou `cht.config.json` na raiz e fica ao lado do `cht-base`. O campo `name` é o id usado em `--client:`.
 
-O cliente fornece, no mínimo: `src/routes.ts`, `src/App.vue`, `src/bootstrap.ts` e `src/theme.config.json`. Opcionalmente `src/css/style.css`, `src/override.css` e `src/tailwind.plugin.js`.
+O cliente precisa de `src/routes.ts`, `src/App.vue`, `src/bootstrap.ts` e `src/theme.config.json`. Os demais arquivos são opcionais.
+
+Para ir além disso, o cliente pode ter `vite.config.ts`, `public/`, `.env` com `VITE_*`, `routerOptions` no `bootstrap.ts` e `electron/main.ts` ou `electron/preload.ts`. A página Extensões do cliente, em `/docs/client-extensions`, explica cada um.
 
 ## Scripts
 
 ```bash
 npm run dev            # Vite
-npm run build          # vue-tsc + vite build
-npm run build:client   # idem, para o cliente em CLIENT
+npm run build          # type-check e build
 npm run electron:compile
 npm run electron
-npm run electron:build
 ```
 
-No dia a dia, use o runner da raiz (`npx chtmain dev --client:<nome>`, `npx chtmain build <nome>`, `npx chtmain electron ...`); ele define `CLIENT`, as portas e o backend.
+No dia a dia, prefira o runner da raiz do `cht-main`:
 
-## Documentação interna
-
-Com `npx chtmain dev`, o Vite extra do `devApp` serve `/docs`: instalação, criação de cliente, `cht.config`, temas, `$http`, `$project`, websocket e uma página por componente do design system, cada uma com o estado de prontidão (`src/devApp/data/componentReadiness.json`).
+```bash
+npx chtmain dev --client:<nome>
+npx chtmain build <nome>
+npx chtmain electron <nome>
+```
 
 ## Regras
 
-- O `cht-base` não importa código de clientes. Clientes dependem dele, nunca o contrário.
-- Mudanças em contratos públicos (`$http`, `$project`, rotas e props documentadas) seguem o [CONTRIBUTING.md](../CONTRIBUTING.md).
+- O `cht-base` não importa código de cliente. É o cliente que depende da base, nunca o contrário.
+- Mudanças em contratos públicos, como `$http`, `$project`, rotas e props documentadas, seguem o [CONTRIBUTING.md](../CONTRIBUTING.md).

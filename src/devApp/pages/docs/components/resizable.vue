@@ -3,11 +3,7 @@
         <section>
             <h1>Resizable</h1>
 
-            <p>
-                Container sem estilo próprio, com bordas arrastáveis. O cursor muda para resize; o
-                tamanho nunca passa do pai nem dos limites <code>maxWidth</code> /
-                <code>maxHeight</code>.
-            </p>
+            <p>Container sem estilo próprio, com bordas arrastáveis. O cursor muda para indicar redimensionamento. O tamanho nunca passa do pai nem dos limites <code>maxWidth</code> e <code>maxHeight</code>.</p>
         </section>
 
         <section>
@@ -48,11 +44,7 @@
         <section>
             <h3>Isolar o resize</h3>
 
-            <p>
-                <code>resize</code> aceita um eixo (<code>horizontal</code> / <code>vertical</code>)
-                ou um lado (<code>left</code> / <code>right</code> / <code>top</code> /
-                <code>bottom</code>).
-            </p>
+            <p><code>resize</code> aceita um eixo, <code>horizontal</code> ou <code>vertical</code>, ou um lado, <code>left</code>, <code>right</code>, <code>top</code> ou <code>bottom</code>.</p>
         </section>
 
         <section class="mb-8">

@@ -26,11 +26,7 @@
         <section>
             <h3>Carregamento lento</h3>
 
-            <p>
-                Enquanto a rede não entrega o ficheiro, o <code>Skeleton</code> ocupa o
-                <code>aspect-ratio</code> (aqui <code>16/9</code>). A foto abaixo é um JPEG grande
-                da Wikimedia Commons; cada recarga acrescenta um query para evitar cache.
-            </p>
+            <p>Enquanto a rede não entrega o arquivo, o <code>Skeleton</code> ocupa o <code>aspect-ratio</code>, que aqui é <code>16/9</code>. A foto abaixo é um JPEG grande da Wikimedia Commons. Cada recarga acrescenta um query para evitar cache.</p>
         </section>
 
         <section class="mb-8">

@@ -3,11 +3,7 @@
         <section>
             <h1>Toggle</h1>
 
-            <p>
-                Botão com os mesmos props do <code>Button</code>. Desligado usa
-                <code>variant="transparent"</code>; ligado usa o <code>variant</code> informado
-                (padrão <code>default</code>).
-            </p>
+            <p>Botão com as mesmas props do <code>Button</code>. Desligado, ele usa <code>variant="transparent"</code>. Ligado, usa o <code>variant</code> informado, que tem padrão <code>default</code>.</p>
         </section>
 
         <section class="mb-8">

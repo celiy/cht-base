@@ -4,11 +4,7 @@
             <h1>Temas</h1>
 
             <p>
-                Light/dark fica em <code>$project.style.activeTheme</code> e em
-                <code>document.documentElement.dataset.theme</code>, persistido com
-                <code>VITE_THEME_STORAGE_KEY</code>. À parte disso há
-                <strong>temas de superfície</strong> (<code>simplicia</code> /
-                <code>hodiernus</code>) e CSS extra carregado em runtime.
+                Há três coisas separadas. O modo light ou dark, os estilos de superfície <code>simplicia</code> e <code>hodiernus</code> e o CSS extra carregado em runtime. O modo fica em <code>$project.style.activeTheme</code> e no atributo <code>data-theme</code> do <code>html</code>. A chave do <code>localStorage</code> vem de <code>VITE_THEME_STORAGE_KEY</code>.
             </p>
         </section>
 
@@ -16,8 +12,7 @@
             <h3>Light e dark</h3>
 
             <p>
-                <code>style.theme(name)</code> (ou <code>projectActions.setTheme</code>) aplica o
-                tema no <code>document</code> e grava no <code>localStorage</code>.
+                <code>style.theme(name)</code>, ou <code>projectActions.setTheme</code>, aplica o tema no <code>document</code> e grava a escolha no <code>localStorage</code>.
             </p>
         </section>
 
@@ -50,9 +45,7 @@
             <h3>simplicia e hodiernus</h3>
 
             <p>
-                Estilos de superfície (sólido vs vidro), à parte de light/dark. Comparação, classes
-                e como aplicar:
-                <a href="/docs/custom-themes">simplicia e hodiernus</a>.
+                Estilos de superfície, sólido ou vidro, independentes do modo light ou dark. Veja <a href="/docs/custom-themes">simplicia e hodiernus</a>.
             </p>
         </section>
 
@@ -60,13 +53,7 @@
             <h3>CSS extra em runtime</h3>
 
             <p>
-                <code>style.loadCss(id, href)</code> injeta um
-                <code>&lt;link rel="stylesheet"&gt;</code>. <code>style.unloadCss(id)</code> tira-o.
-                O <code>href</code> pode ser um URL do Vite (<code
-                    >import ficheiro from "./x.css?url"</code
-                >) ou qualquer CSS servido. Dois ficheiros combinam se os carregar os dois; para
-                exclusivos, descarrega um antes de ligar o outro. Isto não substitui o
-                <a href="/docs/override-css">override.css</a> do cliente (esse é estático no boot).
+                <code>style.loadCss(id, href)</code> adiciona um <code>&lt;link rel="stylesheet"&gt;</code>, e <code>style.unloadCss(id)</code> remove. O <code>href</code> pode vir de um import com <code>?url</code>, como <code>import arquivo from "./x.css?url"</code>, ou de qualquer CSS servido. Dois arquivos se somam quando os dois estão carregados. Para trocar um pelo outro, descarregue o primeiro antes. Isto não substitui o <a href="/docs/override-css">override.css</a>, que é estático e entra no boot.
             </p>
         </section>
 
@@ -124,9 +111,7 @@
             <h3>theme.config.json</h3>
 
             <p>
-                Fica em <code>cht-client-&lt;nome&gt;/src/theme.config.json</code> (ou
-                <code>theme</code> no <code>cht.config.json</code>). O plugin de Vite gera o CSS
-                (<code>virtual:client-theme</code>).
+                O arquivo fica em <code>src/theme.config.json</code> do cliente, ou em <code>theme</code> dentro do <code>cht.config.json</code>. O plugin do Vite transforma esse arquivo em CSS pelo módulo <code>virtual:client-theme</code>.
             </p>
         </section>
 

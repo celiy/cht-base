@@ -3,10 +3,7 @@
         <section>
             <h1>Confirmation modal</h1>
 
-            <p>
-                Modal de confirmação com ícone, título, descrição, corpo e botões de cancelar /
-                confirmar. Empilha com outros modais: só o do topo fecha com backdrop, X ou Escape.
-            </p>
+            <p>Modal de confirmação, com ícone, título, descrição, corpo e botões de cancelar e confirmar. Ele empilha com outros modais. Só o do topo fecha com backdrop, X ou Escape.</p>
         </section>
 
         <section>

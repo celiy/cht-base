@@ -3,13 +3,7 @@
         <section>
             <h1>Scrollable</h1>
 
-            <p>
-                Container com barra vertical customizada via
-                <a href="https://github.com/buzinas/simple-scrollbar">simple-scrollbar</a>. O host
-                precisa de altura limitada (<code>h-48</code>, <code>max-h-*</code> ou flex com
-                <code>min-h-0</code>). A biblioteca só desenha o eixo vertical: <code>side</code> é
-                <code>right</code> (padrão) ou <code>left</code>.
-            </p>
+            <p>Container com barra vertical customizada, feita com <a href="https://github.com/buzinas/simple-scrollbar">simple-scrollbar</a>. O host precisa de altura limitada, com <code>h-48</code>, <code>max-h-*</code> ou flex com <code>min-h-0</code>. A biblioteca só desenha o eixo vertical. <code>side</code> é <code>right</code>, por padrão, ou <code>left</code>.</p>
         </section>
 
         <section>

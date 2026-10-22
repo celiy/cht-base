@@ -3,13 +3,7 @@
         <section>
             <h1>Tooltip</h1>
 
-            <p>
-                Wrapper com slot padrão (o alvo) e <code>#tooltip</code> (conteúdo livre). No hover
-                ou toque, o balão aparece junto do ponteiro e o segue com um atraso curto
-                (<code>followMs</code>, padrão <code>60</code>) para não tremer. Distinto da
-                diretiva <code>v-tooltip</code> em Fundamentos: aqui o conteúdo é Vue, não uma
-                string.
-            </p>
+            <p>Wrapper com um slot padrão, que é o alvo, e um slot <code>#tooltip</code>, com conteúdo livre. No hover ou no toque, o balão aparece junto do ponteiro e o segue com um pequeno atraso, controlado por <code>followMs</code>, que tem padrão <code>60</code>. Isso evita que ele trema. Ele é diferente da diretiva <code>v-tooltip</code>, de Fundamentos, porque aqui o conteúdo é Vue, e não uma string.</p>
         </section>
 
         <section>
@@ -56,11 +50,7 @@
         <section>
             <h3>Delay e follow</h3>
 
-            <p>
-                <code>delay</code> é a espera até aparecer (padrão <code>40</code> ms;
-                <code>0</code> mostra na hora). <code>followMs</code> é o atraso da animação que
-                acompanha o mouse.
-            </p>
+            <p><code>delay</code> é a espera até o balão aparecer. O padrão é <code>40</code> ms, e <code>0</code> mostra na hora. <code>followMs</code> é o atraso da animação que acompanha o mouse.</p>
         </section>
 
         <section class="mb-8">

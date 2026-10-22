@@ -74,11 +74,7 @@
         <section>
             <h3>Card e aspect ratio</h3>
 
-            <p>
-                Em <code>type="card"</code>, <code>aspectRatio</code> aceita número ou string CSS
-                (<code>1</code>, <code>16/9</code>). Sem ratio, use <code>class</code> com largura e
-                altura.
-            </p>
+            <p>Em <code>type="card"</code>, <code>aspectRatio</code> aceita um número ou uma string CSS, como <code>1</code> ou <code>16/9</code>. Sem ratio, use <code>class</code> com largura e altura.</p>
         </section>
 
         <section class="mb-8">
