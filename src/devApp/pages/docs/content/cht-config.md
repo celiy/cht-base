@@ -6,6 +6,19 @@ O campo `name` é o id do cliente. É esse valor que você passa em `--client:<n
 
 O export precisa ser um objeto simples. Funções são descartadas, porque o arquivo roda em Node antes do Vite começar. Ler o `.env` com `fs` funciona.
 
+## Cliente fora do cht-main
+
+A pasta do cliente pode ficar em qualquer lugar. Passe o caminho no comando, relativo ao `cht-main` ou absoluto. Não há lista para manter, porque o comando lê o `name` do `cht.config` da pasta.
+
+```bash
+npx chtmain dev ../meu-projeto/meu-cliente
+npx chtmain dev ..                 # o cht-main está dentro da pasta do cliente
+npx chtmain build ../meu-projeto/meu-cliente
+npx chtmain create meu-cliente ../meu-projeto/meu-cliente
+```
+
+Num cliente externo, `backend.dir` é relativo à pasta do cliente. O `install` não clona o `frontend.repo` de um cliente externo, porque a pasta é sua.
+
 ## Exemplo em TypeScript
 
 ```ts
