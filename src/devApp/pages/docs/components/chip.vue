@@ -93,3 +93,16 @@
         </section>
     </article>
 </template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import Chip from "@design/components/Chip.vue";
+
+export default defineComponent({
+    name: "DocsChip",
+
+    components: {
+        Chip
+    }
+});
+</script>
