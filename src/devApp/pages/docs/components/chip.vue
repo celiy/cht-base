@@ -63,9 +63,9 @@
         <section class="mb-8">
             <DocsExample label="Slots">
                 <div class="flex flex-col gap-2 p-4">
-                    <Chip label="Com indicador à esquerda">
+                    <Chip label="Com badge à esquerda">
                         <template #left-side>
-                            <span class="w-1 self-stretch rounded bg-primary" />
+                            <Badge class="ml-2">Badge</Badge>
                         </template>
                     </Chip>
 

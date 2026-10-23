@@ -1,0 +1,53 @@
+/* Highlight.js token colors for docs code blocks (DocsCode and markdown fences). Follows the VS Code Dark+ palette. */
+.docs-code .hljs-comment,
+.docs-code .hljs-quote {
+    color: #6a9955;
+}
+
+.docs-code .hljs-keyword,
+.docs-code .hljs-selector-tag,
+.docs-code .hljs-meta .hljs-keyword,
+.docs-code .hljs-literal,
+.docs-code .hljs-template-tag,
+.docs-code .hljs-template-variable,
+.docs-code .hljs-name,
+.docs-code .hljs-tag {
+    color: #569cd6;
+}
+
+.docs-code .hljs-string {
+    color: #ce9178;
+}
+
+.docs-code .hljs-number,
+.docs-code .hljs-symbol,
+.docs-code .hljs-addition {
+    color: #b5cea8;
+}
+
+.docs-code .hljs-built_in,
+.docs-code .hljs-type {
+    color: #4ec9b0;
+}
+
+.docs-code .hljs-selector-id,
+.docs-code .hljs-selector-class {
+    color: #d7ba7d;
+}
+
+.docs-code .hljs-attr,
+.docs-code .hljs-attribute,
+.docs-code .hljs-variable,
+.docs-code .hljs-params {
+    color: #9cdcfe;
+}
+
+.docs-code .hljs-title,
+.docs-code .hljs-section,
+.docs-code .hljs-function {
+    color: #dcdcaa;
+}
+
+.docs-code .hljs-meta {
+    color: #569cd6;
+}

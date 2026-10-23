@@ -12,14 +12,16 @@ A pasta do cliente pode ficar em qualquer lugar. Passe o caminho no comando, rel
 
 ```bash
 npx chtmain dev ../meu-projeto/meu-cliente
-npx chtmain dev ..                 # o cht-main está dentro da pasta do cliente
+npx chtmain dev .. # o cht-main está dentro da pasta do cliente
 npx chtmain build ../meu-projeto/meu-cliente
-npx chtmain create meu-cliente ../meu-projeto/meu-cliente
+npx chtmain create <name> ../meu-projeto/meu-cliente
 ```
 
-Num cliente externo, `backend.dir` é relativo à pasta do cliente. O `install` não clona o `frontend.repo` de um cliente externo, porque a pasta é sua.
+Num cliente externo, `backend.dir` é relativo à pasta do cliente.
 
 ## Exemplo em TypeScript
+
+`cht.config.ts` no root do cliente:
 
 ```ts
 export default {
@@ -38,7 +40,7 @@ O `env` vem do `readDotEnv` que já está no template. Ele lê o `.env` por cima
 
 ## Exemplo em JSON
 
-Se você não precisa de lógica, o JSON basta:
+Se você não precisa de lógica, `cht-config.json` no root do cliente:
 
 ```json
 {
@@ -85,25 +87,21 @@ Para empacotar um backend que não é Node, mantenha `packageWithElectron: true`
 
 ## Campos
 
-| Campo | O que faz |
-| --- | --- |
-| `name` | Id do cliente, usado em `--client:<name>`. Precisa ser único no workspace. |
-| `siteTitle` | Título da página e `$project.labels.siteTitle`. |
-| `api` / `apiBaseUrl` | URL da API para cada alvo: `dev`, `web`, `electron` e `mobile`. |
-| `apiPortScanLimit` | Quantas portas, a partir da configurada, o cliente tenta. |
-| `frontend.repo` / `frontend.ref` | Repositório e branch, tag ou commit do frontend no `install`. |
-| `backend` | Se existir, o runner sobe o processo e `VITE_HAS_BACKEND` fica `true`. |
-| `backend.dir` | Pasta do backend, relativa à raiz do workspace. Em cliente externo (caminho passado no comando), relativa à pasta do cliente. Obrigatório quando há `backend`. |
-| `backend.cmd` | Comando de dev, rodado em `backend.dir`. Padrão: `npm run dev`. |
-| `backend.startCmd` | Comando usado pelo Electron em modo janela. Padrão: o mesmo de `cmd`. |
-| `backend.packagedCmd` | Comando dentro do app instalado. |
-| `backend.packageWithElectron` | Copia o backend para o instalador. Padrão: `true`. |
-| `backend.repo` / `backend.ref` | Repositório e ref do backend no `install`. |
-| `lan` | `false` prende o Vite a `127.0.0.1`. Por padrão ele fica acessível na rede local. |
-| `devTools` | Liga ou desliga o botão de debug. Veja [Modo dev](/docs/dev-mode). |
-| `publish` | Dados do GitHub usados nas atualizações do Electron. |
-| `theme` | Tema do cliente. Se faltar, vale `src/theme.config.json`. |
-
-O `install` clona os repositórios que aparecem no `cht.config` e no catálogo do `clients.json`. Ele não inventa URLs a partir do nome da pasta.
-
-Para plugins Vite, `public/`, `.env`, opções do router ou código no Electron, veja [Extensões do cliente](/docs/client-extensions).
+| Campo                            | O que faz                                                                                                                                                      |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`                           | Id do cliente, usado em `--client:<name>`. Precisa ser único no workspace.                                                                                     |
+| `siteTitle`                      | Título da página e `$project.labels.siteTitle`.                                                                                                                |
+| `api` / `apiBaseUrl`             | URL da API para cada alvo: `dev`, `web`, `electron` e `mobile`.                                                                                                |
+| `apiPortScanLimit`               | Quantas portas, a partir da configurada, o cliente tenta.                                                                                                      |
+| `frontend.repo` / `frontend.ref` | Repositório e branch, tag ou commit do frontend no `install`.                                                                                                  |
+| `backend`                        | Se existir, o runner sobe o processo e `VITE_HAS_BACKEND` fica `true`.                                                                                         |
+| `backend.dir`                    | Pasta do backend, relativa à raiz do workspace. Em cliente externo (caminho passado no comando), relativa à pasta do cliente. Obrigatório quando há `backend`. |
+| `backend.cmd`                    | Comando de dev, rodado em `backend.dir`. Padrão: `npm run dev`.                                                                                                |
+| `backend.startCmd`               | Comando usado pelo Electron em modo janela. Padrão: o mesmo de `cmd`.                                                                                          |
+| `backend.packagedCmd`            | Comando dentro do app instalado.                                                                                                                               |
+| `backend.packageWithElectron`    | Copia o backend para o instalador. Padrão: `true`.                                                                                                             |
+| `backend.repo` / `backend.ref`   | Repositório e ref do backend no `install`.                                                                                                                     |
+| `lan`                            | `false` prende o Vite a `127.0.0.1`. Por padrão ele fica acessível na rede local.                                                                              |
+| `devTools`                       | Liga ou desliga o botão de debug. Veja [Modo dev](/docs/dev-mode).                                                                                             |
+| `publish`                        | Dados do GitHub usados nas atualizações do Electron.                                                                                                           |
+| `theme`                          | Tema do cliente. Se faltar, vale `src/theme.config.json`.                                                                                                      |

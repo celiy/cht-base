@@ -3,24 +3,29 @@
 Um cliente é uma pasta irmã do `cht-base`, com um `cht.config.ts` ou `cht.config.json` na raiz. O comando abaixo cria essa pasta a partir do template.
 
 ```bash
-npx chtmain create meu-app cht-client-meu-app
+# <name> é o id do seu projeto
+npx chtmain create <name> <pasta-destino>
 ```
-
-O primeiro argumento é o `name` do cliente, em kebab-case. O segundo é a pasta de destino. Se a pasta já existir, os arquivos do template são copiados para dentro dela e o `.git` não é tocado. No fim, o comando roda `npm install` na pasta.
 
 Sem flag, o comando usa o template padrão. Para partir de outro, passe `--template:<nome>`:
 
 ```bash
-npx chtmain create meu-app cht-client-meu-app --template:override-demo
+npx chtmain create <name> <pasta-destino> --template:override-demo
 ```
 
 ## Templates disponíveis
 
 Os templates ficam em `cht-base/template/client-<nome>`. O comando troca o nome, o título e o `package.json` pelos do cliente novo.
 
-### Padrão (sem flag)
+### Padrão
 
-O mínimo para subir um cliente: uma rota, uma página e os arquivos de configuração vazios. Bom ponto de partida para um projeto do zero. O conteúdo está listado no fim desta página.
+O mínimo para subir um cliente: uma rota, uma página e os arquivos de configuração vazios.
+
+- `src/App.vue` e `src/routes.ts`: uma rota para `src/pages/index.vue`.
+- `src/bootstrap.ts`: as funções `setupAuthGuard` e `installClientPlugins`, vazias.
+- `src/css/style.css` e `src/override.css`: CSS do cliente. Veja [CSS do cliente](/docs/override-css).
+- `src/tailwind.plugin.js`: utilities Tailwind usadas só por este cliente. Veja [Plugin Tailwind do cliente](/docs/client-tailwind-plugin).
+- `cht.config.ts`, `.env.example` e `src/theme.config.json`.
 
 ![Homepage do template padrão](templates/default.png)
 
@@ -50,17 +55,5 @@ Use como referência para [Extensões do cliente](/docs/client-extensions). Copi
 3. Rode o ambiente de desenvolvimento:
 
 ```bash
-npx chtmain dev --client:meu-app
+npx chtmain dev --client:<name>
 ```
-
-## O que vem no template padrão
-
-- `src/App.vue` e `src/routes.ts`: uma rota para `src/pages/index.vue`.
-- `src/bootstrap.ts`: as funções `setupAuthGuard` e `installClientPlugins`, vazias.
-- `src/css/style.css` e `src/override.css`: CSS do cliente. Veja [CSS do cliente](/docs/override-css).
-- `src/tailwind.plugin.js`: utilities Tailwind usadas só por este cliente. Veja [Plugin Tailwind do cliente](/docs/client-tailwind-plugin).
-- `cht.config.ts`, `.env.example` e `src/theme.config.json`.
-
-O template padrão não traz `vite.config.ts`, `public/` nem `electron/`. Adicione esses itens só quando precisar. Veja [Extensões do cliente](/docs/client-extensions).
-
-Para auth, layout ou mais rotas, use o Mecarvit como referência e a página de [$http](/docs/http).

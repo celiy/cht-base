@@ -13,7 +13,7 @@
             <DocsExample label="Context menu">
                 <div class="p-4">
                     <ContextMenu
-                        :options="actionOptions"
+                        :options="[{ label: 'Conta' }, { label: 'Perfil', value: 'user', icon: 'fa-user' }, { label: 'Email', value: 'email', icon: 'fa-envelope' }, { separator: true }, { label: 'Excluir', value: 'delete', icon: 'fa-trash', variant: 'destructive' }]"
 
                         @click:value="lastClicked = $event"
                     >
@@ -40,7 +40,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import ContextMenu from "@design/components/custom/ContextMenu.vue";
-import type { OptionItem } from "@design/components/internal/OptionsList.vue";
 
 export default defineComponent({
     name: "ComponentsContextMenu",
@@ -52,13 +51,6 @@ export default defineComponent({
     data() {
         return {
             lastClicked: "",
-            actionOptions: [
-                { label: "Conta" },
-                { label: "Perfil", value: "user", icon: "fa-user" },
-                { label: "Email", value: "email", icon: "fa-envelope" },
-                { separator: true },
-                { label: "Excluir", value: "delete", icon: "fa-trash", variant: "destructive" }
-            ] as OptionItem[]
         };
     }
 });

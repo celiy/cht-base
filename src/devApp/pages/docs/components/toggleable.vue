@@ -12,7 +12,7 @@
                     <Toggleable
                         v-model="status"
                         label="Status"
-                        :options="statusOptions"
+                        :options="[{ label: 'Aberto', value: 'open' }, { label: 'Em andamento', value: 'progress' }, { label: 'Fechado', value: 'closed' }]"
                     />
 
                     <p class="text-sm text-muted-foreground">
@@ -39,7 +39,7 @@
                         label="Status"
                         allow-empty
 
-                        :options="statusOptions"
+                        :options="[{ label: 'Aberto', value: 'open' }, { label: 'Em andamento', value: 'progress' }, { label: 'Fechado', value: 'closed' }]"
                     />
 
                     <p class="text-sm text-muted-foreground">
@@ -65,7 +65,7 @@
                         v-model="priority"
                         label="Prioridade"
                         variant="warning"
-                        :options="priorityOptions"
+                        :options="[{ label: 'Baixa', value: 'low' }, { label: 'Média', value: 'medium' }, { label: 'Alta', value: 'high' }]"
                     />
 
                     <Toggleable
@@ -73,14 +73,14 @@
                         label="Canal"
                         variant="info"
                         size="small"
-                        :options="channelOptions"
+                        :options="[{ label: 'Email', value: 'email' }, { label: 'Chat', value: 'chat' }, { label: 'Telefone', value: 'phone' }]"
                     />
 
                     <Toggleable
                         v-model="health"
                         label="Saúde"
                         variant="success"
-                        :options="healthOptions"
+                        :options="[{ label: 'OK', value: 'ok' }, { label: 'Atenção', value: 'warn' }, { label: 'Crítico', value: 'critical' }]"
                     />
                 </div>
             </DocsExample>
@@ -103,7 +103,7 @@
                         label="Toggleable Position Left"
                         label-position="left"
                         toggleable-position="left"
-                        :options="toggleablePositionOptions"
+                        :options="[{ label: 'Left', value: 'left' }, { label: 'Center', value: 'center' }, { label: 'Right', value: 'right' }]"
                     />
 
                     <Toggleable
@@ -111,7 +111,7 @@
                         label="Toggleable Position Center"
                         label-position="center"
                         toggleable-position="center"
-                        :options="toggleablePositionOptions"
+                        :options="[{ label: 'Left', value: 'left' }, { label: 'Center', value: 'center' }, { label: 'Right', value: 'right' }]"
                     />
 
                     <Toggleable
@@ -119,7 +119,7 @@
                         label="Toggleable Position Right"
                         label-position="right"
                         toggleable-position="right"
-                        :options="toggleablePositionOptions"
+                        :options="[{ label: 'Left', value: 'left' }, { label: 'Center', value: 'center' }, { label: 'Right', value: 'right' }]"
                     />
                 </div>
             </DocsExample>
@@ -140,7 +140,7 @@
                         <Toggleable
                             label="Exemplo"
                             background-style="bg-orange-700"
-                            :options="statusOptions"
+                            :options="[{ label: 'Aberto', value: 'open' }, { label: 'Em andamento', value: 'progress' }, { label: 'Fechado', value: 'closed' }]"
                         />
                     </div>
 
@@ -154,7 +154,7 @@
                             label="Exemplo"
                             background-style="bg-red-700"
                             border-style="border-2 border-yellow-500"
-                            :options="statusOptions"
+                            :options="[{ label: 'Aberto', value: 'open' }, { label: 'Em andamento', value: 'progress' }, { label: 'Fechado', value: 'closed' }]"
                         />
                     </div>
 
@@ -168,7 +168,7 @@
                             label="Exemplo"
                             background-style="bg-blue-700"
                             border-style="border-4 border-green-500"
-                            :options="statusOptions"
+                            :options="[{ label: 'Aberto', value: 'open' }, { label: 'Em andamento', value: 'progress' }, { label: 'Fechado', value: 'closed' }]"
                         />
                     </div>
 
@@ -178,7 +178,7 @@
                         <Toggleable
                             label="Exemplo"
                             radius-style="rounded"
-                            :options="statusOptions"
+                            :options="[{ label: 'Aberto', value: 'open' }, { label: 'Em andamento', value: 'progress' }, { label: 'Fechado', value: 'closed' }]"
                         />
                     </div>
                 </div>
@@ -205,32 +205,7 @@ export default defineComponent({
             priority: "medium" as string | null,
             channel: "email" as string | null,
             health: "ok" as string | null,
-            statusOptions: [
-                { label: "Aberto", value: "open" },
-                { label: "Em andamento", value: "progress" },
-                { label: "Fechado", value: "closed" }
-            ],
-            priorityOptions: [
-                { label: "Baixa", value: "low" },
-                { label: "Média", value: "medium" },
-                { label: "Alta", value: "high" }
-            ],
-            channelOptions: [
-                { label: "Email", value: "email" },
-                { label: "Chat", value: "chat" },
-                { label: "Telefone", value: "phone" }
-            ],
-            healthOptions: [
-                { label: "OK", value: "ok" },
-                { label: "Atenção", value: "warn" },
-                { label: "Crítico", value: "critical" }
-            ],
-            toggleablePosition: "left" as "left" | "center" | "right",
-            toggleablePositionOptions: [
-                { label: "Left", value: "left" },
-                { label: "Center", value: "center" },
-                { label: "Right", value: "right" }
-            ]
+            toggleablePosition: "left" as "left" | "center" | "right"
         };
     }
 });
