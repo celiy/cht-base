@@ -93,7 +93,7 @@
                         header="Barras com Tooltip"
                         description="Passe o mouse em cada barra"
                         variant="bars"
-                        :data="chartData"
+                        :data="{ label: 'Vendas', displayAs: 'currency', items: [{ value: 12, group: 'Mai' }, { value: 19, group: 'Jun' }, { value: 8, group: 'Jul' }, { value: 24, group: 'Ago' }] }"
                     />
                 </div>
             </DocsExample>
@@ -120,16 +120,6 @@ export default defineComponent({
 
     data() {
         return {
-            chartData: {
-                label: "Vendas",
-                displayAs: "currency" as const,
-                items: [
-                    { value: 12, group: "Mai" },
-                    { value: 19, group: "Jun" },
-                    { value: 8, group: "Jul" },
-                    { value: 24, group: "Ago" }
-                ]
-            }
         };
     }
 });

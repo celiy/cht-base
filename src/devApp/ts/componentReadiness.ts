@@ -1,6 +1,10 @@
-import readinessMap from "../data/componentReadiness.json";
+/**
+ * The dev app component readiness module
+ * This module is responsible for the readiness status shown on each docs page, read from the docs pages list.
+ */
+import { DOCS_PAGES, type ComponentReadinessStatus } from "./docsPages";
 
-export type ComponentReadinessStatus = "success" | "info" | "warning" | "destructive";
+export type { ComponentReadinessStatus };
 
 type ReadinessMeta = {
     variant: ComponentReadinessStatus;
@@ -38,7 +42,13 @@ const READINESS_META: Record<ComponentReadinessStatus, ReadinessMeta> = {
     }
 };
 
-const SLUG_TO_STATUS = readinessMap as Record<string, ComponentReadinessStatus>;
+const SLUG_TO_STATUS = new Map<string, ComponentReadinessStatus>();
+
+for (const page of DOCS_PAGES) {
+    if (page.readiness) {
+        SLUG_TO_STATUS.set(page.path.split("/").pop() ?? page.path, page.readiness);
+    }
+}
 
 /**
  * Gets the get component doc slug
@@ -63,7 +73,7 @@ export function getComponentDocSlug(path: string): string | null {
  * Gets the get component readiness
  */
 export function getComponentReadiness(slug: string): ReadinessMeta | null {
-    const status = SLUG_TO_STATUS[slug];
+    const status = SLUG_TO_STATUS.get(slug);
 
     if (!status) {
         return null;

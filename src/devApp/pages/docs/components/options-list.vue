@@ -16,7 +16,7 @@
             <DocsExample label="Lista">
                 <div class="m-4 max-w-xs rounded border bg-popover p-1">
                     <OptionsList
-                        :options="plainOptions"
+                        :options="[{ label: 'Editar', value: 'edit', icon: 'fa-pen' }, { label: 'Duplicar', value: 'dup', icon: 'fa-copy' }, { separator: true }, { label: 'Eliminar', value: 'del', icon: 'fa-trash', variant: 'destructive' }]"
                         :show-checkmark="true"
                         :is-option-selected="isSelected"
                         :max-height-px="240"
@@ -42,7 +42,7 @@
             <DocsExample label="Pesquisa">
                 <div class="m-4 w-full max-w-xs overflow-hidden rounded border bg-popover">
                     <OptionsList
-                        :options="plainOptions"
+                        :options="[{ label: 'Editar', value: 'edit', icon: 'fa-pen' }, { label: 'Duplicar', value: 'dup', icon: 'fa-copy' }, { separator: true }, { label: 'Eliminar', value: 'del', icon: 'fa-trash', variant: 'destructive' }]"
                         :search="{ external: false }"
                         :search-query="query"
 
@@ -87,7 +87,7 @@
             <DocsExample label="Aninhado">
                 <div class="m-4 max-w-xs rounded border bg-popover p-1">
                     <OptionsList
-                        :options="nestedOptions"
+                        :options="[{ label: 'Ficheiro', value: 'file', options: [{ label: 'Novo', value: 'new' }, { label: 'Abrir', value: 'open' }] }, { label: 'Fechar', value: 'close' }]"
 
                         @select="onSelect"
                     />
@@ -124,23 +124,6 @@ export default defineComponent({
             remoteLoading: false,
             remoteQuery: "",
             remoteTimer: null as ReturnType<typeof setTimeout> | null,
-            plainOptions: [
-                { label: "Editar", value: "edit", icon: "fa-pen" },
-                { label: "Duplicar", value: "dup", icon: "fa-copy" },
-                { separator: true },
-                { label: "Eliminar", value: "del", icon: "fa-trash", variant: "destructive" }
-            ] as OptionItem[],
-            nestedOptions: [
-                {
-                    label: "Ficheiro",
-                    value: "file",
-                    options: [
-                        { label: "Novo", value: "new" },
-                        { label: "Abrir", value: "open" }
-                    ]
-                },
-                { label: "Fechar", value: "close" }
-            ] as OptionItem[]
         };
     },
 

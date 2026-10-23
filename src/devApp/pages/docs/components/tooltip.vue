@@ -70,14 +70,14 @@
             <DocsExample label="HTML">
                 <div class="flex flex-wrap gap-2 p-4">
                     <Button
-                        v-tooltip="htmlTooltip"
+                        v-tooltip="{ content: '<strong>Negrito</strong> e <i>itálico</i>', html: true, placement: 'top' }"
                         variant="secondary"
                     >
                         Com ênfase
                     </Button>
 
                     <Button
-                        v-tooltip="htmlListTooltip"
+                        v-tooltip="{ content: '<div>Atalhos:</div><div><b>S</b> sidebar</div><div><b>Esc</b> fechar</div>', html: true, placement: 'bottom' }"
                         variant="secondary"
                     >
                         Lista
@@ -143,14 +143,14 @@
                     </Button>
 
                     <Button
-                        v-tooltip="narrowTooltip"
+                        v-tooltip="{ content: 'Texto longo forçado a quebrar em uma coluna estreita.', placement: 'top', maxWidth: '8rem' }"
                         variant="outline"
                     >
                         maxWidth 8rem
                     </Button>
 
                     <Button
-                        v-tooltip="wideTooltip"
+                        v-tooltip="{ content: 'Texto longo com mais espaço horizontal antes de quebrar a linha.', placement: 'top', maxWidth: '24rem' }"
                         variant="outline"
                     >
                         maxWidth 24rem
@@ -200,7 +200,7 @@
                     <Select
                         class="max-w-sm"
                         header="Opções com tooltip"
-                        :options="selectOptions"
+                        :options="[{ label: 'ABC', value: 'abc', tooltip: 'Esta opção tem tooltip à direita' }, { label: 'DEF', value: 'def', tooltip: 'Outra dica nesta linha' }, { label: '123', value: 'unodunotres' }]"
                     />
                 </div>
             </DocsExample>
@@ -225,37 +225,6 @@ const docsComponents: Record<string, Component> = {
 export default defineComponent({
     name: "ComponentsTooltip",
 
-    components: docsComponents,
-
-    data() {
-        return {
-            htmlTooltip: {
-                content: "<strong>Negrito</strong> e <i>itálico</i>",
-                html: true,
-                placement: "top" as const
-            },
-            htmlListTooltip: {
-                content:
-                    "<div>Atalhos:</div><div><b>S</b> sidebar</div><div><b>Esc</b> fechar</div>",
-                html: true,
-                placement: "bottom" as const
-            },
-            narrowTooltip: {
-                content: "Texto longo forçado a quebrar em uma coluna estreita.",
-                placement: "top" as const,
-                maxWidth: "8rem"
-            },
-            wideTooltip: {
-                content: "Texto longo com mais espaço horizontal antes de quebrar a linha.",
-                placement: "top" as const,
-                maxWidth: "24rem"
-            },
-            selectOptions: [
-                { label: "ABC", value: "abc", tooltip: "Esta opção tem tooltip à direita" },
-                { label: "DEF", value: "def", tooltip: "Outra dica nesta linha" },
-                { label: "123", value: "unodunotres" }
-            ]
-        };
-    }
+    components: docsComponents
 });
 </script>

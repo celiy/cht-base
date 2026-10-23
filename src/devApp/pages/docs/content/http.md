@@ -72,3 +72,43 @@ const form = new FormData();
 form.append("file", this.file);
 await this.$http.post("/media", form);
 ```
+
+## Passo a passo: usar $http em um cliente
+
+1. **Configure a API.** Se o cliente tem backend, preencha o bloco `backend` no `cht.config.json`, como em [cht.config](/docs/cht-config). O `$http` já vem instalado pelo `cht-base`, então não há nada a registrar.
+2. **Chame nos componentes.** Use `this.$http.get(...)`, `this.$http.post(...)` e os outros métodos. Não precisa de import.
+3. **Use fora de componentes.** Em um store, um helper ou um `.ts` puro, importe o cliente: `import { http } from "@base/http";`.
+4. **Carregue a sessão ao abrir o app.** Em `src/bootstrap.ts` do cliente, dentro de `installClientPlugins`, chame `GET` na rota de usuário logado (por exemplo `/api/me`). Se a API responder 401, o usuário não tem sessão. Guarde o resultado no seu estado.
+5. **Reaja ao 401.** Registre `onHttpUnauthorized` no mesmo `installClientPlugins` para limpar o estado do cliente quando a sessão expirar. O cookie é do backend, então o front só limpa o próprio estado.
+6. **Bearer só se precisar.** Use `setAuthToken` apenas para scripts e Electron. No browser, a sessão é o cookie httpOnly.
+
+```ts
+// src/bootstrap.ts do cliente
+import type { App } from "vue";
+import type { Router } from "vue-router";
+import { http, onHttpUnauthorized } from "@base/http";
+
+let currentUser: unknown = null;
+
+export function getCurrentUser(): unknown {
+    return currentUser;
+}
+
+export async function installClientPlugins(app: App, router: Router): Promise<void> {
+    void app;
+    void router;
+
+    onHttpUnauthorized(() => {
+        currentUser = null;
+    });
+
+    try {
+        const { data } = await http.get("/api/me");
+        currentUser = data.data;
+    } catch {
+        currentUser = null;
+    }
+}
+```
+
+Se o cliente não tem lógica de boot, o arquivo pode ficar com as funções vazias, como o stub de `cht-base/src/devApp/bootstrap.ts`. O `main.ts` importa `@client/bootstrap`, então o arquivo é obrigatório.

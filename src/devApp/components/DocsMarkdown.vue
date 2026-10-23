@@ -55,3 +55,5 @@ export default defineComponent({
     }
 });
 </script>
+
+<style src="../css/docs-code.css"></style>

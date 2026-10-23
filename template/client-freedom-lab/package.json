@@ -1,0 +1,22 @@
+{
+  "name": "__PACKAGE_NAME__",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "__SITE_TITLE__ client: pages consumed by cht-base via the @client alias.",
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/three": "^0.186.0",
+    "@vue/tsconfig": "^0.8.1",
+    "@webgpu/types": "^0.1.74",
+    "tailwindcss": "^4.2.1",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.7",
+    "vite-plugin-wasm": "^3.6.0",
+    "vue": "^3.5.25",
+    "vue-router": "^4.6.4"
+  },
+  "dependencies": {
+    "three": "^0.186.1"
+  }
+}

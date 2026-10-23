@@ -1,4 +1,11 @@
 /**
+ * The docs markdown module
+ * This module is responsible for rendering the docs markdown to HTML of the project.
+ */
+
+import { hasHighlightLanguage, highlightDocsCode } from "./highlightDocsCode";
+
+/**
  * Escapes text for HTML text nodes and code blocks.
  *
  * @param text Raw text
@@ -13,7 +20,7 @@ function escapeHtml(text: string): string {
 }
 
 /**
- * Renders inline markdown: code, bold, links.
+ * Renders inline markdown: code, bold, images, links.
  *
  * @param text Heading or paragraph text
  * @returns HTML
@@ -28,6 +35,10 @@ function renderInline(text: string): string {
 
     const html = withCodePlaceholders
         .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+        .replace(
+            /!\[([^\]]*)\]\(([^)]+)\)/g,
+            '<img src="$2" alt="$1" loading="lazy" class="w-full rounded border">'
+        )
         .replace(
             /\[([^\]]+)\]\(([^)]+)\)/g,
             '<a href="$2" class="text-primary underline underline-offset-2">$1</a>'
@@ -144,10 +155,15 @@ export function renderMarkdown(markdown: string): string {
     const fences: string[] = [];
     const withFences = markdown.replace(
         /```([^\n]*)\n([\s\S]*?)```/g,
-        (_, _lang: string, code: string) => {
+        (_, lang: string, code: string) => {
             const token = `%%FENCE${fences.length}%%`;
+            const source = code.replace(/\n$/, "");
+            const highlighted = hasHighlightLanguage(lang)
+                ? highlightDocsCode(source, lang)
+                : escapeHtml(source);
+
             fences.push(
-                `<pre class="overflow-x-auto rounded border border-border bg-secondary/40 p-4 text-sm"><code>${escapeHtml(code.replace(/\n$/, ""))}</code></pre>`
+                `<pre class="docs-code overflow-x-auto rounded border bg-secondary/10 p-4 font-mono text-sm leading-6 text-foreground light:brightness-80"><code>${highlighted}</code></pre>`
             );
 
             return `\n${token}\n`;

@@ -92,7 +92,7 @@
                         combobox
                         header="Serviço"
                         :query="comboboxQuery"
-                        :options="comboboxOptions"
+                        :options="[{ label: 'Alinhamento', value: '1' }, { label: 'Balanceamento', value: '2' }, { label: 'Troca de óleo', value: '3' }, { label: 'Revisão', value: '4' }]"
                         :search="{ external: false }"
 
                         @update:query="comboboxQuery = $event"
@@ -118,7 +118,7 @@
                         header="Cliente"
                         :query="comboboxOptionQuery"
                         :model-value="comboboxOptionValue"
-                        :options="comboboxOptions"
+                        :options="[{ label: 'Alinhamento', value: '1' }, { label: 'Balanceamento', value: '2' }, { label: 'Troca de óleo', value: '3' }, { label: 'Revisão', value: '4' }]"
 
                         @update:query="comboboxOptionQuery = $event"
                         @update:value="comboboxOptionValue = $event"
@@ -177,7 +177,7 @@
                         v-model="separateSelectedValues"
                         header="Veículos"
                         helper-text="Marque na lista; os selecionados saem dela e ficam abaixo"
-                        :options="separateOptions"
+                        :options="[{ label: 'Gol · ABC1D23', value: 'gol' }, { label: 'Uno · XYZ1A23', value: 'uno' }, { label: 'Onix · QWE2B34', value: 'onix' }, { label: 'Civic · RTY3C45', value: 'civic' }]"
                         :select-multiple="{ min: 0 }"
                         :separate-selected="true"
 
@@ -314,12 +314,6 @@ export default defineComponent({
     data() {
         return {
             separateSelectedValues: ["gol", "uno"],
-            separateOptions: [
-                { label: "Gol · ABC1D23", value: "gol" },
-                { label: "Uno · XYZ1A23", value: "uno" },
-                { label: "Onix · QWE2B34", value: "onix" },
-                { label: "Civic · RTY3C45", value: "civic" }
-            ],
             allExternalOptions: [
                 { label: "Gol", value: "gol" },
                 { label: "Uno", value: "uno" },
@@ -336,12 +330,6 @@ export default defineComponent({
             comboboxQuery: "",
             comboboxOptionQuery: "",
             comboboxOptionValue: "",
-            comboboxOptions: [
-                { label: "Alinhamento", value: "1" },
-                { label: "Balanceamento", value: "2" },
-                { label: "Troca de óleo", value: "3" },
-                { label: "Revisão", value: "4" }
-            ],
             emptyPanelOptions: [] as Array<{ label: string; value: string }>
         };
     },

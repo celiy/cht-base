@@ -6,26 +6,26 @@
 
 No canto inferior direito aparece um botão com o ícone de bug. Ele vem do `cht-base`, não do cliente, e só aparece em desenvolvimento com a documentação rodando.
 
-| `devTools` no `cht.config` | Efeito |
-| --- | --- |
-| Omitido | O botão aparece. |
-| `false` ou `{ "enabled": false }` | O botão some. |
+| `devTools` no `cht.config`             | Efeito                                         |
+| -------------------------------------- | ---------------------------------------------- |
+| Omitido                                | O botão aparece.                               |
+| `false` ou `{ "enabled": false }`      | O botão some.                                  |
 | `{ "repoUpdateNotifications": false }` | O botão fica, mas o sino de repositórios some. |
 
 A primeira entrada do menu é **Documentação**. Os itens do cliente aparecem depois dela.
 
-## Sino de repositórios
-
-O sino aparece quando acontece uma destas duas coisas:
-
-- um repositório do workspace tem commits novos no remoto;
-- uma repo principal (`cht-shared`, `cht-base` ou `cht-design-system`) tem uma versão diferente da que o `cht-main` pede.
-
-Ao clicar em **Confirmar**, somem só os commits que você já viu. O alerta de versão continua até as versões baterem. A escolha fica no `localStorage`, na chave `cht.repoUpdateDismissals`.
-
 ## Adicionar itens ao menu
 
 Use `registerDevToolsOptions` de `@base/devTools`. Registre os itens uma vez, em `installClientPlugins`, e não em cada página.
+
+### Passo a passo
+
+1. **Abra `src/bootstrap.ts` do cliente.** Esse é o arquivo que o `main.ts` carrega como `@client/bootstrap`. Ele é obrigatório. Se o cliente ainda não tiver lógica de boot, use o stub de `cht-base/src/devApp/bootstrap.ts` como base.
+2. **Importe `registerDevToolsOptions`** de `@base/devTools`, no topo do arquivo.
+3. **Chame `registerDevToolsOptions` dentro de `installClientPlugins`.** Essa função é chamada uma vez, na inicialização do app. Não coloque a chamada em páginas ou componentes.
+4. **Veja o botão.** Rode `npx chtmain dev --client:<name>`. Com a documentação rodando, o botão de bug aparece no canto inferior direito, com os itens do cliente depois de **Documentação**.
+
+O exemplo abaixo é o arquivo completo. Copie a estrutura e troque os itens.
 
 ```ts
 import type { App } from "vue";

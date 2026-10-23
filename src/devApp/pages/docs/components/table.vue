@@ -108,7 +108,16 @@
                             { id: '2', name: 'Herstal', role: 'Design' },
                             { id: '3', name: 'Luna', role: 'PM' }
                         ]"
-                        :selectable-actions="selectableActions"
+                        :selectable-actions="[
+                            { label: 'Exportar', value: 'export', icon: 'fa-download' },
+                            { separator: true },
+                            {
+                                label: 'Excluir itens selecionados',
+                                value: 'delete',
+                                icon: 'fa-trash',
+                                variant: 'destructive'
+                            }
+                        ]"
 
                         @click:selectable-action="onSelectableAction"
                     />
@@ -172,7 +181,12 @@
                                 badge: { label: 'Pendente', variant: 'warning' }
                             }
                         ]"
-                        :actions="rowActions"
+                        :actions="[
+                            { label: 'Visualizar', value: 'inspect', icon: 'fa-eye' },
+                            { label: 'Editar', value: 'edit', icon: 'fa-pen' },
+                            { separator: true },
+                            { label: 'Excluir', value: 'delete', icon: 'fa-trash', variant: 'destructive' }
+                        ]"
 
                         @click:action="onRowAction"
                     />
@@ -281,7 +295,12 @@
                             { label: 'Status', field: 'badge', position: 'center' }
                         ]"
                         :loading="true"
-                        :actions="rowActions"
+                        :actions="[
+                            { label: 'Visualizar', value: 'inspect', icon: 'fa-eye' },
+                            { label: 'Editar', value: 'edit', icon: 'fa-pen' },
+                            { separator: true },
+                            { label: 'Excluir', value: 'delete', icon: 'fa-trash', variant: 'destructive' }
+                        ]"
                     />
                 </div>
             </DocsExample>
@@ -292,7 +311,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Table from "@design/components/Table.vue";
-import type { OptionItem } from "@design/components/internal/OptionsList.vue";
 
 export default defineComponent({
     name: "ComponentsTable",
@@ -306,22 +324,6 @@ export default defineComponent({
             lastSortField: "",
             lastRowAction: "",
             lastSelectableAction: "",
-            rowActions: [
-                { label: "Visualizar", value: "inspect", icon: "fa-eye" },
-                { label: "Editar", value: "edit", icon: "fa-pen" },
-                { separator: true },
-                { label: "Excluir", value: "delete", icon: "fa-trash", variant: "destructive" }
-            ] as OptionItem[],
-            selectableActions: [
-                { label: "Exportar", value: "export", icon: "fa-download" },
-                { separator: true },
-                {
-                    label: "Excluir itens selecionados",
-                    value: "delete",
-                    icon: "fa-trash",
-                    variant: "destructive"
-                }
-            ] as OptionItem[]
         };
     },
 
