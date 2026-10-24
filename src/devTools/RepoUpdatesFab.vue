@@ -120,7 +120,7 @@
                             <template #tooltip>
                                 <div class="flex flex-col items-center gap-1">
                                     <span>Copiar comando de atualização</span>
-                                    <small-muted class="text-xs"> npx chtmain install </small-muted>
+                                    <small-muted class="text-xs"> npx chtmain update </small-muted>
                                 </div>
                             </template>
                         </Tooltip>
@@ -222,7 +222,7 @@ export default defineComponent({
          * @returns {void}
          */
         copyCommand() {
-            const command = "npx chtmain install";
+            const command = "npx chtmain update";
 
             navigator.clipboard.writeText(command).then(
                 () => {
