@@ -19,6 +19,7 @@ type DesignSystemComponents = {
     Button: typeof import("@design/components/Button.vue").default;
     Card: typeof import("@design/components/Card.vue").default;
     Carousel: typeof import("@design/components/Carousel.vue").default;
+    Cascade: typeof import("@design/components/Cascade.vue").default;
     Checkbox: typeof import("@design/components/Checkbox.vue").default;
     CheckboxSwitch: typeof import("@design/components/CheckboxSwitch.vue").default;
     Chip: typeof import("@design/components/Chip.vue").default;

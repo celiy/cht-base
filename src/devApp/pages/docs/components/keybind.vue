@@ -3,7 +3,14 @@
         <section>
             <h1>Keybind</h1>
 
-            <p>Listener de teclado sem markup, pois <code>render</code> devolve <code>null</code>. Importe de <code>@design/components/internal/Keybind.vue</code>, porque ele não entra no glob do plugin. <code>keyName</code> é o <code>event.key</code>, como <code>s</code> ou <code>Escape</code>. Letras ignoram maiúsculas e não disparam com Ctrl, Alt ou Meta. <code>trigger</code> recebe o <code>KeyboardEvent</code> e chama <code>preventDefault</code>.</p>
+            <p>
+                Listener de teclado sem markup, pois <code>render</code> devolve <code>null</code>.
+                Importe de <code>@design/components/internal/Keybind.vue</code>, porque ele não
+                entra no glob do plugin. <code>keyName</code> é o <code>event.key</code>, como
+                <code>s</code> ou <code>Escape</code>. Letras ignoram maiúsculas e não disparam com
+                Ctrl, Alt ou Meta. <code>trigger</code> recebe o <code>KeyboardEvent</code> e chama
+                <code>preventDefault</code>.
+            </p>
         </section>
 
         <section>
@@ -34,7 +41,7 @@
                         v-model="draft"
                         label="Campo de teste"
                         type="text"
-                        placeholder="Escreve S aqui — o atalho não deve disparar"
+                        placeholder="Escreva d aqui, o atalho não deve disparar"
                     />
                 </div>
             </DocsExample>
@@ -68,7 +75,7 @@
                     />
 
                     <p class="text-sm text-muted-foreground">
-                        Escape:
+                        Escape (esc):
                         <code class="text-foreground">{{ escapeCount }}</code>
                     </p>
                 </div>

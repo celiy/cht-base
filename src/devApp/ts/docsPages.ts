@@ -242,6 +242,14 @@ export const DOCS_PAGES: DocsPage[] = [
         load: () => import("../pages/docs/components/carousel.vue")
     },
     {
+        path: "/docs/components/cascade",
+        label: "Cascade",
+        icon: "fa-cube",
+        section: COMPONENTS,
+        readiness: "info",
+        load: () => import("../pages/docs/components/cascade.vue")
+    },
+    {
         path: "/docs/components/checkbox",
         label: "Checkbox & Switch",
         icon: "fa-cube",
