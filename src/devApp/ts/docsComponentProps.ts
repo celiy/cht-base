@@ -179,7 +179,8 @@ export function propsTableRows(
 
     return Object.entries(raw as Record<string, unknown>).map(([name, def]) => {
         const spec = normalizeProp(def);
-        const values = source
+        const isBoolean = spec.type === Boolean;
+        const accepted = source
             ? formatAcceptedValues(propTypeArgFromSource(source, name), localUnions)
             : "—";
 
@@ -187,8 +188,13 @@ export function propsTableRows(
             name,
             comment: source ? propCommentFromSource(source, name) : "",
             type: formatPropType(spec.type),
-            values,
-            default: spec.hasDefault ? formatPropDefault(spec.default, spec.type) : "—",
+            values: accepted === "—" && isBoolean ? "true | false" : accepted,
+            // Vue makes a Boolean prop `false` when it has no default.
+            default: spec.hasDefault
+                ? formatPropDefault(spec.default, spec.type)
+                : isBoolean
+                  ? "false"
+                  : "—",
             required: spec.required ? "Yes" : "No"
         };
     });
