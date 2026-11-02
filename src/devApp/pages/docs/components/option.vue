@@ -3,7 +3,13 @@
         <section>
             <h1>Option</h1>
 
-            <p>Linha de lista com <code>label</code>, <code>icon</code>, <code>separator</code> e checkmark opcional. Com <code>value</code>, a linha é clicável, no tamanho de opção. Sem <code>value</code>, ela vira cabeçalho. <code>variant="destructive"</code> pinta a ação de vermelho. <code>showCheckmark</code> e <code>selected</code> mostram o visto.</p>
+            <p>
+                Linha de lista com <code>label</code>, <code>icon</code>, <code>separator</code> e
+                checkmark opcional. Com <code>value</code>, a linha é clicável, no tamanho de opção.
+                Sem <code>value</code>, ela vira cabeçalho. <code>variant="destructive"</code> pinta
+                a ação de vermelho. <code>showCheckmark</code> e <code>selected</code> mostram o
+                visto.
+            </p>
         </section>
 
         <section class="mb-8">
@@ -28,6 +34,36 @@
                         icon="fa-trash"
                         value="delete"
                         variant="destructive"
+                        last
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>Desabilitada</h3>
+
+            <p>
+                <code>disabled</code> esmaece a linha, troca o cursor e não emite
+                <code>click</code>. A linha também recebe <code>aria-disabled</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Desabilitada">
+                <div class="m-4 max-w-xs rounded border bg-popover">
+                    <Option
+                        label="Editar"
+                        icon="fa-pen"
+                        value="edit"
+                        first
+                    />
+
+                    <Option
+                        label="Arquivar"
+                        icon="fa-box-archive"
+                        value="archive"
+                        disabled
                         last
                     />
                 </div>
@@ -97,7 +133,11 @@
         <section>
             <h3>Label Helper</h3>
 
-            <p><code>labelHelper</code> adiciona um texto de ajuda ao label. <code>labelHelperPosition</code> define a posição desse texto. <code>optionHelperText</code> adiciona um texto de ajuda à opção.</p>
+            <p>
+                <code>labelHelper</code> adiciona um texto de ajuda ao label.
+                <code>labelHelperPosition</code> define a posição desse texto.
+                <code>optionHelperText</code> adiciona um texto de ajuda à opção.
+            </p>
         </section>
 
         <section class="mb-8">

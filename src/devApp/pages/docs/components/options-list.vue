@@ -3,26 +3,60 @@
         <section>
             <h1>OptionsList</h1>
 
-            <p>Lista de opções usada por Select, Dropdown e Context menu. Importe de <code>@design/components/internal/OptionsList.vue</code>. Cada item segue o <code>OptionItem</code>: <code>label</code>, <code>value</code>, <code>icon</code>, <code>separator</code>, <code>disabled</code>, <code>variant</code>, <code>tooltip</code>, <code>indicator</code>, <code>options</code>, que são os filhos, e <code>openOn</code>, com <code>hover</code> ou <code>click</code>.</p>
+            <p>
+                Lista de opções usada por Select, Dropdown e Context menu. Importe de
+                <code>@design/components/internal/OptionsList.vue</code>. Cada item segue o
+                <code>OptionItem</code>: <code>label</code>, <code>value</code>, <code>icon</code>,
+                <code>separator</code>, <code>disabled</code>, <code>variant</code>,
+                <code>tooltip</code>, <code>indicator</code>, <code>options</code>, que são os
+                filhos, e <code>openOn</code>, com <code>hover</code> ou <code>click</code>.
+            </p>
         </section>
 
         <section>
             <h3>Lista e select</h3>
 
-            <p><code>select</code> emite o item clicado. Separadores não são clicáveis. <code>showCheckmark</code> reserva a coluna do visto. <code>isOptionSelected</code> decide quais itens aparecem marcados.</p>
+            <p>
+                <code>select</code> emite o item clicado. Separadores e itens com
+                <code>disabled: true</code> não são clicáveis, e as setas pulam os desabilitados.
+                <code>showCheckmark</code> reserva a coluna do visto.
+                <code>isOptionSelected</code> decide quais itens aparecem marcados. Os slots
+                <code>#panelHeader</code> e <code>#panelFooter</code> ficam no início e no fim da
+                lista. O cabeçalho aparece sempre, e o rodapé só quando há opções visíveis.
+            </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Lista">
-                <div class="m-4 max-w-xs rounded border bg-popover p-1">
+                <div class="m-4 max-w-xs rounded border bg-popover">
                     <OptionsList
-                        :options="[{ label: 'Editar', value: 'edit', icon: 'fa-pen' }, { label: 'Duplicar', value: 'dup', icon: 'fa-copy' }, { separator: true }, { label: 'Eliminar', value: 'del', icon: 'fa-trash', variant: 'destructive' }]"
+                        :options="[
+                            { label: 'Editar', value: 'edit', icon: 'fa-pen' },
+                            { label: 'Duplicar', value: 'dup', icon: 'fa-copy' },
+                            {
+                                label: 'Arquivar',
+                                value: 'archive',
+                                icon: 'fa-box-archive',
+                                disabled: true
+                            },
+                            { separator: true },
+                            {
+                                label: 'Eliminar',
+                                value: 'del',
+                                icon: 'fa-trash',
+                                variant: 'destructive'
+                            }
+                        ]"
                         :show-checkmark="true"
                         :is-option-selected="isSelected"
                         :max-height-px="240"
 
                         @select="onSelect"
-                    />
+                    >
+                        <template #panelHeader>
+                            <small-muted>Ações do item</small-muted>
+                        </template>
+                    </OptionsList>
                 </div>
 
                 <p class="px-4 pb-4 text-sm text-muted-foreground">
@@ -35,14 +69,28 @@
         <section>
             <h3>Pesquisa local</h3>
 
-            <p><code>search="{ external: false }"</code> filtra por label. Se a label não bater, filtra também por value. <code>searchQuery</code> sincroniza com <code>update:searchQuery</code>.</p>
+            <p>
+                <code>search="{ external: false }"</code> filtra por label. Se a label não bater,
+                filtra também por value. <code>searchQuery</code> sincroniza com
+                <code>update:searchQuery</code>.
+            </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Pesquisa">
                 <div class="m-4 w-full max-w-xs overflow-hidden rounded border bg-popover">
                     <OptionsList
-                        :options="[{ label: 'Editar', value: 'edit', icon: 'fa-pen' }, { label: 'Duplicar', value: 'dup', icon: 'fa-copy' }, { separator: true }, { label: 'Eliminar', value: 'del', icon: 'fa-trash', variant: 'destructive' }]"
+                        :options="[
+                            { label: 'Editar', value: 'edit', icon: 'fa-pen' },
+                            { label: 'Duplicar', value: 'dup', icon: 'fa-copy' },
+                            { separator: true },
+                            {
+                                label: 'Eliminar',
+                                value: 'del',
+                                icon: 'fa-trash',
+                                variant: 'destructive'
+                            }
+                        ]"
                         :search="{ external: false }"
                         :search-query="query"
 
@@ -56,7 +104,11 @@
         <section>
             <h3>Pesquisa externa</h3>
 
-            <p><code>search.external</code> não filtra a lista. Em vez disso, emite <code>search:external</code> com <code>{ field, value }</code>, com debounce de 100&nbsp;ms. <code>externalSearchLoading</code> troca o ícone por um spinner.</p>
+            <p>
+                <code>search.external</code> não filtra a lista. Em vez disso, emite
+                <code>search:external</code> com <code>{ field, value }</code>, com debounce de
+                100&nbsp;ms. <code>externalSearchLoading</code> troca o ícone por um spinner.
+            </p>
         </section>
 
         <section class="mb-8">
@@ -87,7 +139,17 @@
             <DocsExample label="Aninhado">
                 <div class="m-4 max-w-xs rounded border bg-popover p-1">
                     <OptionsList
-                        :options="[{ label: 'Ficheiro', value: 'file', options: [{ label: 'Novo', value: 'new' }, { label: 'Abrir', value: 'open' }] }, { label: 'Fechar', value: 'close' }]"
+                        :options="[
+                            {
+                                label: 'Ficheiro',
+                                value: 'file',
+                                options: [
+                                    { label: 'Novo', value: 'new' },
+                                    { label: 'Abrir', value: 'open' }
+                                ]
+                            },
+                            { label: 'Fechar', value: 'close' }
+                        ]"
 
                         @select="onSelect"
                     />
@@ -123,7 +185,7 @@ export default defineComponent({
             query: "",
             remoteLoading: false,
             remoteQuery: "",
-            remoteTimer: null as ReturnType<typeof setTimeout> | null,
+            remoteTimer: null as ReturnType<typeof setTimeout> | null
         };
     },
 

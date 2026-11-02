@@ -343,6 +343,61 @@
         </section>
 
         <section>
+            <h3>Panel header</h3>
+
+            <p>
+                O slot <code>#panel-header</code> fica no início do painel, acima da pesquisa e das
+                opções, e aparece sempre, mesmo com a lista vazia. Também existe no
+                <code>Dropdown</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Panel header">
+                <div class="flex max-w-sm flex-col gap-4 p-4">
+                    <Select
+                        header="Responsável"
+                        :search="{ external: false }"
+                        :options="[
+                            { label: 'Ana', value: 'ana' },
+                            { label: 'Bruno', value: 'bruno' },
+                            { label: 'Carla', value: 'carla' }
+                        ]"
+                    >
+                        <template #panel-header>
+                            <small-muted>Só membros ativos da equipe</small-muted>
+                        </template>
+                    </Select>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>Opção desabilitada</h3>
+
+            <p>
+                Uma opção com <code>disabled: true</code> aparece esmaecida, não responde ao clique e
+                é pulada pelas setas e pelo Enter. Vale para <code>Select</code>,
+                <code>Dropdown</code> e <code>OptionsList</code>, inclusive em submenus.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Opção desabilitada">
+                <div class="flex max-w-sm flex-col gap-4 p-4">
+                    <Select
+                        header="Plano"
+                        :options="[
+                            { label: 'Básico', value: 'basic' },
+                            { label: 'Pro', value: 'pro' },
+                            { label: 'Enterprise (indisponível)', value: 'enterprise', disabled: true }
+                        ]"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
             <h3>Painel vazio</h3>
 
             <p>
