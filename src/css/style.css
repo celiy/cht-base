@@ -247,6 +247,30 @@ pre code {
     @apply z-1;
 }
 
+.chip-group,
+.chip-group-vertical {
+    @apply inline-flex w-fit items-stretch;
+}
+.chip-group-vertical {
+    @apply flex-col;
+}
+.chip-group > *,
+.chip-group-vertical > * {
+    @apply w-auto!;
+}
+.chip-group > *:not(:first-child) {
+    @apply rounded-l-none!;
+}
+.chip-group > *:not(:last-child) {
+    @apply rounded-r-none!;
+}
+.chip-group-vertical > *:not(:first-child) {
+    @apply rounded-t-none!;
+}
+.chip-group-vertical > *:not(:last-child) {
+    @apply rounded-b-none!;
+}
+
 .separator {
     @apply h-[1px] w-full bg-border;
 }
