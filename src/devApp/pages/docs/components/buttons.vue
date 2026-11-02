@@ -207,6 +207,51 @@
         </section>
 
         <section>
+            <h3>Só ícone</h3>
+
+            <p>
+                Com <code>left-icon</code> ou <code>right-icon</code> e sem <code>label</code> nem
+                slot, o padding fica igual nos quatro lados, então o botão fica quadrado:
+                <code>p-1.5</code> no <code>small</code>, <code>p-2</code> no <code>medium</code> e
+                <code>p-2.5</code> no <code>large</code>. Com texto, o padding horizontal continua
+                maior que o vertical. Vale para <code>shape="square"</code>; o
+                <code>rounded</code> já é um círculo. Como não há texto, passe um
+                <code>aria-label</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Só ícone">
+                <div class="flex flex-wrap items-center gap-2 p-4">
+                    <Button
+                        size="small"
+                        variant="secondary"
+                        left-icon="fa-solid fa-gear"
+                        aria-label="Configurações"
+                    />
+                    <Button
+                        size="medium"
+                        variant="secondary"
+                        left-icon="fa-solid fa-gear"
+                        aria-label="Configurações"
+                    />
+                    <Button
+                        size="large"
+                        variant="secondary"
+                        left-icon="fa-solid fa-gear"
+                        aria-label="Configurações"
+                    />
+                    <Button
+                        label="Com texto"
+                        size="medium"
+                        variant="secondary"
+                        left-icon="fa-solid fa-gear"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
             <h3>Forma</h3>
 
             <p>Prop <code>shape="rounded / square"</code> criam botões com formas diferentes.</p>

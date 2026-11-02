@@ -56,6 +56,25 @@
         </section>
 
         <section>
+            <h3>Transparência nas bordas</h3>
+
+            <p>
+                A barra seguida de um número define a opacidade. Numa cor, ela vale para o lado da classe: <code>border-t-primary/50</code> pinta 1px no topo com a primária a 50%. Sem cor, ela vale para a cor padrão da borda (<code>--color-border</code>): <code>border/50</code>, <code>border-t/50</code>, <code>border-x/30</code>. Com espessura, fica <code>border-b-2/40</code> ou <code>border-b-2-red-500/30</code>. Use <code>border-t/50</code> no lugar de <code>border-t border-border/50</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Transparência nas bordas">
+                <div class="flex flex-wrap items-end gap-4 p-4">
+                    <div class="h-16 w-16 rounded border-4/50 bg-card" />
+                    <div class="h-16 w-16 rounded border-t-4/30 bg-card" />
+                    <div class="h-16 w-16 rounded border-t-4-primary/50 bg-card" />
+                    <div class="h-16 w-16 rounded border-x-4-destructive/40 bg-card" />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
             <h3>Bordas arredondadas</h3>
 
             <p>
