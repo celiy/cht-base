@@ -3,7 +3,16 @@
         <section>
             <h1>Select</h1>
 
-            <p>Campo de escolha com lista flutuante. Tem pesquisa local, tooltip nas opções, seleção múltipla, persistência em <code>localStorage</code> e textos de ajuda. <code>combobox</code> troca o gatilho por um input de texto livre com sugestões. Uma opção com <code>options</code> abre submenu. <code>#inside-empty-panel</code> aparece com a lista vazia, e <code>#panel-footer</code> fica fixo no rodapé enquanto houver opções. No mobile, o painel vira modal, controlado por <code>mobileModal</code> e <code>forceModal</code>.</p>
+            <p>
+                Campo de escolha com lista flutuante. Tem pesquisa local, tooltip nas opções,
+                seleção múltipla, persistência em <code>localStorage</code> e textos de ajuda.
+                <code>combobox</code> troca o gatilho por um input de texto livre com sugestões. Uma
+                opção com <code>options</code> abre submenu.
+                <code>#inside-empty-panel</code> aparece com a lista vazia, e
+                <code>#panel-footer</code> fica fixo no rodapé enquanto houver opções. No mobile, o
+                painel vira modal, controlado por <code>mobileModal</code> e
+                <code>forceModal</code>.
+            </p>
         </section>
 
         <section>
@@ -36,7 +45,12 @@
         <section>
             <h3>Pesquisa e tooltips</h3>
 
-            <p><code>:search="{ external: false }"</code> filtra a lista localmente. Ao abrir, o campo ganha foco e o primeiro item fica pré-selecionado. As setas navegam pela lista, Enter confirma e Esc fecha. Uma opção pode ter <code>tooltip</code>, que aparece ao lado no hover.</p>
+            <p>
+                <code>:search="{ external: false }"</code> filtra a lista localmente. Ao abrir, o
+                campo ganha foco e o primeiro item fica pré-selecionado. As setas navegam pela
+                lista, Enter confirma e Esc fecha. Uma opção pode ter <code>tooltip</code>, que
+                aparece ao lado no hover.
+            </p>
         </section>
 
         <section class="mb-8">
@@ -58,7 +72,12 @@
         <section>
             <h3>Pesquisa externa</h3>
 
-            <p><code>:search="{ external: true, field: 'modelo' }"</code> não filtra a lista. A cada digitação, com debounce, o componente emite <code>search:external</code> com <code>{ field, value }</code>. O pai usa esses dados para buscar no backend, por exemplo em <code>GET /api/veiculo?modelo=gol</code>.</p>
+            <p>
+                <code>:search="{ external: true, field: 'modelo' }"</code> não filtra a lista. A
+                cada digitação, com debounce, o componente emite <code>search:external</code> com
+                <code>{ field, value }</code>. O pai usa esses dados para buscar no backend, por
+                exemplo em <code>GET /api/veiculo?modelo=gol</code>.
+            </p>
         </section>
 
         <section class="mb-8">
@@ -82,7 +101,15 @@
         <section>
             <h3>Combobox</h3>
 
-            <p><code>combobox</code> troca o gatilho por um <code>Input</code>. O texto livre fica em <code>v-model:query</code>, e escolher uma opção preenche o input com o label e emite o <code>value</code>. Com <code>:search="{ external: true }"</code>, a digitação emite <code>search:external</code>, sem busca dentro da lista. <code>variant</code> vai para o <code>Input</code>, com padrão <code>secondary</code>. Use <code>transparent</code> em layouts densos, como células de tabela.</p>
+            <p>
+                <code>combobox</code> troca o gatilho por um <code>Input</code>. O texto livre fica
+                em <code>v-model:query</code>, e escolher uma opção preenche o input com o label e
+                emite o <code>value</code>. Com <code>:search="{ external: true }"</code>, a
+                digitação emite <code>search:external</code>, sem busca dentro da lista.
+                <code>variant</code> vai para o <code>Input</code>, com padrão
+                <code>secondary</code>. Use <code>transparent</code> em layouts densos, como células
+                de tabela.
+            </p>
         </section>
 
         <section class="mb-8">
@@ -92,7 +119,12 @@
                         combobox
                         header="Serviço"
                         :query="comboboxQuery"
-                        :options="[{ label: 'Alinhamento', value: '1' }, { label: 'Balanceamento', value: '2' }, { label: 'Troca de óleo', value: '3' }, { label: 'Revisão', value: '4' }]"
+                        :options="[
+                            { label: 'Alinhamento', value: '1' },
+                            { label: 'Balanceamento', value: '2' },
+                            { label: 'Troca de óleo', value: '3' },
+                            { label: 'Revisão', value: '4' }
+                        ]"
                         :search="{ external: false }"
 
                         @update:query="comboboxQuery = $event"
@@ -106,7 +138,11 @@
         <section>
             <h3>Combobox com opção fixa</h3>
 
-            <p>Com <code>combobox-option</code>, a escolha na lista trava o valor, como num select. Um X no input limpa a seleção. Enquanto nada estiver selecionado, o texto livre continua valendo.</p>
+            <p>
+                Com <code>combobox-option</code>, a escolha na lista trava o valor, como num select.
+                Um X no input limpa a seleção. Enquanto nada estiver selecionado, o texto livre
+                continua valendo.
+            </p>
         </section>
 
         <section class="mb-8">
@@ -118,7 +154,12 @@
                         header="Cliente"
                         :query="comboboxOptionQuery"
                         :model-value="comboboxOptionValue"
-                        :options="[{ label: 'Alinhamento', value: '1' }, { label: 'Balanceamento', value: '2' }, { label: 'Troca de óleo', value: '3' }, { label: 'Revisão', value: '4' }]"
+                        :options="[
+                            { label: 'Alinhamento', value: '1' },
+                            { label: 'Balanceamento', value: '2' },
+                            { label: 'Troca de óleo', value: '3' },
+                            { label: 'Revisão', value: '4' }
+                        ]"
 
                         @update:query="comboboxOptionQuery = $event"
                         @update:value="comboboxOptionValue = $event"
@@ -130,7 +171,23 @@
         <section>
             <h3>Múltipla seleção</h3>
 
-            <p>Use <code>selectMultiple="{ min, max, allSelected }"</code>. <code>min</code> e <code>max</code> limitam a quantidade marcada, e <code>allSelected: true</code> começa com tudo marcado. O valor é um array de strings. <code>showSelectedLabels</code>, que vem <code>true</code>, mostra os labels no gatilho, com reticências se não couberem. Com <code>false</code>, o gatilho mostra o <code>header</code> quando nada está pré-selecionado.</p>
+            <p>
+                Use <code>selectMultiple="{ min, max, allSelected }"</code>. <code>min</code> e
+                <code>max</code> limitam a quantidade marcada, e
+                <code>allSelected: true</code> começa com tudo marcado. O valor é um array de
+                strings. <code>showSelectedLabels</code>, que vem <code>true</code>, mostra cada
+                opção selecionada no gatilho dentro de um container com borda e um X pequeno que
+                remove a opção (respeitando o <code>min</code>). Os itens quebram de linha quando
+                não cabem, em vez de cortar com reticências, e um label longo também quebra dentro
+                do próprio item. Com <code>false</code>, o gatilho mostra o
+                <code>header</code> quando nada está pré-selecionado. <br />
+                <br />
+                Cada item emite <code>click-inside-chip</code> e <code>remove:selected</code>.
+                <br />
+                <br />
+                Uma opção com <code>chipTooltip</code> mostra esse tooltip acima do item no gatilho.
+                O <code>tooltip</code> da opção continua só na lista.
+            </p>
         </section>
 
         <section class="mb-8">
@@ -160,6 +217,25 @@
                         ]"
                         :select-multiple="{ min: 0, max: 3 }"
                     />
+
+                    <Select
+                        header="Labels longos"
+                        helper-text="Tudo marcado; os itens quebram de linha"
+                        :options="[
+                            {
+                                label: 'Departamento de engenharia de software',
+                                value: 'eng',
+                                chipTooltip: 'Inclui produto e infraestrutura'
+                            },
+                            { label: 'Recursos humanos e departamento pessoal', value: 'rh' },
+                            { label: 'Marketing', value: 'mkt', chipTooltip: 'Campanhas e marca' },
+                            { label: 'Financeiro', value: 'fin' }
+                        ]"
+                        :select-multiple="{ min: 0, allSelected: true }"
+
+                        @click:inside-chip="(item) => $toast.info('Clicou ' + item.label)"
+                        @remove:selected="(item) => $toast.info('Removeu ' + item)"
+                    />
                 </div>
             </DocsExample>
         </section>
@@ -167,7 +243,13 @@
         <section>
             <h3>Seleção separada</h3>
 
-            <p><code>separateSelected</code>, padrão <code>false</code>, só vale com <code>selectMultiple</code>. As opções marcadas saem da lista e aparecem abaixo, em grupos de botões (<code>variant="outline"</code>, <code>size="small"</code>). O clique no label emite <code>click:selected</code>. O X devolve a opção à lista e emite <code>remove:selected</code>. O painel abre para cima sempre que couber.</p>
+            <p>
+                <code>separateSelected</code>, padrão <code>false</code>, só vale com
+                <code>selectMultiple</code>. As opções marcadas saem da lista e aparecem abaixo, em
+                grupos de botões (<code>variant="outline"</code>, <code>size="small"</code>). O
+                clique no label emite <code>click:selected</code>. O X devolve a opção à lista e
+                emite <code>remove:selected</code>. O painel abre para cima sempre que couber.
+            </p>
         </section>
 
         <section class="mb-8">
@@ -177,7 +259,12 @@
                         v-model="separateSelectedValues"
                         header="Veículos"
                         helper-text="Marque na lista; os selecionados saem dela e ficam abaixo"
-                        :options="[{ label: 'Gol · ABC1D23', value: 'gol' }, { label: 'Uno · XYZ1A23', value: 'uno' }, { label: 'Onix · QWE2B34', value: 'onix' }, { label: 'Civic · RTY3C45', value: 'civic' }]"
+                        :options="[
+                            { label: 'Gol · ABC1D23', value: 'gol' },
+                            { label: 'Uno · XYZ1A23', value: 'uno' },
+                            { label: 'Onix · QWE2B34', value: 'onix' },
+                            { label: 'Civic · RTY3C45', value: 'civic' }
+                        ]"
                         :select-multiple="{ min: 0 }"
                         :separate-selected="true"
 
@@ -218,7 +305,11 @@
         <section>
             <h3>Panel footer</h3>
 
-            <p>O slot <code>#panel-footer</code> fica no fim do painel e só aparece quando a lista tem opções visíveis. Se a mesma ação também fizer sentido com a lista vazia, combine com <code>#inside-empty-panel</code>.</p>
+            <p>
+                O slot <code>#panel-footer</code> fica no fim do painel e só aparece quando a lista
+                tem opções visíveis. Se a mesma ação também fizer sentido com a lista vazia, combine
+                com <code>#inside-empty-panel</code>.
+            </p>
         </section>
 
         <section class="mb-8">
@@ -254,10 +345,16 @@
         <section>
             <h3>Painel vazio</h3>
 
-            <p>Use <code>#inside-empty-panel</code> para ações quando não há itens, seja porque o catálogo está vazio, seja porque a pesquisa não achou nada. O conteúdo fica centralizado logo abaixo de “Nenhum resultado encontrado.”. No Mecarvit, o cadastro de cliente usa esse slot nos selects de endereço e veículo, com os botões “Cadastrar endereço” e “Cadastrar veículo”.</p>
+            <p>
+                Use <code>#inside-empty-panel</code> para ações quando não há itens, seja porque o
+                catálogo está vazio, seja porque a pesquisa não achou nada. O conteúdo fica
+                centralizado logo abaixo de “Nenhum resultado encontrado.”. No Mecarvit, o cadastro
+                de cliente usa esse slot nos selects de endereço e veículo, com os botões “Cadastrar
+                endereço” e “Cadastrar veículo”.
+            </p>
         </section>
 
-        <section class="mb-24">
+        <section>
             <DocsExample label="Inside empty panel">
                 <div class="flex max-w-sm flex-col gap-4 p-4">
                     <Select
