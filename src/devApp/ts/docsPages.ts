@@ -22,7 +22,6 @@ export type DocsPage = {
 };
 
 const DOCS = "Docs";
-const SYSTEM = "Sistema";
 const FUNDAMENTALS = "Fundamentos";
 const COMPONENTS = "Componentes";
 const CUSTOM = "Custom";
@@ -30,7 +29,10 @@ const CHARTS = "Charts";
 const FORM = "Form";
 
 const INTRO_GROUP: DocsNavGroup = { label: "Introdução", openByDefault: true };
-const GUIDE_GROUP: DocsNavGroup = { label: "Guia", openByDefault: true };
+const CUSTOMIZATION = "Customização";
+const PLUGINS = "Plugins";
+const UTILITIES = "Utilitários do sistema";
+const SETUP = "Configuração e uso";
 
 /**
  * Ordered list of the docs pages. The order here is the order of the navigation.
@@ -72,81 +74,36 @@ export const DOCS_PAGES: DocsPage[] = [
         path: "/docs/create-client",
         label: "Criar frontend",
         icon: "fa-book",
-        section: SYSTEM,
-        group: GUIDE_GROUP,
+        section: SETUP,
         load: () => import("../pages/docs/create-client.vue")
     },
     {
         path: "/docs/backend",
         label: "Criar backend",
         icon: "fa-book",
-        section: SYSTEM,
-        group: GUIDE_GROUP,
+        section: SETUP,
         load: () => import("../pages/docs/backend.vue")
     },
     {
         path: "/docs/cht-config",
         label: "cht.config",
         icon: "fa-book",
-        section: SYSTEM,
-        group: GUIDE_GROUP,
+        section: SETUP,
         load: () => import("../pages/docs/cht-config.vue")
     },
     {
         path: "/docs/dev-mode",
         label: "Modo dev",
         icon: "fa-book",
-        section: SYSTEM,
-        group: GUIDE_GROUP,
+        section: SETUP,
         readiness: "warning",
         load: () => import("../pages/docs/dev-mode.vue")
-    },
-    {
-        path: "/docs/override-css",
-        label: "CSS do cliente",
-        icon: "fa-palette",
-        section: SYSTEM,
-        group: GUIDE_GROUP,
-        load: () => import("../pages/docs/override-css.vue")
-    },
-    {
-        path: "/docs/client-tailwind-plugin",
-        label: "Plugin Tailwind do cliente",
-        icon: "fa-palette",
-        section: SYSTEM,
-        group: GUIDE_GROUP,
-        load: () => import("../pages/docs/client-tailwind-plugin.vue")
-    },
-    {
-        path: "/docs/client-extensions",
-        label: "Extensões do cliente",
-        icon: "fa-puzzle-piece",
-        section: SYSTEM,
-        group: GUIDE_GROUP,
-        load: () => import("../pages/docs/client-extensions.vue")
-    },
-    {
-        path: "/docs/themes",
-        label: "Temas",
-        icon: "fa-palette",
-        section: SYSTEM,
-        group: GUIDE_GROUP,
-        load: () => import("../pages/docs/themes.vue")
-    },
-    {
-        path: "/docs/custom-themes",
-        label: "Temas do sistema",
-        icon: "fa-palette",
-        section: SYSTEM,
-        group: GUIDE_GROUP,
-        load: () => import("../pages/docs/custom-themes.vue")
     },
     {
         path: "/docs/websocket",
         label: "Websocket",
         icon: "fa-book",
-        section: SYSTEM,
-        group: GUIDE_GROUP,
+        section: UTILITIES,
         readiness: "warning",
         load: () => import("../pages/docs/websocket.vue")
     },
@@ -154,17 +111,57 @@ export const DOCS_PAGES: DocsPage[] = [
         path: "/docs/project",
         label: "$project",
         icon: "fa-book",
-        section: SYSTEM,
-        group: GUIDE_GROUP,
+        section: UTILITIES,
         load: () => import("../pages/docs/project.vue")
     },
     {
         path: "/docs/http",
         label: "$http",
         icon: "fa-book",
-        section: SYSTEM,
-        group: GUIDE_GROUP,
+        section: UTILITIES,
         load: () => import("../pages/docs/http.vue")
+    },
+    {
+        path: "/docs/client-tailwind-plugin",
+        label: "Plugin Tailwind do cliente",
+        icon: "fa-palette",
+        section: PLUGINS,
+        load: () => import("../pages/docs/client-tailwind-plugin.vue")
+    },
+    {
+        path: "/docs/client-extensions",
+        label: "Extensões do cliente",
+        icon: "fa-puzzle-piece",
+        section: PLUGINS,
+        load: () => import("../pages/docs/client-extensions.vue")
+    },
+    {
+        path: "/docs/override-css",
+        label: "CSS do cliente",
+        icon: "fa-palette",
+        section: CUSTOMIZATION,
+        load: () => import("../pages/docs/override-css.vue")
+    },
+    {
+        path: "/docs/styling",
+        label: "Estilização",
+        icon: "fa-palette",
+        section: CUSTOMIZATION,
+        load: () => import("../pages/docs/styling.vue")
+    },
+    {
+        path: "/docs/themes",
+        label: "Temas",
+        icon: "fa-palette",
+        section: CUSTOMIZATION,
+        load: () => import("../pages/docs/themes.vue")
+    },
+    {
+        path: "/docs/custom-themes",
+        label: "Temas do sistema",
+        icon: "fa-palette",
+        section: CUSTOMIZATION,
+        load: () => import("../pages/docs/custom-themes.vue")
     },
     {
         path: "/docs/components/colors",
@@ -172,13 +169,6 @@ export const DOCS_PAGES: DocsPage[] = [
         icon: "fa-palette",
         section: FUNDAMENTALS,
         load: () => import("../pages/docs/components/colors.vue")
-    },
-    {
-        path: "/docs/styling",
-        label: "Estilização",
-        icon: "fa-palette",
-        section: FUNDAMENTALS,
-        load: () => import("../pages/docs/styling.vue")
     },
     {
         path: "/docs/components/toast",
@@ -250,6 +240,14 @@ export const DOCS_PAGES: DocsPage[] = [
         section: COMPONENTS,
         readiness: "info",
         load: () => import("../pages/docs/components/carousel.vue")
+    },
+    {
+        path: "/docs/components/cascade",
+        label: "Cascade",
+        icon: "fa-cube",
+        section: COMPONENTS,
+        readiness: "info",
+        load: () => import("../pages/docs/components/cascade.vue")
     },
     {
         path: "/docs/components/checkbox",

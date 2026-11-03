@@ -134,11 +134,15 @@ function withOpacity(color, modifier) {
     return `color-mix(in oklab, ${color} ${amount}, transparent)`;
 }
 
+/** Color of a plain `border` / `border-t` (set in the base layer of `style.css`). */
+const DEFAULT_BORDER_COLOR = "var(--color-border)";
+
 /**
  * Colored `border-*` / `border-{t,r,b,l,x,y}-*` utilities also paint a 1px border.
  * Sized: `border-1-primary`, `border-b-2-red-500`, `border-2-primary/40`.
  * Arbitrary width + color: `border-[1rem]/muted`, `border-b-[4px]/primary`
  * (slash — tokens cannot follow `]`).
+ * Opacity on the default color: `border/50`, `border-t/50`, `border-b-2/30`.
  */
 export default plugin(({ matchUtilities, theme }) => {
     // `type: "color"` injects these automatically; sized values need them explicitly.
@@ -191,12 +195,23 @@ export default plugin(({ matchUtilities, theme }) => {
                         return {};
                     }
 
-                    return borderCss(side, value, modifier);
+                    // `border-x-2/primary` — the modifier is a color token.
+                    if (typeof colors[modifier] === "string") {
+                        return borderCss(side, value, colors[modifier]);
+                    }
+
+                    // `border-t/50`, `border-b-2/30` — opacity of the default border color.
+                    if (/^\d+(\.\d+)?$/.test(modifier)) {
+                        return borderCss(side, value, withOpacity(DEFAULT_BORDER_COLOR, modifier));
+                    }
+
+                    return {};
                 }
             },
             {
-                values: BORDER_WIDTHS,
-                modifiers: colors
+                // DEFAULT makes the bare `border-t` accept a modifier (`border-t/50`).
+                values: { DEFAULT: "1px", ...BORDER_WIDTHS },
+                modifiers: "any"
             }
         );
     }

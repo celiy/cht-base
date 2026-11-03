@@ -76,7 +76,13 @@ const out = result.build([
     "border-t-1-muted",
     "border-x-2/primary",
     "border-b-[4px]/muted",
-    "border-b-2"
+    "border-b-2",
+    "border-t-primary/50",
+    "border/50",
+    "border-t/50",
+    "border-x/30",
+    "border-b-2/40",
+    "border-t"
 ]);
 
 assert(/\.border-primary\s*\{[^}]*border-width:\s*1px/.test(out), "border-primary width");
@@ -147,6 +153,43 @@ assert(
 assert(
     /\.border-b-2\s*\{[^}]*border-bottom-width:\s*2px/.test(out),
     "border-b-2 still width-only"
+);
+
+assert(
+    /\.border-t-primary\\\/50\s*\{[^}]*border-top-width:\s*1px/.test(out)
+        && /\.border-t-primary\\\/50\s*\{[^}]*border-top-color:\s*color-mix\([^)]*50%/.test(out),
+    "border-t-primary/50 width + opacity"
+);
+assert(
+    /\.border\\\/50\s*\{[^}]*border-width:\s*1px/.test(out)
+        && /\.border\\\/50\s*\{[^}]*border-color:\s*color-mix\(in oklab,\s*var\(--color-border\) 50%/.test(out),
+    "border/50 default color opacity"
+);
+assert(
+    /\.border-t\\\/50\s*\{[^}]*border-top-width:\s*1px/.test(out)
+        && /\.border-t\\\/50\s*\{[^}]*border-top-color:\s*color-mix\(in oklab,\s*var\(--color-border\) 50%/.test(out),
+    "border-t/50 default color opacity"
+);
+// Opacity colors come with an `@supports` block, so `[^}]*` stops early; read the whole rule.
+const borderX30 = out.slice(out.indexOf(".border-x\\/30 {"), out.indexOf("\n  }\n", out.indexOf(".border-x\\/30 {")));
+
+assert(
+    /border-left-color:\s*color-mix\(in oklab,\s*var\(--color-border\) 30%/.test(borderX30)
+        && /border-right-color:\s*color-mix\(in oklab,\s*var\(--color-border\) 30%/.test(borderX30),
+    "border-x/30 both sides"
+);
+assert(
+    /\.border-b-2\\\/40\s*\{[^}]*border-bottom-width:\s*2px/.test(out)
+        && /\.border-b-2\\\/40\s*\{[^}]*40%/.test(out),
+    "border-b-2/40 width + opacity"
+);
+assert(
+    /\.border-t\s*\{[^}]*border-top-width:\s*1px/.test(out),
+    "border-t still width-only"
+);
+assert(
+    !/\.border-t\s*\{[^}]*border-top-color/.test(out),
+    "border-t does not set a color (base layer does)"
 );
 
 console.log("borderUtilitiesPlugin.check: ok");

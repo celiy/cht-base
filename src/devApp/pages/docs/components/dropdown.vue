@@ -246,7 +246,46 @@
         <section>
             <h3>Opções</h3>
 
-            <p>Cada item tem <code>label</code>, <code>value</code>, obrigatório para ser clicável, <code>icon</code>, que é a classe Font Awesome, como <code>fa-user</code>, <code>tooltip</code>, <code>separator: true</code> para uma linha divisória, e <code>variant: "destructive"</code>, que deixa o texto vermelho. Item só com <code>label</code> vira cabeçalho de grupo. <code>options</code> abre submenu ao lado, e <code>disabled</code> impede o clique.</p>
+            <p>Cada item tem <code>label</code>, <code>value</code>, obrigatório para ser clicável, <code>icon</code>, que é a classe Font Awesome, como <code>fa-user</code>, <code>tooltip</code>, <code>separator: true</code> para uma linha divisória, e <code>variant: "destructive"</code>, que deixa o texto vermelho. Item só com <code>label</code> vira cabeçalho de grupo. <code>options</code> abre submenu ao lado, e <code>disabled</code> deixa a opção esmaecida, sem clique e fora da navegação por setas.</p>
+        </section>
+
+        <section>
+            <h3>Cabeçalho e rodapé do painel</h3>
+
+            <p>
+                Os slots <code>#panel-header</code> e <code>#panel-footer</code> ficam no início e no
+                fim do painel. O cabeçalho aparece sempre. O rodapé só aparece quando há opções
+                visíveis.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Cabeçalho, rodapé e disabled">
+                <div class="flex max-w-xs flex-col gap-2 p-4">
+                    <Dropdown
+                        header="Exportar"
+                        :options="[
+                            { label: 'PDF', value: 'pdf', icon: 'fa-file-pdf' },
+                            { label: 'CSV', value: 'csv', icon: 'fa-file-csv' },
+                            { label: 'Excel (em breve)', value: 'xlsx', icon: 'fa-file-excel', disabled: true }
+                        ]"
+
+                        @click:value="lastClicked = $event"
+                    >
+                        <template #panel-header>
+                            <small-muted>Escolha o formato</small-muted>
+                        </template>
+
+                        <template #panel-footer>
+                            <small-muted>Os arquivos usam o filtro atual</small-muted>
+                        </template>
+                    </Dropdown>
+
+                    <p class="text-sm text-muted-foreground">
+                        Último valor: {{ lastClicked || "—" }}
+                    </p>
+                </div>
+            </DocsExample>
         </section>
     </article>
 </template>

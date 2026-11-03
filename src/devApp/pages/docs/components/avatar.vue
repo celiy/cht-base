@@ -22,7 +22,11 @@
         <section>
             <h3>Tamanho</h3>
 
-            <p><code>size="small / medium / large"</code>. O padrão é <code>medium</code>.</p>
+            <p>
+                <code>size="small / medium / large"</code>. O padrão é <code>medium</code>. Também
+                aceita qualquer medida CSS, como <code>size="5rem"</code>, aplicada como largura e
+                altura.
+            </p>
         </section>
 
         <section class="mb-8">
@@ -40,6 +44,37 @@
 
                     <Avatar
                         size="large"
+                        :image="avatarImage"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>Tamanho customizado</h3>
+
+            <p>
+                Qualquer medida CSS em <code>size</code> define a largura e a altura do avatar. Com
+                tamanho customizado, o ponto de <code>status</code> e a <code>badge</code> seguem as
+                posições dos tamanhos padrão.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Tamanho customizado">
+                <div class="flex flex-wrap items-end gap-4 p-8">
+                    <Avatar
+                        size="3rem"
+                        :image="avatarImage"
+                    />
+
+                    <Avatar
+                        size="5rem"
+                        :image="avatarImage"
+                    />
+
+                    <Avatar
+                        size="8rem"
                         :image="avatarImage"
                     />
                 </div>
@@ -76,6 +111,58 @@
                     <Avatar
                         status="offline"
                         :image="avatarImage"
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>Badge</h3>
+
+            <p>
+                Pode receber uma badge customizavel. <code>badge</code> recebe
+                <code>attributes</code> que são os atributos da badge e <code>position</code> que
+                pode ser <code>"top-left" | "top-right" | "bottom-left" | "bottom-right"</code>
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Status">
+                <div class="flex flex-wrap items-end gap-8 p-8">
+                    <Avatar
+                        :image="avatarImage"
+                        :badge="{
+                            attributes: { label: '1', variant: 'destructive' },
+                            position: 'top-right'
+                        }"
+                    />
+
+                    <Avatar
+                        :image="avatarImage"
+                        :badge="{
+                            attributes: {
+                                label: 'Online',
+                                variant: 'success',
+                                class: 'text-[0.5rem] px-[0.3rem]'
+                            },
+                            position: 'bottom-right'
+                        }"
+                    />
+
+                    <Avatar
+                        :image="avatarImage"
+                        :badge="{
+                            attributes: { label: '1', variant: 'destructive' },
+                            position: 'top-left'
+                        }"
+                    />
+
+                    <Avatar
+                        :image="avatarImage"
+                        :badge="{
+                            attributes: { label: '1', variant: 'destructive' },
+                            position: 'bottom-left'
+                        }"
                     />
                 </div>
             </DocsExample>
@@ -129,6 +216,31 @@
 
                         @click="loadImage"
                     />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>Lazy</h3>
+
+            <p>
+                <code>lazy</code> só define a imagem quando o Avatar entra na tela. Até lá, aparece
+                o SVG padrão. Role a lista abaixo: os avatares do fim só carregam ao aparecer.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Lazy">
+                <div class="h-64 overflow-y-auto p-4">
+                    <div class="flex flex-col gap-3">
+                        <Avatar
+                            v-for="item in 40"
+                            :key="item"
+
+                            lazy
+                            :image="avatarImage"
+                        />
+                    </div>
                 </div>
             </DocsExample>
         </section>

@@ -37,52 +37,159 @@
         <section>
             <h3>Tipos</h3>
 
-            <p><code>type="card"</code> ou <code>type="alert"</code>. <code>card</code>, o padrão, usa um recorte colorido atrás do ícone. <code>alert</code> deixa o ícone solto, no estilo de aviso.</p>
+            <p>
+                <code>type="card"</code>, <code>type="alert"</code> ou <code>type="solid"</code>.
+                <code>card</code>, o padrão, usa um recorte colorido atrás do ícone.
+                <code>alert</code> deixa o ícone solto, no estilo de aviso. <code>solid</code> tem o
+                mesmo layout do <code>alert</code>, mas com fundo sólido na cor do
+                <code>variant</code>, texto no <code>*-foreground</code> dela e sem borda, como
+                <code>bg-primary</code> com <code>text-primary-foreground</code>. O ícone usa a mesma
+                cor do texto. <code>variant="default"</code> dá o fundo neutro:
+                <code>bg-card</code> com <code>text-foreground</code>.
+            </p>
         </section>
 
         <section class="mb-8">
             <DocsExample label="Tipos">
                 <div class="grid gap-4 p-4">
+                    <p><b>Card</b></p>
                     <Item
                         label="Card"
                         icon="fa-star"
                         variant="secondary"
-                        description="type padrão, com fundo no ícone."
+                        description="variant padrão, com fundo no ícone."
+                    />
+
+                    <Item
+                        label="Card"
+                        icon="fa-star"
+                        variant="primary"
+                        description="variant primary"
+                    />
+
+                    <Item
+                        label="Card"
+                        icon="fa-star"
+                        variant="info"
+                        description="variant info"
+                    />
+
+                    <Item
+                        label="Card"
+                        icon="fa-star"
+                        variant="success"
+                        description="variant success"
+                    />
+
+                    <Item
+                        label="Card"
+                        icon="fa-star"
+                        variant="warning"
+                        description="variant warning."
+                    />
+
+                    <Item
+                        label="Card"
+                        icon="fa-star"
+                        variant="destructive"
+                        description="variant destructive"
+                    />
+
+                    <p><b>Alert</b></p>
+
+                    <Item
+                        icon="fa-home"
+                        variant="secondary"
+                        type="alert"
+                        description="Mensagem secondary"
+                    />
+
+                    <Item
+                        icon="fa-home"
+                        variant="primary"
+                        type="alert"
+                        description="Mensagem primary"
                     />
 
                     <Item
                         icon="fa-circle-info"
                         variant="info"
                         type="alert"
-                        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Use para avisos e mensagens longas."
+                        description="Mensagem info"
                     />
 
                     <Item
                         icon="fa-check"
                         variant="success"
                         type="alert"
-                        description="Mensagem de sucesso — variante success para avisos positivos."
+                        description="Mensagem de sucesso"
                     />
 
                     <Item
                         icon="fa-circle-exclamation"
                         variant="warning"
                         type="alert"
-                        description="Mensagem de aviso — variante warning para alertas e cautelas."
+                        description="Mensagem de aviso"
                     />
 
                     <Item
                         icon="fa-circle-xmark"
                         variant="destructive"
                         type="alert"
-                        description="Mensagem destrutiva — variante destructive para erros ou bloqueios."
+                        description="Mensagem destrutiva"
+                    />
+
+                    <p><b>Solid</b></p>
+
+                    <Item
+                        icon="fa-bell"
+                        variant="default"
+                        type="solid"
+                        label="Padrão"
+                        description="bg-card com text-foreground"
+                    />
+
+                    <Item
+                        icon="fa-home"
+                        variant="primary"
+                        type="solid"
+                        description="Mensagem primary"
                     />
 
                     <Item
                         icon="fa-home"
                         variant="secondary"
-                        type="alert"
-                        description="Mensagem secondary — variante secondary para texto comuns."
+                        type="solid"
+                        description="Mensagem secondary"
+                    />
+
+                    <Item
+                        icon="fa-circle-info"
+                        variant="info"
+                        type="solid"
+                        description="Mensagem info"
+                    />
+
+                    <Item
+                        icon="fa-check"
+                        variant="success"
+                        type="solid"
+                        label="Salvo"
+                        description="Mensagem de sucesso"
+                    />
+
+                    <Item
+                        icon="fa-circle-exclamation"
+                        variant="warning"
+                        type="solid"
+                        description="Mensagem de aviso"
+                    />
+
+                    <Item
+                        icon="fa-circle-xmark"
+                        variant="destructive"
+                        type="solid"
+                        description="Mensagem destrutiva"
                     />
                 </div>
             </DocsExample>
@@ -147,7 +254,12 @@
         <section>
             <h3>Ícone</h3>
 
-            <p><code>icon</code> aceita o nome do Font Awesome com ou sem prefixo, como <code>user</code> ou <code>fa-user</code>. Classes extras, como <code>fa-regular</code>, podem ir na própria string. O padrão é <code>fa-circle</code>.</p>
+            <p>
+                <code>icon</code> aceita o nome do Font Awesome com ou sem prefixo, como
+                <code>user</code> ou <code>fa-user</code>. Classes extras, como
+                <code>fa-regular</code>, podem ir na própria string. O padrão é
+                <code>fa-circle</code>.
+            </p>
         </section>
 
         <section class="mb-8">
@@ -175,7 +287,12 @@
         <section>
             <h3>Tamanho e posição</h3>
 
-            <p><code>itemIconSize="sm"</code>, <code>"md"</code> ou <code>"lg"</code> ajusta o tamanho do ícone. O padrão é <code>md</code>. <code>position="start"</code>, <code>"center"</code> ou <code>"end"</code> alinha o ícone e o conteúdo no eixo transversal. O padrão é <code>center</code>.</p>
+            <p>
+                <code>itemIconSize="sm"</code>, <code>"md"</code> ou <code>"lg"</code> ajusta o
+                tamanho do ícone. O padrão é <code>md</code>. <code>position="start"</code>,
+                <code>"center"</code> ou <code>"end"</code> alinha o ícone e o conteúdo no eixo
+                transversal. O padrão é <code>center</code>.
+            </p>
         </section>
 
         <section class="mb-8">
@@ -266,7 +383,12 @@
         <section>
             <h3>Customizações</h3>
 
-            <p>A superfície do item aceita <code>backgroundStyle</code>, <code>borderStyle</code> e <code>hoverStyle</code>. Para o ícone, use <code>itemBackgroundStyle</code>, que pinta o fundo do recorte, e <code>itemIconStyle</code>, que recebe classes do próprio ícone.</p>
+            <p>
+                A superfície do item aceita <code>backgroundStyle</code>, <code>borderStyle</code> e
+                <code>hoverStyle</code>. Para o ícone, use <code>itemBackgroundStyle</code>, que
+                pinta o fundo do recorte, e <code>itemIconStyle</code>, que recebe classes do
+                próprio ícone.
+            </p>
         </section>
 
         <section class="mb-8">

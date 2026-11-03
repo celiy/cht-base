@@ -55,7 +55,8 @@
 
             <p>
                 <code>separator</code> desenha uma linha. Com <code>label</code> ou
-                <code>centerIcon</code>, o conteúdo fica no meio.
+                <code>centerIcon</code>, o conteúdo fica no meio, ou no início e no fim com
+                <code>contentPosition</code>.
             </p>
         </section>
 
@@ -118,6 +119,64 @@
                                 class="h-32 w-fit"
                             />
                         </div>
+                    </div>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>Posição do conteúdo</h3>
+
+            <p>
+                <code>contentPosition="start / center / end"</code> define onde o
+                <code>label</code> ou o <code>centerIcon</code> fica na linha do separator. O padrão é
+                <code>center</code>. Em <code>start</code> e <code>end</code>, a linha do lado do
+                conteúdo fica curta e a outra ocupa o resto. Vale para as duas orientações: no
+                vertical, <code>start</code> é o topo e <code>end</code> é a base.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Posição do conteúdo">
+                <div class="flex flex-wrap items-stretch gap-8 p-4">
+                    <div class="flex min-w-48 flex-1 flex-col gap-6">
+                        <Marker
+                            separator
+                            label="Início"
+                            content-position="start"
+                        />
+                        <Marker
+                            separator
+                            label="Centro"
+                        />
+                        <Marker
+                            separator
+                            label="Fim"
+                            content-position="end"
+                        />
+                    </div>
+
+                    <div class="flex h-48 gap-8">
+                        <Marker
+                            separator
+                            class="h-full"
+                            center-icon="fa-arrow-up"
+                            orientation="vertical"
+                            content-position="start"
+                        />
+                        <Marker
+                            separator
+                            class="h-full"
+                            center-icon="fa-home"
+                            orientation="vertical"
+                        />
+                        <Marker
+                            separator
+                            class="h-full"
+                            center-icon="fa-arrow-down"
+                            orientation="vertical"
+                            content-position="end"
+                        />
                     </div>
                 </div>
             </DocsExample>

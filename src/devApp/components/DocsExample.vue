@@ -5,25 +5,23 @@
         </template>
 
         <template #tab-content-0>
-            <div class="border border-border rounded">
+            <div class="rounded border border-border">
                 <slot />
             </div>
         </template>
 
-        <template #tab-title-1>
-            Code
-        </template>
+        <template #tab-title-1> Code </template>
 
         <template #tab-content-1>
-            <div class="relative border border-border rounded">
+            <div class="relative rounded border border-border">
                 <Button
                     class="absolute top-2 right-2 z-20"
                     variant="outline"
                     size="small"
+                    :left-icon="copied ? 'fa-solid fa-check' : 'fa-solid fa-copy'"
 
                     @click="copySource"
                 >
-                    <i :class="copied ? 'fa-solid fa-check' : 'fa-solid fa-copy'" />
                 </Button>
 
                 <DocsCode

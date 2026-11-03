@@ -150,6 +150,77 @@
         </section>
 
         <section>
+            <h3>Slots</h3>
+
+            <p>
+                <code>#header</code> troca o texto do cabeçalho e <code>#icon</code> troca a seta.
+                A seta fica num wrapper que gira 180° quando o accordion abre, então o ícone que
+                você passar também gira. Os dois slots recebem <code>isOpen</code>, caso você queira
+                mudar o conteúdo conforme o estado.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Slots">
+                <div class="flex flex-col gap-4 p-4">
+                    <Accordion variant="bordered">
+                        <template #header>
+                            <span class="inline-flex items-center gap-2">
+                                <i class="fa-solid fa-circle-info text-info" />
+                                Cabeçalho com ícone e <b>negrito</b>
+                            </span>
+                        </template>
+
+                        <template #icon>
+                            <i class="fa-solid fa-angles-down" />
+                        </template>
+
+                        <p>Header e ícone da seta customizados.</p>
+                    </Accordion>
+
+                    <Accordion variant="bordered">
+                        <template #header="{ isOpen }">
+                            {{ isOpen ? "Clique para fechar" : "Clique para abrir" }}
+                        </template>
+
+                        <template #icon="{ isOpen }">
+                            <i :class="isOpen ? 'fa-solid fa-minus' : 'fa-solid fa-plus'" />
+                        </template>
+
+                        <p>O slot recebe isOpen.</p>
+                    </Accordion>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>Estado aberto</h3>
+
+            <p>
+                Quando o accordion abre ou fecha, ele emite <code>update:open</code> e
+                <code>change</code> com um booleano, <code>true</code> para aberto. Isso vale
+                também para o fechamento ao clicar fora.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Estado aberto">
+                <div class="flex flex-col gap-2 p-4">
+                    <Accordion
+                        header="Abra e feche"
+                        @change="accordionOpen = $event"
+                    >
+                        <p>Conteúdo.</p>
+                    </Accordion>
+
+                    <small-muted>
+                        Estado emitido: {{ accordionOpen ? "aberto" : "fechado" }}
+                    </small-muted>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
             <h3>Customizações</h3>
 
             <p>
@@ -197,6 +268,12 @@ export default defineComponent({
 
     components: {
         Accordion
+    },
+
+    data() {
+        return {
+            accordionOpen: false
+        };
     }
 });
 </script>

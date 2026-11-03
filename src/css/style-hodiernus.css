@@ -7,7 +7,7 @@ html[data-custom-theme="hodiernus"] .tooltip-background {
 }
 
 html[data-custom-theme="hodiernus"] .item-background {
-    @apply bg-muted/40 backdrop-blur-md;
+    @apply bg-card/60 backdrop-blur-md;
 }
 
 html[data-custom-theme="hodiernus"] .modal-overlay {

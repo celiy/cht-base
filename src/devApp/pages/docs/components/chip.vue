@@ -13,13 +13,43 @@
             <DocsExample label="Básico">
                 <div class="flex flex-col gap-2 p-4">
                     <Chip
-                        label="Chip transparent"
-                        variant="transparent"
+                        label="Chip default"
+                        variant="default"
                     />
 
                     <Chip
                         label="Chip primary"
                         variant="primary"
+                    />
+
+                    <Chip
+                        label="Chip secondary"
+                        variant="secondary"
+                    />
+
+                    <Chip
+                        label="Chip success"
+                        variant="success"
+                    />
+
+                    <Chip
+                        label="Chip info"
+                        variant="info"
+                    />
+
+                    <Chip
+                        label="Chip warning"
+                        variant="warning"
+                    />
+
+                    <Chip
+                        label="Chip destructive"
+                        variant="destructive"
+                    />
+
+                    <Chip
+                        label="Chip transparent"
+                        variant="transparent"
                     />
                 </div>
             </DocsExample>
@@ -88,6 +118,55 @@
                             </button>
                         </template>
                     </Chip>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <h3>Grupo</h3>
+
+            <p>
+                <code>chip-group</code> junta os chips lado a lado, e
+                <code>chip-group-vertical</code>
+                empilha um em cima do outro. Só o raio muda: os cantos internos ficam retos e os
+                externos continuam arredondados. No vertical, todos os chips ficam com a largura do
+                maior.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="chip-group">
+                <div class="p-4">
+                    <div class="chip-group">
+                        <Chip label="Dia" />
+
+                        <Chip label="Semana" />
+
+                        <Chip label="Mês" />
+                    </div>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="chip-group-vertical">
+                <div class="p-4">
+                    <div class="chip-group-vertical">
+                        <Chip
+                            label="Início"
+                            label-icon="fa-house"
+                        />
+
+                        <Chip
+                            label="Favoritos"
+                            label-icon="fa-star"
+                        />
+
+                        <Chip
+                            label="Configurações"
+                            label-icon="fa-gear"
+                        />
+                    </div>
                 </div>
             </DocsExample>
         </section>

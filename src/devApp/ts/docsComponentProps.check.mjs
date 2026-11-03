@@ -45,12 +45,26 @@ assert.deepEqual(
         }
     }),
     [
-        { name: "label", comment: "", type: "String", values: "—", default: "—", required: "não" },
-        { name: "shape", comment: "", type: "String", values: "—", default: "\"square\"", required: "não" },
-        { name: "headers", comment: "", type: "Array", values: "—", default: "—", required: "sim" },
-        { name: "count", comment: "", type: "String | Number", values: "—", default: "0", required: "não" },
-        { name: "items", comment: "", type: "Array", values: "—", default: "[\"a\"]", required: "não" },
-        { name: "onClick", comment: "", type: "Function", values: "—", default: "Function", required: "não" }
+        { name: "label", comment: "", type: "String", values: "—", default: "—", required: "No" },
+        { name: "shape", comment: "", type: "String", values: "—", default: "\"square\"", required: "No" },
+        { name: "headers", comment: "", type: "Array", values: "—", default: "—", required: "Yes" },
+        { name: "count", comment: "", type: "String | Number", values: "—", default: "0", required: "No" },
+        { name: "items", comment: "", type: "Array", values: "—", default: "[\"a\"]", required: "No" },
+        { name: "onClick", comment: "", type: "Function", values: "—", default: "Function", required: "No" }
+    ]
+);
+
+// Boolean props are `false` when they have no default, and their values are true | false.
+assert.deepEqual(
+    propsTableRows({
+        props: {
+            disabled: { type: Boolean, required: false },
+            checked: { type: Boolean, default: true, required: false }
+        }
+    }),
+    [
+        { name: "disabled", comment: "", type: "Boolean", values: "true | false", default: "false", required: "No" },
+        { name: "checked", comment: "", type: "Boolean", values: "true | false", default: "true", required: "No" }
     ]
 );
 
@@ -60,7 +74,7 @@ assert.deepEqual(propsTableRows({ props: ["open", "label"] }), [
 ]);
 
 assert.deepEqual(propsTableRows({ props: { title: String } }), [
-    { name: "title", comment: "", type: "String", values: "—", default: "—", required: "não" }
+    { name: "title", comment: "", type: "String", values: "—", default: "—", required: "No" }
 ]);
 
 assert.deepEqual(propsTableRows({}), []);
