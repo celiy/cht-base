@@ -28,7 +28,7 @@ Shell do frontend multi-cliente, feito com Vue e Vite. Ele cuida do boot, das ro
 
 Uma pasta vira cliente quando tem `cht.config.ts` ou `cht.config.json` na raiz e fica ao lado do `cht-base`. O campo `name` é o id usado em `--client:`.
 
-O cliente precisa de `src/routes.ts`, `src/App.vue`, `src/bootstrap.ts` e `src/theme.config.json`. Os demais arquivos são opcionais.
+O cliente precisa de `src/routes.ts`, `src/App.vue` e `src/bootstrap.ts`. Os demais arquivos são opcionais, inclusive o tema, que vai no campo `theme` do `cht.config.ts`.
 
 Para ir além disso, o cliente pode ter `vite.config.ts`, `public/`, `.env` com `VITE_*`, `routerOptions` no `bootstrap.ts` e `electron/main.ts` ou `electron/preload.ts`. A página Extensões do cliente, em `/docs/client-extensions`, explica cada um.
 

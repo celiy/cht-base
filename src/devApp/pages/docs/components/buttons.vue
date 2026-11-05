@@ -378,11 +378,11 @@
                     </div>
 
                     <div class="flex flex-col gap-2">
-                        <label> radius-style="rounded-full" </label>
+                        <label> radius-style="rounded-full p-2" </label>
 
                         <Button
                             label="Exemplo"
-                            radius-style="rounded-full"
+                            radius-style="rounded-full p-2"
                         />
                     </div>
                 </div>

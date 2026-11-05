@@ -104,4 +104,4 @@ Para empacotar um backend que não é Node, mantenha `packageWithElectron: true`
 | `lan`                            | `false` prende o Vite a `127.0.0.1`. Por padrão ele fica acessível na rede local.                                                                              |
 | `devTools`                       | Liga ou desliga o botão de debug. Veja [Modo dev](/docs/dev-mode).                                                                                             |
 | `publish`                        | Dados do GitHub usados nas atualizações do Electron.                                                                                                           |
-| `theme`                          | Tema do cliente. Se faltar, vale `src/theme.config.json`.                                                                                                      |
+| `theme`                          | Tema do cliente (tema padrão, raio e cores). Se faltar, valem os padrões do `cht-base`.                                                                        |

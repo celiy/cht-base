@@ -12,7 +12,7 @@
             <h3>Containers</h3>
 
             <p>
-                <code>container-sm</code> e <code>container-lg</code> centralizam o bloco e dão padding horizontal. A largura máxima cresce com o breakpoint. <code>container-center</code> centraliza o conteúdo nos dois eixos.
+                <code>container-sm</code>, <code>container-md</code> e <code>container-lg</code> centralizam o bloco e dão padding horizontal. A largura máxima cresce com o breakpoint. <code>container-center</code> centraliza o conteúdo nos dois eixos.
             </p>
         </section>
 
@@ -21,6 +21,10 @@
                 <div class="flex flex-col gap-3 p-4">
                     <div class="container-sm rounded border bg-card p-3">
                         <code>container-sm</code>
+                    </div>
+
+                    <div class="container-md rounded border bg-card p-3">
+                        <code>container-md</code>
                     </div>
 
                     <div class="container-lg rounded border bg-card p-3">

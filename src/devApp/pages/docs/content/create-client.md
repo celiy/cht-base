@@ -25,7 +25,7 @@ O mínimo para subir um cliente: uma rota, uma página e os arquivos de configur
 - `src/bootstrap.ts`: as funções `setupAuthGuard` e `installClientPlugins`, vazias.
 - `src/css/style.css` e `src/override.css`: CSS do cliente. Veja [CSS do cliente](/docs/override-css).
 - `src/tailwind.plugin.js`: utilities Tailwind usadas só por este cliente. Veja [Plugin Tailwind do cliente](/docs/client-tailwind-plugin).
-- `cht.config.ts`, `.env.example` e `src/theme.config.json`.
+- `cht.config.ts` e `.env.example`.
 
 ![Homepage do template padrão](templates/default.png)
 
