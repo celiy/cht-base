@@ -110,7 +110,7 @@ code {
     @apply rounded-md bg-secondary/80 px-1 pt-[0.15rem] pb-[0.03rem] text-sm font-medium;
     color: var(--color-foreground);
 }
-a {
+a:not(.cht-button) {
     @apply text-primary underline transition-all dark:hover:brightness-150 light:hover:brightness-0;
 }
 b {
@@ -404,6 +404,16 @@ pre code {
     .reveal-highlight {
         position: relative;
     }
+}
+
+/* The reveal layer inherits this color from its host, so `reveal-highlight-primary/30` tints one element. */
+@utility reveal-highlight-* {
+    --cht-reveal-color: --value(--color-*, [color]);
+    --cht-reveal-color: color-mix(
+        in oklab,
+        --value(--color-*, [color]) calc(--modifier(integer) * 1%),
+        transparent
+    );
 }
 
 .cht-reveal-layer {

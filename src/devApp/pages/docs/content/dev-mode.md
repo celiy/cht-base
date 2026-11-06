@@ -4,7 +4,7 @@
 
 ## Botão de debug
 
-No canto inferior direito aparece um botão com o ícone de bug. Ele vem do `cht-base`, não do cliente, e só aparece em desenvolvimento com a documentação rodando.
+No canto inferior direito aparece um botão com o ícone de bug. Ele vem do `cht-base`, não do cliente, e só aparece em desenvolvimento com a documentação rodando. O cliente não precisa fazer nada no `App.vue` para ele aparecer. Se o `App.vue` já usar o `ElectronStartupGate`, que também renderiza o botão, continua um botão só.
 
 | `devTools` no `cht.config`             | Efeito                                         |
 | -------------------------------------- | ---------------------------------------------- |

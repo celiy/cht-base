@@ -243,6 +243,44 @@
         </section>
 
         <section>
+            <p>
+                A cor e a intensidade vêm de <code>reveal-highlight-{cor}</code>, ao lado de <code>reveal-highlight</code>. Aceita qualquer cor do tema ou arbitrária, opacidade com <code>/N</code> e variantes como <code>dark:</code>. Sem essa classe, o halo usa branco a 10% no escuro e preto a 15% no claro.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Cor e intensidade">
+                <div class="grid grid-cols-2 gap-4 p-4">
+                    <div
+                        class="reveal-highlight reveal-highlight-primary h-20 rounded-md border bg-card p-3"
+                    >
+                        <p class="text-sm">reveal-highlight-primary</p>
+                    </div>
+
+                    <div
+                        class="reveal-highlight reveal-highlight-primary/30 h-20 rounded-md border bg-card p-3"
+                    >
+                        <p class="text-sm">reveal-highlight-primary/30</p>
+                    </div>
+
+                    <div
+                        class="reveal-highlight reveal-highlight-black/60 dark:reveal-highlight-blue-500 h-20 rounded-md border bg-card p-3"
+                    >
+                        <p class="text-sm">
+                            reveal-highlight-black/60 dark:reveal-highlight-blue-500
+                        </p>
+                    </div>
+
+                    <div
+                        class="reveal-highlight reveal-highlight-[#f97316]/50 h-20 rounded-md border bg-card p-3"
+                    >
+                        <p class="text-sm">reveal-highlight-[#f97316]/50</p>
+                    </div>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
             <h3>CSS override do cliente</h3>
 
             <p>

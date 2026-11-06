@@ -1,6 +1,6 @@
 <template>
     <div
-        v-if="showCorner"
+        v-if="showCorner && isActive"
 
         class="pointer-events-none fixed right-4 bottom-4 z-[1200] flex items-end gap-1"
     >
@@ -52,7 +52,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { extraDevToolsOptions, type DevToolsOption } from "./registry";
+import {
+    claimDevToolsFab,
+    extraDevToolsOptions,
+    isDevToolsFabActive,
+    releaseDevToolsFab,
+    type DevToolsOption
+} from "./registry";
 import RepoUpdatesFab from "./RepoUpdatesFab.vue";
 
 export default defineComponent({
@@ -62,7 +68,18 @@ export default defineComponent({
         RepoUpdatesFab
     },
 
+    data() {
+        return {
+            fabId: Symbol("dev-tools-fab")
+        };
+    },
+
     computed: {
+        /** Whether this instance is the one rendering the button */
+        isActive(): boolean {
+            return isDevToolsFabActive(this.fabId);
+        },
+
         /** Whether the debug FAB is enabled */
         enabled(): boolean {
             return import.meta.env.DEV && import.meta.env.VITE_DEV_TOOLS === "true";
@@ -122,6 +139,22 @@ export default defineComponent({
 
             return options;
         }
+    },
+
+    /**
+     * Claims the button, so a second instance stays hidden
+     * @returns {void}
+     */
+    created() {
+        claimDevToolsFab(this.fabId);
+    },
+
+    /**
+     * Releases the button
+     * @returns {void}
+     */
+    beforeUnmount() {
+        releaseDevToolsFab(this.fabId);
     },
 
     methods: {

@@ -70,7 +70,7 @@
         <section>
             <h3>Custom color</h3>
 
-            <p>Para uma cor customizada, use a prop <code>color</code> com um token Tailwind. O Badge aceita qualquer cor de <code>bg-*</code> do Tailwind, como <code>sky-500</code>, <code>emerald-700</code> ou <code>red-200</code>.</p>
+            <p>Para uma cor customizada, use a prop <code>color</code> com um token Tailwind. O Badge aceita qualquer cor de <code>bg-*</code> do Tailwind, como <code>sky-500</code>, <code>emerald-700</code> ou <code>red-200</code>. Também aceita uma cor CSS, como <code>#61DAFB</code> ou <code>oklch(0.7 0.15 200)</code>. O mesmo vale para <code>textColor</code>.</p>
         </section>
 
         <section class="mb-8">
@@ -95,6 +95,15 @@
                     <Badge
                         label="violet-700"
                         color="violet-700"
+                    />
+                    <Badge
+                        label="#61DAFB"
+                        color="#61DAFB"
+                    />
+                    <Badge
+                        label="#61DAFB com borda"
+                        color="#61DAFB"
+                        variant-style="bordered"
                     />
                 </div>
             </DocsExample>

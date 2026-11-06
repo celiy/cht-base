@@ -252,6 +252,56 @@
         </section>
 
         <section>
+            <h3>Link</h3>
+
+            <p>
+                Com <code>href</code> o botão vira um <code>&lt;a&gt;</code> e navega para a URL,
+                com o mesmo visual das variantes. <code>target</code> aceita
+                <code>_self</code>, <code>_blank</code>, <code>_parent</code> e <code>_top</code>.
+                Com <code>_blank</code>, o <code>rel="noopener noreferrer"</code> é adicionado
+                sozinho. Com <code>disabled</code>, o link perde o <code>href</code> e fica com
+                <code>aria-disabled</code>. <code>type</code> e <code>form</code> só valem sem
+                <code>href</code>. O <code>href</code> faz a página recarregar. Para navegar entre
+                rotas do app, use <code>@click</code> com <code>$router.push</code> e não passe
+                <code>href</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Link">
+                <div class="flex flex-wrap items-center gap-2 p-4">
+                    <Button
+                        label="Abrir em nova aba"
+                        variant="primary"
+                        right-icon="fa-solid fa-arrow-up-right-from-square"
+                        href="https://github.com"
+                        target="_blank"
+                    />
+                    <Button
+                        label="Outline"
+                        variant="outline-primary"
+                        href="https://github.com"
+                        target="_blank"
+                    />
+                    <Button
+                        variant="transparent-primary"
+                        left-icon="fa-solid fa-globe"
+                        href="https://github.com"
+                        target="_blank"
+                        aria-label="Site"
+                    />
+                    <Button
+                        label="Desativado"
+                        variant="secondary"
+                        href="https://github.com"
+                        target="_blank"
+                        disabled
+                    />
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
             <h3>Forma</h3>
 
             <p>Prop <code>shape="rounded / square"</code> criam botões com formas diferentes.</p>

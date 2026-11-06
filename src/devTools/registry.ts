@@ -3,7 +3,7 @@
  * This module is responsible for the registry of the dev tools.
  */
 
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 
 /** The dev tools option type */
 export type DevToolsOption = {
@@ -15,6 +15,38 @@ export type DevToolsOption = {
 
 /** The extra dev tools options */
 export const extraDevToolsOptions = reactive<DevToolsOption[]>([]);
+
+/** The DevToolsFab instance that renders; the first one created wins */
+const activeFab = ref<symbol | null>(null);
+
+/**
+ * Claims the right to render the debug button, so it never shows twice
+ * @param {symbol} id The instance id
+ */
+export function claimDevToolsFab(id: symbol): void {
+    if (activeFab.value === null) {
+        activeFab.value = id;
+    }
+}
+
+/**
+ * Releases the claim made by `claimDevToolsFab`
+ * @param {symbol} id The instance id
+ */
+export function releaseDevToolsFab(id: symbol): void {
+    if (activeFab.value === id) {
+        activeFab.value = null;
+    }
+}
+
+/**
+ * Whether the instance is the one that renders the debug button
+ * @param {symbol} id The instance id
+ * @returns {boolean} True when the instance owns the button
+ */
+export function isDevToolsFabActive(id: symbol): boolean {
+    return activeFab.value === id;
+}
 
 /**
  * Adds client-specific debug menu entries

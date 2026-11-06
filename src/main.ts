@@ -1,3 +1,8 @@
+/**
+ * The main module
+ * This module is responsible for creating and mounting the client app of the project.
+ */
+
 import { createApp } from "vue";
 import { createWebHashHistory, createWebHistory, createRouter } from "vue-router";
 import { toastPlugin } from "@design/toast/plugin";
@@ -14,6 +19,7 @@ import { waitForDocumentStyles } from "./js/utils/runtimeCss";
 import App from "@client/App.vue";
 import routes from "@client/routes";
 import tooltip from "./directives/tooltip";
+import DevToolsFab from "./devTools/DevToolsFab.vue";
 
 import { projectPlugin, projectActions } from "./project";
 import { checkAppVersion } from "./version/versionCheck";
@@ -54,6 +60,25 @@ if (typeof document !== "undefined") {
     document.title = title;
 }
 
+/**
+ * Mounts the debug button in its own app, so clients get it without wrapping their App.vue.
+ * DevToolsFab claims the button on creation, so a client that already renders one keeps a single button.
+ */
+function mountDevTools() {
+    if (!import.meta.env.DEV || import.meta.env.VITE_DEV_TOOLS !== "true") {
+        return;
+    }
+
+    const host = document.createElement("div");
+
+    document.body.appendChild(host);
+
+    createApp(DevToolsFab)
+        .use(designSystemPlugin)
+        .directive("tooltip", tooltip)
+        .mount(host);
+}
+
 void (async () => {
     if (typeof document !== "undefined") {
         await waitForDocumentStyles();
@@ -66,5 +91,6 @@ void (async () => {
     startRealtime();
     defineCustomElements();
     app.mount("#app");
+    mountDevTools();
     void checkAppVersion();
 })();
