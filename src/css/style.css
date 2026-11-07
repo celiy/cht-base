@@ -388,12 +388,42 @@ pre code {
     }
 }
 
+@keyframes appear-from-l-to-r {
+    from {
+        opacity: 0.5;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes appear-from-r-to-l {
+    from {
+        opacity: 0.5;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .appear-from-t-to-b {
     animation: appear-from-t-to-b 0.3s ease-in-out both;
 }
 
 .appear-from-b-to-t {
     animation: appear-from-b-to-t 0.3s ease-in-out both;
+}
+
+.appear-from-l-to-r {
+    animation: appear-from-l-to-r 0.3s ease-in-out both;
+}
+
+.appear-from-r-to-l {
+    animation: appear-from-r-to-l 0.3s ease-in-out both;
 }
 
 .docs-article {

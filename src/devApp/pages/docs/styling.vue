@@ -281,6 +281,48 @@
         </section>
 
         <section>
+            <h3>Animação de entrada</h3>
+
+            <p>
+                <code>appear-from-t-to-b</code>, <code>appear-from-b-to-t</code>, <code>appear-from-l-to-r</code> e <code>appear-from-r-to-l</code> fazem o elemento entrar deslizando 20px no sentido do nome, de cima para baixo, de baixo para cima, da esquerda para a direita e da direita para a esquerda, enquanto a opacidade vai de 0,5 a 1. Duram 0,3s, rodam uma vez quando o elemento aparece e não têm variante de duração. A animação roda de novo só quando o elemento é criado de novo, por exemplo com <code>v-if</code> ou trocando o <code>key</code>. Elas não respeitam <code>prefers-reduced-motion</code>.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Animação de entrada">
+                <div class="p-4">
+                    <Button
+                        label="Repetir"
+
+                        @click="appearKey += 1"
+                    />
+                </div>
+
+                <div
+                    :key="appearKey"
+
+                    class="grid grid-cols-2 gap-4 px-4 pb-4"
+                >
+                    <div class="appear-from-t-to-b rounded border bg-card p-3">
+                        <code>appear-from-t-to-b</code>
+                    </div>
+
+                    <div class="appear-from-b-to-t rounded border bg-card p-3">
+                        <code>appear-from-b-to-t</code>
+                    </div>
+
+                    <div class="appear-from-l-to-r rounded border bg-card p-3">
+                        <code>appear-from-l-to-r</code>
+                    </div>
+
+                    <div class="appear-from-r-to-l rounded border bg-card p-3">
+                        <code>appear-from-r-to-l</code>
+                    </div>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
             <h3>CSS override do cliente</h3>
 
             <p>
@@ -299,6 +341,12 @@ export default defineComponent({
 
     components: {
         Button
+    },
+
+    data() {
+        return {
+            appearKey: 0
+        };
     }
 });
 </script>

@@ -265,7 +265,6 @@
 import { defineComponent } from "vue";
 import Button from "@design/components/Button.vue";
 import { projectActions } from "@base/project";
-import DocsMarkdown from "../../components/DocsMarkdown.vue";
 
 const CODE_SOURCE = `## Como usar
 
@@ -305,8 +304,7 @@ export default defineComponent({
     name: "DocsProject",
 
     components: {
-        Button,
-        DocsMarkdown
+        Button
     },
 
     data() {

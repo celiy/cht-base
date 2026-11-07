@@ -4,16 +4,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import DocsMarkdown from "../../components/DocsMarkdown.vue";
 import readme from "@repo/README.md?raw";
-import { extractMarkdownFromHeading } from "../../ts/markdown";
+import { extractMarkdownFromHeading } from "@design/components/internal/markdown";
 
 export default defineComponent({
     name: "DocsUsage",
-
-    components: {
-        DocsMarkdown
-    },
 
     computed: {
         source(): string {

@@ -2,51 +2,73 @@
     <div
         v-if="showCorner && isActive"
 
-        class="pointer-events-none fixed right-4 bottom-4 z-[1200] flex items-end gap-1"
+        class="pointer-events-none fixed right-0 bottom-0 z-[1200] flex flex-col items-end"
     >
-        <RepoUpdatesFab />
-
         <div
-            v-if="enabled && menuOptions.length > 0"
-
-            class="pointer-events-auto w-fit"
+            class="flex items-end gap-1 p-4"
+            :class="{ 'pb-1': versionsLabel }"
         >
-            <Popover
-                close-on-content-click
-                hide-dropdown-arrow
-                :min-width-px="220"
-                panel-class="p-1"
+            <RepoUpdatesFab />
+
+            <div
+                v-if="enabled && menuOptions.length > 0"
+
+                class="pointer-events-auto w-fit"
             >
-                <template #button="{ toggle, isOpen }">
-                    <Button
-                        background-style="background-transparent"
-                        hover-style="hover:bg-accent!"
-                        shape="rounded"
-                        aria-label="Modo dev"
+                <Popover
+                    close-on-content-click
+                    hide-dropdown-arrow
+                    :min-width-px="220"
+                    panel-class="p-1"
+                >
+                    <template #button="{ toggle, isOpen }">
+                        <Button
+                            background-style="background-transparent"
+                            hover-style="hover:bg-accent!"
+                            shape="rounded"
+                            aria-label="Modo dev"
 
-                        @click.stop="toggle"
-                    >
-                        <i
-                            class="fa-solid fa-bug text-sm"
-                            :class="{ 'text-primary': isOpen }"
-                        />
-                    </Button>
-                </template>
+                            @click.stop="toggle"
+                        >
+                            <i
+                                class="fa-solid fa-bug text-sm"
+                                :class="{ 'text-primary': isOpen }"
+                            />
+                        </Button>
+                    </template>
 
-                <Option
-                    v-for="(option, index) in menuOptions"
-                    :key="option.id || option.label"
+                    <Option
+                        v-for="(option, index) in menuOptions"
+                        :key="option.id || option.label"
 
-                    :first="index === 0"
-                    :last="index === menuOptions.length - 1"
-                    :label="option.label"
-                    :icon="option.icon"
-                    :value="option.id || option.label"
+                        :first="index === 0"
+                        :last="index === menuOptions.length - 1"
+                        :label="option.label"
+                        :icon="option.icon"
+                        :value="option.id || option.label"
 
-                    @click="runOption(option)"
-                />
-            </Popover>
+                        @click="runOption(option)"
+                    />
+                </Popover>
+            </div>
         </div>
+
+        <a
+            v-if="versionsLabel"
+
+            v-tooltip="{
+                content:
+                    'Versão de cada dependência do CHT. A versão entre parênteses (local: x.x.x) é a versão atual no disco, a versão antes disso é a versão no arquivo version do cliente. <br /> <br /> Clique para ver mais.',
+                html: true,
+                placement: 'top'
+            }"
+            class="pointer-events-auto px-2 pb-0.5 text-right text-xs text-muted-foreground! no-underline! opacity-20 hover:text-foreground! hover:opacity-60"
+            :href="versioningDocsUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            {{ versionsLabel }}
+        </a>
     </div>
 </template>
 
@@ -113,6 +135,41 @@ export default defineComponent({
             }
 
             return `${base}/docs`;
+        },
+
+        /**
+         * Gets the core versions line, e.g. `cht-base 1.2.1 (local: 1.2.2)`: the pin in the
+         * client version file, then the local repo version when it differs
+         * @returns {string} The label, empty when there is no client
+         */
+        versionsLabel(): string {
+            if (!this.enabled) {
+                return "";
+            }
+
+            let rows: { repo: string; pinned: string | null; local: string | null }[] = [];
+
+            try {
+                rows = JSON.parse(import.meta.env.VITE_CORE_VERSIONS || "[]");
+            } catch {
+                return "";
+            }
+
+            return rows
+                .map(({ repo, pinned, local }) => {
+                    const label = `${repo} ${pinned ?? ""}`;
+
+                    return local && local !== pinned ? `${label} (local: ${local})` : label;
+                })
+                .join(" - ");
+        },
+
+        /**
+         * Gets the versioning docs URL
+         * @returns {string} The versioning docs URL
+         */
+        versioningDocsUrl(): string {
+            return this.docsUrl ? `${this.docsUrl}/versioning` : "";
         },
 
         /**
