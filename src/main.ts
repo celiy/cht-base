@@ -33,7 +33,7 @@ const clientBootstrap: ClientBootstrap = clientBootstrapModule;
 const useHashHistory = typeof window !== "undefined" && window.location.protocol === "file:";
 
 const router = createRouter({
-    history: useHashHistory ? createWebHashHistory() : createWebHistory(),
+    history: useHashHistory ? createWebHashHistory() : createWebHistory(import.meta.env.BASE_URL),
     routes,
     ...clientBootstrap.routerOptions
 });
