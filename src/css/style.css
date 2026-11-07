@@ -73,10 +73,10 @@ small {
 }
 
 h1 {
-    @apply text-4xl font-bold md:text-5xl;
+    @apply text-5xl font-bold;
 }
 h2 {
-    @apply text-[2rem] font-bold md:text-4xl;
+    @apply text-4xl font-bold;
 }
 h3 {
     @apply text-3xl font-semibold;
@@ -452,26 +452,22 @@ pre code {
         linear-gradient(#fff, #fff), linear-gradient(#fff, #fff), linear-gradient(#fff, #fff),
         linear-gradient(#fff, #fff);
     -webkit-mask-size:
-        100% var(--cht-reveal-bt, 0px), var(--cht-reveal-br, 0px) 100%,
-        100% var(--cht-reveal-bb, 0px), var(--cht-reveal-bl, 0px) 100%;
-    -webkit-mask-position:
-        top,
-        right,
-        bottom,
-        left;
+        100% var(--cht-reveal-bt, 0px),
+        var(--cht-reveal-br, 0px) 100%,
+        100% var(--cht-reveal-bb, 0px),
+        var(--cht-reveal-bl, 0px) 100%;
+    -webkit-mask-position: top, right, bottom, left;
     -webkit-mask-repeat: no-repeat;
     mask-image:
         linear-gradient(#fff, #fff), linear-gradient(#fff, #fff), linear-gradient(#fff, #fff),
         linear-gradient(#fff, #fff);
     mask-mode: alpha, alpha, alpha, alpha;
     mask-size:
-        100% var(--cht-reveal-bt, 0px), var(--cht-reveal-br, 0px) 100%,
-        100% var(--cht-reveal-bb, 0px), var(--cht-reveal-bl, 0px) 100%;
-    mask-position:
-        top,
-        right,
-        bottom,
-        left;
+        100% var(--cht-reveal-bt, 0px),
+        var(--cht-reveal-br, 0px) 100%,
+        100% var(--cht-reveal-bb, 0px),
+        var(--cht-reveal-bl, 0px) 100%;
+    mask-position: top, right, bottom, left;
     mask-repeat: no-repeat;
 }
 
