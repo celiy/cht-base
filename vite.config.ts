@@ -18,6 +18,8 @@ import {
     resolveApiTarget
 } from "../cht-shared/src/net/portScan";
 import { CUSTOM_ELEMENT_TAGS } from "./src/js/customElements/tags";
+// @ts-expect-error -- no types for scripts/lib/version.mjs
+import { readClientCoreVersions } from "../scripts/lib/version.mjs";
 
 const isDevAppServer = process.env.CHT_DEVAPP === "1";
 const clientName = isDevAppServer ? undefined : process.env.CLIENT;
@@ -98,6 +100,11 @@ export default defineConfig(async ({ command, mode }) => {
     });
     const apiBaseUrl = pickApiBaseUrl(clientConfig, apiTarget);
     const apiPortScanLimit = clientConfig?.apiPortScanLimit ?? DEFAULT_API_PORT_SCAN_LIMIT;
+    // Read once when the dev server starts; a build that rewrites the file shows up after a restart.
+    const coreVersions =
+        command === "serve" && clientDirPath
+            ? readClientCoreVersions(path.resolve(__dirname, ".."), clientDirPath)
+            : [];
 
     const baseConfig: UserConfig = {
         plugins: [
@@ -142,7 +149,8 @@ export default defineConfig(async ({ command, mode }) => {
             ),
             "import.meta.env.VITE_REPO_UPDATE_NOTIFICATIONS": JSON.stringify(
                 isRepoUpdateNotificationsEnabled() ? "true" : "false"
-            )
+            ),
+            "import.meta.env.VITE_CORE_VERSIONS": JSON.stringify(JSON.stringify(coreVersions))
         },
         cacheDir: isDevAppServer
             ? path.resolve(__dirname, "node_modules/.vite-devapp")

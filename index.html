@@ -5,6 +5,28 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="./assets/CHT-Logo-50.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        /* Pre-paint fallback; zero extra specificity so the theme CSS (loaded later) overrides it. */
+        html:where([data-theme="dark"]) { background-color: #000; }
+        html:where([data-theme="light"]) { background-color: #fff; }
+    </style>
+    <script>
+        // Applies the stored theme before first paint, so a dark theme does not flash white on reload.
+        (function () {
+            var theme = "%CHT_DEFAULT_THEME%";
+
+            try {
+                var stored = localStorage.getItem("%CHT_THEME_STORAGE_KEY%");
+
+                if (stored === "light" || stored === "dark") {
+                    theme = stored;
+                }
+            } catch (error) {}
+
+            document.documentElement.dataset.theme = theme;
+            document.documentElement.style.colorScheme = theme;
+        })();
+    </script>
 </head>
 
 <body>

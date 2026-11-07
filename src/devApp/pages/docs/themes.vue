@@ -146,7 +146,6 @@
 import { defineComponent } from "vue";
 import Button from "@design/components/Button.vue";
 import Toggleable from "@design/components/Toggleable.vue";
-import DocsMarkdown from "../../components/DocsMarkdown.vue";
 import extraUnderlineUrl from "../../css/extra-underline.css?url";
 import extraTrackingUrl from "../../css/extra-tracking.css?url";
 import extraSkinInfoUrl from "../../css/extra-skin-info.css?url";
@@ -188,8 +187,7 @@ export default defineComponent({
 
     components: {
         Button,
-        Toggleable,
-        DocsMarkdown
+        Toggleable
     },
 
     data() {

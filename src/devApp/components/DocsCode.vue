@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { highlightDocsCode } from "../ts/highlightDocsCode";
+import { highlightDocsCode } from "@design/components/internal/highlightDocsCode";
 
 export default defineComponent({
     name: "DocsCode",
@@ -41,4 +41,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="../css/docs-code.css"></style>
+<style src="@design/css/docs-code.css"></style>

@@ -24,6 +24,8 @@ interface ImportMetaEnv {
     readonly VITE_DEVAPP_URL: string;
     readonly VITE_DEV_TOOLS: string;
     readonly VITE_REPO_UPDATE_NOTIFICATIONS: string;
+    /** JSON array of `{ repo, pinned, local }`, filled only by the client dev server. */
+    readonly VITE_CORE_VERSIONS: string;
 }
 
 interface ImportMeta {

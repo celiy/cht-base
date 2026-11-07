@@ -4,7 +4,6 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import DocsMarkdown from "../../components/DocsMarkdown.vue";
 import content from "./content/create-client.md?raw";
 
 const templateImages = import.meta.glob<string>("../../../assets/images/templates/*.png", {
@@ -14,10 +13,6 @@ const templateImages = import.meta.glob<string>("../../../assets/images/template
 
 export default defineComponent({
     name: "DocsCreateClient",
-
-    components: {
-        DocsMarkdown
-    },
 
     computed: {
         source(): string {

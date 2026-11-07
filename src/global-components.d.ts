@@ -53,6 +53,7 @@ type DesignSystemComponents = {
     ContextMenu: typeof import("@design/components/custom/ContextMenu.vue").default;
     CustomAvatar: typeof import("@design/components/custom/Avatar.vue").default;
     CustomSkeleton: typeof import("@design/components/custom/Skeleton.vue").default;
+    DocsMarkdown: typeof import("@design/components/custom/DocsMarkdown.vue").default;
     Navigator: typeof import("@design/components/custom/Navigator.vue").default;
     NotFoundPage: typeof import("@design/components/custom/NotFoundPage.vue").default;
     Pagination: typeof import("@design/components/custom/Pagination.vue").default;

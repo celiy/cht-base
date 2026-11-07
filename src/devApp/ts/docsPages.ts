@@ -100,6 +100,13 @@ export const DOCS_PAGES: DocsPage[] = [
         load: () => import("../pages/docs/dev-mode.vue")
     },
     {
+        path: "/docs/versioning",
+        label: "Versionamento",
+        icon: "fa-book",
+        section: SETUP,
+        load: () => import("../pages/docs/versioning.vue")
+    },
+    {
         path: "/docs/websocket",
         label: "Websocket",
         icon: "fa-book",
@@ -495,6 +502,14 @@ export const DOCS_PAGES: DocsPage[] = [
         section: CUSTOM,
         readiness: "info",
         load: () => import("../pages/docs/components/context-menu.vue")
+    },
+    {
+        path: "/docs/components/docs-markdown",
+        label: "Docs Markdown",
+        icon: "fa-file-lines",
+        section: CUSTOM,
+        readiness: "info",
+        load: () => import("../pages/docs/components/docs-markdown-component.vue")
     },
     {
         path: "/docs/components/pagination",
