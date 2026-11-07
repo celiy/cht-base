@@ -108,6 +108,8 @@ export function clientThemePlugin(): Plugin {
         return resolvedTheme;
     };
 
+    let htmlTheme = { defaultTheme: "dark", storageKey: "cht-theme:dev" };
+
     return {
         name: "client-theme",
         enforce: "pre",
@@ -124,6 +126,7 @@ export function clientThemePlugin(): Plugin {
             const storageKey = clientName ? `cht-theme:${clientName}` : "cht-theme:dev";
 
             buildTheme(clientName);
+            htmlTheme = { defaultTheme: resolvedTheme.defaultTheme, storageKey };
 
             return {
                 define: {
@@ -132,6 +135,17 @@ export function clientThemePlugin(): Plugin {
                     "import.meta.env.VITE_THEME_STORAGE_KEY": JSON.stringify(storageKey)
                 }
             };
+        },
+
+        /**
+         * Fills the pre-paint theme script of index.html
+         * @param {string} html The html
+         * @returns {string} The html
+         */
+        transformIndexHtml(html) {
+            return html
+                .replaceAll("%CHT_DEFAULT_THEME%", htmlTheme.defaultTheme)
+                .replaceAll("%CHT_THEME_STORAGE_KEY%", htmlTheme.storageKey);
         },
 
         /**
