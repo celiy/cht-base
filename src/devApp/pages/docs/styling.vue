@@ -12,7 +12,7 @@
             <h3>Containers</h3>
 
             <p>
-                <code>container-sm</code> e <code>container-lg</code> centralizam o bloco e dão padding horizontal. A largura máxima cresce com o breakpoint. <code>container-center</code> centraliza o conteúdo nos dois eixos.
+                <code>container-sm</code>, <code>container-md</code> e <code>container-lg</code> centralizam o bloco e dão padding horizontal. A largura máxima cresce com o breakpoint. <code>container-center</code> centraliza o conteúdo nos dois eixos.
             </p>
         </section>
 
@@ -21,6 +21,10 @@
                 <div class="flex flex-col gap-3 p-4">
                     <div class="container-sm rounded border bg-card p-3">
                         <code>container-sm</code>
+                    </div>
+
+                    <div class="container-md rounded border bg-card p-3">
+                        <code>container-md</code>
                     </div>
 
                     <div class="container-lg rounded border bg-card p-3">
@@ -233,6 +237,44 @@
 
                     <div class="reveal-highlight h-20 w-36 rounded-md border bg-card p-3">
                         <p class="text-sm">border</p>
+                    </div>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
+            <p>
+                A cor e a intensidade vêm de <code>reveal-highlight-{cor}</code>, ao lado de <code>reveal-highlight</code>. Aceita qualquer cor do tema ou arbitrária, opacidade com <code>/N</code> e variantes como <code>dark:</code>. Sem essa classe, o halo usa branco a 10% no escuro e preto a 15% no claro.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Cor e intensidade">
+                <div class="grid grid-cols-2 gap-4 p-4">
+                    <div
+                        class="reveal-highlight reveal-highlight-primary h-20 rounded-md border bg-card p-3"
+                    >
+                        <p class="text-sm">reveal-highlight-primary</p>
+                    </div>
+
+                    <div
+                        class="reveal-highlight reveal-highlight-primary/30 h-20 rounded-md border bg-card p-3"
+                    >
+                        <p class="text-sm">reveal-highlight-primary/30</p>
+                    </div>
+
+                    <div
+                        class="reveal-highlight reveal-highlight-black/60 dark:reveal-highlight-blue-500 h-20 rounded-md border bg-card p-3"
+                    >
+                        <p class="text-sm">
+                            reveal-highlight-black/60 dark:reveal-highlight-blue-500
+                        </p>
+                    </div>
+
+                    <div
+                        class="reveal-highlight reveal-highlight-[#f97316]/50 h-20 rounded-md border bg-card p-3"
+                    >
+                        <p class="text-sm">reveal-highlight-[#f97316]/50</p>
                     </div>
                 </div>
             </DocsExample>

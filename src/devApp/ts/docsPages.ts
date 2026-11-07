@@ -313,6 +313,14 @@ export const DOCS_PAGES: DocsPage[] = [
         load: () => import("../pages/docs/components/item.vue")
     },
     {
+        path: "/docs/components/item-icon",
+        label: "Item Icon",
+        icon: "fa-cube",
+        section: COMPONENTS,
+        readiness: "success",
+        load: () => import("../pages/docs/components/item-icon.vue")
+    },
+    {
         path: "/docs/components/keybind",
         label: "Keybind",
         icon: "fa-cube",

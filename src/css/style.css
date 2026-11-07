@@ -73,10 +73,10 @@ small {
 }
 
 h1 {
-    @apply text-4xl font-bold md:text-5xl;
+    @apply text-5xl font-bold;
 }
 h2 {
-    @apply text-[2rem] font-bold md:text-4xl;
+    @apply text-4xl font-bold;
 }
 h3 {
     @apply text-3xl font-semibold;
@@ -110,7 +110,7 @@ code {
     @apply rounded-md bg-secondary/80 px-1 pt-[0.15rem] pb-[0.03rem] text-sm font-medium;
     color: var(--color-foreground);
 }
-a {
+a:not(.cht-button) {
     @apply text-primary underline transition-all dark:hover:brightness-150 light:hover:brightness-0;
 }
 b {
@@ -286,6 +286,13 @@ pre code {
     margin-right: auto;
 }
 
+.container-md {
+    @apply px-4 sm:px-6;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .container-lg {
     @apply px-4 sm:px-6 md:px-8;
 
@@ -294,6 +301,10 @@ pre code {
 }
 
 @media (min-width: 640px) {
+    .container-md {
+        max-width: 640px;
+    }
+
     .container-lg {
         max-width: 640px;
     }
@@ -302,6 +313,10 @@ pre code {
 @media (min-width: 768px) {
     .container-sm {
         max-width: 640px;
+    }
+
+    .container-md {
+        max-width: 704px;
     }
 
     .container-lg {
@@ -314,6 +329,10 @@ pre code {
         max-width: 768px;
     }
 
+    .container-md {
+        max-width: 896px;
+    }
+
     .container-lg {
         max-width: 1024px;
     }
@@ -324,6 +343,10 @@ pre code {
         max-width: 768px;
     }
 
+    .container-md {
+        max-width: 1024px;
+    }
+
     .container-lg {
         max-width: 1280px;
     }
@@ -332,6 +355,10 @@ pre code {
 @media (min-width: 1536px) {
     .container-sm {
         max-width: 768px;
+    }
+
+    .container-md {
+        max-width: 1152px;
     }
 
     .container-lg {
@@ -379,6 +406,16 @@ pre code {
     }
 }
 
+/* The reveal layer inherits this color from its host, so `reveal-highlight-primary/30` tints one element. */
+@utility reveal-highlight-* {
+    --cht-reveal-color: --value(--color-*, [color]);
+    --cht-reveal-color: color-mix(
+        in oklab,
+        --value(--color-*, [color]) calc(--modifier(integer) * 1%),
+        transparent
+    );
+}
+
 .cht-reveal-layer {
     position: absolute;
     pointer-events: none;
@@ -415,26 +452,22 @@ pre code {
         linear-gradient(#fff, #fff), linear-gradient(#fff, #fff), linear-gradient(#fff, #fff),
         linear-gradient(#fff, #fff);
     -webkit-mask-size:
-        100% var(--cht-reveal-bt, 0px), var(--cht-reveal-br, 0px) 100%,
-        100% var(--cht-reveal-bb, 0px), var(--cht-reveal-bl, 0px) 100%;
-    -webkit-mask-position:
-        top,
-        right,
-        bottom,
-        left;
+        100% var(--cht-reveal-bt, 0px),
+        var(--cht-reveal-br, 0px) 100%,
+        100% var(--cht-reveal-bb, 0px),
+        var(--cht-reveal-bl, 0px) 100%;
+    -webkit-mask-position: top, right, bottom, left;
     -webkit-mask-repeat: no-repeat;
     mask-image:
         linear-gradient(#fff, #fff), linear-gradient(#fff, #fff), linear-gradient(#fff, #fff),
         linear-gradient(#fff, #fff);
     mask-mode: alpha, alpha, alpha, alpha;
     mask-size:
-        100% var(--cht-reveal-bt, 0px), var(--cht-reveal-br, 0px) 100%,
-        100% var(--cht-reveal-bb, 0px), var(--cht-reveal-bl, 0px) 100%;
-    mask-position:
-        top,
-        right,
-        bottom,
-        left;
+        100% var(--cht-reveal-bt, 0px),
+        var(--cht-reveal-br, 0px) 100%,
+        100% var(--cht-reveal-bb, 0px),
+        var(--cht-reveal-bl, 0px) 100%;
+    mask-position: top, right, bottom, left;
     mask-repeat: no-repeat;
 }
 

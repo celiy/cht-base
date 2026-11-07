@@ -118,7 +118,8 @@ export default defineConfig(async ({ command, mode }) => {
             tailwindcss(),
             clientOverridePlugin()
         ],
-        base: electronBuild ? "./" : "/",
+        // CHT_BASE serves the site from a subpath, e.g. GitHub Pages project sites at /repo/
+        base: electronBuild ? "./" : process.env.CHT_BASE || "/",
         // The client owns `public/` and `.env*`; only `VITE_*` keys reach the browser.
         ...(clientDirPath
             ? { publicDir: path.join(clientDirPath, "public"), envDir: clientDirPath }

@@ -120,12 +120,18 @@
         </section>
 
         <section>
-            <h3>theme.config.json</h3>
+            <h3>Tema do cliente</h3>
 
             <p>
-                O arquivo fica em <code>src/theme.config.json</code> do cliente, ou em
-                <code>theme</code> dentro do <code>cht.config.json</code>. O plugin do Vite
-                transforma esse arquivo em CSS pelo módulo <code>virtual:client-theme</code>.
+                O tema fica no campo <code>theme</code> do <code>cht.config.ts</code> (ou
+                <code>cht.config.json</code>) da pasta do cliente. O plugin do Vite transforma
+                esse campo em CSS pelo módulo <code>virtual:client-theme</code>. Sem o campo, valem
+                os padrões do <code>cht-base</code>.
+            </p>
+
+            <p>
+                Sem cliente ativo, no dev app do <code>cht-base</code>, o tema vem de
+                <code>src/devApp/theme.config.json</code>.
             </p>
         </section>
 

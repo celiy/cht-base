@@ -78,6 +78,39 @@
         </section>
 
         <section>
+            <h3>Animação</h3>
+
+            <p>Por padrão o balão aparece e some sem animação. <code>animation</code> aceita <code>fade</code>, <code>scale</code>, <code>slide-up</code> e <code>slide-down</code>, usada tanto para aparecer quanto para sumir. <code>animationDuration</code> define a duração em ms, com padrão <code>150</code>. Com <code>prefers-reduced-motion</code>, toda animação vira <code>fade</code>.</p>
+        </section>
+
+        <section class="mb-8">
+            <DocsExample label="Animação">
+                <div class="flex flex-wrap items-center gap-3 p-4">
+                    <Tooltip
+                        v-for="name in animations"
+                        :key="name"
+                        class="inline-block"
+                        :animation="name"
+                    >
+                        <Button variant="outline">{{ name }}</Button>
+
+                        <template #tooltip> animation="{{ name }}" </template>
+                    </Tooltip>
+
+                    <Tooltip
+                        class="inline-block"
+                        animation="scale"
+                        :animation-duration="400"
+                    >
+                        <Button variant="outline"> scale 400 ms </Button>
+
+                        <template #tooltip> Mais lento </template>
+                    </Tooltip>
+                </div>
+            </DocsExample>
+        </section>
+
+        <section>
             <h3>Nos charts</h3>
 
             <p>
@@ -120,6 +153,7 @@ export default defineComponent({
 
     data() {
         return {
+            animations: ["fade", "scale", "slide-up", "slide-down"] as const
         };
     }
 });
